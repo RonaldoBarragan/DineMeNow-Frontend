@@ -1,5 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import LoginPrueba from '../pages/login';
+import IniciarSesion from '../pages/IniciarSesion';
+
+
 
 
 // ------------------------------------------------------------
@@ -22,7 +24,7 @@ export const AppRoutes = () => {
     <Routes>
       {/* Rutas usando los Dummys */}
       <Route path="/" element={<HomeDummy />} />
-      <Route path="/login" element={<LoginPrueba />} />
+      <Route path="/IniciarSesion" element={<IniciarSesion />} />
 
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />

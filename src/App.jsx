@@ -27,10 +27,10 @@ function App() {
 
   // 3. Crear una variable que decide si debe aparecer el Navbar/Footer
   //    Comprobamos si la ruta actual es '/login'
-  const isLoginPage = location.pathname === '/login';
+  //const isLoginPage = location.pathname === '/IniciarSesion';
   
   // Si deseas que esté oculto en otra ruta, añades:
-  // const isSpecialPage = location.pathname === '/login' || location.pathname === '/otra-ruta-limpia';
+   const isSpecialPage = location.pathname === '/iniciarSesion' || location.pathname === '/otra-ruta-limpia';
 
 
   return (
@@ -38,7 +38,7 @@ function App() {
       {/* cambiar el isLoginPage por el isSpecialPage si se va a bloquear o descartar el nav en la pagina deseada  */}
       {/* 4. Renderizado CONDICIONAL del Navbar */}
       {/* Solo se renderiza si NO es la página de Login */}
-      { !isLoginPage && <NavbarDummy /> } 
+      { !isSpecialPage && <NavbarDummy /> } 
       {/* Cuando exista el real, cámbialo por: { !isLoginPage && <Navigation /> } */}
 
 
@@ -49,7 +49,7 @@ function App() {
 
       {/* cambiar el isLoginPage por el isSpecialPage si se va a bloquear o descartar el footer en la pagina deseada  */}
       {/* 6. Renderizado CONDICIONAL del Footer */}
-      { !isLoginPage && <FooterDummy /> }
+      { !isSpecialPage && <FooterDummy /> }
       {/* Cuando exista el real, cámbialo por: { !isLoginPage && <Footer /> } */}
       
     </div>
