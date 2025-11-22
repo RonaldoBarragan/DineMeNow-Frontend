@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import IniciarSesion from '../pages/IniciarSesion';
+import VerificarToken from '../pages/VerificarToken';
 
 
 
@@ -24,7 +25,8 @@ export const AppRoutes = () => {
     <Routes>
       {/* Rutas usando los Dummys */}
       <Route path="/" element={<HomeDummy />} />
-      <Route path="/IniciarSesion" element={<IniciarSesion />} />
+      <Route path="/iniciarSesion" element={<IniciarSesion />} />
+      <Route path="/verificarToken" element={<VerificarToken />} />
 
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
