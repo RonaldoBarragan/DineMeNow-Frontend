@@ -30,7 +30,7 @@ function App() {
   //const isLoginPage = location.pathname === '/IniciarSesion';
   
   // Si deseas que esté oculto en otra ruta, añades:
-   const isSpecialPage = location.pathname === '/iniciarSesion' || location.pathname === '/otra-ruta-limpia';
+   const isSpecialPage = location.pathname === '/iniciarSesion' || location.pathname === '/verificarToken';
 
 
   return (
