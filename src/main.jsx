@@ -1,12 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-
-// Importamos Bootstrap (Esto no da error si npm install se hizo bien)
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './design/global.css'
 
-// Tu CSS global (si lo dejaste vacío no pasa nada)
-import './index.css'
+
 
 import App from './App.jsx'
 

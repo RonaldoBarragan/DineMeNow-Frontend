@@ -30,12 +30,14 @@ src/
 │   ├── Login.jsx     # Página de inicio de sesión
 │   └── ...           # (Cada página nueva va aquí)
 │
-├── routes/           # (Opcional) Configuración de rutas si se separan de App.jsx
+├── routes/           # Configuración de rutas si se separan de App.jsx
 │
 ├── services/         # Lógica de conexión a APIs o bases de datos simuladas
 │
-├── context/         # React Context estado global (usuarios logeados)
+├── context/          # React Context estado global (usuarios logeados)
 │
+├── constants/        #Valores inmutables y configuraciones globales (colores, API).
+├
 ├── App.jsx           # Componente principal (Define las Rutas y el Layout base)
 ├── main.jsx          # Punto de entrada (Importa estilos de Bootstrap)
 └── index.css         # Estilos globales mínimos (Reset, fuentes, body color)
