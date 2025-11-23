@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import LogoInicioSesion from '../assets/logo-inicio-sesion2.jpg'; 
 import { Image } from 'react-bootstrap';
-import FormularioInicioSesion from '../components/formInicioSesion';  
-import CardCrearCuenta from '../components/cardCrearCuenta';
+import FormularioInicioSesion from '../components/comIniciarSesion/formInicioSesion';  
+import CardCrearCuenta from '../components/comIniciarSesion/cardCrearCuenta';
 
 
 
