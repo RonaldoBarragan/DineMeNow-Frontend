@@ -1,6 +1,6 @@
 /* Footer */
 .footer{
-    background: #ff5722;
+    background-image: linear-gradient(to right, #f8a23f, red);
     color: white;
     text-align: center;
     margin-top: 40px;
@@ -29,18 +29,18 @@
 }
 
 .footer-cta-button {
-  background-color: white;
-  color: #ff5722;
-  border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  background-color: white !important;
+  color: #ff5722 !important;
+  border: none !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
 }
 
 .footer-cta-button:hover {
-  background-color: #f8f9fa;
+  background-color: #ecf0f5;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -139,7 +139,7 @@
   font-size: 0.85rem;
 }
 
-/* Receptivo */
+/* Responsive */
 @media (max-width: 992px) {
   .footer-info-grid {
     grid-template-columns: repeat(2, 1fr);

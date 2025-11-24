@@ -3,6 +3,9 @@
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .header-container {
@@ -72,7 +75,7 @@
 /* boton de inicio sesion */
 .btn-login {
   padding: 0.375rem 1rem;
-  background-color: #ff5722;
+  background-image: linear-gradient(to right, #f8a23f, red);
   color: white;
   border: 1px solid #ff5722;
   border-radius: 4px;

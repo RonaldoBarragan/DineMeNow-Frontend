@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './estilos/Searchbar.css';
+import { FiSearch, FiMapPin } from 'react-icons/fi';
 
 export default function Searchbar() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,10 +19,9 @@ export default function Searchbar() {
           {/* Campo de búsqueda */}
           <div className="search-input-group">
             <span className="search-icon">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
+              <FiSearch size={16}/>
             </span>
+            
             <input
               type="text"
               className="search-input"
@@ -37,10 +37,9 @@ export default function Searchbar() {
           {/* Selector de zona */}
           <div className="zone-select-group">
             <span className="zone-icon">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-              </svg>
+              <FiMapPin size={16}/>
             </span>
+            
             <select 
               className="zone-select"
               value={zone}

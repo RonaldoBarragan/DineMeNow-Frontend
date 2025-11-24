@@ -12,10 +12,10 @@ export default function Header() {
           <strong className="header-title">DineMeNow</strong>
         </Link>
         <div className="header-buttons">
-          <Link to="/registro" className="btn-register">
+          <Link to="/" className="btn-register">
             Registrarse
           </Link>
-          <Link to="/login" className="btn-login">
+          <Link to="/" className="btn-login">
             Iniciar sesión
           </Link>
         </div>

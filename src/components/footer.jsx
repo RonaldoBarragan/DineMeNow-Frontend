@@ -1,4 +1,5 @@
 import './estilos/Footer.css';
+import Button from 'react-bootstrap/Button';
 
 export default function Footer() {
   return (
@@ -8,11 +9,18 @@ export default function Footer() {
         <div className="footer-cta">
           <h5 className="footer-cta-title">¿Tienes un restaurante?</h5>
           <p className="footer-cta-text">Únete a DineMeNow y conecta tu negocio con más clientes</p>
-          <button className="footer-cta-button">
+
+          <Button
+          className="footer-cta-button"
+          variant='ghost'
+          href="https://www.sourcetreeapp.com"
+          target='_blank'
+          >
             Registra tu restaurante
-          </button>
+          </Button>
+
         </div>
-        </div>
+        </div>  
         {/* Sección blanca con información adicional */}
         <div className="footer-info-section">
           <div className="footer-info-grid">
