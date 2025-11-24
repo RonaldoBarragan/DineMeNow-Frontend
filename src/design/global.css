@@ -18,7 +18,7 @@ body {
 /* EStilos de los botones */
 
 /* Boton naranja degrade */
-button.buttonN {
+button.buttonNaranjaDegrade {
     background-image: linear-gradient(to right, #FF8C00, #FF3333);
     background-color: transparent; 
     border-radius: 6px; 
@@ -33,15 +33,37 @@ button.buttonN {
 
 }
 /* Mouse */
-button.buttonN:hover {
+button.buttonNaranjaDegrade:hover {
     background-image: linear-gradient(to right, #ff5533, #ff1100);
     border-color: #FF8C00;
-
-color: #FFFFFF;
+    color: #FFFFFF;
 }
 
+/* Boton Naranja degrade poco, para los botones del gestion del restaurante */
+button.buttonNaranjaSimple {
+    background-image: linear-gradient(to right, #ff6200, #FF3333);
+    background-color: transparent; 
+    border-radius: 6px; 
+    border-color: #FF8C00;
+
+    color: #FFFFFF;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5 ;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Mouse (Hover) */
+button.buttonNaranjaSimple:hover {
+    background-image: linear-gradient(to right, #ff5533, #ff1100);
+    border-color: #FF8C00;
+    color: #FFFFFF;
+}
+
+
 /* Boton Eliminar cuenta permanente */
-button.buttonE {
+button.buttonEliminarC {
     background-image: none;
     background-color: #DC3545; 
     border-radius: 6px; 
@@ -55,14 +77,14 @@ button.buttonE {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 /* Mouse */
-button.buttonE:hover {
+button.buttonEliminarC:hover {
     background-color: #E05260;
     border-color: #E05260;
     color: #FFFFFF;
 }
 
-/* boton registrarse (usuario) */
-button.buttonRU {
+/* boton registrarse (usuario) home page*/
+button.buttonRegistrarUS {
 
     background-color: transparent;
     background-image: none; 
@@ -80,14 +102,14 @@ button.buttonRU {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-button.buttonRU:hover {
+button.buttonRegistrarUS:hover {
     background-color: #fff6ed; 
     border-color: #e55101; 
     color: #000000;
 }
 
 /* Boton registrar restaurante*/
-button.buttonRE {
+button.buttonRegistrarRE {
     background-color: #FFFFFF; 
     background-image: none; 
     border-radius: 6px; 
@@ -103,13 +125,179 @@ button.buttonRE {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-button.buttonRE:hover {
+button.buttonRegistrarRE:hover {
     background-color: #FF8C00; 
     border-color: #ffffff; 
     color: #f5f5f5;
 }
 
+/* Boton Aprobar Admin platform */
+button.buttonAprobar {
+    background-color: #28a745; 
+    background-image: none; 
+    border-radius: 6px; 
+    border-color: #28a745;
+    border-width: 1px;
+    border-style: solid;
 
+    color: #FFFFFF; 
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5 ;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+button.buttonAprobar:hover {
+    background-color: #1f8e39; 
+    border-color: #2fb94f; 
+    color: #FFFFFF; 
+}
+
+/* Boton Rechazar Admin platform */
+button.buttonRechazar {
+    background-color: #FFFFFF;
+    background-image: none; 
+    border-radius: 6px; 
+    border-color: #f3e7e8; 
+    border-width: 1px;
+    border-style: solid;
+
+    color: #DC3545;
+    font-family: var(--font-title); 
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+button.buttonRechazar:hover {
+
+    background-color: #d4cdcd42; 
+    border-color: #d2cacb; 
+    color: #DC3545;
+}
+
+/* Boton de uso global se puede usar en:Ver documentos Admin platform, Editar informacion del restaurante, configurar horarios, como cliete para ver detalles de una reserva, calificar experiencia */
+button.buttonBlancoFGris {
+    background-color: #FFFFFF;
+    background-image: none; 
+    border-radius: 6px; 
+    border-color: #f3e7e8;
+    border-width: 1px;
+    border-style: solid;
+
+    color: #0a0a0a;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+button.buttonBlancoFGris:hover {
+
+    background-color: #d8d5d56e; 
+    border-color: #d2cacb; 
+    color: #0a0a0a;
+}
+
+/* Boton registrar nuevo restaurante Admin platform */
+button.buttonRegistrarNuevoR {
+    background-color: #155DFC;
+    background-image: none; 
+    border-radius: 6px; 
+    border-color: #074ee7;
+    border-width: 1px;
+    border-style: solid;
+
+    color: #FFFFFF;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+button.buttonRegistrarNuevoR:hover {
+
+    background-color: #0448db; 
+    border-color: #155DFCd4; 
+    color: #FFFFFF;
+}
+
+/* Estilos del botón de Guardar black guardar informacion del cliente */
+button.buttonGuardarInfo {
+    background-color: #212529; 
+    background-image: none; 
+    
+    border-radius: 6px; 
+    border-color: #212529; 
+    border-width: 1px;
+    border-style: solid;
+
+    color: #FFFFFF; 
+    font-family: var(--font-title); 
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5 ;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+
+button.buttonGuardarInfo:hover {
+    background-color: #343a40; 
+    border-color: #343a40; 
+    color: #FFFFFF; 
+}
+
+
+/* Estilo de los botones del menu hamburguesa*/
+button.buttonBlancoFGrisNBorder {
+    background-color: #FFFFFF;
+    background-image: none; 
+    border-radius: 6px; 
+    border-color: #ffffff;
+    border-width: 1px;
+    border-style: solid;
+
+    color: #0a0a0a;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+button.buttonBlancoFGrisNBorder:hover {
+
+    background-color: #d8d5d56e; 
+    border-color: #ffffff; 
+    color: #0a0a0a;
+}
+
+button.buttonRojoFRojo {
+    background-color: #FFFFFF;
+    background-image: none; 
+    border-radius: 6px; 
+    border-color: #ffffff; 
+    border-width: 1px;
+    border-style: solid;
+
+    color: #DC3545;
+    font-family: var(--font-title); 
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+button.buttonRojoFRojo:hover {
+
+    background-color: rgba(220, 53, 69, 0.1); 
+    border-color: #ffffff; 
+    color: #DC3545;
+}
 /* Fin */
 
 /* Estilos tipográficos globales */

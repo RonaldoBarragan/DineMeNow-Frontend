@@ -24,7 +24,7 @@ function FormularioInicioSesion() {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                  </Form.Group>
 
-                <Button  type="submit" size="sm" className="buttonN w-100">
+                <Button  type="submit" size="sm" className="buttonGuardarInfo w-100">
                 Iniciar Sesión
                 </Button>
                 <p className="text-center mt-3">
