@@ -1,4 +1,11 @@
 import { useState } from 'react';
+import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Heart, HeartFill, StarFill, GeoAlt, Signpost } from 'react-bootstrap-icons';
 import './estilos/Restaulist.css';
 
 // Componente de tarjeta individual
@@ -6,66 +13,61 @@ function RestaurantCard({ name, image, rating, zone, distance, cuisines }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
-    <div className="restaurant-card">
-      <div className="restaurant-image-container">
-        <img 
-          src={image} 
+    <Card className="restaurant-card h-100">
+      <div className="restaurant-image-wrapper">
+        <Card.Img
+          variant="top"
+          src={image}
           alt={name}
           className="restaurant-image"
         />
-        <button 
+        <Button
+          variant=""
           className="favorite-button"
           onClick={() => setIsFavorite(!isFavorite)}
-          aria-label="Marcar como favorito"
         >
-          <svg 
-            width="16" 
-            height="16" 
-            fill={isFavorite ? '#dc3545' : 'none'}
-            stroke={isFavorite ? '#dc3545' : '#6c757d'}
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-        </button>
+          {isFavorite ? (
+            <HeartFill size={20} color="#dc3545" />
+          ) : (
+            <Heart size={20} color="#ffffff" />
+          )}
+        </Button>
       </div>
-      
-      <div className="restaurant-body">
-        <div className="restaurant-header">
-          <h6 className="restaurant-name">{name}</h6>
-          <span className="restaurant-rating">
-            <svg width="10" height="10" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-            </svg>
-            {rating}
-          </span>
+
+      <Card.Body className="restaurant-body d-flex flex-column">
+        <div className="restaurant-header mb-2">
+          <Card.Title className="restaurant-name mb-0">{name}</Card.Title>
+          <Badge bg="" className="rating-badge flex-shrink-0">
+            <StarFill size={12} color="#ffc107" />
+            <span className="ms-1 fw-bold">{rating}</span>
+          </Badge>
         </div>
-        
-        <div className="restaurant-cuisines">
+
+        <div className="restaurant-cuisines mb-2">
           {cuisines.map((cuisine, idx) => (
-            <span key={idx} className="cuisine-badge">
+            <Badge
+              key={idx}
+              bg="light"
+              text="secondary"
+              className="cuisine-badge me-1"
+            >
               {cuisine}
-            </span>
+            </Badge>
           ))}
         </div>
-        
-        <div className="restaurant-info">
+
+        <Card.Text className="restaurant-info mt-auto">
           <span className="info-item">
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-            </svg>
-            {zone}
+            <GeoAlt size={12} className="me-1" />
+            <small>{zone}</small>
           </span>
           <span className="info-item">
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
-              <path fillRule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
-            </svg>
-            {distance}
+            <Signpost size={12} className="me-1" />
+            <small>{distance}</small>
           </span>
-        </div>
-      </div>
-    </div>
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
 }
 
@@ -74,7 +76,7 @@ export default function Restaulist() {
   const restaurants = [
     {
       name: "La Mesa Criolla",
-      image: "https://acortar.link/tWfaqT",
+      image: "https://images.unsplash.com/photo-1644753787071-8933b5daed2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxDb2xvbWJpYW4lMjBmb29kJTIwYXJlcGF8ZW58MXx8fHwxNzU2MjI5MTExfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       rating: "4.8",
       zone: "Zona Rosa",
       distance: "1.2 km",
@@ -82,7 +84,7 @@ export default function Restaulist() {
     },
     {
       name: "Bella Napoli",
-      image: "https://acortar.link/oQS3bA",
+      image: "https://images.unsplash.com/photo-1563245738-9169ff58eccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaXp6YSUyMHJlc3RhdXJhbnR8ZW58MXx8fHwxNzU2MjI5MTExfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       rating: "4.7",
       zone: "Chapinero",
       distance: "850 m",
@@ -107,16 +109,16 @@ export default function Restaulist() {
   ];
 
   return (
-    <div className="restaurant-list">
-      <div className="restaurant-list-container">
-        <h3 className="restaurant-list-title">Restaurantes disponibles</h3>
-        
-        <div className="restaurant-grid">
-          {restaurants.map((restaurant, idx) => (
-            <RestaurantCard key={idx} {...restaurant} />
-          ))}
-        </div>
-      </div>
-    </div>
+    <Container className="restaurant-container">
+      <h3 className="restaurants-title">Restaurantes disponibles</h3>
+
+      <Row xs={1} sm={2} md={3} lg={4} className="g-3">
+        {restaurants.map((restaurant, idx) => (
+          <Col key={idx}>
+            <RestaurantCard {...restaurant} />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 }
