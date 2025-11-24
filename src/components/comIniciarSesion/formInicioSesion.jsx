@@ -2,6 +2,7 @@ import { Row, Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+
 function FormularioInicioSesion() {
   return (
     <Card style={{ width: '100%'}} className="shadow ">
@@ -22,7 +23,8 @@ function FormularioInicioSesion() {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                  </Form.Group>
-                <Button variant="primary" type="submit" size="sm" style={{ width: '95%', backgroundColor: '#FF6600',borderColor: '#FF6600', color: '#FFFFFF' }}>
+
+                <Button  type="submit" size="sm" className="buttonGuardarInfo w-100">
                 Iniciar Sesión
                 </Button>
                 <p className="text-center mt-3">

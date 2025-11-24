@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import LogoInicioSesion from '../assets/logo-inicio-sesion2.jpg'; 
 import { Image } from 'react-bootstrap';
-import FormularioInicioSesion from '../components/comIniciarSesion/formInicioSesion';  
-import CardCrearCuenta from '../components/comIniciarSesion/cardCrearCuenta';
+
+
+import CardVerificarToken from '../components/comVerificarToken/cardVerificarToken';
 
 
 
-const IniciarSesion = () => {
+const VerificarToken = () => {
 
   return (
 
@@ -30,11 +31,10 @@ const IniciarSesion = () => {
           <Image src={LogoInicioSesion} alt="Logo DineMeNow" style={{ height: '45px', marginRight: '8px' }} rounded />
            <h4 style={{ margin: 0, fontWeight: 'bold', color: '#212529' }}>DineMeNow</h4>
           </div>
-          <p className="text-secondary small">Inicia sesion en tu cuenta</p>
+          <p className="text-secondary small">Verificar token</p>
           
-          <FormularioInicioSesion></FormularioInicioSesion>
 
-          <CardCrearCuenta></CardCrearCuenta>
+          <CardVerificarToken></CardVerificarToken>
           
         </Col>
        
@@ -46,4 +46,4 @@ const IniciarSesion = () => {
   );
 };
 
-export default IniciarSesion;
+export default VerificarToken;
