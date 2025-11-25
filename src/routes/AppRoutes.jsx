@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import IniciarSesion from '../pages/IniciarSesion';
+import Registro_Restaurante from '../pages/Registro-Restaurantes';
 
 
 
@@ -25,6 +26,7 @@ export const AppRoutes = () => {
       {/* Rutas usando los Dummys */}
       <Route path="/" element={<HomeDummy />} />
       <Route path="/IniciarSesion" element={<IniciarSesion />} />
+      <Route path="/Registro" element={<Registro_Restaurante />} />
 
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
