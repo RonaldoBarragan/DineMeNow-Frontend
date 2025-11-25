@@ -18,15 +18,11 @@ function App() {
   const location = useLocation();
   
   // 2. Lógica para determinar si estamos en una página que debe ser "limpia" (sin Header/Footer).
-  const path = location.pathname.toLowerCase();
+  const path = location.pathname.toLowerCase();
 
-// Define las rutas donde se ocultarán el Header y el Footer.
-  // Esto incluye la página de inicio de sesión y cualquier otra ruta que quieras sin el layout estándar.
-  const isSpecialPage = path === '/iniciarsesion' || path === '/otra-ruta-limpia';
-
-  // 3. Crear una variable que decide si debe aparecer el Navbar/Footer
-  //    Comprobamos si la ruta actual es '/login'
-  //const isLoginPage = location.pathname === '/IniciarSesion';
+  // Define las rutas donde se ocultarán el Header y el Footer.
+   // Esto incluye la página de inicio de sesión y cualquier otra ruta que quieras sin el layout estándar.
+   const isSpecialPage = path === '/iniciarsesion' || path === '/verificartoken';
   
 
 
@@ -39,17 +35,14 @@ function App() {
       {/* Solo se renderiza si NO es la página de Login */}
       { !isSpecialPage && <Header /> } 
       {/* Cuando exista el real, cámbialo por: { !isLoginPage && <Navigation /> } */}
-
-
       {/* 5. El Contenido Dinámico (Esto siempre va) */}
       <Container className="flex-grow-1">
-         <AppRoutes />
+         <AppRoutes />    
       </Container>
-
       {/* cambiar el isLoginPage por el isSpecialPage si se va a bloquear o descartar el footer en la pagina deseada  */}
       {/* 6. Renderizado CONDICIONAL del Footer */}
       { !isSpecialPage && <Footer /> }
-      {/* Cuando exista el real, cámbialo por: { !isLoginPage && <Footer /> } */}
+
       
     </div>
   )
@@ -57,20 +50,5 @@ function App() {
 
 
 
-import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
 
-export default function App() {
-  return (
-    <>
-      <Header />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-
-      <Footer />
-    </>
-  );
-}
-
+export default App;
