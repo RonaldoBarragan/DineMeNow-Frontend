@@ -1,0 +1,68 @@
+/* seccion */
+.hero {
+  background: linear-gradient(to bottom, #fff5f0, #ffffff);
+  padding: 3rem 1rem;
+}
+
+.hero-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+/* Hero Title */
+.hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.hero-highlight {
+  background-image: linear-gradient(to right, #f8a23f, red);
+  /*Recorta el fondo para que solo sea visible a través del texto */
+  -webkit-background-clip: text; /* Prefijo para compatibilidad en navegadores WebKit (Chrome, Safari) */
+  background-clip: text; 
+  /* Hace el texto transparente para que el background sea visible */
+  -webkit-text-fill-color: transparent;  /* Prefijo para navegadores WebKit */
+  color: transparent; /* Para otros navegadores o como fallback */
+}
+
+/* subtitulo */
+.hero-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Receptivo */
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+  
+  .hero-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.85rem;
+  }
+}
