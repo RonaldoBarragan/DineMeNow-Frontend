@@ -1,9 +1,14 @@
-import Form_Registro from "../components/comRegistro-Restaurantes/form-registro-restaurante";
+import { Container } from "react-bootstrap";
+import Form_Info_Operativa from "../components/comRegistro-Restaurantes/form-info-operativa";
+import Form_Restaurante from "../components/comRegistro-Restaurantes/form-info-restaurante";
 
 export default function Registro_Restaurante() {
     return (
         <>
-        <Form_Registro />
+        <Container className="container py-5" style={{ maxWidth: "900px", minHeight: "100vh"}}>
+            <Form_Restaurante />
+            <Form_Info_Operativa />
+        </Container>
         </>
     )
 }

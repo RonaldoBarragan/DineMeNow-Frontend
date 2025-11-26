@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import IniciarSesion from '../pages/IniciarSesion';
 import Registro_Restaurante from '../pages/Registro-Restaurantes';
-import Form_Final from '../components/comRegistro-Restaurantes/form-final';
 import Home from '../pages/Home';
 
 
@@ -29,7 +28,6 @@ export const AppRoutes = () => {
       <Route path="/" element={<HomeDummy />} />
       <Route path="/IniciarSesion" element={<IniciarSesion />} />
       <Route path="/Registro" element={<Registro_Restaurante />} />
-      <Route path="/Registro2" element={<Form_Final />} />
       <Route path="/jeimy" element={<Home />} />
 
       {/* Redirección por defecto */}
