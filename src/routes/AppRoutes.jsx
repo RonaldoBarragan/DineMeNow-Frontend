@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import IniciarSesion from '../pages/IniciarSesion';
 import VerificarToken from '../pages/VerificarToken';
 import Home from '../pages/Home';
+import Formregristrousu from '../components/comRegistroCliente/formulario';
 
 
 export const AppRoutes = () => {
@@ -10,6 +11,7 @@ export const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/iniciarSesion" element={<IniciarSesion />} />
       <Route path="/verificarToken" element={<VerificarToken />} />
+      <Route path="/Crearcuenta" element={<Formregristrousu />} />
 
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />

@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 function Formregristrousu () {
     return (
         <>
@@ -29,6 +30,8 @@ function Formregristrousu () {
                 <Form.Control type="password" >
                 </Form.Control>
             </Form.Group>
+<br></br>
+            <Button type='submit'>Crear Cuenta</Button>
         </Form>
         </>
     )
