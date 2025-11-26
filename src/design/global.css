@@ -19,7 +19,7 @@ body {
 
 /* Boton naranja degrade */
 button.buttonNaranjaDegrade {
-    background-image: linear-gradient(to right, #FF8C00, #FF3333);
+    background-image: linear-gradient(to right, #ff8000, #FF3333);
     background-color: transparent; 
     border-radius: 6px; 
     border-color: #FF8C00;
@@ -332,7 +332,7 @@ button.buttonBlancoFGris:focus {
 }
 
 
-button.buttonRegistrarNuevoR:active {
+button.buttonBlancoFGris:active {
     background-color:#d8d5d56e !important; 
     border-color: #d2cacb !important;
     color: #FFFFFF !important;
