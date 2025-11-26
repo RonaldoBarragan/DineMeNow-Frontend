@@ -1,146 +1,50 @@
-/* -------------------------------------- */
-/* 1. Estilos del Ícono Hamburguesa/Cerrar */
-/* -------------------------------------- */
-
-/* Contenedor del ícono (3 barras) */
-.burger-icon {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 28px; /* Ajusta según el tamaño de la primera imagen */
-    height: 28px;
-    cursor: pointer;
-    z-index: 1001; /* Asegúrate de que esté por encima de todo */
+/* ============================================ */
+/* CONTENEDOR PRINCIPAL */
+/* ============================================ */
+.menu-hamburguesa {
+    position: relative;
 }
 
-/* Las barras individuales */
-.burger-icon .bar {
-    width: 100%;
-    height: 3px;
-    background-color: #333; /* Color oscuro */
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out;
-}
-
-
-
-/* -------------------------------------- */
-/* 2. Estilos del Menú Lateral (Sidebar) */
-/* -------------------------------------- */
-
+/* ============================================ */
+/* MENÚ LATERAL */
+/* ============================================ */
 .menu {
-    /* Posicionamiento y dimensiones del menú lateral */
-    position: fixed; /* Fijo para que cubra la pantalla */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 80%; /* Ancho del menú, ajusta según necesidad */
-    max-width: 300px; /* Limita el ancho en pantallas grandes */
+    width: 85%;
+    max-width: 320px;
     height: 100vh;
-    background-color: white;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Debe estar sobre el contenido principal */
+    background-color: #ffffff;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
     overflow-y: auto;
-    transition: transform 0.3s ease-in-out;
-    padding: 20px 0; /* Espacio interior */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
 }
 
-/* Estado Oculto */
 .menu.hidden {
-    transform: translateX(-100%); /* Mueve el menú fuera de la vista */
+    transform: translateX(-100%);
 }
 
-/* Estado Visible */
 .menu.visible {
-    transform: translateX(0); /* Muestra el menú en la pantalla */
+    transform: translateX(0);
 }
 
-/* --- Contenido Interno del Menú --- */
-
+/* ============================================ */
+/* HEADER */
+/* ============================================ */
 .menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0 20px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #eee; /* Separador */
-    padding-bottom: 20px;
+    padding: 20px;
+    border-bottom: none; 
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-/* .menu-logo {
-    /* Estilos para el logo DineMeNow y "Reservas de restaurantes" */
 
-
-.close-button {
-    /* Estilos del botón 'X' para cerrar */
-    background: none;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    color: #333;
-    padding: 0;
-    line-height: 1; /* Para que la X se vea centrada */
-}
-
-.menu-navigation {
-    padding: 0 20px;
-    margin-bottom: 40px;
-}
-
-.nav-title {
-    color: #888;
-    font-size: 0.8em;
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-
-.menu-navigation ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu-navigation a {
-    /* Estilo del link "Buscar Restaurantes" */
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-    font-size: 1.1em;
-    padding: 10px 0;
-}
-
-/* --- Sección Iniciar Sesión (Naranja) --- */
-
-.menu-session-cta {
-    /* Contenedor de la llamada a la acción */
-    padding: 0 20px;
-}
-
-.menu-session-cta p {
-    font-size: 0.9em;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.btn-login-menu {
-    /* Estilos del botón naranja, similar a la imagen */
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    background: linear-gradient(to right, #ff6b3d, #ff3d6a); /* Degradado naranja/rojo */
-    color: white;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* -------------------------------------- */
-/* 3. Estilos del Overlay (Fondo Oscuro) */
-/* -------------------------------------- */
 
 .menu-overlay {
     position: fixed;
@@ -148,6 +52,35 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4); /* Oscurece el fondo */
-    z-index: 999; /* Detrás del menú pero encima del contenido */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================ */
+/* RESPONSIVE */
+/* ============================================ */
+@media (max-width: 576px) {
+    .menu {
+        width: 90%;
+        max-width: 100%;
+    }
+    
+    .menu-header {
+        padding: 15px;
+    }
+    
+    .menu-navigation,
+    .menu-session-cta {
+        padding: 15px;
+    }
 }
