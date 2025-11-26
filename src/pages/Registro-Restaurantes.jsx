@@ -1,4 +1,4 @@
-import Form_Registro from "../components/form-registro-restaurante";
+import Form_Registro from "../components/comRegistro-Restaurantes/form-registro-restaurante";
 
 export default function Registro_Restaurante() {
     return (
