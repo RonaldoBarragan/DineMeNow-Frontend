@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import './estilos/Header.css';
-
+import MenuHamburguesa from "./comMenuHamburguesa/menuHamburguesa";
 export default function Header() {
   return (
     <nav className="header-nav">
       <div className="header-container">
+        <div className="burger-wraper"><MenuHamburguesa></MenuHamburguesa></div>
         <Link to="/" className="header-brand">
           <div className="header-logo">
             <strong>D</strong>
