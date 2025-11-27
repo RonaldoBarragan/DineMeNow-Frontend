@@ -1,0 +1,86 @@
+/* ============================================ */
+/* CONTENEDOR PRINCIPAL */
+/* ============================================ */
+.menu-hamburguesa {
+    position: relative;
+}
+
+/* ============================================ */
+/* MENÚ LATERAL */
+/* ============================================ */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.menu.hidden {
+    transform: translateX(-100%);
+}
+
+.menu.visible {
+    transform: translateX(0);
+}
+
+/* ============================================ */
+/* HEADER */
+/* ============================================ */
+.menu-header {
+    padding: 20px;
+    border-bottom: none; 
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================ */
+/* RESPONSIVE */
+/* ============================================ */
+@media (max-width: 576px) {
+    .menu {
+        width: 90%;
+        max-width: 100%;
+    }
+    
+    .menu-header {
+        padding: 15px;
+    }
+    
+    .menu-navigation,
+    .menu-session-cta {
+        padding: 15px;
+    }
+}

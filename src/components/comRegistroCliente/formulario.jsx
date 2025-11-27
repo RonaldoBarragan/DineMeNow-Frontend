@@ -1,9 +1,10 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import '../estilos/Registrocliente.css';
 function Formregristrousu () {
     return (
         <>
-        <h4>Crea tu cuenta</h4>
+        <p>Crea tu cuenta</p>
         <Form >
             <Form.Group>
                 <Form.Label>Nombre Completo</Form.Label>

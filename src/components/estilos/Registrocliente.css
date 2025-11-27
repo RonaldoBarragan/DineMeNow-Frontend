@@ -1,0 +1,16 @@
+/*estilo de la imagen de logo del resgritro de cliente */
+.logo-Regristro{
+    height: 45px;
+    margin-right: 8px;
+}
+h4{
+    margin: 0;
+    font-weight: bold;
+    color: #212529;
+}
+p{
+    text-align: center;
+    margin-top: 1rem; 
+    color: #6c757d;
+    font-size: 0.875rem;
+}
