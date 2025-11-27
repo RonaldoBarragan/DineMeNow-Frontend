@@ -3,7 +3,7 @@ import { Card, Col, Form, Row } from "react-bootstrap";
 export default function Form_Info_Operativa() {
     return (
         <>
-        <Card>
+        <Card className="mb-4">
             <Card.Body>
                 <Card.Title className="fw-bold mb-3">Información Operativa</Card.Title>
                 <p className="text-muted">Detalles sobre el funcionamiento de tu restaurante</p>
