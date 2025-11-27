@@ -19,7 +19,7 @@ body {
 
 /* Boton naranja degrade */
 button.buttonNaranjaDegrade {
-    background-image: linear-gradient(to right, #FF8C00, #FF3333);
+    background-image: linear-gradient(to right, #ff8000, #FF3333);
     background-color: transparent; 
     border-radius: 6px; 
     border-color: #FF8C00;
@@ -38,6 +38,24 @@ button.buttonNaranjaDegrade:hover {
     border-color: #FF8C00;
     color: #FFFFFF;
 }
+button.buttonNaranjaDegrade:focus {
+    background-image: linear-gradient(to right, #ff5533, #ff1100);
+    border-color: #FF8C00; 
+    color: #FFFFFF;
+    box-shadow: none; 
+}
+
+button.buttonNaranjaDegrade:active {
+    background-image: linear-gradient(to right, #ff5533, #ff1100) !important; 
+    border-color: #FF8C00 !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
+
+
+
 
 /* Boton Naranja degrade poco, para los botones del gestion del restaurante */
 button.buttonNaranjaSimple {
@@ -54,12 +72,30 @@ button.buttonNaranjaSimple {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Mouse (Hover) */
+
 button.buttonNaranjaSimple:hover {
     background-image: linear-gradient(to right, #ff5533, #ff1100);
     border-color: #FF8C00;
     color: #FFFFFF;
 }
+button.buttonNaranjaSimple:focus {
+    background-image: linear-gradient(to right, #ff5533, #ff1100);
+    border-color: #FF8C00; 
+    color: #FFFFFF;
+    box-shadow: none; 
+}
+
+
+button.buttonNaranjaSimple:active {
+    background-image: linear-gradient(to right, #ff5533, #ff1100) !important; 
+    border-color: #FF8C00 !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
+
+
 
 
 /* Boton Eliminar cuenta permanente */
@@ -82,6 +118,22 @@ button.buttonEliminarC:hover {
     border-color: #E05260;
     color: #FFFFFF;
 }
+button.buttonEliminarC:focus {
+    background-color: #E05260; 
+    border-color: #E05260; 
+    color: #FFFFFF;
+    box-shadow: none; 
+}
+
+
+button.buttonEliminarC:active {
+    background-color:#E05260 !important; 
+    border-color: #E05260 !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
 
 /* boton registrarse (usuario) home page*/
 button.buttonRegistrarUS {
@@ -107,6 +159,24 @@ button.buttonRegistrarUS:hover {
     border-color: #e55101; 
     color: #000000;
 }
+button.buttonRegistrarUS:focus {
+    background-color: #fff6ed; 
+    border-color: #e55101; 
+    color: #000000;
+    box-shadow: none; 
+}
+
+
+button.buttonRegistrarUS:active {
+    background-color:#fff6ed !important; 
+    border-color: #e55101 !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
+
+
 
 /* Boton registrar restaurante*/
 button.buttonRegistrarRE {
@@ -130,6 +200,25 @@ button.buttonRegistrarRE:hover {
     border-color: #ffffff; 
     color: #f5f5f5;
 }
+button.buttonRegistrarRE:focus {
+    background-color: #FF8C00; 
+    border-color: #ffffff; 
+    color: #f5f5f5;
+    box-shadow: none; 
+}
+
+
+button.buttonRegistrarRE:active {
+    background-color:#FF8C00 !important; 
+    border-color: #ffffff !important;
+    color: #f5f5f5 !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
+
+
+
 
 /* Boton Aprobar Admin platform */
 button.buttonAprobar {
@@ -153,6 +242,23 @@ button.buttonAprobar:hover {
     border-color: #2fb94f; 
     color: #FFFFFF; 
 }
+button.buttonAprobar:focus {
+    background-color: #1f8e39; 
+    border-color: #2fb94f; 
+    color: #FFFFFF;
+    box-shadow: none; 
+}
+
+
+button.buttonAprobar:active {
+    background-color:#1f8e39 !important; 
+    border-color: #2fb94f !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
+
 
 /* Boton Rechazar Admin platform */
 button.buttonRechazar {
@@ -177,6 +283,23 @@ button.buttonRechazar:hover {
     border-color: #d2cacb; 
     color: #DC3545;
 }
+button.buttonRechazar:focus {
+    background-color: #d4cdcd42; 
+    border-color: #d2cacb; 
+    color: #DC3545;
+    box-shadow: none; 
+}
+
+
+button.buttonRechazar:active {
+    background-color:#d4cdcd42 !important; 
+    border-color: #d2cacb !important;
+    color: #DC3545 !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
+
 
 /* Boton de uso global se puede usar en:Ver documentos Admin platform, Editar informacion del restaurante, configurar horarios, como cliete para ver detalles de una reserva, calificar experiencia */
 button.buttonBlancoFGris {
@@ -201,6 +324,25 @@ button.buttonBlancoFGris:hover {
     border-color: #d2cacb; 
     color: #0a0a0a;
 }
+button.buttonBlancoFGris:focus {
+    background-color: #d8d5d56e; 
+    border-color: #d2cacb; 
+    color: #FFFFFF;
+    box-shadow: none; 
+}
+
+
+button.buttonBlancoFGris:active {
+    background-color:#d8d5d56e !important; 
+    border-color: #d2cacb !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
+
+
+
 
 /* Boton registrar nuevo restaurante Admin platform */
 button.buttonRegistrarNuevoR {
@@ -225,6 +367,24 @@ button.buttonRegistrarNuevoR:hover {
     border-color: #155DFCd4; 
     color: #FFFFFF;
 }
+button.buttonRegistrarNuevoR:focus {
+    background-color: #0448db; 
+    border-color: #155DFCd4; 
+    color: #FFFFFF;
+    box-shadow: none; 
+}
+
+
+button.buttonRegistrarNuevoR:active {
+    background-color:#0448db !important; 
+    border-color: #155DFCd4 !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
+
+
 
 /* Estilos del botón de Guardar black guardar informacion del cliente */
 button.buttonGuardarInfo {
@@ -244,11 +404,25 @@ button.buttonGuardarInfo {
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-
 button.buttonGuardarInfo:hover {
-    background-color: #343a40; 
-    border-color: #343a40; 
-    color: #FFFFFF; 
+    background-color: #343a40;
+    border-color: #343a40;
+    color: #FFFFFF;
+}
+button.buttonGuardarInfo:focus {
+    background-color: #343a40;
+    border-color: #343a40;
+    color: #FFFFFF;
+    box-shadow: none; 
+}
+
+
+button.buttonGuardarInfo:active {
+    background-color:#343a40 !important; 
+    border-color: #343a40 !important;
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+    transform: none !important; 
 }
 
 
@@ -271,10 +445,29 @@ button.buttonBlancoFGrisNBorder {
 
 button.buttonBlancoFGrisNBorder:hover {
 
-    background-color: #d8d5d56e; 
-    border-color: #ffffff; 
-    color: #0a0a0a;
+    background-color: #d8d5d56e ; 
+    border-color: #ffffff ;
+    color: #0a0a0a ;
+
 }
+
+button.buttonBlancoFGrisNBorder:focus {
+
+    background-color: #d8d5d56e;
+    border-color: #ffffff;
+    color: #0a0a0a;
+    box-shadow: none; 
+}
+
+
+button.buttonBlancoFGrisNBorder:active {
+    background-color: #d8d5d56e !important; 
+    border-color: #ffffff !important;
+    color: #0a0a0a !important;
+    box-shadow: none !important;
+    transform: none !important; 
+}
+
 
 button.buttonRojoFRojo {
     background-color: #FFFFFF;
@@ -283,7 +476,7 @@ button.buttonRojoFRojo {
     border-color: #ffffff; 
     border-width: 1px;
     border-style: solid;
-
+    box-shadow: none;
     color: #DC3545;
     font-family: var(--font-title); 
     font-size: 1rem;
@@ -297,6 +490,24 @@ button.buttonRojoFRojo:hover {
     background-color: rgba(220, 53, 69, 0.1); 
     border-color: #ffffff; 
     color: #DC3545;
+}
+
+
+button.buttonRojoFRojo:focus {
+
+    background-color: rgba(220, 53, 69, 0.1);
+    border-color: #ffffff;
+    color: #DC3545;
+    box-shadow: none; 
+}
+
+
+button.buttonRojoFRojo:active {
+    background-color: rgba(220, 53, 69, 0.1) !important; 
+    border-color: #ffffff !important;
+    color: #DC3545 !important;
+    box-shadow: none !important;
+    transform: none !important; 
 }
 /* Fin */
 
