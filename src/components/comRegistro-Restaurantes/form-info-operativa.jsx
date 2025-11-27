@@ -1,4 +1,5 @@
 import { Card, Col, Form, Row } from "react-bootstrap";
+import './form-info-documentacion.css'; {/*Reutiliza una clase CSS del otro formulario*/}
 
 export default function Form_Info_Operativa() {
     return (
@@ -24,7 +25,7 @@ export default function Form_Info_Operativa() {
                         </Col>
                     </Row>
                     <Row>
-                        <Form.Label style={{ fontSize: "13px" }}>Servicios Adicionales</Form.Label>
+                        <Form.Label className="letra-size">Servicios Adicionales</Form.Label>
                         <Col>
                         <Form.Check type="checkbox" label="Servicio a domicilio" />
                         </Col>
