@@ -1,0 +1,15 @@
+.cancelar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #6c757d; 
+    margin-top: 1rem; 
+    margin-left: 1rem; 
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.cancelar-link {
+    color: #6c757d;          
+    text-decoration: none;   
+}

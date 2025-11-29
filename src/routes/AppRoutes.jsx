@@ -11,7 +11,7 @@ export const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/iniciarSesion" element={<IniciarSesion />} />
       <Route path="/verificarToken" element={<VerificarToken />} />
-      <Route path="/Crear" element={<CrearCuentaCliente/>} />
+      <Route path="/CrearCuenta" element={<CrearCuentaCliente/>} />
  
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />

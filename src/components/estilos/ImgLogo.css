@@ -5,6 +5,7 @@
     align-items: center; /* Centra verticalmente los elementos */
     justify-content: center; /* Centra horizontalmente los elementos */
     
+    
 }
 /* Imagen del logo */
 .logo {
@@ -21,8 +22,7 @@ h4 {
 }
 p {
     color: #6c757d;     
-    font-size: 0.875rem; 
+    text-align: center;
     margin-top: 5px;
     margin-bottom: 15px;
-    text-align: center;  
 }

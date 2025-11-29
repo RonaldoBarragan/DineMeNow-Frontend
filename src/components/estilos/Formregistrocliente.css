@@ -3,9 +3,9 @@
     width: 100%;
     background: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* borde suave */
-    max-width: 400px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.35); /* borde suave */
+    max-width: 350px;
     margin: 0 auto;    /* para centrarlo */
 }
 /* Título del formulario */

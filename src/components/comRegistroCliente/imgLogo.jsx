@@ -7,7 +7,9 @@ function ImgLogoRegistro (){
             <img src={Logo} alt="Logo DineMeNow" className="logo"/>
             <h4>DineMeNow</h4>
         </div>
-        <p>Crea tu cuenta</p>
+        <p className="text-secondary small" style={{ textAlign: 'center' }}>
+        Crea tu cuenta
+        </p>
         </>
     )
     }
