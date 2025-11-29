@@ -1,10 +1,11 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import '../estilos/Registrocliente.css';
+import '../estilos/Formregistrocliente.css';
 function Formregristrousu () {
     return (
         <>
-        <p>Crea tu cuenta</p>
+        <div className="form-registro">
+        <p>Crear cuenta</p>
         <Form >
             <Form.Group>
                 <Form.Label>Nombre Completo</Form.Label>
@@ -18,7 +19,7 @@ function Formregristrousu () {
             </Form.Group>
             <Form.Group>
                 <Form.Label>Telefono</Form.Label>
-                <Form.Control type="number" placeholder="3001234567">
+                <Form.Control type="tel" placeholder="3001234567">
                 </Form.Control>
             </Form.Group>
             <Form.Group>
@@ -31,9 +32,9 @@ function Formregristrousu () {
                 <Form.Control type="password" >
                 </Form.Control>
             </Form.Group>
-<br></br>
             <Button type='submit'>Crear Cuenta</Button>
         </Form>
+        </div>
         </>
     )
 }

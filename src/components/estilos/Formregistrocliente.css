@@ -1,0 +1,47 @@
+/* Contenedor principal del formulario */
+.form-registro {
+    width: 100%;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* borde suave */
+    max-width: 400px;
+    margin: 0 auto;    /* para centrarlo */
+}
+/* Título del formulario */
+p{
+    color: #6c757d;      
+    font-size: 0.875rem; 
+    text-align: start;
+}
+/* Estilos de cada etiqueta */
+label {
+     font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+/* Inputs */
+.form-registro input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+/* Botón */
+.form-registro button {
+    width: 100%;
+    padding: 10px;
+    background-color: #212529; 
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    margin-top: 5px;
+}
+/* Hover */
+.form-registro button:hover {
+    background-color: #343A40;
+    cursor: pointer;
+}
