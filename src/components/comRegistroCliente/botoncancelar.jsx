@@ -3,7 +3,7 @@ function BotonCancelar (){
     return (
         <>
         <div className="cancelar">
-            <a href="#" className="cancelar-link">
+            <a href="/" className="cancelar-link">
             &times;
             Cancelar
             </a>

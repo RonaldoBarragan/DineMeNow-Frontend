@@ -1,10 +1,9 @@
-
 /* Contenedor del logo y el título */
 .logo-registro {
+    margin-top: -45px;
     display: flex; /* Coloca los elementos uno al lado del otro */
     align-items: center; /* Centra verticalmente los elementos */
     justify-content: center; /* Centra horizontalmente los elementos */
-    
     
 }
 /* Imagen del logo */

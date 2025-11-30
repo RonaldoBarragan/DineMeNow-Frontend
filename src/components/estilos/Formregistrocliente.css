@@ -16,14 +16,14 @@ p{
 }
 /* Estilos de cada etiqueta */
 label {
-     font-weight: 500;
+    font-weight: 500;
     margin-bottom: 5px;
     display: block;
 }
 /* Inputs */
 .form-registro input {
     width: 100%;
-    padding: 10px;
+    padding: 6px;
     border: 1px solid #ced4da;
     border-radius: 6px;
     font-size: 0.95rem;
@@ -32,7 +32,7 @@ label {
 /* Botón */
 .form-registro button {
     width: 100%;
-    padding: 10px;
+    padding: 6px;
     background-color: #212529; 
     color: #fff;
     font-size: 1rem;

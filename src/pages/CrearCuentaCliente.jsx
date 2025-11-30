@@ -4,7 +4,7 @@ import BotonCancelar from "../components/comRegistroCliente/botoncancelar";
 const CrearCuentaCliente=() =>{
     return(
         <>
-        
+        <BotonCancelar/>
         <ImgLogo/>
         <Formulario/>
         </>

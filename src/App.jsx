@@ -22,7 +22,7 @@ function App() {
 
   // Define las rutas donde se ocultarán el Header y el Footer.
    // Esto incluye la página de inicio de sesión y cualquier otra ruta que quieras sin el layout estándar.
-   const isSpecialPage = path === '/iniciarsesion' || path === '/verificartoken';
+   const isSpecialPage = path === '/iniciarsesion' || path === '/verificartoken' || path === '/crearcuenta';
   
 
 
