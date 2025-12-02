@@ -1,15 +1,34 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import IniciarSesion from '../pages/IniciarSesion';
-import VerificarToken from '../pages/VerificarToken';
+import Registro_Restaurante from '../pages/Registro-Restaurantes';
 import Home from '../pages/Home';
+
+
+
+
+// ------------------------------------------------------------
+// ZONA DE IMPORTACIONES (Descomentar cuando existan los archivos)
+// ------------------------------------------------------------
+// import Home from '../pages/Home';
+// import Login from '../pages/Login';
+
+
+// ------------------------------------------------------------
+// COMPONENTES DUMMY (Para que no de error mientras crean las paginas)
+// Eliminar esto cuando tus compañeros creen los archivos reales
+// ------------------------------------------------------------
+const HomeDummy = () => <h2 className="text-center mt-5">🏡 Página Home (Pendiente)</h2>;
+//const LoginDummy = () => <h2 className="text-center mt-5">🔐 Página Login (Pendiente)</h2>;
 
 
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/iniciarSesion" element={<IniciarSesion />} />
-      <Route path="/verificarToken" element={<VerificarToken />} />
+      {/* Rutas usando los Dummys */}
+      <Route path="/" element={<HomeDummy />} />
+      <Route path="/IniciarSesion" element={<IniciarSesion />} />
+      <Route path="/Registro" element={<Registro_Restaurante />} />
+      <Route path="/jeimy" element={<Home />} />
 
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
