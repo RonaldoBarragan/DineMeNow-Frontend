@@ -1,0 +1,16 @@
+.caja-document{
+    border: 2px dashed #c9c9c9;
+    border-radius: 10px;
+    padding: 40px;
+    background: #ffffff;
+}
+
+.letra-size{
+    font-size: 13px;
+}
+
+.icon-document{
+    font-size: 35px;
+    color: #9b9b9b;
+    margin-bottom: 12px;
+}

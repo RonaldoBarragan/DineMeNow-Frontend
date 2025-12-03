@@ -2,23 +2,33 @@
 .header-nav {
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem 0;
-  position: sticky;
-  top: 0;
+  padding: 0 20px;
   z-index: 1000;
+  width: 100%;
+  position:fixed;
+  top: 0;
+
 }
 
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
-  gap: 2rem;
+  padding: 0 20px;
   display: flex;
-  justify-content: flex-start;
+  justify-content:space-between ;
   align-items: center;
+  width: 100%;
+
 }
 
 /* Logo */
+
+.header-brand-group{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .header-brand {
   display: flex;
   align-items: center;
@@ -56,22 +66,28 @@
 }
 
 /* Buttons Container */
+
 .header-buttons {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  padding: 8px 12px;
 }
 
 /* boton de registro */
 .btn-register {
-  padding: 0.375rem 1rem;
-  border: 1px solid #ff5722;
-  background-color: white;
-  color: #ff5722;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+
+    background-color: transparent; 
+    border-radius: 6px; 
+    border-color: #ff5722;
+    color: #ff5722;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5 ;
 }
 
 .btn-register:hover {
@@ -81,7 +97,7 @@
 }
 
 /* boton de inicio sesion */
-.btn-login {
+/*.btn-login {
   padding: 0.375rem 1rem;
   background-image: linear-gradient(to right, #f8a23f, red);
   color: white;
@@ -97,25 +113,60 @@
   background-color: #ff5722;
   text-decoration: none;
   color: white;
-}
+}*/
 
 /* Responsive */
-@media (max-width: 768px) {
-  .header-container {
-    padding: 0 1rem;
-  }
-  
-  .header-title {
-    font-size: 1rem;
-  }
-  
-  .header-buttons {
-    gap: 0.25rem;
-  }
-  
-  .btn-register,
-  .btn-login {
-    padding: 0.25rem 0.75rem;
-    font-size: 0.8rem;
-  }
+/* ================================================= */
+/* 2. Responsive - TABLET (577px a 991px) */
+/* ================================================= */
+@media (min-width: 577px) and (max-width: 991px) {
+    
+    .header-container {
+        padding: 0px 20px;
+        max-width: 960px;
+    }
+    
+    /* Los botones en general */
+    .header-buttons button,
+    .btn-register,
+    .btn-login{
+        font-size: 0.85rem; 
+        padding: 7px 10px; 
+    }
+    
+    .header-buttons {
+        gap: 15px; 
+        flex-wrap: nowrap;
+    }
+    
+    .header-title {
+        font-size: 1rem;
+    }
+
+
+/* ================================================= */
+/* 3. Responsive - MÓVIL (Hasta 576px) */
+/* ================================================= */
+@media (max-width: 576px) {
+
+    .header-container {
+        padding: 8px 15px; 
+    }
+
+    /* Los botones en general */
+    .header-buttons button,
+    .btn-register,
+    .btn-login {
+        font-size: 0.75rem; 
+        padding: 5px 8px;
+    }
+
+    .header-buttons {
+        gap: 5px; /* Reducir aún más el espacio */
+    }
+
+    .header-title {
+        font-size: 0.9rem; /* Título más pequeño en móvil */
+    }
+}
 }
