@@ -24,7 +24,23 @@ function App() {
    // Esto incluye la página de inicio de sesión y cualquier otra ruta que quieras sin el layout estándar.
    const isSpecialPage = path === '/iniciarsesion' || path === '/verificartoken' || path === '';
   
+  const pathsToHideHeader = [
+        '/iniciarsesion',
+        '/'
+        // Agrega otras rutas donde el header no deba aparecer
+    ];
+  
+  const pathsToHideFooter = [
+        '/iniciarsesion', 
+        '/verificartoken'
+        // Agrega otras rutas donde el footer no deba aparecer
+    ];
 
+  // Verifica si la ruta actual está en la lista para ocultar el Header
+  const shouldHideHeader = pathsToHideHeader.includes(path);
+
+  // Verifica si la ruta actual está en la lista para ocultar el Footer
+  const shouldHideFooter = pathsToHideFooter.includes(path);
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -33,7 +49,7 @@ function App() {
       {/* 4. Renderizado CONDICIONAL del Navbar */}
 
       {/* Solo se renderiza si NO es la página de Login */}
-      { !isSpecialPage && <Header /> } 
+      { !shouldHideHeader && <Header /> } 
       {/* Cuando exista el real, cámbialo por: { !isLoginPage && <Navigation /> } */}
       {/* 5. El Contenido Dinámico (Esto siempre va) */}
       <Container className="flex-grow-1">
@@ -41,7 +57,7 @@ function App() {
       </Container>
       {/* cambiar el isLoginPage por el isSpecialPage si se va a bloquear o descartar el footer en la pagina deseada  */}
       {/* 6. Renderizado CONDICIONAL del Footer */}
-      { !isSpecialPage && <Footer /> }
+      { !shouldHideFooter && <Footer /> }
 
       
     </div>
