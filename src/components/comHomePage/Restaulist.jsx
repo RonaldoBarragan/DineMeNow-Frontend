@@ -7,13 +7,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Heart, HeartFill, StarFill, GeoAlt, Signpost } from 'react-bootstrap-icons';
 import './estilos/Restaulist.css';
+import SessionRequiredModal from './SessionRequiredModal';
 
 // Componente de tarjeta individual
-function RestaurantCard({ name, image, rating, zone, distance, cuisines }) {
+function RestaurantCard({ name, image, rating, zone, distance, cuisines, onClick }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
-    <Card className="restaurant-card h-100">
+    <Card className="restaurant-card h-100"
+    onClick={onClick}
+    style={{cursor: 'pointer'}}>
       <div className="restaurant-image-wrapper">
         <Card.Img
           variant="top"
@@ -24,7 +27,10 @@ function RestaurantCard({ name, image, rating, zone, distance, cuisines }) {
         <Button
           variant=""
           className="favorite-button"
-          onClick={() => setIsFavorite(!isFavorite)}
+          onClick={(e) => {
+            e.stopPropagation();
+          setIsFavorite (!isFavorite);
+        }}
         >
           {isFavorite ? (
             <HeartFill size={20} color="#dc3545" />
@@ -73,6 +79,11 @@ function RestaurantCard({ name, image, rating, zone, distance, cuisines }) {
 
 // Componente principal de lista
 export default function Restaulist() {
+
+//estados necesarios
+const [showModal, setShowModal] = useState(false);
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const restaurants = [
     {
       name: "La Mesa Criolla",
@@ -108,6 +119,20 @@ export default function Restaulist() {
     }
   ];
 
+  //Logica de sesion
+
+  const handleRestaurantClick = () => {
+    if (!isLoggedIn){
+        //si el usuario no ha iniciado sesion, mostrar modal de login
+        setShowModal (true);
+    }else{
+      //si el usuario ha iniciado sesion, redirigir a la pagina del restaurante
+      console.log("Redirigiendo a la pagina del restaurante...");
+    }
+  };
+
+  const closeModal = () => setShowModal(false); //cerrar modal
+
   return (
     <Container className="restaurant-container">
       <h3 className="restaurants-title">Restaurantes disponibles</h3>
@@ -115,10 +140,16 @@ export default function Restaulist() {
       <Row xs={1} sm={2} md={3} lg={4} className="g-3">
         {restaurants.map((restaurant, idx) => (
           <Col key={idx}>
-            <RestaurantCard {...restaurant} />
+            <RestaurantCard {...restaurant} 
+            onClick={handleRestaurantClick}/>
           </Col>
         ))}
       </Row>
+      {/*renderizado del modal de login*/}
+      <SessionRequiredModal
+      show= {showModal}
+      handleClose= {closeModal}
+      />
     </Container>
   );
 }

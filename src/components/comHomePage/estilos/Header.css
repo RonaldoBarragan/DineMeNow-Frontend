@@ -14,7 +14,7 @@
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between ;
   align-items: center;
   width: 100%;
 }
@@ -114,12 +114,22 @@
 }*/
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (min-width: 577px) and (max-width: 991px) {
+
+  .header-buttons button{
+        font-size: 0.85rem; 
+        padding: 7px 10px; 
+    }
   .header-container {
-    padding: 0 1rem;
+    padding: 10px 20px;
+    max-width: 960px;
   }
 
   @media (max-width: 576px) {
+
+    .header-container {
+        padding: 8px 15px; 
+    }
     .header-buttons{
         font-size: 0.75rem; 
         padding: 5px 8px;
@@ -131,7 +141,8 @@
   }
   
   .header-buttons {
-    gap: 0.25rem;
+    gap: 5rem;
+    flex-wrap: nowrap;
   }
   
   .btn-register,
@@ -139,4 +150,8 @@
     padding: 0.25rem 0.75rem;
     font-size: 0.8rem;
   }
+
+  .header-brand {
+        font-size: 1.2rem;
+    }
 }
