@@ -2,23 +2,31 @@
 .header-nav {
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem 0;
-  position: sticky;
+  padding: 0.1rem 0;
+  
   top: 0;
   z-index: 1000;
+  width: 100%;
 }
 
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
-  gap: 2rem;
+  padding: 10px 20px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 /* Logo */
+
+.header-brand-group{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .header-brand {
   display: flex;
   align-items: center;
@@ -56,22 +64,28 @@
 }
 
 /* Buttons Container */
+
 .header-buttons {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  padding: 8px 12px;
 }
 
 /* boton de registro */
 .btn-register {
-  padding: 0.375rem 1rem;
-  border: 1px solid #ff5722;
-  background-color: white;
-  color: #ff5722;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+
+    background-color: transparent; 
+    border-radius: 6px; 
+    border-color: #ff5722;
+    color: #ff5722;
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5 ;
 }
 
 .btn-register:hover {
@@ -81,7 +95,7 @@
 }
 
 /* boton de inicio sesion */
-.btn-login {
+/*.btn-login {
   padding: 0.375rem 1rem;
   background-image: linear-gradient(to right, #f8a23f, red);
   color: white;
@@ -97,12 +111,19 @@
   background-color: #ff5722;
   text-decoration: none;
   color: white;
-}
+}*/
 
 /* Responsive */
 @media (max-width: 768px) {
   .header-container {
     padding: 0 1rem;
+  }
+
+  @media (max-width: 576px) {
+    .header-buttons{
+        font-size: 0.75rem; 
+        padding: 5px 8px;
+    }
   }
   
   .header-title {
