@@ -1,34 +1,42 @@
 import { Row, Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import './formInicioSesion.css';
+import { AiOutlineLock } from "react-icons/ai";
+import { BsEnvelope } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 
 function FormularioInicioSesion() {
   return (
-    <Card style={{ width: '100%'}} className="shadow ">
+    <Card className="cardForm ">
         <Card.Body>
-        <p className='text-start'>Iniciar Sesión</p>
+        <p className='pForm'>Iniciar Sesión</p>
             <Form>
                 <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-                {/* <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-                </Form.Text> */}
+                <Form.Label className='labelForm'>Email</Form.Label>
+								<div className='input-container-relative'>
+                <Form.Control type="email" placeholder="tu@email.com" className='inputForm icon-form-padding-left'/>
+								<div className='icon-form-overlay'>
+                <BsEnvelope size={15} />
+              	</div>
+								</div>
                 </Form.Group>
 
-                <Form.Group className="mb-3 text-start" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Group className="mb-3 text-start custom-input-group" controlId="formBasicPassword">
+                <Form.Label className='labelForm'>Contraseña</Form.Label>
+                <div className='input-container-relative'>
+                <Form.Control type="password" placeholder="••••••••" className='inputForm icon-form-padding-left' />
+               <div className='icon-form-overlay'>
+                <AiOutlineLock size={20} />
+              	</div>
+                </div>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                 </Form.Group>
-
-                <Button  type="submit" size="sm" className="buttonGuardarInfo w-100">
+                <Button  type="submit" size="sm" className="buttonNaranjaDegrade w-100">
                 Iniciar Sesión
                 </Button>
-                <p className="text-center mt-3">
-                    <a href="#" className="text-secondary small">¿Olvidaste tu contraseña?</a>
+								<p className="text-center mt-3">
+								<Link className='linkFormRecuperar' to="/recuperar-contraseña">¿Olvidaste tu contraseña?</Link>
                 </p>
                 
 

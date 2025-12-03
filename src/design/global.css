@@ -303,7 +303,8 @@ button.buttonRechazar:active {
 
 
 /* Boton de uso global se puede usar en:Ver documentos Admin platform, Editar informacion del restaurante, configurar horarios, como cliete para ver detalles de una reserva, calificar experiencia */
-button.buttonBlancoFGris {
+button.buttonBlancoFGris,
+    a.buttonBlancoFGris {
     background-color: #FFFFFF;
     background-image: none; 
     border-radius: 6px; 
@@ -319,13 +320,14 @@ button.buttonBlancoFGris {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-button.buttonBlancoFGris:hover {
-
+button.buttonBlancoFGris:hover,
+    a.buttonBlancoFGris:hover {
     background-color: #d8d5d56e; 
     border-color: #d2cacb; 
     color: #0a0a0a;
 }
-button.buttonBlancoFGris:focus {
+button.buttonBlancoFGris:focus,
+    a.buttonBlancoFGris:focus {
     background-color: #d8d5d56e; 
     border-color: #d2cacb; 
     color: #FFFFFF;
@@ -333,7 +335,8 @@ button.buttonBlancoFGris:focus {
 }
 
 
-button.buttonBlancoFGris:active {
+button.buttonBlancoFGris:active,
+    a.buttonBlancoFGris:active {
     background-color:#d8d5d56e !important; 
     border-color: #d2cacb !important;
     color: #FFFFFF !important;
@@ -550,9 +553,9 @@ p {
     font-weight: 400;
     line-height: 1.5;
 }
-
+/* 
 label {
-    font-size: 1rem;
+    font-size: rem;
     font-weight: 500;
     line-height: 1.5;
 }
@@ -562,7 +565,7 @@ input {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-}
+} */
 
 
 /* Fin */
