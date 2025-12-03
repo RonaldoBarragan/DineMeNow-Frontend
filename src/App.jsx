@@ -8,8 +8,8 @@
 import { Container } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom'; 
 import { AppRoutes } from './routes/AppRoutes'; 
-import Header from './components/Header';
-import Footer from './components/footer';
+import Header from './components/comHomePage/Header';
+import Footer from './components/comHomePage/Footer';
 
 
 // -------------------------------------
@@ -22,7 +22,7 @@ function App() {
 
   // Define las rutas donde se ocultarán el Header y el Footer.
    // Esto incluye la página de inicio de sesión y cualquier otra ruta que quieras sin el layout estándar.
-   const isSpecialPage = path === '/iniciarsesion' || path === '/verificartoken' || path === '/crearcuenta';
+   const isSpecialPage = path === '/iniciarsesion' || path === '/verificartoken' || path === '';
   
 
 

@@ -19,6 +19,7 @@ body {
 
 /* Boton naranja degrade */
 button.buttonNaranjaDegrade {
+
     background-image: linear-gradient(to right, #ff8000, #FF3333);
     background-color: transparent; 
     border-radius: 6px; 

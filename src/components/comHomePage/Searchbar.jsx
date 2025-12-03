@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './estilos/Searchbar.css';
+import '../../design/global.css';
 import { FiSearch, FiMapPin } from 'react-icons/fi';
 
 export default function Searchbar() {
@@ -54,9 +55,9 @@ export default function Searchbar() {
           </div>
           
           {/* Botón de búsqueda */}
-          <div className="search-button-group">
+          <div className="buttonNaranjaDegrade">
             <button 
-              className="search-button"
+              className="buttonNaranjaDegrade"
               onClick={handleSearch}
             >
               Buscar Restaurantes
