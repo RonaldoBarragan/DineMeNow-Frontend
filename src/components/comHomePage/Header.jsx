@@ -13,13 +13,25 @@ const navigate = useNavigate();
   return (
     <nav className="header-nav">
       <div className="header-container">
-        <div className="burger-wraper"><MenuHamburguesa></MenuHamburguesa></div>
+        
+        {/* menu+logo */}
+        <div className="header-brand-group"> 
+          
+          {/* Grupo 1: Menú Hamburguesa */}
+          <div className="burger-wraper">
+            <MenuHamburguesa></MenuHamburguesa>
+          </div>
 
-        <Link to="/" className="header-brand">
-          <img src={logoiniciosesion} alt="dinemenow logo" className="header-logo"/>
-          <strong className="header-title">DineMeNow</strong>
-        </Link>
+          {/* Grupo 2: Logo y Nombre */}
+          <Link to="/" className="header-brand">
+            <img src={logoiniciosesion} alt="dinemenow logo" className="header-logo"/>
+            <strong className="header-title">DineMeNow</strong>
+          </Link>
+          
+        </div>
+        {/* FIN*/}
 
+        {/* Botones*/}
         <div className="header-buttons">
           <button className="btn-register"
           onClick={() => navigate("/crear-cuenta")}>
