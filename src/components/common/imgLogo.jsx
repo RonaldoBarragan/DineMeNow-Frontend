@@ -1,6 +1,6 @@
 import Logo from '../../assets/logo-inicio-sesion2.jpg'; 
-import '../estilos/ImgLogo.css';
-function ImgLogoRegistro (){
+import './ImgLogo.css';
+function ImgLogoGlobal ({ texto }) {
     return (
         <>
         <div className="logo-registro">
@@ -8,9 +8,9 @@ function ImgLogoRegistro (){
             <h4>DineMeNow</h4>
         </div>
         <p className="text-secondary small" style={{ textAlign: 'center' }}>
-        Crea tu cuenta
+        {texto}
         </p>
         </>
     )
     }
-export default ImgLogoRegistro
+export default ImgLogoGlobal

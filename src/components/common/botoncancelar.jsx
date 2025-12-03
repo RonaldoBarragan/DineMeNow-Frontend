@@ -1,4 +1,4 @@
-import '../estilos/Botoncancelar.css';
+import './Botoncancelar.css';
 function BotonCancelar (){
     return (
         <>

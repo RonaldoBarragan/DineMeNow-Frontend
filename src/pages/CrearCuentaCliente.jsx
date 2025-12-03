@@ -1,11 +1,12 @@
-import ImgLogo from "../components/comRegistroCliente/imgLogo";
 import Formulario from "../components/comRegistroCliente/formulario";
-import BotonCancelar from "../components/comRegistroCliente/botoncancelar";
+import BotonCancelar from "../components/common/botoncancelar";
+import ImgLogoGlobal from "../components/common/imgLogo";
 const CrearCuentaCliente=() =>{
     return(
         <>
         <BotonCancelar/>
-        <ImgLogo/>
+        <ImgLogoGlobal
+        texto="Crear Cuenta"/>
         <Formulario/>
         </>
     )

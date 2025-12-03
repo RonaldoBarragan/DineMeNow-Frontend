@@ -9,10 +9,10 @@
     margin: 0 auto;    /* para centrarlo */
 }
 /* Título del formulario */
-p{
-    color: #6c757d;      
+.form-registro p {
+    text-align: left;
+      color: #6c757d;      
     font-size: 0.875rem; 
-    text-align: start;
 }
 /* Estilos de cada etiqueta */
 label {
@@ -28,6 +28,8 @@ label {
     border-radius: 6px;
     font-size: 0.95rem;
     margin-bottom: 15px;
+    background-color: #f3f3f5;
+    
 }
 /* Botón */
 .form-registro button {
