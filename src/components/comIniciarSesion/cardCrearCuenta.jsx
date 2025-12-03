@@ -10,7 +10,7 @@ function CardCrearCuenta() {
                     <a className="text-secondary small text-decoration-none">¿No tienes una cuenta?</a>
                 </p>
                 <div className="d-flex justify-content-center mb-1">
-                <Button variant="primary" type="submit" size="sm" style={{ width: '95%', backgroundColor: '#ffffffff',borderColor: '#edeaeaff', color: '#000000ff' }}>
+                <Button href="/crear-cuenta" variant="primary" type="submit" size="sm" style={{ width: '95%', backgroundColor: '#ffffffff',borderColor: '#edeaeaff', color: '#000000ff' }}>
                 Crear Cuenta
                 </Button>
                 </div>

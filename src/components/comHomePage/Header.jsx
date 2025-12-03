@@ -22,7 +22,7 @@ const navigate = useNavigate();
 
         <div className="header-buttons">
           <button className="btn-register"
-          onClick={() => navigate("/")}>
+          onClick={() => navigate("/crear-cuenta")}>
             Registrarse
           </button>
           <button className="buttonNaranjaDegrade"

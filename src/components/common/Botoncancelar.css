@@ -1,0 +1,13 @@
+.cancelar {
+    margin: 20px;
+}
+
+.cancelar-link {
+    color: #6c757d;          
+    text-decoration: none;   
+    font-size: 16px;          
+    font-weight: 500;
+}
+.cancelar-link:hover {
+    opacity: 0.7;             /* Sutil efecto al pasar el mouse */
+}
