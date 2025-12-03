@@ -2,21 +2,23 @@
 .header-nav {
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0.1rem 0;
-  
-  top: 0;
+  padding: 0 20px;
   z-index: 1000;
   width: 100%;
+  position:fixed;
+  top: 0;
+
 }
 
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 0 20px;
   display: flex;
   justify-content:space-between ;
   align-items: center;
   width: 100%;
+
 }
 
 /* Logo */
@@ -114,44 +116,57 @@
 }*/
 
 /* Responsive */
+/* ================================================= */
+/* 2. Responsive - TABLET (577px a 991px) */
+/* ================================================= */
 @media (min-width: 577px) and (max-width: 991px) {
-
-  .header-buttons button{
+    
+    .header-container {
+        padding: 0px 20px;
+        max-width: 960px;
+    }
+    
+    /* Los botones en general */
+    .header-buttons button,
+    .btn-register,
+    .btn-login{
         font-size: 0.85rem; 
         padding: 7px 10px; 
     }
-  .header-container {
-    padding: 10px 20px;
-    max-width: 960px;
-  }
+    
+    .header-buttons {
+        gap: 15px; 
+        flex-wrap: nowrap;
+    }
+    
+    .header-title {
+        font-size: 1rem;
+    }
 
-  @media (max-width: 576px) {
+
+/* ================================================= */
+/* 3. Responsive - MÓVIL (Hasta 576px) */
+/* ================================================= */
+@media (max-width: 576px) {
 
     .header-container {
         padding: 8px 15px; 
     }
-    .header-buttons{
+
+    /* Los botones en general */
+    .header-buttons button,
+    .btn-register,
+    .btn-login {
         font-size: 0.75rem; 
         padding: 5px 8px;
     }
-  }
-  
-  .header-title {
-    font-size: 1rem;
-  }
-  
-  .header-buttons {
-    gap: 5rem;
-    flex-wrap: nowrap;
-  }
-  
-  .btn-register,
-  .btn-login {
-    padding: 0.25rem 0.75rem;
-    font-size: 0.8rem;
-  }
 
-  .header-brand {
-        font-size: 1.2rem;
+    .header-buttons {
+        gap: 5px; /* Reducir aún más el espacio */
     }
+
+    .header-title {
+        font-size: 0.9rem; /* Título más pequeño en móvil */
+    }
+}
 }

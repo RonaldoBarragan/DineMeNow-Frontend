@@ -1,6 +1,9 @@
 /* seccion */
 .hero {
-  padding: 3rem 1rem;
+  padding-top: 100px;
+  padding-right: 1rem; 
+  padding-left: 1rem;
+  padding-bottom: 3rem;
 }
 
 .hero-container {
@@ -40,11 +43,15 @@
 /* Receptivo */
 @media (max-width: 768px) {
   .hero {
-    padding: 2rem 1rem;
+    padding: 4rem 1rem;
   }
   
+.hero-title{
+  font-size: 1.8rem;
+}
+
   .hero-container {
-    padding: 1rem 0.5rem;
+    padding: 1.5rem 1rem;
   }
   
   .hero-title {
