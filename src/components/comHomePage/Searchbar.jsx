@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './estilos/Searchbar.css';
 import '../../design/global.css';
 import { FiSearch, FiMapPin } from 'react-icons/fi';
+import { Button } from 'react-bootstrap';
 
 export default function Searchbar() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -56,12 +57,12 @@ export default function Searchbar() {
           
           {/* Botón de búsqueda */}
           <div className="buttonNaranjaDegrade">
-            <button 
+            <Button 
               className="buttonNaranjaDegrade"
               onClick={handleSearch}
             >
               Buscar Restaurantes
-            </button>
+            </Button>
           </div>
           
         </div>

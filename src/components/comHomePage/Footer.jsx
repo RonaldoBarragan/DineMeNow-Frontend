@@ -17,7 +17,7 @@ export default function Footer() {
           <Button
             className="footer-cta-button"
             variant='ghost'
-            href="/registro-restaurantes"
+            href="/Registro-restaurantes"
             target='_blank'
           >
             Registra tu restaurante
