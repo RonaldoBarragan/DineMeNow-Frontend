@@ -3,13 +3,18 @@ import IniciarSesion from "../pages/IniciarSesion";
 import VerificarToken from "../pages/VerificarToken";
 import Recuperar from "../pages/Recuperarcontrasena";
 import Home from "../pages/Home";
-import Cambiar from "../pages/Cambiarcontrasena";
+import Registro_Restaurante from "../pages/Registro-Restaurantes";
+import CrearCuentaCliente from "../pages/CrearCuentaCliente";
+
 export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/iniciarSesion" element={<IniciarSesion />} />
       <Route path="/verificarToken" element={<VerificarToken />} />
+      <Route path="/Registro-restaurantes" element={<Registro_Restaurante />} />
+      <Route path="/crear-cuenta" element={<CrearCuentaCliente />} />
+      <Route path="/recuperar" element={<Recuperar />} />
       <Route path="/cambiar" element={<Cambiar />} />
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
