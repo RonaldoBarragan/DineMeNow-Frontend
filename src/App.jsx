@@ -7,8 +7,8 @@
 import { Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { AppRoutes } from "./routes/AppRoutes";
-import Header from "./components/Header";
-import Footer from "./components/footer";
+import Header from "./components/comHomePage/Header";
+import Footer from "./components/comHomePage/Footer";
 
 // -------------------------------------
 function App() {
@@ -20,13 +20,17 @@ function App() {
 
   const pathsToHideHeader = [
     "/iniciarsesion",
-    "/",
+    "/verificartoken",
+    "/cambiar",
+    "/recuperar",
     // Agrega otras rutas donde el header no deba aparecer
   ];
 
   const pathsToHideFooter = [
     "/iniciarsesion",
     "/verificartoken",
+    "/cambiar",
+    "/recuperar",
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 
