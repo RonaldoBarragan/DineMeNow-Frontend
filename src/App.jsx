@@ -26,13 +26,13 @@ function App() {
   
   const pathsToHideHeader = [
         '/iniciarsesion',
-        '/'
+        '/',
         // Agrega otras rutas donde el header no deba aparecer
     ];
   
   const pathsToHideFooter = [
         '/iniciarsesion', 
-        '/verificartoken'
+        '/verificartoken',
         // Agrega otras rutas donde el footer no deba aparecer
     ];
 
