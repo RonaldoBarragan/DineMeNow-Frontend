@@ -1,4 +1,9 @@
-import { Card, Col, Form, Row } from "react-bootstrap";
+import { Card, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { IoRestaurant } from "react-icons/io5";
+import { FaCrown } from "react-icons/fa6";
+import { IoIosMail } from "react-icons/io";
+import { RiMessage2Fill } from "react-icons/ri";
+import { PiTextAlignJustifyFill } from "react-icons/pi";
 
 export default function Form_Restaurante() {
     return (
@@ -18,27 +23,42 @@ export default function Form_Restaurante() {
                     <Row className="mb-3">
                         <Col>
                         <Form.Label className="fw-semibold">Nombre del Restaurante <span className="text-danger">*</span></Form.Label>
+                        <InputGroup>
+                        <InputGroup.Text><IoRestaurant /></InputGroup.Text>
                         <Form.Control type="text" placeholder="Ej: La Puerta Falsa" />
+                        </InputGroup>
                         </Col>
                         <Col>
                         <Form.Label className="fw-semibold">Nombre del Propietario/Representante <span className="text-danger">*</span></Form.Label>
+                        <InputGroup>
+                        <InputGroup.Text><FaCrown /></InputGroup.Text>
                         <Form.Control type="text" placeholder="Nombre completo" />
+                        </InputGroup>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                         <Form.Label className="fw-semibold">Correo Electronico <span className="text-danger">*</span></Form.Label>
+                        <InputGroup>
+                        <InputGroup.Text><IoIosMail /></InputGroup.Text>
                         <Form.Control type="email" placeholder="restaurante@ejemplo.com" />
+                        </InputGroup>
                         </Col>
                         <Col>
                         <Form.Label className="fw-semibold">Telefono de Contacto <span className="text-danger">*</span></Form.Label>
+                        <InputGroup>
+                        <InputGroup.Text><RiMessage2Fill /></InputGroup.Text>
                         <Form.Control type="text" placeholder="(+57) 300 123 4567" />
+                        </InputGroup>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                         <Form.Label className="fw-semibold">Descripción del Restaurante <span className="text-danger">*</span></Form.Label>
-                        <Form.Control placeholder="Describe tu restaurante, especialidades, ambiente, etc." as="textarea" rows={2}/>
+                        <InputGroup>
+                        <InputGroup.Text><PiTextAlignJustifyFill /></InputGroup.Text>
+                        <Form.Control placeholder="Describe tu restaurante, especialidades, ambiente, etc." as="textarea" rows={1}/>
+                        </InputGroup>
                         </Col>
                     </Row>
 

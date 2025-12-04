@@ -24,7 +24,7 @@ export default function Form_Info_Document() {
                     </div>
                     {/* Botones inferiores */}
                     <div className="d-flex justify-content-end gap-2 mt-4">
-                    <Button variant="light" className="px-4">Cancelar</Button>
+                    <Button variant="light" className="px-4" href="/">Cancelar</Button>
 
                     <Button className="px-4 buttonNaranjaDegrade">Enviar Solicitud</Button>
                     </div>
