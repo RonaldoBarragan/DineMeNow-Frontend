@@ -21,6 +21,7 @@ function App() {
   const pathsToHideHeader = [
     "/iniciarsesion",
     "/verificartoken",
+    "/crear-cuenta",
     "/cambiar",
     "/recuperar",
     // Agrega otras rutas donde el header no deba aparecer
@@ -29,8 +30,10 @@ function App() {
   const pathsToHideFooter = [
     "/iniciarsesion",
     "/verificartoken",
+    "/crear-cuenta",
     "/cambiar",
     "/recuperar",
+    "/registro-restaurantes",
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 
