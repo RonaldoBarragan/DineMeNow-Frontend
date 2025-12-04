@@ -17,7 +17,7 @@ export default function Footer() {
           <Button
             className="footer-cta-button"
             variant='ghost'
-            href="https://www.sourcetreeapp.com"
+            href="/Registro-restaurantes"
             target='_blank'
           >
             Registra tu restaurante
