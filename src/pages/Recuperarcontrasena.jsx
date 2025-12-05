@@ -2,19 +2,17 @@ import React from "react";
 import CardRecuperar from "../components/comRecuperarContrasena/CardRecuperarContrasena";
 import BotonCancelar from "../components/common/botonCancelar";
 import ImgLogoGlobal from "../components/common/imgLogo";
-import { Container } from "react-bootstrap";
 
-const Recuperar = () => {
+const Recuperarcontrasena = () => {
   return (
     <>
-      <Container>
-        <BotonCancelar />
+      <BotonCancelar />
+      <div style={{ paddingTop: "150px", textAlign: "center" }}>
         <ImgLogoGlobal />
-      </Container>
-
-      <CardRecuperar />
+        <CardRecuperar />
+      </div>
     </>
   );
 };
 
-export default Recuperar;
+export default Recuperarcontrasena;
