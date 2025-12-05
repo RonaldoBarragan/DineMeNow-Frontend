@@ -22,8 +22,8 @@ function App() {
     "/iniciarsesion",
     "/verificartoken",
     "/crear-cuenta",
-    "/cambiar",
-    "/recuperar",
+    "/cambiarcontrasena",
+    "/recuperarcontrasena",
     // Agrega otras rutas donde el header no deba aparecer
   ];
 
@@ -31,8 +31,8 @@ function App() {
     "/iniciarsesion",
     "/verificartoken",
     "/crear-cuenta",
-    "/cambiar",
-    "/recuperar",
+    "/cambiarcontrasena",
+    "/recuperarcontrasena",
     "/registro-restaurantes",
     // Agrega otras rutas donde el footer no deba aparecer
   ];

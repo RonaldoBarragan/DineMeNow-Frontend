@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import IniciarSesion from "../pages/IniciarSesion";
 import VerificarToken from "../pages/VerificarToken";
-import Recuperar from "../components/comRecuperarContraseña/Contraseña";
-import Cambiar from "../components/comRecuperarContraseña/CambioContraseña";
+import RecuperarContrasena from "../pages/Recuperarcontrasena";
 import Home from "../pages/Home";
 import Registro_Restaurante from "../pages/Registro-Restaurantes";
 import CrearCuentaCliente from "../pages/CrearCuentaCliente";
+import CambiarContrasena from "../pages/Cambiarcontrasena";
 
 export const AppRoutes = () => {
   return (
@@ -15,9 +15,8 @@ export const AppRoutes = () => {
       <Route path="/verificarToken" element={<VerificarToken />} />
       <Route path="/Registro-restaurantes" element={<Registro_Restaurante />} />
       <Route path="/crear-cuenta" element={<CrearCuentaCliente />} />
-      <Route path="/recuperar" element={<Recuperar />} />
-      <Route path="/cambiar" element={<Cambiar />} />
-
+      <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
+      <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
