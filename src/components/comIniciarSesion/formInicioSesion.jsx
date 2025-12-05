@@ -27,7 +27,7 @@ function FormularioInicioSesion() {
                 <Form.Label className='labelForm'>Contraseña</Form.Label>
                 <div className='input-container-relative'>
                 <Form.Control type="password" placeholder="••••••••" className='inputForm icon-form-padding-left' />
-               <div className='icon-form-overlay'>
+                <div className='icon-form-overlay'>
                 <AiOutlineLock size={20} />
               	</div>
                 </div>
