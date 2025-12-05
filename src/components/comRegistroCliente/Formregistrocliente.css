@@ -1,49 +1,51 @@
 /* Contenedor principal del formulario */
 .form-registro {
     width: 100%;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.35); /* borde suave */
-    max-width: 350px;
-    margin: 0 auto;    /* para centrarlo */
+    padding: 6px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 /* Título del formulario */
 .form-registro p {
     text-align: left;
-      color: #6c757d;      
-    font-size: 0.875rem; 
+    color: #0A0A0A;     
+    font-size: 0.9em; 
 }
 /* Estilos de cada etiqueta */
 label {
-    font-weight: 500;
-    margin-bottom: 5px;
-    display: block;
+    font-size: 0.8em;
+    color: #0A0A0A;
 }
 /* Inputs */
 .form-registro input {
     width: 100%;
     padding: 6px;
-    border: 1px solid #ced4da;
-    border-radius: 6px;
+    border: 1px solid #ced4da00;
+    border-radius: 8px;
     font-size: 0.95rem;
     margin-bottom: 15px;
     background-color: #f3f3f5;
-    
 }
-/* Botón */
-.form-registro button {
-    width: 100%;
-    padding: 6px;
-    background-color: #212529; 
-    color: #fff;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: none;
-    margin-top: 5px;
+.form-registro input:focus {
+    outline: none; 
+    border: 1px solid #a1a1a1;
+    background-color: #f3f3f5;
+    box-shadow: 0 0 0 2px #a1a1a1ab;
 }
-/* Hover */
-.form-registro button:hover {
-    background-color: #343A40;
-    cursor: pointer;
+/* disposicion del icono */
+.input-container-relative {
+    position: relative;
+    margin-bottom: 5px; 
 }
+
+.icon-form-overlay {
+    position: absolute;
+    top: 50%; 
+    left: 10px; 
+    transform: translateY(-50%); 
+    z-index: 5; 
+    color: #a1a1a1;
+    pointer-events: none; 
+}
+
