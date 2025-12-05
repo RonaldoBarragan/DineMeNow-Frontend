@@ -1,0 +1,83 @@
+/* ========================================
+   ESTILOS DE LA PÁGINA PRINCIPAL
+   ======================================== */
+.vista-cliente-page-wrapper {
+    min-height: 100vh;
+    padding-top: 70px; /* Espacio para el header fixed */
+}
+
+/* Ajustes para el contenedor principal */
+.vista-cliente-page-wrapper .container {
+    max-width: 1400px;
+}
+
+/* ========================================
+   ESTILOS DEL FILTER BAR
+   ======================================== */
+.filter-bar-wrapper {
+    background-color: #f8f4f0;
+    border-bottom: 1px solid #e8e5e1;
+    padding: 0.75rem 0;
+}
+
+.filter-group {
+    gap: 1rem !important;
+}
+
+.filter-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-item:hover {
+    border-color: #999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-view-mode {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.btn-view-mode:hover {
+    background-color: #f8f8f8;
+    border-color: #999;
+}
+
+.btn-view-mode.active {
+    background-color: #000;
+    color: white;
+    border-color: #000;
+}
+
+.btn-view-mode.active:hover {
+    background-color: #222;
+}
+
+/* ========================================
+   MEDIA QUERIES
+   ======================================== */
+@media (max-width: 768px) {
+    .filter-group {
+        flex-wrap: wrap;
+        gap: 0.5rem !important;
+    }
+    
+    .filter-item {
+        font-size: 13px;
+        padding: 0.4rem 0.8rem;
+    }
+}
