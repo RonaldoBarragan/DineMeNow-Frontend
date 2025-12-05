@@ -7,7 +7,7 @@ const Recuperarcontrasena = () => {
   return (
     <>
       <BotonCancelar />
-      <div style={{ paddingTop: "150px", textAlign: "center" }}>
+      <div style={{ paddingTop: "155px", textAlign: "center" }}>
         <ImgLogoGlobal />
         <CardRecuperar />
       </div>
