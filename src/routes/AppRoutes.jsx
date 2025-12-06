@@ -18,7 +18,7 @@ export const AppRoutes = () => {
       <Route path="/crear-cuenta" element={<CrearCuentaCliente />} />
       <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
-      <Route path="/gestionPerfilCliente" element={<GestionPerfilCliente />} />
+      <Route path="/gestionperfilcliente" element={<GestionPerfilCliente />} />
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
