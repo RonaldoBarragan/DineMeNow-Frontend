@@ -23,42 +23,42 @@ export default function Form_Restaurante() {
                     <Row className="mb-3">
                         <Col>
                         <Form.Label className="fw-semibold">Nombre del Restaurante <span className="text-danger">*</span></Form.Label>
-                        <InputGroup>
-                        <InputGroup.Text><IoRestaurant /></InputGroup.Text>
-                        <Form.Control type="text" placeholder="Ej: La Puerta Falsa" />
-                        </InputGroup>
+                        <div className="input-container-relative">
+                        <Form.Control type="text" placeholder="Ej: La Puerta Falsa" className="inputForm icon-form-padding-left" />
+                        <IoRestaurant className="icon-form-overlay" />
+                        </div>
                         </Col>
                         <Col>
-                        <Form.Label className="fw-semibold">Nombre del Propietario/Representante <span className="text-danger">*</span></Form.Label>
-                        <InputGroup>
-                        <InputGroup.Text><FaCrown /></InputGroup.Text>
-                        <Form.Control type="text" placeholder="Nombre completo" />
-                        </InputGroup>
+                        <Form.Label className="fw-semibold">Nombre del Propietario/Representante <span className="text-danger">*</span></Form.Label>                      
+                        <div className="input-container-relative">
+                        <Form.Control type="text" placeholder="Nombre completo" className="inputForm icon-form-padding-left" />
+                        <FaCrown className="icon-form-overlay" />  
+                        </div>                    
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                         <Form.Label className="fw-semibold">Correo Electronico <span className="text-danger">*</span></Form.Label>
-                        <InputGroup>
-                        <InputGroup.Text><IoIosMail /></InputGroup.Text>
-                        <Form.Control type="email" placeholder="restaurante@ejemplo.com" />
-                        </InputGroup>
+                        <div className="input-container-relative">  
+                        <Form.Control type="email" placeholder="restaurante@ejemplo.com" className="inputForm icon-form-padding-left" />
+                        <IoIosMail className="icon-form-overlay" />
+                        </div>
                         </Col>
                         <Col>
                         <Form.Label className="fw-semibold">Telefono de Contacto <span className="text-danger">*</span></Form.Label>
-                        <InputGroup>
-                        <InputGroup.Text><RiMessage2Fill /></InputGroup.Text>
-                        <Form.Control type="text" placeholder="(+57) 300 123 4567" />
-                        </InputGroup>
+                        <div className="input-container-relative">
+                        <Form.Control type="text" placeholder="(+57) 300 123 4567" className="inputForm icon-form-padding-left" />
+                        <RiMessage2Fill className="icon-form-overlay" />
+                        </div>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                         <Form.Label className="fw-semibold">Descripción del Restaurante <span className="text-danger">*</span></Form.Label>
-                        <InputGroup>
-                        <InputGroup.Text><PiTextAlignJustifyFill /></InputGroup.Text>
+                        <div className="input-container-relative">        
                         <Form.Control placeholder="Describe tu restaurante, especialidades, ambiente, etc." as="textarea" rows={1}/>
-                        </InputGroup>
+                        <PiTextAlignJustifyFill />
+                        </div>  
                         </Col>
                     </Row>
 
