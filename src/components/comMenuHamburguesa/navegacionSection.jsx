@@ -11,7 +11,7 @@ function NavigationSection() {
   const currentPath = location.pathname;
 
   const publicRoutes = ["/",  "/registro-restaurantes"];
-  const clientRoutes = ["/agregar cuando finalcie", "/agregar cuando finalice el desarrollo de las paginas del cliente"];
+  const clientRoutes = ["/gestionperfilcliente", "/agregar cuando finalice el desarrollo de las paginas del cliente"];
   const restaurantRoutes = ["/agregar cuando se finalice el desarrollo de las paginas del restaurante"]
   const adminRoutes = ["/agregar cuando se finalice el desarrollo de las paginas del admin"]
 
