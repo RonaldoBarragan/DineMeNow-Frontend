@@ -2,8 +2,10 @@ import './estilos/Footer.css';
 import Button from 'react-bootstrap/Button';
 import logoiniciosesion from "../../assets/logo-inicio-sesion2.jpg";
 import "../../design/global.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function Footer() {
+  const navigate = useNavigate();
   return (
     <footer className="footer">
       <div className="footer-container">

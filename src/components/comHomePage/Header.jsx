@@ -74,6 +74,7 @@ export default function Header({ viewMode, userName }) {
   return (
     <nav className="header-nav">
       <div className="header-container">
+        
         {/* menu+logo */}
         <div className="header-brand-group">
           {/* Menú Hamburguesa - SIN wrapper extra */}
