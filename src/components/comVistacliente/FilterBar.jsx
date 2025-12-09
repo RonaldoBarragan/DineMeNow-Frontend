@@ -7,42 +7,53 @@ export default function FilterBar() {
     const [viewMode, setViewMode] = useState('lista');
 
     return (
-        <div className="filter-bar-wrapper">
-            <Container>
-                <Row className="align-items-center py-2">
+    <div className="filter-bar-container">
+        <Container>
+            <Row className="g-3">
                     
-                    {/* Filtros a la Izquierda */}
-                    <Col xs={12} md={8} className="d-flex gap-3 filter-group">
-                        <div className="filter-item d-flex align-items-center">
-                            <GeoAlt className="me-2" size={16} /> 
-                            Todas las zonas 
-                            <ChevronDown className="ms-2" size={14} />
-                        </div>
-                        <div className="filter-item d-flex align-items-center">
-                            <Funnel className="me-2" size={16} /> 
-                            Todos los tipos 
-                            <ChevronDown className="ms-2" size={14} />
-                        </div>
-                        <div className="filter-item d-flex align-items-center">
-                            Todos los precios 
-                            <ChevronDown className="ms-2" size={14} />
+                    {/* Filtro 1 a la Izquierda */}
+                    <Col xs={12} md={3}> 
+                    <div className='filter-trigger'>
+                        <GeoAlt className='icon' />
+                        <span>Todas las zonas</span>
+                        <ChevronDown className='chevron'/>
+                    </div>
+                    </Col>
+                    
+                    {/*filtro 2*/}
+                    <Col xs={12} md={3}>
+                        <div className="filter-trigger">
+                            <Funnel className="icon" /> 
+                            <span>Todos los tipos</span> 
+                            <ChevronDown className="chevron" />
                         </div>
                     </Col>
 
+                    {/* Filtro 3 */}
+                    <Col xs={12} md={3}>
+                        <div className="filter-trigger">
+                            <span>Todos los precios</span> 
+                            <ChevronDown className="chevron "/>
+                        </div>
+                    </Col>
+            
+
                     {/* Botones de Vista a la Derecha */}
-                    <Col xs={12} md={4} className="d-flex justify-content-end mt-2 mt-md-0">
-                        <Button 
-                            className={`btn-view-mode ${viewMode === 'lista' ? 'active' : ''}`}
-                            onClick={() => setViewMode('lista')}
-                        >
-                            Lista
-                        </Button>
-                        <Button 
-                            className={`btn-view-mode ${viewMode === 'mapa' ? 'active' : ''}`}
-                            onClick={() => setViewMode('mapa')}
-                        >
-                            Mapa
-                        </Button>
+                    <Col xs={12} md={3}>
+                        <div className="view-buttons">
+                            <Button
+                                className={`view-btn ${viewMode === 'lista' ? 'active' : ''}`}
+                                onClick={() => setViewMode('lista')}
+                            >
+                                Lista
+                            </Button>
+                            <Button
+                                className={`view-btn ${viewMode === 'mapa' ? 'active' : ''}`}
+                                onClick={() => setViewMode('mapa')}
+                            >
+                                Mapa
+                            </Button>
+                        </div>
                     </Col>
 
                 </Row>

@@ -1,66 +1,77 @@
-.filter-bar-wrapper {
-    background-color: #ffffff;
-    border-bottom: 1px solid #e8e5e1;
-    padding: 0.75rem 0;
-    margin-top: 80px;
-    border-radius: 10px;
+.filter-bar-container {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e8e5e1 !important;
+    padding: 8px 0 !important;
+    margin-top: 10px !important;
+    border-radius: 12px !important;
 }
 
-.filter-group {
-    gap: 1rem !important;
-}
-
-.filter-item {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    font-size: 14px;
+.filter-trigger {
+    background: #fff !important;
+   
+    padding: 10px 14px !important;
+    font-size: 14px!important;
     cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
+    gap: 8px;
+    transition: 0.15s ease;
+    display: flex;
+    align-items: center;
 }
 
-.filter-item:hover {
-    border-color: #999;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+.filter-trigger:hover {
+    border-color: #cfcfcf  ;
 }
 
-.btn-view-mode {
-    background-color: white;
-    color: #333;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 0.5rem 1.5rem;
+.filter-trigger .icon{
+    width: 16px;
+    height: 16px;
+    opacity: 0.8;
+}
+
+.filter-trigger .chevron{
+    margin-left: auto;
+    opacity: 0.5;
+}
+
+.view-buttons{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.view-btn{
+    flex: 1;
     font-size: 14px;
-    font-weight: 500;
-    margin-left: 0.5rem;
-    transition: all 0.2s ease;
+    padding: 8px 0px;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    color: #444;
+    border-radius: 8px;
 }
 
-.btn-view-mode:hover {
-    background-color: #f8f8f8;
-    border-color: #999;
+.view-btn:hover{
+    color: #000 !important;
+    background: #f2f2f2 !important;
+    border-color: #ccc !important;
 }
 
-.btn-view-mode.active {
-    background-color: #000;
-    color: white;
-    border-color: #000;
+.view-btn.active{
+    background: #000 !important;
+    color: white !important;
+    border-color: #000 !important;
 }
 
-.btn-view-mode.active:hover {
-    background-color: #222;
-}
 
 @media (max-width: 768px) {
-    .filter-group {
-        flex-wrap: wrap;
-        gap: 0.5rem !important;
+    .filter-trigger {
+        font-size: 12px;
+        padding: 8px 10px;
     }
-    
-    .filter-item {
-        font-size: 13px;
-        padding: 0.4rem 0.8rem;
+
+    -view-btn{
+        font-size: 12px;
+        padding: 6px 0px;
     }
+   
 }

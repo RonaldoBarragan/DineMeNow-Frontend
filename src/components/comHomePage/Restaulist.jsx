@@ -78,7 +78,7 @@ function RestaurantCard({ name, image, rating, zone, distance, cuisines, onClick
 }
 
 // Componente principal de lista
-export default function Restaulist() {
+export default function Restaulist({showDeaultTitle=true}) {
 
 //estados necesarios
 const [showModal, setShowModal] = useState(false);
@@ -134,9 +134,12 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
   const closeModal = () => setShowModal(false); //cerrar modal
 
   return (
-    <Container className="restaurant-container">
-      <h3 className="restaurants-title">Restaurantes disponibles</h3>
-
+    
+<Container className="restaurant-container">
+  {showDeaultTitle && (
+    <h3 className="restaurants-title">Restaurantes disponibles</h3>
+  )}
+      
       <Row xs={1} sm={2} md={3} lg={4} className="g-3">
         {restaurants.map((restaurant, idx) => (
           <Col key={idx}>

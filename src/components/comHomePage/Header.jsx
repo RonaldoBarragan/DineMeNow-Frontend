@@ -14,11 +14,12 @@ import { Button } from "react-bootstrap";
 
 // Componente del perfil de usuario
 const UserProfile = ({ userName = "Cliente" }) => (
-  <div className="header-profile d-flex align-items-center gap-2">
+  <div className="header-profile">
     <div className="user-avatar">MG</div>
-    <div className="text-end">
-      <span className="user-name d-block fw-bold">{userName}</span>
-      <small className="text-muted">Cliente</small>  
+
+    <div className="profile-info">
+      <span className="user-name">{userName}</span>
+      <small className="text-muted">Cliente</small> 
     </div>
   </div>
 );
@@ -28,7 +29,7 @@ const SearchInput = () => (
   <div className="header-search flex-grow-1 mx-4">
     <div className="input-group">
       <span className="input-group-text">
-        <Search size={16}/>
+        <Search size={14} color="#99a1af"/>
       </span>
       <input
         className="form-control"
@@ -50,7 +51,7 @@ export default function Header({ viewMode, userName }) {
   const AuthButtons = () => (
     <div className="header-buttons">
       <Button
-        className="btn-register" 
+        className="buttonRegistrarUS" 
         size="sm"
         onClick={() => navigate("/crear-cuenta")}
       >
