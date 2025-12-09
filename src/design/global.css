@@ -184,7 +184,7 @@ button.buttonRegistrarRE {
     background-color: #FFFFFF; 
     background-image: none; 
     border-radius: 6px; 
-    border-color: #FF8C00; 
+    border-color: #FF8C00 !important; 
     border-width: 1px;
     border-style: solid;
 

@@ -1,167 +1,217 @@
-/* Navegacion de encabezado */
+/* ========================================
+   HEADER PRINCIPAL
+   ======================================== */
 .header-nav {
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0 20px;
-  z-index: 1000;
-  width: 100%;
-  position: fixed;
-  top: 0;
+    width: 100%;
+    background-color: white;
+    padding: 0;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .header-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
 }
 
-/* Logo */
-
+/* ========================================
+   GRUPO LOGO Y MENÚ
+   ======================================== */
 .header-brand-group {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
 }
 
 .header-brand {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  gap: 0.5rem;
-  flex: 1;
-}
-
-.header-logo {
-  width: 80px; /* ajusta el tamaño*/
-  height: 80px;
-  object-fit: contain;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 0.5rem;
 }
 
 .header-brand:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .header-logo {
-  width: 32px;
-  height: 32px;
-  background-color: #ff5722;
-  color: white;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
 .header-title {
-  font-size: 1.1rem;
-  font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    white-space: nowrap;
 }
 
-/* Buttons Container */
+/* ========================================
+   INPUT DE BÚSQUEDA
+   ======================================== */
 
+.form-control{
+    background-color: #f9fafb;
+    
+}
+.form-control::placeholder{
+    color: #99a1af;
+    font-size: small;
+}
+
+.header-search {
+    flex: 1;
+    min-width: 100px;
+    max-width: 600px;
+   
+}
+
+.header-search .input-group-text {
+    background-color: #f9fafb;
+    border-right: none;
+    padding-left: 1rem;
+}
+
+.header-search .form-control {
+    border-left: none;
+    padding-left: 0;
+}
+
+.header-search .form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.header-search .input-group-text,
+.header-search .form-control {
+    border-color: #ddd;
+}
+
+/* ========================================
+   PERFIL DE USUARIO
+   ======================================== */
+.header-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+}
+
+.header-profile .profile-info{
+    display: flex;
+    text-align: right;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    color: #1a1a1a;
+}
+
+/* ========================================
+   BOTONES DE AUTENTICACIÓN
+   ======================================== */
 .header-buttons {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 8px;
-  flex-shrink: 0;
-  font-size: 0.9rem;
-  padding: 8px 12px;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
 }
 
-/* boton de registro */
 .btn-register {
-  background-color: transparent;
-  border-radius: 6px;
-  border-color: #ff5722;
-  color: #ff5722;
-  font-family: var(--font-title);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5;
+    background-color: white;
+    color: #ff5722;
+    border: 1px solid #ddd;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.2s ease;
 }
 
 .btn-register:hover {
-  background-color: #fff4e7;
-  text-decoration: none;
-  color: #000000;
-  border-color: #ff5722;
+    background-color: #f8f8f8;
+    border-color: #ff5722;
+    color: #333;
 }
 
-/* boton de inicio sesion */
-/*.btn-login {
-  padding: 0.375rem 1rem;
-  background-image: linear-gradient(to right, #f8a23f, red);
-  color: white;
-  border: 1px solid #ff5722;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+
+.login-icon {
+    margin-right: 0.25rem;
 }
 
-.btn-login:hover {
-  background-color: #ff5722;
-  text-decoration: none;
-  color: white;
-}*/
-
-/* Responsive */
-/* ================================================= */
-/* 2. Responsive - TABLET (577px a 991px) */
-/* ================================================= */
-@media (min-width: 577px) and (max-width: 991px) {
-  .header-container {
-    padding: 0px 20px;
-    max-width: 960px;
-  }
-
-  /* Los botones en general */
-  .header-buttons button,
-  .btn-register,
-  .btn-login {
-    font-size: 0.85rem;
-    padding: 7px 10px;
-  }
-
-  .header-buttons {
-    gap: 15px;
-    flex-wrap: nowrap;
-  }
-
-  .header-title {
-    font-size: 1rem;
-  }
-
-  /* ================================================= */
-  /* 3. Responsive - MÓVIL (Hasta 576px) */
-  /* ================================================= */
-  @media (max-width: 576px) {
-    .header-container {
-      padding: 8px 15px;
-    }
-
-    /* Los botones en general */
-    .header-buttons button,
-    .btn-register,
-    .btn-login {
-      font-size: 0.75rem;
-      padding: 5px 8px;
-    }
-
-    .header-buttons {
-      gap: 5px; /* Reducir aún más el espacio */
-    }
-
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 992px) {
     .header-title {
-      font-size: 0.9rem; /* Título más pequeño en móvil */
+        display: none;
     }
-  }
+    
+    .header-search {
+        max-width: 400px;
+    }
 }
+
+@media (max-width: 768px) {
+    .header-container {
+        gap: 0.5rem;
+        padding: 0 0.75rem;
+    }
+    
+    .header-search {
+        max-width: 300px;
+    }
+    
+    .header-search .form-control {
+        font-size: 0.875rem;
+    }
+    
+    .user-name {
+        display: none;
+    }
+    
+    .header-buttons {
+        gap: 0.5rem;
+    }
+    
+    .btn-register,
+    .buttonNaranjaDegrade {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-logo {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .btn-register {
+        display: none;
+    }
+} 
