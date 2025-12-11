@@ -6,6 +6,7 @@ import Cambiar from "../components/comRecuperarContraseña/CambioContraseña";
 import Home from "../pages/Home";
 import Registro_Restaurante from "../pages/Registro-Restaurantes";
 import CrearCuentaCliente from "../pages/CrearCuentaCliente";
+import Title from "../components/comPerfilRestaurante/title";
 
 export const AppRoutes = () => {
   return (
