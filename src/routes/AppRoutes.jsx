@@ -6,7 +6,7 @@ import Cambiar from "../components/comRecuperarContraseña/CambioContraseña";
 import Home from "../pages/Home";
 import Registro_Restaurante from "../pages/Registro-Restaurantes";
 import CrearCuentaCliente from "../pages/CrearCuentaCliente";
-import Title from "../components/comPerfilRestaurante/title";
+import TabsRestaurante from "../components/comPerfilRestaurante/button-Tabs";
 
 export const AppRoutes = () => {
   return (
@@ -18,7 +18,6 @@ export const AppRoutes = () => {
       <Route path="/crear-cuenta" element={<CrearCuentaCliente />} />
       <Route path="/recuperar" element={<Recuperar />} />
       <Route path="/cambiar" element={<Cambiar />} />
-
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>

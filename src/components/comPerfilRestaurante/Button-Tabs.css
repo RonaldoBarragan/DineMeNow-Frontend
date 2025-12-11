@@ -1,0 +1,27 @@
+/* Contenedor general */
+.tabs-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  background-color:  #ebecf3;
+  border-radius: 20px; /*borde div*/
+}
+.tabs-group {
+  gap: 10px;                   /* separación entre tabs */
+}
+/* Botones (tabs) */
+.tab-button {
+  border-radius: 20px !important; /*borde button*/
+  background-color: #ebecf3 !important;  /* gris suave */
+  border: none !important;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+/* Tab activo (el que está seleccionado) */
+.tab-button.active {
+  background-color: #ffffff !important;
+}

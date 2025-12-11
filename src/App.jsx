@@ -24,7 +24,6 @@ function App() {
     "/crear-cuenta",
     "/cambiar",
     "/recuperar",
-    
     // Agrega otras rutas donde el header no deba aparecer
   ];
 
