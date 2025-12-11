@@ -1,0 +1,11 @@
+
+.card.cardHeadSectionGP{
+    width: 100%;
+    border-radius: 10px; 
+    border: none; 
+    background-color: #ffffff; 
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.05),
+        /* offset-x | offset-y | blur(0) | spread(1px) | color(#fdf7f4) */
+        inset 0 0 0 1px #fdf7f4;
+}
