@@ -7,10 +7,10 @@ const CambiarContrasena = () => {
   return (
     <>
       <BotonCancelar />
-      <div style={{ paddingTop: "150px", textAlign: "center" }}>
+      <div style={{ paddingTop: "120px", textAlign: "center" }}>
         <ImgLogoGlobal />
-        <CardCambiar />
       </div>
+      <CardCambiar />
     </>
   );
 };
