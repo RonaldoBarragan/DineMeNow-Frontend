@@ -24,6 +24,7 @@ function App() {
     "/crear-cuenta",
     "/cambiarcontrasena",
     "/recuperarcontrasena",
+    "/inicio-clientes",
     // Agrega otras rutas donde el header no deba aparecer
   ];
 
@@ -34,7 +35,8 @@ function App() {
     "/cambiarcontrasena",
     "/recuperarcontrasena",
     "/registro-restaurantes",
-    "/gestionperfilcliente"
+    "/gestionperfilcliente",
+    "/inicio-clientes",
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 
