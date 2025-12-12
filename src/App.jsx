@@ -35,6 +35,7 @@ function App() {
     "/cambiarcontrasena",
     "/recuperarcontrasena",
     "/registro-restaurantes",
+    "/gestionperfilcliente",
     "/inicio-clientes",
     // Agrega otras rutas donde el footer no deba aparecer
   ];
