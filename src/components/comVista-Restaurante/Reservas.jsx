@@ -1,26 +1,30 @@
+import { Card, Table, Button, Badge } from "react-bootstrap";
+import { Eye, Pencil, X } from "react-bootstrap-icons";
+
 export default function Reservas() {
-    return (
-        <>
-      <ul className="nav nav-tabs mb-3">
-        <li className="nav-item">
-          <button className="nav-link active">Gestión de Reservas</button>
-        </li>
-        <li className="nav-item">
-          <button className="nav-link">Gestión del Menú</button>
-        </li>
-        <li className="nav-item">
-          <button className="nav-link">Gestión de Mesas</button>
-        </li>
-      </ul>
+  return (
+    <>
+    {/*
+    <ul className="nav nav-tabs mb-3">
+      <li className="nav-item">
+        <button className="nav-link active">Gestión de Reservas</button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link">Gestión del Menú</button>
+      </li>
+      <li className="nav-item">
+        <button className="nav-link">Gestión de Mesas</button>
+      </li>
+    </ul>
+    */}
 
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5 className="mb-0">Reservas Recientes</h5>
-        <button className="btn btn-danger">+ Nueva Reserva</button>
-      </div>
-
-      <div className="table-responsive">
-        <table className="table table-bordered table-hover">
-          <thead className="table-light">
+    {/* Encabezado */}
+    <Card className="p-3">
+      <Card.Title className="fw-bold d-flex justify-content-between">Reservas Recientes <Button variant="danger">+ Nueva Reserva</Button></Card.Title>
+      {/* Tabla */}
+      <Card.Body>
+        <Table hover>
+          <thead>
             <tr>
               <th>Cliente</th>
               <th>Fecha</th>
@@ -31,86 +35,86 @@ export default function Reservas() {
               <th>Acciones</th>
             </tr>
           </thead>
-
           <tbody>
+            {/* FILA 1 */}
             <tr>
               <td>
-                <strong>Ana Rodríguez</strong> <br />
-                <small>+57 300 123 4567</small>
+                <strong>Ana Rodríguez</strong><br />
+                <small className="text-muted">+57 300 123 4567</small>
               </td>
               <td>2025-08-27</td>
               <td>19:30</td>
               <td>4</td>
               <td>
-                <span className="badge bg-success">Confirmada</span>
+                <Badge bg="success" pill>Confirmada</Badge>
               </td>
               <td>Mesa cerca de la ventana</td>
               <td>
-                <button className="btn btn-light btn-sm me-1">👁️</button>
-                <button className="btn btn-success btn-sm me-1">✔️</button>
-                <button className="btn btn-danger btn-sm">❌</button>
+                <Button variant="outline-secondary" size="sm" className="me-2"><Eye /></Button>
               </td>
             </tr>
 
+            {/* FILA 2 */}
             <tr>
               <td>
-                <strong>Carlos Mendoza</strong> <br />
-                <small>+57 301 987 6543</small>
+                <strong>Carlos Mendoza</strong><br />
+                <small className="text-muted">+57 301 987 6543</small>
               </td>
               <td>2025-08-27</td>
               <td>20:00</td>
               <td>2</td>
               <td>
-                <span className="badge bg-warning text-dark">Pendiente</span>
+                <Badge bg="warning" text="dark" pill>Pendiente</Badge>
               </td>
               <td>Celebración de aniversario</td>
               <td>
-                <button className="btn btn-light btn-sm me-1">👁️</button>
-                <button className="btn btn-success btn-sm me-1">✔️</button>
-                <button className="btn btn-danger btn-sm">❌</button>
+                <Button variant="outline-secondary" size="sm" className="me-2"><Eye /></Button>
+                <Button variant="outline-secondary" size="sm" className="me-2"><Pencil /></Button>
+                <Button variant="outline-danger" size="sm"><X /></Button>
               </td>
             </tr>
 
+            {/* FILA 3 */}
             <tr>
               <td>
-                <strong>Sofía García</strong> <br />
-                <small>+57 302 456 7890</small>
+                <strong>Sofía García</strong><br />
+                <small className="text-muted">+57 302 456 7890</small>
               </td>
               <td>2025-08-27</td>
               <td>18:00</td>
               <td>6</td>
               <td>
-                <span className="badge bg-success">Confirmada</span>
+                <Badge bg="success" pill>Confirmada</Badge>
               </td>
               <td>Ninguna</td>
               <td>
-                <button className="btn btn-light btn-sm me-1">👁️</button>
-                <button className="btn btn-success btn-sm me-1">✔️</button>
-                <button className="btn btn-danger btn-sm">❌</button>
+                <Button variant="outline-secondary" size="sm"><Eye /></Button>
               </td>
             </tr>
 
+            {/* FILA 4 */}
             <tr>
               <td>
-                <strong>Miguel Torres</strong> <br />
-                <small>+57 305 234 5678</small>
+                <strong>Miguel Torres</strong><br />
+                <small className="text-muted">+57 305 234 5678</small>
               </td>
               <td>2025-08-28</td>
               <td>19:00</td>
               <td>3</td>
               <td>
-                <span className="badge bg-warning text-dark">Pendiente</span>
+                <Badge bg="warning" text="dark" pill>Pendiente</Badge>
               </td>
               <td>Sin gluten</td>
               <td>
-                <button className="btn btn-light btn-sm me-1">👁️</button>
-                <button className="btn btn-success btn-sm me-1">✔️</button>
-                <button className="btn btn-danger btn-sm">❌</button>
+                <Button variant="outline-secondary" size="sm" className="me-2"><Eye /></Button>
+                <Button variant="outline-secondary" size="sm" className="me-2"><Pencil /></Button>
+                <Button variant="outline-danger" size="sm"><X /></Button>
               </td>
             </tr>
           </tbody>
-        </table>
-      </div>
-        </>
-    )
+        </Table>
+        </Card.Body>
+      </Card>
+    </>
+  )
 }

@@ -37,7 +37,7 @@ function App() {
     "/registro-restaurantes",
     "/gestionperfilcliente",
     "/inicio-clientes",
-    "/vistaRestaurante"
+    "/vistarestaurante"
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 
