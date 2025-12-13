@@ -1,8 +1,8 @@
-import { Container } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import Tittle from "../components/comVista-Restaurante/Tittle";
 import Stat from "../components/comVista-Restaurante/Estadisticas";
-import Reservas from "../components/comVista-Restaurante/Reservas";
 import '../components/comVista-Restaurante/style.css';
+import NavSecciones from "../components/comVista-Restaurante/Nav-Secciones";
 
 export default function Vista_Restaurante() {
     return (
@@ -10,7 +10,9 @@ export default function Vista_Restaurante() {
         <Container className='my-4 margen-provi'>
             <Tittle />
             <Stat />
-            <Reservas />
+            <Card className="p-3">
+                <NavSecciones />
+            </Card>
         </Container>
         </>
     )
