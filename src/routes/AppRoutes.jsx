@@ -7,7 +7,7 @@ import Registro_Restaurante from "../pages/Registro-Restaurantes";
 import CrearCuentaCliente from "../pages/CrearCuentaCliente";
 import CambiarContrasena from "../pages/Cambiarcontrasena";
 import GestionPerfilCliente from "../pages/GestionPerfilCliente";
-
+import InicioClientes from "../pages/InicioClientes";
 export const AppRoutes = () => {
   return (
     <Routes>
@@ -19,6 +19,7 @@ export const AppRoutes = () => {
       <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       <Route path="/gestionperfilcliente" element={<GestionPerfilCliente />} />
+      <Route path="/inicio-clientes" element={<InicioClientes />} />
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
