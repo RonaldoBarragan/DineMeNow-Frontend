@@ -1,0 +1,27 @@
+.margen-provi {
+  margin-top: 5rem !important;
+}
+
+.letra-size-tabla {
+  font-size: 0.9rem;
+}
+
+.per .nav-pills .nav-link {
+  color: #000; /* Color de texto negro */
+}
+
+.per .nav-pills .nav-link.active {
+  background-color: #ffffff; /* Fondo gris para el tab activo */
+  color: #000;
+  border-radius: var(--bs-border-radius-pill) !important;
+}
+
+.per .nav-item {
+  background-color: transparent !important;
+  padding: 4px;
+}
+
+.fondo-tab {
+  background-color: rgb(216, 215, 215);
+  height: 100%
+}
