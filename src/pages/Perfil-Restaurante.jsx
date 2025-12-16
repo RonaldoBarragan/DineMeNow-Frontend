@@ -9,13 +9,20 @@ const PerfilRestaurante = () => {
 
   return (
     <>
-    <Container className="my-4">
-      <Title/>
-      <br></br>
-      <TabsRestaurante/>
-      <br></br>
-      <InfoRestaurante/>
-      <Horario/>
+    <Container className="my-5 ">
+      <div className="mb-4">
+        <Title />
+      </div>
+
+      <div className="mb-2">
+        <TabsRestaurante />
+      </div>
+
+      <div className="mb-4">
+        <InfoRestaurante />
+      </div>
+
+      <Horario />
     </Container>
     </>
       

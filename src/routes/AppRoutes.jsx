@@ -20,7 +20,7 @@ export const AppRoutes = () => {
       <Route path="/crear-cuenta" element={<CrearCuentaCliente />} />
       <Route path="/recuperar" element={<Recuperar />} />
       <Route path="/cambiar" element={<Cambiar />} />
-      
+      <Route path="/com" element={<PerfilRestaurante/>} />
       
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />

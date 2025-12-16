@@ -8,10 +8,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
   background-color:  #ebecf3;
-  border-radius: 20px; /*borde div*/
-  padding: 5px; /*Crea el espacio tipo borde*/
+  border-radius: 15px; /*borde div*/
+  padding: 4px; /*Crea el espacio tipo borde*/
 }
 .tabs-group {
   display: flex;
@@ -20,13 +19,14 @@
 }
 /* Botones (tabs) */
 .tab-button {
-  border-radius: 20px !important; /*borde button*/
+  border-radius: 15px !important; /*borde button*/
   background-color: #ebecf3 !important;  /* gris suave */
   border: none !important;
-  padding: 8px 18px;
   font-size: 14px;
   font-weight: 500;
   transition: 0.2s ease;
+  color: rgba(10, 10, 10, 1);
+  
   
   
 }
