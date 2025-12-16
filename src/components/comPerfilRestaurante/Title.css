@@ -1,18 +1,20 @@
 .Card {
   max-width: 900px;
-  min-height: 100vh;
+  margin: 0 auto;
+}
+.title-card{
+  border-radius: 15px;
 }
 .title {
   color: #000000;       /* Color de la letra */
   font-size: 20px;       /* Tamaño */
   font-weight: bold;     /* Negrita */
   font-family: sans-serif;
+  padding: 6px 14px;
 }
 .text {
   color:4A5565 ;
   font-family: sans-serif;
   text-align: left;
-  font-size: 14;
+  font-size: 10;
 }
-
-

@@ -1,10 +1,10 @@
 import Card from 'react-bootstrap/Card';
-import './Title.css';
-import { Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import './Title.css'
 function Title () {
   return (
     <Container className='Card'>
-    <Card >
+    <Card className='title-card'>
       <Card.Body>
         <Card.Title className='title' >Perfil de Restaurante</Card.Title>
         <Card.Text className='text'>

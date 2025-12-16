@@ -1,5 +1,10 @@
+.Card {
+  max-width: 900px;
+  margin: 0 auto;
+}
 /* Contenedor general */
 .tabs-container {
+  max-width: 900px;
   width: 100%;
   display: flex;
   justify-content: center;

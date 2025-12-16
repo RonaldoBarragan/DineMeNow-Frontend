@@ -24,6 +24,7 @@ function App() {
     "/crear-cuenta",
     "/cambiar",
     "/recuperar",
+   
     
     // Agrega otras rutas donde el header no deba aparecer
   ];
@@ -35,6 +36,7 @@ function App() {
     "/cambiar",
     "/recuperar",
     "/registro-restaurantes",
+    
     
     // Agrega otras rutas donde el footer no deba aparecer
   ];

@@ -13,6 +13,7 @@ function TabsRestaurante(){
   ];
   
   return (
+    <Container className='Card'>
     <div className="tabs-container">
       <ButtonGroup className="tabs-group">
         {tabs.map((t, idx) => (
@@ -32,6 +33,7 @@ function TabsRestaurante(){
         ))}
       </ButtonGroup>
     </div>
+    </Container>
   );
 }
 
