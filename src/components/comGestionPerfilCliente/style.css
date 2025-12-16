@@ -1,0 +1,223 @@
+
+/* aqui comienza perfil */
+.card.cardGestionPerfilCliente {
+    width: 100%;
+    border-radius: 10px; 
+    border: none; 
+    background-color: #ffffff; 
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.05),
+        /* offset-x | offset-y | blur(0) | spread(1px) | color(#fdf7f4) */
+        inset 0 0 0 1px #fdf7f4;
+}
+
+/* Estilos para las etiquetas (Nombre Completo, Email, etc.) */
+.gestioncliente-label {
+    font-weight: 600;
+    font-size: 12px;
+    color: #101010;
+    margin-bottom: 4px;
+}
+.gestioncliente-Title {
+    font-weight: 500;
+    font-size: 14px;
+    color: #101010;
+    margin-bottom: 4px;
+}
+
+
+/* Estilos para el contenido/datos */
+.gestioncliente-dato {
+    font-size: 12px;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre icono y texto */
+}
+
+/* Nota pequeña debajo del email */
+.gestioncliente-nota {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 2px;
+}
+
+/* Personalización del botón editar para que coincida con la imagen */
+.btn-editar-perfil {
+    border-radius: 8px !important;
+    border: 1px solid #dee2e6 !important;
+    background-color: white !important;
+    color: #000 !important;
+    font-size: 14px !important;
+    padding: 4px 12px !important;
+    transition: all 0.2s;
+}
+
+.btn-editar-perfil:hover {
+    background-color: #eaeced !important;
+    border-color: #ced4da !important;
+}
+
+/* Tarjeta de Foto de Perfil */
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    background-color: #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #495057;
+    position: relative;
+    margin: 0 auto 15px;
+}
+
+.camera-icon-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #ff6b00; /* Naranja de la imagen */
+    color: white;
+    border-radius: 50%;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+
+/* Estilos de Estadísticas */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: #5b5f62;
+    font-size: 0.90rem;
+}
+
+.stat-value {
+    font-weight: bold;
+    font-size: 0.90rem;
+}
+
+.text-success-custom { color: #198754; }
+.text-danger-custom { color: #dc3545; }
+/* seguridad */
+/* input del form de seguridad */
+input.inputFormSeguridad {
+    width: 50%;
+    padding: 6px;
+    border: 1px solid #ced4da00;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    background-color: #f3f3f5;
+    
+}
+input.inputFormSeguridad:focus {
+    outline: none; 
+    border: 1px solid #a1a1a1;
+    background-color: #f3f3f5;
+    box-shadow: 0 0 0 2px #a1a1a1ab;
+}
+
+
+/* Notificaciones */
+
+/* Contenedor para que las opciones no ocupen todo el ancho en pantallas grandes */
+.notificaciones-container {
+    max-width: 100%;
+}
+
+/* 1. Elimina el borde azul y la sombra al hacer clic (el focus) */
+.form-check-input:focus {
+    box-shadow: none !important;
+    border-color: rgba(0, 0, 0, 0.25) !important; /* Un gris suave */
+}
+
+/* 2. Color cuando está activo (Checked) */
+.form-check-input:checked {
+    background-color: #000000 !important; /* Negro como tu referencia */
+    border-color: #000000 !important;
+}
+
+/* 3. Color cuando está activo pero tiene el foco (clic sostenido) */
+.form-check-input:checked:focus {
+    box-shadow: none !important;
+    border-color: #000000 !important;
+}
+
+/* 4. Estilo de la "bolita" blanca (opcional, por si quieres ajustarla) */
+.form-check-input {
+    cursor: pointer;
+}
+
+/* Estilo para la descripción debajo de cada título */
+.notificacion-descripcion {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+/* Ajuste de alineación para que el switch quede a la derecha */
+.notificacion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+
+
+/* cuenta */
+
+/* Tarjeta de Zona Peligrosa */
+.card-danger {
+    border: 1px solid #ffccd5 !important; /* Borde suave rojizo */
+}
+
+.text-danger-custom {
+    color: #d90429 !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Botón Eliminar Cuenta */
+.btn-eliminar-cuenta {
+    background-color: #d90429 !important;
+    border: none !important;
+    color: white !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-eliminar-cuenta:hover {
+    background-color: #b90422 !important;
+}
+
+/* Estilos de Información de Cuenta */
+.info-cuenta-item {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.info-cuenta-label {
+    font-weight: 600;
+    margin-right: 5px;
+}
