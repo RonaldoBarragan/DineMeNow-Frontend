@@ -22,10 +22,9 @@ function App() {
     "/iniciarsesion",
     "/verificartoken",
     "/crear-cuenta",
-    "/cambiar",
-    "/recuperar",
-   
-    
+    "/cambiarcontrasena",
+    "/recuperarcontrasena",
+    "/inicio-clientes",
     // Agrega otras rutas donde el header no deba aparecer
   ];
 
@@ -33,11 +32,12 @@ function App() {
     "/iniciarsesion",
     "/verificartoken",
     "/crear-cuenta",
-    "/cambiar",
-    "/recuperar",
+    "/cambiarcontrasena",
+    "/recuperarcontrasena",
     "/registro-restaurantes",
-    
-    
+    "/gestionperfilcliente",
+    "/inicio-clientes",
+    "/vistarestaurante"
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 

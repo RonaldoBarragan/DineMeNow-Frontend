@@ -1,6 +1,7 @@
 import './estilos/Footer.css';
 import Button from 'react-bootstrap/Button';
 import logoiniciosesion from "../../assets/logo-inicio-sesion2.jpg";
+import "../../design/global.css";
 
 export default function Footer() {
   return (
@@ -15,10 +16,9 @@ export default function Footer() {
           </p>
 
           <Button
-            className="footer-cta-button"
-            variant='ghost'
-            href="/Registro-restaurantes"
-            target='_blank'
+            className="buttonRegistrarRE"
+            size='sm'
+            onClick={() => navigate("/Registro-restaurantes")}
           >
             Registra tu restaurante
           </Button>

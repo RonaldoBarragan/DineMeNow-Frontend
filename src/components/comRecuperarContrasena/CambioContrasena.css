@@ -13,13 +13,3 @@
   background-color: #f3f3f5;
   border: 1px solid #b9b6b6bd;
 }
-
-.boton {
-  width: 100%;
-  background: linear-gradient(
-    to right,
-    #f97316,
-    #ef4444
-  ); /* orange-500 → red-500 */
-  transition: background 0.3s ease;
-}
