@@ -53,14 +53,14 @@ export default function Header({ viewMode, userName }) {
       <Button
         className="buttonRegistrarUS" 
         size="sm"
-        onClick={() => navigate("/crear-cuenta")}
+        onClick={() => navigate("/crearcuenta")}
       >
         Registrarse
       </Button>
       <Button
         className="buttonNaranjaDegrade" 
         size="sm"
-        onClick={() => navigate("/iniciarSesion")}
+        onClick={() => navigate("/iniciarsesion")}
       > 
         <BiLogIn size={18} className="login-icon" />
         Iniciar sesión

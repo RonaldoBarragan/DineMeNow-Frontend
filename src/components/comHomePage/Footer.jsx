@@ -18,7 +18,7 @@ export default function Footer() {
           <Button
             className="buttonRegistrarRE"
             size='sm'
-            onClick={() => navigate("/Registro-restaurantes")}
+            onClick={() => navigate("/restaurante/registro")}
           >
             Registra tu restaurante
           </Button>
