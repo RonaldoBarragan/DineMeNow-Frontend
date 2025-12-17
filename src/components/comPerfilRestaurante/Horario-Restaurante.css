@@ -1,0 +1,61 @@
+.Card {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.info-card{
+  border-radius: 20px;
+}
+.row {
+  padding: 0 16px 16px;
+}
+.title {
+  padding: 0 16px 16px; 
+  display: flex; 
+  margin-bottom: 1px; /* Margen inferior */
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(10, 10, 10, 1); 
+}
+
+/* Subtítulos */
+.info-subtitle {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 3px;
+  font-size: 14px;
+  color: rgba(10, 10, 10, 1);
+}
+/* Párrafos */
+.info-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 14.5px;
+  color: rgba(16, 24, 40, 1);
+}
+/* Botón Configurar Horario */
+.btn-confi{
+   background-color: #ffffff;
+  display: flex;
+  justify-content: center;   /* centra el texto */
+  width: 100%;               /* lo hace largo */
+  border: 1px solid #dcdcdc;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+/* Botón Editar Información */
+.Configurar{
+   margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color:rgba(10, 10, 10, 1);
+}
+.btn-confi:hover {
+  background: #ebecf3;
+}
+
+  
+

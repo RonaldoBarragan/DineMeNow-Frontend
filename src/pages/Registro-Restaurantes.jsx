@@ -7,7 +7,7 @@ import '../components/comRegistro-Restaurantes/page-style.css';
 export default function Registro_Restaurante() {
     return (
         <>
-        <Container className="container py-5 container-cards">
+        <Container className="py-5 container-cards mt-4">
             <Form_Restaurante />
             <Form_Info_Operativa />
             <Form_Info_Document />
