@@ -2,8 +2,7 @@ import './estilos/Footer.css';
 import Button from 'react-bootstrap/Button';
 import logoiniciosesion from "../../assets/logo-inicio-sesion2.jpg";
 import "../../design/global.css";
-import { useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate } from "react-router-dom";
 export default function Footer() {
   const navigate = useNavigate();
   return (
@@ -20,7 +19,7 @@ export default function Footer() {
           <Button
             className="buttonRegistrarRE"
             size='sm'
-            onClick={() => navigate("/Registro-restaurantes")}
+            onClick={() => navigate("/restaurante/registro")}
           >
             Registra tu restaurante
           </Button>
