@@ -36,7 +36,7 @@ function App() {
     "/cambiar",
     "/recuperar",
     "/registro-restaurantes",
-    "/com",
+    
     
     // Agrega otras rutas donde el footer no deba aparecer
   ];
