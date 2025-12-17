@@ -9,22 +9,24 @@ import CambiarContrasena from "../pages/Cambiarcontrasena";
 import GestionPerfilCliente from "../pages/GestionPerfilCliente";
 import InicioClientes from "../pages/InicioClientes";
 import Vista_Restaurante from "../pages/Vista-Restaurante";
+import PerfilRestaurante from "../pages/Perfil-Restaurante";
 
 
 
 export const AppRoutes = () => {
   return (
-    <Routes>
+    <Routes Location={location} key={location.pathname}>
       <Route path="/" element={<Home />} />
-      <Route path="/iniciarSesion" element={<IniciarSesion />} />
-      <Route path="/verificarToken" element={<VerificarToken />} />
-      <Route path="/Registro-restaurantes" element={<Registro_Restaurante />} />
-      <Route path="/crear-cuenta" element={<CrearCuentaCliente />} />
+      <Route path="/iniciarsesion" element={<IniciarSesion />} />
+      <Route path="/verificartoken" element={<VerificarToken />} />
+      <Route path="/restaurante/registro" element={<Registro_Restaurante />} />
+      <Route path="/crearcuenta" element={<CrearCuentaCliente />} />
       <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
-      <Route path="/gestionperfilcliente" element={<GestionPerfilCliente />} />
-      <Route path="/inicio-clientes" element={<InicioClientes />} />
-       <Route path="/vistaRestaurante" element={<Vista_Restaurante />} />
+      <Route path="/cliente/perfil" element={<GestionPerfilCliente />} />
+      <Route path="/cliente/inicio" element={<InicioClientes />} />
+       <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
+       <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>

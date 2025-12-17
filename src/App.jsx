@@ -21,23 +21,25 @@ function App() {
   const pathsToHideHeader = [
     "/iniciarsesion",
     "/verificartoken",
-    "/crear-cuenta",
+    "/crearcuenta",
     "/cambiarcontrasena",
     "/recuperarcontrasena",
-    "/inicio-clientes",
+    "/cliente/inicio",
+    
     // Agrega otras rutas donde el header no deba aparecer
   ];
 
   const pathsToHideFooter = [
     "/iniciarsesion",
     "/verificartoken",
-    "/crear-cuenta",
+    "/crearcuenta",
     "/cambiarcontrasena",
     "/recuperarcontrasena",
-    "/registro-restaurantes",
-    "/gestionperfilcliente",
-    "/inicio-clientes",
-    "/vistarestaurante"
+    "/restaurante/registro",
+    "/cliente/perfil",
+    "/cliente/inicio",
+    "/restaurante/vista",
+    "/restaurante/perfil",
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 
