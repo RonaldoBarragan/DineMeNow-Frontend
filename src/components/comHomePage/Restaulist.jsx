@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {useNavigate} from 'react-router-dom';
 import { Heart, HeartFill, StarFill, GeoAlt, Signpost } from 'react-bootstrap-icons';
 import './estilos/Restaulist.css';
 import SessionRequiredModal from './SessionRequiredModal';
@@ -12,6 +13,7 @@ import SessionRequiredModal from './SessionRequiredModal';
 // Componente de tarjeta individual
 function RestaurantCard({ name, image, rating, zone, distance, cuisines, onClick }) {
   const [isFavorite, setIsFavorite] = useState(false);
+  
 
   return (
     <Card className="restaurant-card h-100"
@@ -78,11 +80,15 @@ function RestaurantCard({ name, image, rating, zone, distance, cuisines, onClick
 }
 
 // Componente principal de lista
-export default function Restaulist({showDeaultTitle=true}) {
+export default function Restaulist({
+  showDefaultTitle=true,
+  isAuthenticated=false
+}) {
 
 //estados necesarios
 const [showModal, setShowModal] = useState(false);
-const [isLoggedIn, setIsLoggedIn] = useState(false);
+const navigate= useNavigate();
+
 
   const restaurants = [
     {
@@ -122,12 +128,12 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
   //Logica de sesion
 
   const handleRestaurantClick = () => {
-    if (!isLoggedIn){
+    if (!isAuthenticated){
         //si el usuario no ha iniciado sesion, mostrar modal de login
         setShowModal (true);
     }else{
       //si el usuario ha iniciado sesion, redirigir a la pagina del restaurante
-      console.log("Redirigiendo a la pagina del restaurante...");
+      navigate("/restaurante/vista");
     }
   };
 
@@ -136,7 +142,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     
 <Container className="restaurant-container">
-  {showDeaultTitle && (
+  {showDefaultTitle && (
     <h3 className="restaurants-title">Restaurantes disponibles</h3>
   )}
       
@@ -151,7 +157,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
       {/*renderizado del modal de login*/}
       <SessionRequiredModal
       show= {showModal}
-      handleClose= {closeModal}
+      handleClose= {() => setShowModal(false)}
       />
     </Container>
   );
