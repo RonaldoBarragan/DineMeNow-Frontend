@@ -27,7 +27,10 @@ export default function InicioClientes() {
             </div>  
             {/* Lista de restaurantes */}
             <Container className="my-4">
-                <Restaulist showDeaultTitle={false}/>
+                <Restaulist 
+                showDefaultTitle={false}
+                isAuthenticated={true}
+                />
             </Container>
         </div>
     );
