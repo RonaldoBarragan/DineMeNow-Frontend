@@ -10,9 +10,9 @@ function NavigationSection() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const publicRoutes = ["/",  "/registro-restaurantes"];
-  const clientRoutes = ["/gestionperfilcliente", "/agregar cuando finalice el desarrollo de las paginas del cliente"];
-  const restaurantRoutes = ["/agregar cuando se finalice el desarrollo de las paginas del restaurante"]
+  const publicRoutes = ["/",  "/restaurante/registro"];
+  const clientRoutes = ["/cliente/perfil", "/cliente/inicio"];
+  const restaurantRoutes = ["/restaurante/vista", "/restaurante/perfil"];
   const adminRoutes = ["/agregar cuando se finalice el desarrollo de las paginas del admin"]
 
   const isPublicView = publicRoutes.includes(currentPath);
@@ -37,28 +37,28 @@ function NavigationSection() {
 
         {isClientView && (<>
         <li>
-          <NavLink to="/" className="nav-item">
+          <NavLink to="/cliente/inicio" className="nav-item">
             <BiHomeAlt size={20} className="nav-icon" />
             <span>Buscar Restaurantes</span>
           </NavLink>
           
         </li>
         <li>
-          <NavLink to="/" className="nav-item">
+          <NavLink to="/cliente/perfil" className="nav-item">
             <BiUser  size={20} className="nav-icon" />
             <span>Mi perfil</span>
           </NavLink>
           
         </li>
         <li>
-          <NavLink to="/" className="nav-item">
+          <NavLink to="" className="nav-item">
             <BiCalendar size={20} className="nav-icon" />
             <span>Mis reservas</span>
           </NavLink>
           
         </li>
         <li>
-          <NavLink to="/" className="nav-item">
+          <NavLink to="" className="nav-item">
             <BiBell size={20} className="nav-icon" />
             <span>Notificaciones</span>
           </NavLink>
@@ -67,14 +67,14 @@ function NavigationSection() {
         </>)}
         {isRestaurantView && (<>
         <li>
-          <NavLink to="/" className="nav-item">
+          <NavLink to="/restaurante/vista" className="nav-item">
             <BsGear size={20} className="nav-icon" />
             <span>Mi restaurante</span>
           </NavLink>
           
         </li>
         <li>
-          <NavLink to="/" className="nav-item">
+          <NavLink to="/restaurante/perfil" className="nav-item">
             <BiUser  size={20} className="nav-icon" />
             <span>Perfil de restaurante</span>
           </NavLink>

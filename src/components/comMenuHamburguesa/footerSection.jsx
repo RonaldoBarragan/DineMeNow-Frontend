@@ -7,8 +7,8 @@ function FooterSection() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const publicRoutes = ["/","/registro-restaurantes"];
-  const privateRoutes = ["/gestionperfilcliente"]
+  const publicRoutes = ["/","/restaurante/registro"];
+  const privateRoutes = ["/cliente/perfil", "/cliente/inicio", "/restaurante/vista", "/restaurante/perfil"];
 
   const isPublicView = publicRoutes.includes(currentPath);
   const isPrivateView = privateRoutes.includes(currentPath);
