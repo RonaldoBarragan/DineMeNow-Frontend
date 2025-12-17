@@ -12,13 +12,13 @@ function SessionRequiredModal({show, handleClose}) {
     //funcion para manejar el click en el boton de iniciar sesion
     const handleLoginClick = () => {
         handleClose();
-        navigate('/IniciarSesion');
+        navigate('/iniciarsesion');
     };
 
     //funcion para manejar el click en el boton de registrarse
     const handleRegisterClick = () => {
         handleClose();
-        navigate('/crear-cuenta');
+        navigate('/crearcuenta');
     };
 
     return(
