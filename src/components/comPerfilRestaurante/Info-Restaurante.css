@@ -1,0 +1,92 @@
+.Card {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.info-card{
+  border-radius: 20px;
+}
+.row {
+  padding: 0 16px 16px;
+}
+/* Encabezado: icono + título */
+.encabezado {
+  padding: 0 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+/* Título */
+.encabezado-title {
+   display: flex;
+   align-items: center;
+   gap: 8px; /* espaciado entre icono y texto */
+}
+/*Titulo*/
+.encb-title{
+    margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color:rgba(10, 10, 10, 1);
+}
+/* Botón Editar Información */
+.btn-edit{
+   background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espaciado entre icono y texto */
+  border: 1px solid #dcdcdc;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  
+}
+/* Botón Editar Información */
+.Editar{
+   margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color:rgba(10, 10, 10, 1);
+}
+.btn-edit:hover {
+  background: #ebecf3;
+}
+/* Imagen del restaurante */
+.info-image {
+   width: 100%;
+  height: 186px;
+  object-fit: cover;
+}
+
+/* Subtítulos (Nombre del restaurante, Zona, etc.) */
+.info-subtitle {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 3px;
+  font-size: 14px;
+  color: rgba(10, 10, 10, 1);
+}
+/* Párrafos */
+.info-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 14.5px;
+  color: rgba(16, 24, 40, 1);
+}
+/* Iconos alineados con texto */
+.info-icon {
+  margin-right: 6px;
+}
+/* Separación en columnas */
+.info-right {
+   margin-bottom: 18px;
+}
+.Descripcion {
+  color: rgba(54, 65, 83, 1);
+  line-height: 1.5;
+  font-size: 14px;
+}
+

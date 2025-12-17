@@ -1,0 +1,25 @@
+.Card-title {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 40px; /* espacio superior */
+}
+.title-card{
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.titulo{
+  
+  color: #000000;       /* Color de la letra */
+  font-size: 20px;       /* Tamaño */
+  font-weight: bold;     /* Negrita */
+  font-family: sans-serif;
+  margin: 0 0 4px 0; /* pequeño espacio abajo */
+}
+.text {
+  color:4A5565 ;
+  font-family: sans-serif;
+  text-align: left;
+  font-size: 15px;
+   margin: 0;
+}
