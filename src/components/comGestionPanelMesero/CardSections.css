@@ -1,0 +1,37 @@
+.Card {
+  max-width: 900px;
+  margin: 0 auto;
+}
+/* Contenedor general */
+.tabs-container {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color:  #ebecf3;
+  border-radius: 15px; /*borde div*/
+  padding: 4px; /*Crea el espacio tipo borde*/
+}
+.tabs-group {
+  display: flex;
+  width: 100%;
+  gap: 10px;                   /* separación entre tabs */
+}
+/* Botones (tabs) */
+.tab-button {
+  border-radius: 15px !important; /*borde button*/
+  background-color: #ebecf3 !important;  /* gris suave */
+  border: none !important;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s ease;
+  color: rgba(10, 10, 10, 1);
+  
+  
+  
+}
+
+/* Tab activo (el que está seleccionado) */
+.tab-button.active {
+  background-color: #ffffff !important;
+}
