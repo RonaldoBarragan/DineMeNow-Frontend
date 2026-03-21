@@ -6,3 +6,7 @@
 .size-letra-propio {
     font-size: 15px;
 }
+
+.color-hover:hover {
+    background-color: rgb(124, 74, 74);
+}
