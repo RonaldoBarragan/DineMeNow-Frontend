@@ -7,11 +7,11 @@ import { LuSettings } from "react-icons/lu";
 export default function Card_stats() {
     return (
         <>
-        <Row className="p-0 mt-3">
+        <Row className="p-0 mt-3 mb-3">
             <Col>
             <Card>
                 <Card.Body className="d-flex align-items-center gap-2">
-                    <LuBuilding size={25} />
+                    <LuBuilding className="icon-color-restaurant" size={28} />
                     <div className="flex-column">
                         <Card.Title className="fw-bold mb-0">4</Card.Title>
                         <Card.Text className="text-left mt-0 size-letra-propio">Restaurantes</Card.Text>
@@ -23,7 +23,7 @@ export default function Card_stats() {
             <Col>
             <Card>
                 <Card.Body className="d-flex align-items-center gap-2">
-                    <LuUsers size={25} />
+                    <LuUsers className="icon-color-users" size={28} />
                     <div className="flex-column">
                         <Card.Title className="fw-bold mb-0">1.247</Card.Title>
                         <Card.Text className="text-left mt-0 size-letra-propio">Usuarios</Card.Text>
@@ -35,7 +35,7 @@ export default function Card_stats() {
             <Col>
             <Card>
                 <Card.Body className="d-flex align-items-center gap-2">
-                    <FaRegStar size={25} />
+                    <FaRegStar className="icon-color-rating" size={28} />
                     <div className="flex-column">
                         <Card.Title className="fw-bold mb-0">4.7</Card.Title>
                         <Card.Text className="text-left mt-0 size-letra-propio">Rating Promedio</Card.Text>
@@ -47,7 +47,7 @@ export default function Card_stats() {
             <Col>
             <Card>
                 <Card.Body className="d-flex align-items-center gap-2">
-                    <LuSettings size={25} />
+                    <LuSettings className="icon-color-solis" size={28} />
                     <div className="flex-column">
                         <Card.Title className="fw-bold mb-0">3</Card.Title>
                         <Card.Text className="text-left mt-0 size-letra-propio">Solicitudes</Card.Text>

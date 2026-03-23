@@ -7,6 +7,68 @@
     font-size: 15px;
 }
 
-.color-hover:hover {
-    background-color: rgb(124, 74, 74);
+.style-button-propio {
+    font-size: 15px !important;
+    height: max-content;
+    padding: 5px;
+}
+
+.badge-pending {
+    background-color: #ffedd4 !important;
+    color: #9f2d00;
+}
+
+.badge-state-acc {
+    background-color: #dcfce7 !important;
+    color: #026630;
+}
+
+/* Colores para los iconos */
+.icon-color-restaurant {
+    color: #2b7fff;
+}
+
+.icon-color-users {
+    color: #00c950;
+}
+
+.icon-color-rating {
+    color: #f0b100;
+}
+
+.icon-color-solis {
+    color: #ad46ff;
+}
+
+.icon-color-hover:hover {
+    background-color: #e9ebef;
+}
+
+/*Estilo tabs*/
+.tab-principal {
+    background-color: #ececf0;
+    width: fit-content;
+}
+
+.tab-principal li {
+    background-color: transparent;
+    padding: 3px;
+}
+
+.tab-principal .nav-link {
+    color: #000;
+    border-radius: var(--bs-border-radius-pill) !important;
+    padding-block: calc(var(--spacing)*1);
+    font-size: 15px;
+}
+
+.tab-principal .nav-link.active {
+    background-color: #ffffff;
+    color: #000;
+    border-radius: var(--bs-border-radius-pill) !important;
+}
+
+.tab-principal .nav-item:hover { /*Quitar hover*/
+    background-color: #ececf0;
+    border-radius: var(--bs-border-radius-pill);
 }
