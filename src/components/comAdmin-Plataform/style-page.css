@@ -18,6 +18,14 @@
     color: #9f2d00;
 }
 
+.badge-count-reservas {
+    background-color: transparent !important;
+    border-color: #a1a1a1;
+    border-style: solid;
+    border-width: 1px;
+    color: #000;
+}
+
 .badge-state-acc {
     background-color: #dcfce7 !important;
     color: #026630;
