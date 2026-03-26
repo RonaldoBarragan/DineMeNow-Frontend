@@ -1,0 +1,14 @@
+/*No tocar*/
+.margen-provi {
+  margin-top: 5rem !important;
+}
+/**/
+
+.container-principal-propio {
+  max-width: 85%;
+  min-height: 100vh;
+}
+.fs-propio {
+  font-size: 15px;
+}
+/*Color icons*/

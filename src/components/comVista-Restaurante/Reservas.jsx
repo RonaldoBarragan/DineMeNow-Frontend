@@ -2,7 +2,6 @@ import { Card, Table, Button, Badge } from "react-bootstrap";
 import { Eye } from "react-bootstrap-icons";
 import { LuCircleCheckBig } from "react-icons/lu";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import './style.css';
 
 export default function Reservas() {
     return (
