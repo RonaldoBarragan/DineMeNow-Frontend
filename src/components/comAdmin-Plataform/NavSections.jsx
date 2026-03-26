@@ -6,7 +6,7 @@ import Section_Clients from "./Section-Clients";
 export default function Nav_Section() {
     return (
         <>
-        <Card className="p-4">
+        <Card className="p-4 mb-3">
             <Tabs defaultActiveKey="Solicitudes" className="rounded-pill mb-3 tab-principal" variant="pills">
                 <Tab eventKey="Solicitudes" title="Solicitudes (3)">
                     <Section_Solicitud />
