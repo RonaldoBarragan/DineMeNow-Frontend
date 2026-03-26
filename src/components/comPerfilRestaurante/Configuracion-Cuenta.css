@@ -1,0 +1,29 @@
+.card-confirestau{
+  max-width: 900px;
+  margin: 0 auto;
+}
+.confi-card-restau{
+  border-radius: 20px;
+}
+.encabezado-confirestau{
+  padding: 0 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: red;
+}
+.encabezado-title-confirestau{
+  color: red;
+  display: flex;
+  align-items: center;
+   gap: 8px; /* espaciado entre icono y texto */
+}
+.encb-title-confirestau{
+
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color:red;
+}
+

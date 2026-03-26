@@ -1,14 +1,16 @@
-.Card {
+.Card-horario {
   max-width: 900px;
   margin: 0 auto;
+  
 }
-.info-card{
+.info-card-horario{
   border-radius: 20px;
+  
 }
 .row {
   padding: 0 16px 16px;
 }
-.title {
+.title-horario {
   padding: 0 16px 16px; 
   display: flex; 
   margin-bottom: 1px; /* Margen inferior */
@@ -18,7 +20,7 @@
 }
 
 /* Subtítulos */
-.info-subtitle {
+.info-subtitle-horario {
   display: flex;
   align-items: center;
   font-weight: 600;
@@ -27,7 +29,7 @@
   color: rgba(10, 10, 10, 1);
 }
 /* Párrafos */
-.info-text {
+.info-text-horario {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -36,8 +38,8 @@
   color: rgba(16, 24, 40, 1);
 }
 /* Botón Configurar Horario */
-.btn-confi{
-   background-color: #ffffff;
+.btn-confi-horario{
+  background-color: #ffffff;
   display: flex;
   justify-content: center;   /* centra el texto */
   width: 100%;               /* lo hace largo */
@@ -47,13 +49,13 @@
   font-size: 14px;
 }
 /* Botón Editar Información */
-.Configurar{
-   margin: 0;
+.Configurar-horario{
+  margin: 0;
   font-size: 14px;
   font-weight: 600;
   color:rgba(10, 10, 10, 1);
 }
-.btn-confi:hover {
+.btn-confi-horario:hover {
   background: #ebecf3;
 }
 
