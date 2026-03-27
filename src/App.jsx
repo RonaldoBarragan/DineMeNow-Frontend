@@ -40,7 +40,8 @@ function App() {
     "/cliente/inicio",
     "/restaurante/vista",
     "/restaurante/perfil",
-    "/adminp/panel",
+    "/mesero/panel",
+    "/adminp/panel"
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 
