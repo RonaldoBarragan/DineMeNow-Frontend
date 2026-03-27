@@ -1,6 +1,7 @@
 .card-confirestau{
   max-width: 900px;
   margin: 0 auto;
+  padding: 0;
 }
 .confi-card-restau{
   border-radius: 20px;
@@ -8,10 +9,9 @@
 .encabezado-confirestau{
   padding: 0 16px 16px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column; 
+  gap: 12px;
   margin-bottom: 10px;
-  color: red;
 }
 .encabezado-title-confirestau{
   color: red;
@@ -26,4 +26,49 @@
   font-weight: 400;
   color:red;
 }
+/* Cuadro de advertencia debajo del título */
+.encb-desc-confirestau {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid #ebecf3;
+  border-radius: 8px;
+  padding: 12px 11px;
+  color: #000;
+}
 
+.encb-desc {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 15px;
+}
+.desc-pregunta{
+font-size: 14px;
+  margin: 0;
+  text-align: left;
+  color: #000;
+}
+.desc-list{
+  text-align: left;
+  color: #4d4c4c;
+  font-size: 13px;
+  margin: 0;
+}
+.btn-eliminar-confirestau{
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espaciado entre icono y texto */
+  background-color: #d4183d;
+  border-radius: 10px;
+  border: 1px solid #d4183d;
+  justify-content: center;
+  height: 33px;
+}
+.Eliminar-confirestau{
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color:#fff;
+  
+}

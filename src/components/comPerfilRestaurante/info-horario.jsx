@@ -4,7 +4,7 @@ import Horario from "./horario-Restaurante";
 
 function Perfil(){
   return(
-    <Container >
+    <Container className="p-0">
       <div className="mb-4">
         <InfoRestaurante />
       </div>
