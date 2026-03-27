@@ -1,26 +1,25 @@
 
-import { Container, Tab, Tabs } from "react-bootstrap";
-import './CardSections.css';
-// import Reservas from "./Reservas";
-// import Menu from "./Menu";
-// import Mesas from "./Mesas";
-
+import { Card, Tab, Tabs } from "react-bootstrap";
+import Section_GestionR_Mesero from "./Section-GestionR-Mesero";
+import Section_VistaMenu_Mesero from "./Section-VistaMenu-Mesero";
+import Section_VistaMesas_Mesero from "./Section-VistaMesas-Mesero";
+import './style-Mesero.css';
 export default function CardSections() {
   return (
-        <>
-        <Container className="per">
-            <Tabs defaultActiveKey="Reservas" className="mb-3 fondo-tab rounded-pill" variant="pills" fill>
-                <Tab eventKey="Reservas" title="Gestion de Reservas">
-                    {/* <Reservas /> */}
+        
+        <Card className="p-2 mb-3 sin-borde">
+            <Tabs defaultActiveKey="Gestion reservas" className="rounded-pill tab-mesero mb-4" variant="pills" justify >
+                <Tab eventKey="Gestion reservas" title="Gestión de Reservas">
+                    <Section_GestionR_Mesero /> 
                 </Tab>
-                <Tab eventKey="Menu" title="Gestion del Menu">
-                    {/* <Menu /> */}
+                <Tab eventKey="Vista menu" title="Vista del Menú">
+                    <Section_VistaMenu_Mesero />
                 </Tab>
-                <Tab eventKey="Mesas" title="Gestion de Mesas">
-                    {/* <Mesas /> */}
+                <Tab eventKey="Vista mesas" title="Vista de Mesas">
+                    <Section_VistaMesas_Mesero /> 
                 </Tab>
             </Tabs>
-        </Container>
-    </>
+        </Card>
+        
     )
 }
