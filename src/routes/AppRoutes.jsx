@@ -27,9 +27,9 @@ export const AppRoutes = () => {
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       <Route path="/cliente/perfil" element={<GestionPerfilCliente />} />
       <Route path="/cliente/inicio" element={<InicioClientes />} />
-       <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
-       <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
-       <Route path="/mesero/panel" element={<Panel_Mesero />} />
+      <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
+      <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
+      <Route path="/mesero/panel" element={<Panel_Mesero />} />
       <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
       <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
       <Route path="/adminp/panel" element={<AdminP_Panel />} />

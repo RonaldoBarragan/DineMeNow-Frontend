@@ -7,7 +7,7 @@ export default function NavSecciones() {
     return (
         <>
         <Container className="per">
-            <Tabs defaultActiveKey="Reservas" className="mb-3 fondo-tab rounded-pill" variant="pills" fill>
+            <Tabs defaultActiveKey="Reservas" className="mb-4 rounded-pill tab-restaurant" variant="pills" fill>
                 <Tab eventKey="Reservas" title="Gestion de Reservas">
                     <Reservas />
                 </Tab>
