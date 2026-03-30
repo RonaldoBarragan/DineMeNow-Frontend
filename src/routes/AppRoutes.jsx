@@ -10,6 +10,7 @@ import GestionPerfilCliente from "../pages/GestionPerfilCliente";
 import InicioClientes from "../pages/InicioClientes";
 import Vista_Restaurante from "../pages/Vista-Restaurante";
 import PerfilRestaurante from "../pages/Perfil-Restaurante";
+import Panel_Mesero from "../pages/GestionPanelMesero";
 import AdminP_Panel from "../pages/AdminP-Panel";
 
 
@@ -26,6 +27,9 @@ export const AppRoutes = () => {
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       <Route path="/cliente/perfil" element={<GestionPerfilCliente />} />
       <Route path="/cliente/inicio" element={<InicioClientes />} />
+       <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
+       <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
+       <Route path="/mesero/panel" element={<Panel_Mesero />} />
       <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
       <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
       <Route path="/adminp/panel" element={<AdminP_Panel />} />

@@ -1,0 +1,92 @@
+.icon-color-AccMesero {
+    color: #ff6900;
+}
+
+.icon-color-ReMesero {
+    color: #2b7fff;
+}
+.icon-color-MeDisponible {
+    color: #00c950;
+}
+.icon-color-MeOcupadas {
+    color: #fc4851;
+}
+.icon-color-MeReservadas {
+    color: #f0b100;
+}
+.sin-borde {
+    border: none !important;
+    box-shadow: none !important; /* por si acaso */
+}
+/*Estilo tabs*/
+.tab-mesero {
+    background-color: #ececf0;
+    width: 100%;
+    display: flex;
+    padding: 2px; /* Espacio interno para que el activo no toque los bordes */
+    border: none !important;
+}
+
+.tab-mesero li {
+    background-color: transparent;
+    padding: 3px;
+}
+
+.tab-mesero .nav-link {
+    color: #000;
+    border-radius: var(--bs-border-radius-pill) !important;
+    padding-block: calc(var(--spacing)*1);
+    font-size: 18px;
+    
+}
+
+.tab-mesero .nav-link.active {
+    background-color: #ffffff;
+    color: #000;
+    border-radius: var(--bs-border-radius-pill) !important;
+}
+
+.tab-mesero .nav-item:hover { /*Quitar hover*/
+    background-color: #ececf0;
+    border-radius: var(--bs-border-radius-pill);
+   
+
+}
+/* gestion reservas estados mesero */
+.badge-state-confirmadaMesero {
+    background-color: #dcfce7 !important;
+    color: #026630;
+}
+.badge-state-pendienteMesero {
+    background-color: #fef9c2 !important;
+    color: #905000;
+}
+
+.badge-state-canceladaMesero {
+    background-color: #feddc2 !important;
+    color: #7f1d1d;
+}
+/* vista del menu estados mesero */
+.badge-state-disponibleMesero {
+    background-color: #030213 !important;
+    color: #effbff;
+}
+.badge-state-noDisponibleMesero {
+    background-color: #eceef2 !important;
+    color: #030221;
+}
+
+/* vista mesas estados mesero */
+.badge-state-mesaDisponibleMesero {
+    background-color: #dcfce7 !important;
+    color: #026630;
+}
+.badge-state-mesaOcupadaMesero {
+    background-color: #ffe2e2 !important;
+    color: #9f0734;
+}
+
+.badge-state-mesaReservadaMesero {
+    background-color: #fef9c2 !important;
+    color: #9c4b00;
+}
