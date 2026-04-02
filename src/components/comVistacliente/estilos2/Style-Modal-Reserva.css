@@ -1,0 +1,23 @@
+.mesa-card {
+  transition: all 0.2s ease;
+}
+
+.mesa-card:hover {
+  border-color: #fd7e14 !important;
+  background-color: #fff5ee;
+  cursor: pointer;
+}
+
+.mesa-selected {
+  border-color: #fd7e14 !important;
+  background-color: #fff0e6;
+  color: #fd7e14;
+}
+
+.mesa-selected .mesa-nombre {
+  color: #fd7e14;
+}
+
+.color-letra-precio {
+    color: #fd7e14;
+}
