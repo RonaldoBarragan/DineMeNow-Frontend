@@ -3,6 +3,23 @@
   margin: 0 auto;
   padding: 0;
 }
+/*modal div*/
+.modal-desc-confirestau{
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid #ebecf3;
+  border-radius: 8px;
+  padding: 12px 11px;
+  color: #000;
+  
+}
+.modal-desc{
+margin: 0;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
 .confi-card-restau{
   border-radius: 20px;
 }
