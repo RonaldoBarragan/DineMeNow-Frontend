@@ -10,3 +10,8 @@
 .text-left {
     text-align: left;
 }
+
+.text-primary{
+    color: black !important;
+    font-weight: bold;
+}
