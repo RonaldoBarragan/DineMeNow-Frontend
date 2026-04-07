@@ -48,15 +48,16 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
 
     // Construimos el objeto EXACTO que espera tu ReservaDto en Spring Boot
     const reservaParaEnviar = {
+      //agregacion del nit y otros
+      nitRestaurante: restaurant?.nit || "",
       nombreCliente: formData.nombreCliente,
       nombrePlatos: platosSeleccionados
-        .map((p) => `${p.cantidad}x ${p.nombre}`)
-        .join(", "),
+        .map((p) => `${p.cantidad}x ${p.nombre}`),
       numeroMesa: mesaSeleccionada.id.toString(),
       fecha: formData.fecha, // Formato YYYY-MM-DD del input date
-      hora: formData.hora + ":00", // Agregamos :00 para cumplir con LocalTime (HH:mm:ss)
+      hora: formData.hora ? `${formData.hora}:00` : "", // Agregamos :00 para cumplir con LocalTime (HH:mm:ss) 
       descripcion: formData.descripcion,
-      estado: true,
+      estado: "PENDIENTE",
     };
 
     try {
@@ -154,7 +155,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
               <Form.Group className="mb-3">
                 <Form.Label>Mesa</Form.Label>
                 <Row className="g-2">
-                  {restaurant?.mesas.map((mesa) => (
+                  {restaurant?.mesas?.map((mesa) => (
                     <Col xs={6} key={mesa.id}>
                       <Card
                         className={`mesa-card p-2 text-center rounded border ${mesaSeleccionada?.id === mesa.id ? "mesa-selected" : ""}`}
@@ -218,7 +219,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
           <Col>
             <h5 className="mb-3">Menú - Pre-Ordenar</h5>
             <div className="overflow-auto" style={{ maxHeight: "400px" }}>
-              {restaurant?.menu.map((plato, idx) => (
+              {restaurant?.menu?.map((plato, idx) => (
                 <Card key={idx} className="mb-2">
                   <Card.Body className="p-2">
                     <div className="d-flex justify-content-between align-items-center">
