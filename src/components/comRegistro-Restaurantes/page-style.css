@@ -2,3 +2,16 @@
     max-width: 900px;
     min-height: 100vh;
 }
+
+.letra-size{
+    font-size: 13px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-primary{
+    color: black !important;
+    font-weight: bold;
+}

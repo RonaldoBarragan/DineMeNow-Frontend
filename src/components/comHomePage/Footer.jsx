@@ -1,8 +1,10 @@
 import './estilos/Footer.css';
 import Button from 'react-bootstrap/Button';
 import logoiniciosesion from "../../assets/logo-inicio-sesion2.jpg";
-
+import "../../design/global.css";
+import { Link, useNavigate } from "react-router-dom";
 export default function Footer() {
+  const navigate = useNavigate();
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -15,10 +17,9 @@ export default function Footer() {
           </p>
 
           <Button
-            className="footer-cta-button"
-            variant='ghost'
-            href="https://www.sourcetreeapp.com"
-            target='_blank'
+            className="buttonRegistrarRE"
+            size='sm'
+            onClick={() => navigate("/restaurante/registro")}
           >
             Registra tu restaurante
           </Button>

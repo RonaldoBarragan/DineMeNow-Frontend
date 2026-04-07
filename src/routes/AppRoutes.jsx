@@ -1,22 +1,42 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import IniciarSesion from '../pages/IniciarSesion';
-import VerificarToken from '../pages/VerificarToken';
-import Home from '../pages/Home';
-import Registro_Restaurante from '../pages/Registro-Restaurantes';
-import CrearCuentaCliente from '../pages/CrearCuentaCliente';
+import { Routes, Route, Navigate } from "react-router-dom";
+import IniciarSesion from "../pages/IniciarSesion";
+import VerificarToken from "../pages/VerificarToken";
+import RecuperarContrasena from "../pages/Recuperarcontrasena";
+import Home from "../pages/Home";
+import Registro_Restaurante from "../pages/Registro-Restaurantes";
+import CrearCuentaCliente from "../pages/CrearCuentaCliente";
+import CambiarContrasena from "../pages/Cambiarcontrasena";
+import GestionPerfilCliente from "../pages/GestionPerfilCliente";
+import InicioClientes from "../pages/InicioClientes";
+import Vista_Restaurante from "../pages/Vista-Restaurante";
+import PerfilRestaurante from "../pages/Perfil-Restaurante";
+import Panel_Mesero from "../pages/GestionPanelMesero";
+import AdminP_Panel from "../pages/AdminP-Panel";
+
+
+
 
 
 export const AppRoutes = () => {
   return (
-    <Routes>
+    <Routes Location={location} key={location.pathname}>
       <Route path="/" element={<Home />} />
-      <Route path="/iniciarSesion" element={<IniciarSesion />} />
-      <Route path="/verificarToken" element={<VerificarToken />} />
-      <Route path="/registro-restaurantes" element={<Registro_Restaurante />} />
-      <Route path="/crear-cuenta" element={<CrearCuentaCliente />} />
-
+      <Route path="/iniciarsesion" element={<IniciarSesion />} />
+      <Route path="/verificartoken" element={<VerificarToken />} />
+      <Route path="/restaurante/registro" element={<Registro_Restaurante />} />
+      <Route path="/crearcuenta" element={<CrearCuentaCliente />} />
+      <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
+      <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
+      <Route path="/cliente/perfil" element={<GestionPerfilCliente />} />
+      <Route path="/cliente/inicio" element={<InicioClientes />} />
+       <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
+       <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
+       <Route path="/mesero/panel" element={<Panel_Mesero />} />
+      <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
+      <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
+      <Route path="/adminp/panel" element={<AdminP_Panel />} />
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
-  )
-}
+  );
+};

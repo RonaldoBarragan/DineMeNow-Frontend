@@ -1,0 +1,77 @@
+.Card-seguridad{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+.Seguridad-restau{
+  border-radius: 20px;
+}
+/*Encabezado: icono + título*/
+.encabezado-segurestau{
+  padding: 0 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+/* Título */
+.encabezado-title-segurestau{
+  display: flex;
+  align-items: center;
+   gap: 8px; /* espaciado entre icono y texto */
+}
+/*Titulo*/
+.encb-title-segurestau{
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color:rgba(10, 10, 10, 1);
+}
+
+/* Botón Actualizar contra */
+.button-actu-segurestau{
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espaciado entre icono y texto */
+  border: 1px solid #dcdcdc;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+/* Botón aactualizar contra */
+.actualizar-segurestau{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color:rgba(10, 10, 10, 1);
+}
+.button-actu-segurestau:hover{
+  background: #ebecf3;
+}
+/*form label*/
+.segurestau-label{
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 3px;
+  font-size: 14px;
+  color: rgba(10, 10, 10, 1);
+}
+  /*input*/
+  input.input-segu-restau{
+  
+    padding: 6px;
+    border: 1px solid #ced4da00;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    background-color: #f3f3f5;
+  }
+
+input.input-segu-restau:focus{
+  outline: none; 
+    border: 1px solid #a1a1a1;
+    background-color: #f3f3f5;
+    box-shadow: 0 0 0 2px #a1a1a1ab;
+}
