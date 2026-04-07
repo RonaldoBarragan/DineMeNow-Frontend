@@ -64,7 +64,7 @@ export default function Form_Restaurante({ onChange, valores }) {
                                         value={valores?.nit || ""}
                                         onChange={onChange}
                                         type="text" 
-                                        placeholder="123456789-0" 
+                                        placeholder="123456789" 
                                         className="inputForm icon-form-padding-left" 
                                     />
                                     <RiMessage2Fill className="icon-form-overlay" />
@@ -110,7 +110,7 @@ export default function Form_Restaurante({ onChange, valores }) {
                                         value={valores?.telefono || ""}
                                         onChange={onChange}
                                         type="text" 
-                                        placeholder="300 123 4567" 
+                                        placeholder="3001234567" 
                                         className="inputForm icon-form-padding-left" 
                                     />
                                     <RiMessage2Fill className="icon-form-overlay" />

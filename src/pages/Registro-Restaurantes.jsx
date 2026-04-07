@@ -14,7 +14,7 @@ export default function RegistroCompleto() {
         razonSocial: "",
         nombre: "",
         descripcion: "",
-        capacidad: 0,
+        capacidad: "",
         categoria: "",
         telefono: "",
         correo: "",
