@@ -33,28 +33,29 @@ function FormularioInicioSesion() {
       if (token) {
         localStorage.setItem('authToken', token);
       }
-      // 🔥 Guardamos el usuario completo
+      // Guardamos el usuario completo
       localStorage.setItem('user', JSON.stringify(response));
-      // 🔥 VALIDACIÓN DE ROLES
+      //  VALIDACIÓN DE ROLES
       if (!response.roles || response.roles.length === 0) {
         setError("El usuario no tiene roles asignados");
         return;
       }
-      // 🔥 SACAR EL ROL
+      //  SACAR EL ROL
       const rol = typeof response.roles[0] === "string"
       ? response.roles[0]
       : response.roles[0]?.nombre;
 
       console.log("ROL DETECTADO:", rol);
 
-        // 🔥 GUARDAR ROL (opcional pero recomendado)
+        //  GUARDAR ROL (opcional pero recomendado)
       localStorage.setItem('rol', rol);
-      // 🔥 REDIRECCIÓN SEGÚN ROL
+      //  REDIRECCIÓN SEGÚN ROL
       if (rol === "ROL_CLIENTE") {
         navigate("/cliente/inicio");
       } else if (rol === "ROL_ADMIN") {
-        navigate("/admin/dashboard");
-      } else {
+        navigate("/adminp/panel");
+      } else if(rol === "ROL_RESTAURANTE"){
+        navigate("/restaurante/vista");
         navigate("/");
       }
     } catch (err) {
