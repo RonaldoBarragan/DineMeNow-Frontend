@@ -53,8 +53,9 @@ function FormularioInicioSesion() {
       if (rol === "ROL_CLIENTE") {
         navigate("/cliente/inicio");
       } else if (rol === "ROL_ADMIN") {
-        navigate("/admin/dashboard");
-      } else {
+        navigate("/adminp/panel");
+      } else if(rol === "ROL_RESTAURANTE"){
+        navigate("/restaurante/vista");
         navigate("/");
       }
     } catch (err) {
