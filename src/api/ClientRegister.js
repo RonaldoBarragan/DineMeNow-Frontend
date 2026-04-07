@@ -26,15 +26,20 @@ export const registroUsuario = async (data) => {
     },
     direccion: {
       calle: data.direccion.calle,
+      numero: data.direccion.numero,
       ciudad: data.direccion.ciudad,
-      pais: data.direccion.pais,
       codigoPostal: data.direccion.codigoPostal,
+      pais: data.direccion.pais,
     },
     correo: data.correo,
-    usuario: data.usuario,
+    telefono: data.telefono,
+    foto: data.foto || "",
+    user: data.user,
     password: data.password,
-    roles: data.roles,
   };
+
+  // 🔍 Log del request ANTES de enviarlo (para debugging)
+  console.log("📤 Enviando registro al backend:", requestBody);
 
   try {
 

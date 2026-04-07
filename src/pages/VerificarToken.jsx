@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation, Navigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import LogoInicioSesion from '../assets/logo-inicio-sesion2.jpg'; 
 import { Image } from 'react-bootstrap';
@@ -9,6 +10,14 @@ import CardVerificarToken from '../components/comVerificarToken/cardVerificarTok
 
 
 const VerificarToken = () => {
+  const location = useLocation();
+  const email = location.state?.email; // Extraemos el email del estado
+
+  // Si alguien intenta entrar a esta URL sin haberse registrado (sin email),
+  // lo mandamos de vuelta al registro.
+  if (!email) {
+    return <Navigate to="/crearcuenta" />;
+  }
 
   return (
 
@@ -34,7 +43,7 @@ const VerificarToken = () => {
           <p className="text-secondary small">Verificar token</p>
           
 
-          <CardVerificarToken></CardVerificarToken>
+          <CardVerificarToken email={email}></CardVerificarToken>
           
         </Col>
        

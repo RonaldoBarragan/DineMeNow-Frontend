@@ -18,7 +18,7 @@ label {
     color: #0A0A0A;
 }
 /* Inputs */
-.form-registro input {
+.inputForm  {
     width: 100%;
     padding: 6px;
     border: 1px solid #ced4da00;
@@ -27,7 +27,7 @@ label {
     margin-bottom: 15px;
     background-color: #f3f3f5;
 }
-.form-registro input:focus {
+.inputForm:focus {
     outline: none; 
     border: 1px solid #a1a1a1;
     background-color: #f3f3f5;
