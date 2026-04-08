@@ -81,70 +81,9 @@ export default function Restaulist({
 }) {
 
   // 2. Mantenemos tus estáticos aquí
-  const estaticos = [
-    {
-      name: "La Mesa Criolla",
-      image: "https://images.unsplash.com/photo-1644753787071-8933b5daed2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxDb2xvbWJpYW4lMjBmb29kJTIwYXJlcGF8ZW58MXx8fHwxNzU2MjI5MTExfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      rating: "4.8",
-      zone: "Zona Rosa",
-      distance: "1.2 km",
-      cuisines: ["Colombiana", "Típica"],
-    },
-    {
-      name: "Bella Napoli",
-      image: "https://images.unsplash.com/photo-1563245738-9169ff58eccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaXp6YSUyMHJlc3RhdXJhbnR8ZW58MXx8fHwxNzU2MjI5MTExfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      rating: "4.7",
-      zone: "Chapinero",
-      distance: "850 m",
-      cuisines: ["Italiana", "Pizza"],
-    },
-    {
-        name: "Sabor Sushi",
-        image: "https://acortar.link/PnN8Ef",
-        rating: "4.9",
-        zone: "Usaquén",
-        distance: "2.1 km",
-        cuisines: ["Japonesa", "Sushi"],
-    },
-    {
-        name: "El Mesón Gourmet",
-        image: "https://acortar.link/fEdjHY",
-        rating: "4.6",
-        zone: "La Candelaria",
-        distance: "3.5 km",
-        cuisines: ["Internacional", "Gourmet"],
-        mesas: [
-
-        { id: 1, personas: 2, tipo: "interior" },
-
-        { id: 2, personas: 4, tipo: "interior" },
-
-        { id: 3, personas: 6, tipo: "terraza" },
-
-        ],
-
-
-
-        menu: [
-
-        { nombre: "Ajiaco Santafereño", descripcion: "Tradicional sopa bogotana con pollo, mazorca y papas", precio: 18000 },
-
-        { nombre: "Bandeja Paisa", descripcion: "Frijoles, arroz, carne molida...", precio: 25000 },
-
-        //Agregar 4
-
-        { nombre: "Empanadas de Carne", descripcion: "Empanadas rellenas de carne molida con verduras", precio: 15000 },
-
-        { nombre: "Sancocho", descripcion: "Sopa tradicional colombiana con carne y tubérculos", precio: 20000 },
-
-        { nombre: "Chicharrón", descripcion: "Trozos de cerdo fritos crujientes", precio: 22000 },
-
-        { nombre: "Mazamorra", descripcion: "Postre tradicional hecho con maíz y azúcar", precio: 12000 }]
-    }
-  ];
-
+  
   // Estados
-  const [listaRestaurantes, setListaRestaurantes] = useState(estaticos);
+  const [listaRestaurantes, setListaRestaurantes] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -168,16 +107,16 @@ export default function Restaulist({
         }));
 
         // 3. MEZCLAMOS: Estáticos + Datos del Backend
-        const combinados = [...estaticos, ...localesFormateados];
-        setListaRestaurantes(combinados);
+        setListaRestaurantes(localesFormateados);
         
         // actualizar
-        if (onLoadData) onLoadData(combinados.length);
+        if (onLoadData) onLoadData(localesFormateados.length);
         
-        setCargando(false); // Detiene el mensaje de carga
+        //setCargando(false); // Detiene el mensaje de carga
       })
       .catch((err) => {
         console.error("Error al cargar Restaurantes", err);
+        setListaRestaurantes([]); // vacío si falla
         setCargando(false); // Muestra los estáticos aunque el back falle
       });
   }, []);
@@ -191,7 +130,7 @@ export default function Restaulist({
     }
   };
 
-  if (cargando) return <Container className="text-center my-5"><h3>Cargando sabores...</h3></Container>;
+  //if (cargando) return <Container className="text-center my-5"><h3>Cargando sabores...</h3></Container>;
 
   return (
     <Container className="restaurant-container">

@@ -99,7 +99,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
 
   return (
     <Modal size="lg" centered show={mostrar} onHide={ocultar}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton  >
         <Modal.Title>Reservar en {restaurant?.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
