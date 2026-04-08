@@ -102,8 +102,8 @@ export default function Restaulist({
           zone: "Bogotá",
           distance: "Cerca de ti",
           mesas: r.mesas || [{id: 1, personas:4, tipo:"General"}],
-          menu: r.menu || [{ nombre: "Combo Especial", precio: 25000 },
-                          { nombre: "Bebida Grande", precio: 5000 }]
+          menu: r.menu || [{ nombre: "Combo Especial", precio: 25000, descripcion: "(descripcion general del plato)" },
+                          { nombre: "Bebida Grande", precio: 5000, descripcion: "(descripcion general del plato)" }], //Desc provisional estatica
         }));
 
         // 3. MEZCLAMOS: Estáticos + Datos del Backend
