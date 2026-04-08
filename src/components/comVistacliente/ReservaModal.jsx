@@ -1,6 +1,6 @@
 import { Button, Card, Col, Form, Modal, Row } from "react-bootstrap";
 import "./estilos2/Style-Modal-Reserva.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiCalendar } from "react-icons/fi";
 // Importa tu servicio aquí (ajusta la ruta según tu proyecto)
 import { crearReserva } from "../../api/ReservaCrear";
@@ -17,6 +17,21 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
     nombreCliente: "",
     telefono: "",
   });
+
+  //Reiniciar campos al cerrar el modal
+  useEffect(() => {
+    if (!mostrar) {
+      setFormData({
+        fecha: "",
+        hora: "",
+        descripcion: "",
+        nombreCliente: "",
+        telefono: "",
+      });
+      setMesaSeleccionada(null);
+      setPlatosSeleccionados([]);
+    }
+  }, [mostrar]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -126,32 +141,32 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
                 />
               </Form.Group>
 
-              {/* Visualización de platos (mantengo tu Card) */}
-              {platosSeleccionados.length > 0 && (
-                <Card className="p-3 mb-3">
+              {/* Visualización de platos */}
+              
+                <Card className={`p-3 mb-3 transition-card ${platosSeleccionados.length > 0 ? "visible" : "hidden"}`}>
                   <Card.Title className="fs-6 fw-bold">
                     Platillos Seleccionados
                   </Card.Title>
                   {platosSeleccionados.map((plato, idx) => (
-                    <div
-                      key={idx}
-                      className="d-flex justify-content-between align-items-center mb-2"
-                    >
-                      <small>
-                        {plato.nombre} x{plato.cantidad}
-                      </small>
-                      <Button
-                        variant="outline-danger"
-                        size="sm"
-                        onClick={() => eliminarPlato(plato.nombre)}
-                      >
-                        x
-                      </Button>
+                    <div key={idx} className="d-flex justify-content-between align-items-center mb-3">
+                      <span>{plato.nombre} <small className="text-success">${plato.precio.toLocaleString()}</small></span>
+                      <div className="d-flex align-items-center gap-2">                
+                        <Button variant="outline-secondary" size="sm" onClick={() => cambiarCantidad(plato.nombre, -1)}>-</Button>
+                        <span>{plato.cantidad}</span>
+                        <Button variant="outline-secondary" size="sm" onClick={() => cambiarCantidad(plato.nombre, 1)}>+</Button>
+                        <Button variant="outline-danger" size="sm" onClick={() => eliminarPlato(plato.nombre)}>x</Button>
+                      </div>
                     </div>
+                    
                   ))}
+                  {/* Total */}
+                  <hr className="m-0 p-0"/>
+                  <div className="d-flex justify-content-between fw-bold pt-1">
+                    <span>Total:</span>
+                    <span>${platosSeleccionados.reduce((acc, p) => acc + p.precio * p.cantidad, 0).toLocaleString()}</span>
+                  </div>
                 </Card>
-              )}
-
+              
               <Form.Group className="mb-3">
                 <Form.Label>Mesa</Form.Label>
                 <Row className="g-2">
@@ -159,20 +174,13 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
                     <Col xs={6} key={mesa.id}>
                       <Card
                         className={`mesa-card p-2 text-center rounded border ${mesaSeleccionada?.id === mesa.id ? "mesa-selected" : ""}`}
-                        style={{
-                          cursor: "pointer",
-                          backgroundColor:
-                            mesaSeleccionada?.id === mesa.id
-                              ? "#fff3e0"
-                              : "white",
-                        }}
                         onClick={() => setMesaSeleccionada(mesa)}
                       >
                         <div className="mesa-nombre fw-semibold">
                           Mesa {mesa.id}
                         </div>
                         <small className="text-muted">
-                          {mesa.personas} pers.
+                          {mesa.personas} personas • {mesa.tipo}
                         </small>
                       </Card>
                     </Col>
@@ -185,17 +193,19 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
                 <Form.Control
                   as="textarea"
                   rows={2}
+                  placeholder="Alergias, preferencias de mesa, etc"
                   value={formData.descripcion}
                   onChange={handleChange}
                 />
               </Form.Group>
 
-              <Row>
+              <Row className="p-0">
                 <Col>
                   <Form.Group controlId="Nombre_Cliente">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control
                       type="text"
+                      placeholder="Nombre"
                       value={formData.nombreCliente}
                       onChange={handleChange}
                     />
@@ -206,6 +216,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
                     <Form.Label>Teléfono</Form.Label>
                     <Form.Control
                       type="text"
+                      placeholder="Telefono"
                       value={formData.telefono}
                       onChange={handleChange}
                     />
@@ -217,24 +228,23 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
 
           {/* Sección de Menú (mantengo tu Col derecha) */}
           <Col>
-            <h5 className="mb-3">Menú - Pre-Ordenar</h5>
-            <div className="overflow-auto" style={{ maxHeight: "400px" }}>
+            <h5 className="mb-3"><FiCalendar /> Menú - Pre-Ordenar</h5>
+            <div className="overflow-auto" style={{ maxHeight: "300px" }}>
               {restaurant?.menu?.map((plato, idx) => (
-                <Card key={idx} className="mb-2">
-                  <Card.Body className="p-2">
+                <Card key={idx} className="mb-3">
+                  <Card.Body>
+                    <Card.Title className="fw-bold fs-6">{plato.nombre}</Card.Title>
+                    <Card.Text className="text-left small mb-1">{plato.descripcion}</Card.Text>
                     <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <div className="fw-bold small">{plato.nombre}</div>
-                        <div className="text-success small">
-                          ${plato.precio}
-                        </div>
-                      </div>
+                      <span className="color-letra-precio">${plato.precio.toLocaleString()}</span>
                       <Button
                         size="sm"
-                        variant="orange"
+                        className="buttonNaranjaDegrade size-letra-propio"
                         onClick={() => agregarPlato(plato)}
                       >
-                        +
+                        {platosSeleccionados.find(p => p.nombre === plato.nombre) 
+                        ? <><span>{platosSeleccionados.find(p => p.nombre === plato.nombre).cantidad}</span> <span>+</span></> 
+                        : "Agregar"}
                       </Button>
                     </div>
                   </Card.Body>
@@ -245,7 +255,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
         </Row>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="light" onClick={ocultar}>
+        <Button className="bg-white" variant="light" onClick={ocultar}>
           Cancelar
         </Button>
         <Button className="buttonNaranjaDegrade" onClick={manejarCrearReserva}>

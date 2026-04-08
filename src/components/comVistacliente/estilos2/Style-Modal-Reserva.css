@@ -21,3 +21,20 @@
 .color-letra-precio {
     color: #fd7e14;
 }
+
+.transition-card {
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease, padding 0.4s ease;
+}
+
+.transition-card.visible {
+  max-height: 1000px; /* un valor mayor al tamaño real del componente */
+  opacity: 1;
+}
+
+.transition-card.hidden {
+  max-height: 0;
+  opacity: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+}
