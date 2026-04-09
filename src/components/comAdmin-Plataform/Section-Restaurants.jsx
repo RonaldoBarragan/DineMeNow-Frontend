@@ -3,11 +3,28 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { GoStarFill } from "react-icons/go";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { obtenerAllRestaurantes } from "../../api/AdminPlatService";
 
 export default function Section_Restaurants() {
 
     const [show, setShow] = useState(false);
+    const [restaurantes, setRestaurantes] = useState([]);
+    const [cargando, setCargando] = useState(true);
+
+    useEffect(() => {
+    const cargar = async () => {
+        try {
+            const data = await obtenerAllRestaurantes();
+            setRestaurantes(data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setCargando(false);
+        }
+    };
+        cargar();
+    }, []);
     
     return (
         <>
@@ -121,88 +138,25 @@ export default function Section_Restaurants() {
                     <th>Restaurante</th>
                     <th>Gestor</th>
                     <th>Contacto</th>
-                    <th>Rating</th>
                     <th>Estado Cuenta</th>
-                    <th>Fecha Registro</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {/* FIla 1 */}
+                {restaurantes.map((r) => (
                 <tr>
-                    <td>La Mesa Criolla<br /><small className="text-muted">Zona Rosa • Colombiana</small></td>
-                    <td>Carlos Rodríguez<br /><small className="text-muted">Administrador</small></td>
-                    <td>carlos@lamesacriolla.com<br /><small className="text-muted">+57 301 234 5678</small></td>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                            <GoStarFill size={15} className="icon-color-rating" /><span>4.5</span>
-                        </div>
-                    </td>
+                    <td>{r.nombre}<br /><small className="text-muted">{r.direccion.calle} {r.direccion.numero} • {r.categoria}</small></td>
+                    <td>{r.propietario}<br /><small className="text-muted">{r.razonSocial}</small></td>
+                    <td>{r.correo}<br /><small className="text-muted">+57 {r.telefono}</small></td>
                     <td><Badge className="badge-state-acc">Activa</Badge></td>
-                    <td>15/08/2025</td>
                     <td>
                         <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
                         <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
                         <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} /></Button>
                     </td>
                 </tr>
-
-                {/* FIla 2 */}
-                <tr>
-                    <td>Bella Napoli<br /><small className="text-muted">Chapinero • Italiana</small></td>
-                    <td>Carlos Rodríguez<br /><small className="text-muted">Administrador</small></td>
-                    <td>carlos@bellanapoli.com<br /><small className="text-muted">+57 301 234 5678</small></td>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                            <GoStarFill size={15} className="icon-color-rating" /><span>4.8</span>
-                        </div>
-                    </td>
-                    <td><Badge className="badge-state-acc">Activa</Badge></td>
-                    <td>15/08/2025</td>
-                    <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} /></Button>
-                    </td>
-                </tr>
-
-                {/* FIla 3 */}
-                <tr>
-                    <td>Sakura Sushi<br /><small className="text-muted">Zona T • Japonesa</small></td>
-                    <td>Carlos Rodríguez<br /><small className="text-muted">Administrador</small></td>
-                    <td>carlos@sakurasushi.com<br /><small className="text-muted">+57 301 234 5678</small></td>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                            <GoStarFill size={15} className="icon-color-rating" /><span>4.6</span>
-                        </div>
-                    </td>
-                    <td><Badge className="badge-state-acc">Activa</Badge></td>
-                    <td>15/08/2025</td>
-                    <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} /></Button>
-                    </td>
-                </tr>
-
-                {/* FIla 4 */}
-                <tr>
-                    <td>El Rincón Gourmet<br /><small className="text-muted">Usaquén • Francesa</small></td>
-                    <td>Carlos Rodríguez<br /><small className="text-muted">Administrador</small></td>
-                    <td>carlos@elrincóngourmet.com<br /><small className="text-muted">+57 301 234 5678</small></td>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                            <GoStarFill size={15} className="icon-color-rating" /><span>4.9</span>
-                        </div>
-                    </td>
-                    <td><Badge className="badge-state-acc">Activa</Badge></td>
-                    <td>15/08/2025</td>
-                    <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} /></Button>
-                    </td>
-                </tr>
+                ))}
             </tbody>
         </Table>
         </>
