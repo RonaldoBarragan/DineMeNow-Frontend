@@ -12,6 +12,7 @@ import Vista_Restaurante from "../pages/Vista-Restaurante";
 import PerfilRestaurante from "../pages/Perfil-Restaurante";
 import Panel_Mesero from "../pages/GestionPanelMesero";
 import AdminP_Panel from "../pages/AdminP-Panel";
+import ProtectedRoute from "./ProtectedRoute";
 
 
 
@@ -19,7 +20,7 @@ import AdminP_Panel from "../pages/AdminP-Panel";
 
 export const AppRoutes = () => {
   return (
-    <Routes Location={location} key={location.pathname}>
+    <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/iniciarsesion" element={<IniciarSesion />} />
       <Route path="/verificartoken" element={<VerificarToken />} />
@@ -27,15 +28,54 @@ export const AppRoutes = () => {
       <Route path="/crearcuenta" element={<CrearCuentaCliente />} />
       <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
-      <Route path="/cliente/perfil" element={<GestionPerfilCliente />} />
-      <Route path="/cliente/inicio" element={<InicioClientes />} />
-       <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
-       <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
-       <Route path="/mesero/panel" element={<Panel_Mesero />} />
-      <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
-      <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
-      <Route path="/adminp/panel" element={<AdminP_Panel />} />
-      {/* Redirección por defecto */}
+      <Route
+        path="/cliente/perfil"
+        element={
+          <ProtectedRoute role="cliente">
+            <GestionPerfilCliente />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/cliente/inicio"
+        element={
+          <ProtectedRoute role="cliente">
+            <InicioClientes />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/restaurante/vista"
+        element={
+          <ProtectedRoute role="restaurante">
+            <Vista_Restaurante />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/restaurante/perfil"
+        element={
+          <ProtectedRoute role="restaurante">
+            <PerfilRestaurante />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/mesero/panel"
+        element={
+          <ProtectedRoute role={["empleado", "mesero"]}>
+            <Panel_Mesero />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/adminp/panel"
+        element={
+          <ProtectedRoute role="admin">
+            <AdminP_Panel />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
