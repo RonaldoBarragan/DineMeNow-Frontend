@@ -12,6 +12,7 @@ import Vista_Restaurante from "../pages/Vista-Restaurante";
 import PerfilRestaurante from "../pages/Perfil-Restaurante";
 import Panel_Mesero from "../pages/GestionPanelMesero";
 import AdminP_Panel from "../pages/AdminP-Panel";
+import ReservasCliente from "../pages/Reservas-Cliente";
 
 
 
@@ -35,6 +36,7 @@ export const AppRoutes = () => {
       <Route path="/restaurante/vista" element={<Vista_Restaurante />} />
       <Route path="/restaurante/perfil" element={<PerfilRestaurante />} />
       <Route path="/adminp/panel" element={<AdminP_Panel />} />
+      <Route path="/cliente/reservas" element={<ReservasCliente />} />
       {/* Redirección por defecto */}
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
