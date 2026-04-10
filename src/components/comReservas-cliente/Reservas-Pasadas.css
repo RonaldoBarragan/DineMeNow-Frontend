@@ -1,0 +1,104 @@
+.Card-Pasadas {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.Card-Reservas-Pasadas {
+  border-radius: 20px;
+  margin-bottom: 16px; /*espacio entre cards */
+}
+
+/* ─── div principal con todo adentro ─── */
+.div-card-pasadas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center; /*alinear vertical */
+  
+}
+/*FILA 1 titulo*/
+.card-titulo-pasadas {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  flex: 1;
+  margin: 0;
+  align-items: center;
+}
+/* ─── badges ─── */
+.badge-Completada {
+  font-size: 13px !important;
+  background-color: #dbeafe !important;
+  color: #193cb8 !important;
+}
+
+/* ─── botón ─── */
+.btn-detalles-pasadas {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espaciado entre icono y texto */
+  border: 1px solid #dcdcdc;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.Ver-detalles-pasadas{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color:rgba(10, 10, 10, 1);
+}
+
+.btn-detalles-pasadas:hover {
+  background: #ebecf3;
+}
+
+/* ─── info fila 2 fecha- hora- personas─── */
+.fila-dos-pasadas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+.info-text-pasadas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.header-right-pasadas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-desc-pasadas {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ─── fila 3 mesa ─── */
+.full-width {
+  flex-basis: 100%;
+  margin-bottom: 4px;
+}
+
+/* ─── divider ─── */
+.divider-pasadas {
+  border: none;
+  border-top: 1px solid #050505;
+  margin: 12px 0;
+}
+
+.precio-pasado {
+  color: #f54a00;
+  font-weight: 600;
+}
+.info-desc-pasadas strong {
+  color: #4a5565;
+}
