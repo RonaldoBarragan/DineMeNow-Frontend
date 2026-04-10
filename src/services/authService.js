@@ -3,6 +3,8 @@ const API_URL = "http://127.0.0.1:8080/api/auth/login";
 export async function loginUsuario(data) {
   const requestBody = {
     user: data.user || data.correo || data.email,
+    nombre: data.nombre || data.firstName,
+    apellido: data.apellido || data.lastName,
     correo: data.correo || data.email || data.user,
     pass: data.pass || data.password,
     password: data.password || data.pass,
