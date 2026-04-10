@@ -2,25 +2,46 @@ import { Badge, Button, Col, Form, Modal, Row, Table } from "react-bootstrap";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { GoStarFill } from "react-icons/go";
 import { useEffect, useState } from "react";
-import { obtenerAllRestaurantes } from "../../api/AdminPlatService";
+import { eliminarRestaurante, obtenerAllActivesRestaurantes } from "../../api/AdminPlatService";
+import Modal_Delete_Confirm from "./Modal-Confirm-Restaurant-Delete";
 
 export default function Section_Restaurants() {
 
     const [show, setShow] = useState(false);
     const [restaurantes, setRestaurantes] = useState([]);
-    const [cargando, setCargando] = useState(true);
+    const [nitAEliminar, setNitAEliminar] = useState(null);
 
+    // Abre el modal guardando el nit del restaurante a eliminar
+    const eliminarRestauranteHandler = (nit) => {
+    setNitAEliminar(nit);
+    };
+
+    // Se ejecuta al presionar "Eliminar" en el modal
+    const confirmarEliminar = async () => {
+    try {
+        await eliminarRestaurante(nitAEliminar);
+        setRestaurantes((prev) => prev.filter((r) => r.nit !== nitAEliminar));
+        setNitAEliminar(null); // cierra el modal
+    } catch (error) {
+        alert("Error al eliminar el restaurante.");
+        setNitAEliminar(null);
+    }
+    };
+
+    // Se ejecuta al presionar "Cancelar" en el modal
+    const cancelarEliminar = () => {
+    setNitAEliminar(null);
+    };
+
+    //Cargar los restaurantes activos
     useEffect(() => {
     const cargar = async () => {
         try {
-            const data = await obtenerAllRestaurantes();
+            const data = await obtenerAllActivesRestaurantes();
             setRestaurantes(data);
         } catch (error) {
             console.error(error);
-        } finally {
-            setCargando(false);
         }
     };
         cargar();
@@ -132,6 +153,9 @@ export default function Section_Restaurants() {
             <h3 className="fw-bold mb-3">Cuentas de Restaurantes</h3>
             <Button size="sm" onClick={() => setShow(true)} className="buttonNaranjaDegrade style-button-propio"><span className="me-2">+</span> Registrar nuevo Restaurante</Button>
         </div>
+        {restaurantes.length === 0
+        ? <p className="text-muted text-center mt-3">No hay restaurantes registrados.</p>
+        :
         <Table className="size-letra-propio align-middle">
             <thead>
                 <tr>
@@ -145,7 +169,7 @@ export default function Section_Restaurants() {
             <tbody>
                 {/* FIla 1 */}
                 {restaurantes.map((r) => (
-                <tr>
+                <tr key={r.id}>
                     <td>{r.nombre}<br /><small className="text-muted">{r.direccion.calle} {r.direccion.numero} • {r.categoria}</small></td>
                     <td>{r.propietario}<br /><small className="text-muted">{r.razonSocial}</small></td>
                     <td>{r.correo}<br /><small className="text-muted">+57 {r.telefono}</small></td>
@@ -153,12 +177,14 @@ export default function Section_Restaurants() {
                     <td>
                         <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
                         <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} /></Button>
+                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} onClick={() => eliminarRestauranteHandler(r.nit)} /></Button>
                     </td>
                 </tr>
                 ))}
             </tbody>
         </Table>
+        }
+        <Modal_Delete_Confirm mostrar={nitAEliminar !== null} onConfirmar={confirmarEliminar} onCancelar={cancelarEliminar} mensaje="¿Estás seguro de que deseas eliminar este restaurante?"/>
         </>
     )
 }
