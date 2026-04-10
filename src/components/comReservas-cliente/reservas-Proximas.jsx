@@ -1,4 +1,4 @@
-import {Badge,  Card, Container } from 'react-bootstrap';
+import {Badge,  Card, Container, Modal } from 'react-bootstrap';
 import './reservas-Proximas.css';
 import { CiCalendar } from "react-icons/ci";
 import { IoMdTime } from "react-icons/io";
@@ -7,8 +7,16 @@ import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { LuChefHat } from "react-icons/lu";
 function ReservasProximas() {
+  const [show, setShow] = useState(false);
   return (
     <>
+    <Modal centered show={show} onHide={() => setShow(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Detalles de la Reserva</Modal.Title>
+      </Modal.Header>
+
+
+    </Modal>
     <Container className='Card-Proximadas'>
       <Card className='Card-Reservas-Proximas'>
         <Card.Body>
