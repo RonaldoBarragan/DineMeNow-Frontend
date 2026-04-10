@@ -1,0 +1,29 @@
+.Card-Proximadas {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+.Card-Reservas-Proximas{
+  border-radius: 20px;
+}
+.info-text-prox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 14px;
+  color: #666;
+}
+
+.info-desc {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* salto de línea de mesa */
+.full-width {
+  flex-basis: 100%;
+}
+
