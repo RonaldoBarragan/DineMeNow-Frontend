@@ -45,7 +45,7 @@ function FormularioInicioSesion() {
         setError('No se pudo determinar el rol del usuario.');
         return;
       }
-
+      console.log("response del backend:", response);  // ← agrega est
       login(response);
 
       if (role === 'cliente') {

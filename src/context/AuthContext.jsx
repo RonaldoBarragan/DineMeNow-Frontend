@@ -1,111 +1,107 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
+// ─── Constantes ──────────────────────────────────────────────────────────────
+
 const AuthContext = createContext();
 
-const roleMap = {
-  ROLE_Admin: "admin",
-  ROLE_ADMIN: "admin",
-  ROLE_Admini: "admin",
-  ROLE_ADMINI: "admin",
-  ROLE_Empleado: "empleado",
-  ROLE_EMPLEADO: "empleado",
-  ROLE_Mesero: "empleado",
-  ROLE_MESERO: "empleado",
-  ROLE_Cliente: "cliente",
-  ROLE_CLIENTE: "cliente",
-  ROLE_Restaurante: "restaurante",
-  ROLE_RESTAURANTE: "restaurante",
-  ROL_ADMIN: "admin",
+// Mapeo directo enum Java → rol interno. Única fuente de verdad.
+const ROLE_MAP = {
   ROL_CLIENTE: "cliente",
-  ROL_EMPLEADO: "empleado",
-  ROL_MESERO: "empleado",
   ROL_RESTAURANTE: "restaurante",
-  ROL_RESTAURANTE: "restaurante",
+  ROL_CHEF: "chef",
+  ROL_MESERO: "mesero",
 };
 
-export function normalizeRole(rawRole) {
-  if (!rawRole) return null;
-  if (typeof rawRole !== "string") {
-    return rawRole?.nombre || rawRole?.name || null;
-  }
+// ─── Helpers puros (fuera del componente, no se recrean) ──────────────────────
 
-  const cleaned = rawRole.trim();
-  if (roleMap[cleaned]) return roleMap[cleaned];
+/**
+ * Convierte el rol del backend (string o objeto) al rol interno.
+ * Soporta: "ROL_CLIENTE", { nombre: "ROL_CLIENTE" }, "cliente"
+ */
+export function normalizeRole(raw) {
+  if (!raw) return null;
 
-  return cleaned
-    .toLowerCase()
-    .replace(/^role[_-]?/i, "")
-    .replace(/^rol[_-]?/i, "");
+  const value = typeof raw === "string"
+    ? raw.trim()
+    : (raw?.nombre ?? raw?.name ?? "");
+
+  // Mapa directo (caso más común del enum Java)
+  if (ROLE_MAP[value]) return ROLE_MAP[value];
+
+  // Fallback: ya viene normalizado ("cliente", "chef", etc.)
+  const lower = value.toLowerCase();
+  return Object.values(ROLE_MAP).includes(lower) ? lower : null;
 }
 
-function parseJwtPayload(token) {
-  if (!token || typeof token !== "string") return null;
-
+/**
+ * Decodifica el payload de un JWT sin verificar firma.
+ * Retorna null si el token es inválido.
+ */
+function decodeJwtPayload(token) {
+  if (typeof token !== "string") return null;
   const parts = token.split(".");
   if (parts.length !== 3) return null;
-
   try {
     return JSON.parse(atob(parts[1]));
-  } catch (_error) {
+  } catch {
     return null;
   }
 }
+
+/** Verifica si un token JWT ya expiró. */
+function isTokenExpired(token) {
+  const payload = decodeJwtPayload(token);
+  return payload?.exp ? payload.exp <= Date.now() / 1000 : false;
+}
+
+/** Normaliza la respuesta del backend al modelo interno de usuario. */
+function mapLoginResponse(data) {
+  const rawRole = Array.isArray(data.roles) ? data.roles[0] : (data.roles ?? data.role);
+
+  return {
+    id: data.id ?? "",
+    username: data.correo ?? "",                          // ClienteDto.correo
+    nombre: data.nombre ?? "" ,
+    token: data.token ?? data.accessToken ?? null,
+    role: normalizeRole(rawRole),
+  };
+}
+
+// ─── Provider ────────────────────────────────────────────────────────────────
+
+const STORAGE_KEY = "auth";
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Hidratación inicial desde localStorage
   useEffect(() => {
-    const stored = localStorage.getItem("auth");
-
-    if (!stored) {
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      const parsed = JSON.parse(stored);
-      const payload = parseJwtPayload(parsed.token);
-      const now = Date.now() / 1000;
-
-      if (payload?.exp && payload.exp <= now) {
-        localStorage.removeItem("auth");
-      } else {
-        setUser(parsed);
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        if (parsed.token && isTokenExpired(parsed.token)) {
+          localStorage.removeItem(STORAGE_KEY);
+        } else {
+          setUser(parsed);
+        }
+      } catch {
+        localStorage.removeItem(STORAGE_KEY);
       }
-    } catch (_error) {
-      localStorage.removeItem("auth");
-    } finally {
-      setIsLoading(false);
     }
+    setIsLoading(false);
   }, []);
 
   const login = (data) => {
-    const rawRole = Array.isArray(data.roles)
-      ? data.roles[0]
-      : data.roles || data.role;
-
-    const role = normalizeRole(rawRole);
-
-    const userData = {
-      username:
-        data.user || data.correo || data.email || data.usuario || data.username || "",
-      token: data.token || data.accessToken || data.jwt || null,
-      role,
-      nombreCompleto: data.nombreCompleto || data.name || data.nombre || "",
-      id: data.id || data.userId || data.usuarioId || "",
-    };
-
+    const userData = mapLoginResponse(data);
     setUser(userData);
-    localStorage.setItem("auth", JSON.stringify(userData));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("auth");
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("user");
-    localStorage.removeItem("rol");
+    localStorage.removeItem(STORAGE_KEY);
   };
 
   return (

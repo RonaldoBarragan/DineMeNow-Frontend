@@ -7,22 +7,53 @@ import { Search } from "react-bootstrap-icons";
 import { BiLogIn } from "react-icons/bi";
 import MenuHamburguesa from "../comMenuHamburguesa/menuHamburguesa";
 import { Button } from "react-bootstrap";
+import { consultarPerfil } from '../../api/ClientRegister'; // Asegúrate de tener esta función en tu servicio
+import { useEffect, useState} from 'react';
+import { useAuth } from "../../context/AuthContext"; // ajusta la ruta
 
 // ========================================
 // SUB-COMPONENTES PARA EL MODO CLIENTE
 // ========================================
 
-// Componente del perfil de usuario
-const UserProfile = ({ userName = "Cliente" }) => (
-  <div className="header-profile">
-    <div className="user-avatar">MG</div>
 
-    <div className="profile-info">
-      <span className="user-name">{userName}</span>
-      <small className="text-muted">Cliente</small> 
+const UserProfile = () => {
+  const { user } = useAuth();
+  const [perfilData, setPerfilData] = useState(null);  // ← hooks primero
+
+  useEffect(() => {
+    if (!user?.id) return;
+    const cargarPerfil = async () => {
+      try {
+        const data = await consultarPerfil(user.id);
+        setPerfilData(data);
+      } catch (error) {
+        console.error("Error al cargar perfil:", error);
+      }
+    };
+    cargarPerfil();
+  }, [user?.id]);
+
+  // Lógica después de los hooks
+  const nombreCompleto = perfilData 
+    ? `${perfilData.nombreCliente} ${perfilData.apellido}` 
+    : user?.nombre ?? "";
+
+  const initials = perfilData
+  ? `${perfilData.nombreCliente[0]}${perfilData.apellido[0]}`.toUpperCase()
+  : user?.nombre?.[0]?.toUpperCase() ?? "?";
+
+  return (
+    <div className="header-profile">
+      <div className="user-avatar">{initials}</div>
+      <div className="profile-info">
+        <span className="user-name">{nombreCompleto}</span>
+        <small className="text-muted" style={{ textTransform: "capitalize" }}>
+          {user?.role || ""}
+        </small>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // Componente del input de búsqueda
 const SearchInput = () => (
@@ -44,7 +75,9 @@ const SearchInput = () => (
 // COMPONENTE PRINCIPAL HEADER
 // ========================================
 
-export default function Header({ viewMode, userName }) {
+export default function Header({ viewMode }) {
+  const { user } = useAuth(); 
+  
   const navigate = useNavigate();
 
   // Botones de autenticación
@@ -95,7 +128,7 @@ export default function Header({ viewMode, userName }) {
         {showSearchHeader ? (
           <>
             <SearchInput />
-            <UserProfile userName={userName} />
+            <UserProfile user={user} />
           </>
         ) : (
           // Botones de autenticación (solo en otros modos)

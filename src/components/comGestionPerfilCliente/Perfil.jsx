@@ -1,8 +1,29 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Person, Pencil, Envelope, Telephone, GeoAlt, CameraFill } from 'react-bootstrap-icons';
 import './style.css';
+import { consultarPerfil } from '../../api/ClientRegister'; // Asegúrate de tener esta función en tu servicio
+import { useEffect, useState} from 'react';
+import { useAuth } from '../../context/AuthContext';  // ← esto falta
 
 export default function PerfilCliente() {
+  const { user } = useAuth();     
+  const [perfilData, setPerfilData] = useState(null);
+
+  useEffect(() => {
+    if (!user?.id) return;                            
+    
+    const cargarPerfil = async () => {
+      try {
+        const data = await consultarPerfil(user.id);  // ← usa el id del contexto
+        setPerfilData(data);
+  
+      } catch (error) {
+        console.error("Error al cargar datos de perfil:", error);
+      }
+    };
+    cargarPerfil();
+  }, [user?.id]);
+
   return (
     <Container className="py-3" >
       <Row>
@@ -21,23 +42,23 @@ export default function PerfilCliente() {
 
             <div className="mb-3">
               <div className="gestioncliente-label">Nombre Completo</div>
-              <div className="gestioncliente-dato">María González</div>
+              <div className="gestioncliente-dato">{perfilData ? `${perfilData.nombreCliente} ${perfilData.apellido}` : 'Cargando...'}</div>
             </div>
 
             <div className="mb-3">
               <div className="gestioncliente-label">Email</div>
-              <div className="gestioncliente-dato"><Envelope className="me-2"/> cliente@gmail.com</div>
-              <div className="gestioncliente-nota">El email no se puede cambiar</div>
+              <div className="gestioncliente-dato"><Envelope className="me-2"/> {perfilData ? perfilData.correo : 'Cargando...'}</div>
+              {/* <div className="gestioncliente-nota">El email no se puede cambiar</div> */}
             </div>
 
             <div className="mb-3">
               <div className="gestioncliente-label">Teléfono</div>
-              <div className="gestioncliente-dato"><Telephone className="me-2"/> 3001234567</div>
+              <div className="gestioncliente-dato"><Telephone className="me-2"/> {perfilData ? perfilData.telefono : 'Cargando...'}</div>
             </div>
 
             <div className="mb-0">
               <div className="gestioncliente-label">Dirección</div>
-              <div className="gestioncliente-dato"><GeoAlt className="me-2"/> Calle 123 #45-67, Bogotá</div>
+              <div className="gestioncliente-dato"><GeoAlt className="me-2"/> {perfilData?.direccion?.calle}, {perfilData?.direccion?.numero}, {perfilData?.direccion?.ciudad}</div>
             </div>
           </Card>
         </Col>
