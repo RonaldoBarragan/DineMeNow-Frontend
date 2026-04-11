@@ -15,6 +15,13 @@ const IniciarSesion = () => {
 
   useEffect(() => {
     if (user) {
+      //cambio de contraseña obligatorio-restaurante
+    if (user.mustChangePassword){
+      navigate('/cambiar/password');
+      return;
+
+    }
+
       if (user.role === 'cliente') {
         navigate('/cliente/inicio');
       } else if (user.role === 'admin') {
