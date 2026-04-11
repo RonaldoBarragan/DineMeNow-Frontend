@@ -1,11 +1,13 @@
 const API_URL = "http://localhost:8080/api/reservas";
 
-export const crearReserva = async (reservaData) => {
+export const crearReserva = async (reservaData, token) => {
   try {
+    
     const response = await fetch(`${API_URL}/CrearReservas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(reservaData),
     });
