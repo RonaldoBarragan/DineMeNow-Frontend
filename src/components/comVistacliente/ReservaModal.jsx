@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { FiCalendar } from "react-icons/fi";
 // Importa tu servicio aquí (ajusta la ruta según tu proyecto)
 import { crearReserva } from "../../api/ReservaCrear";
+import { useAuth } from "../../context/AuthContext";
 
 export default function ReservaModal({ restaurant, mostrar, ocultar }) {
+  const {user} = useAuth();//sacar el usuario del context
   const [mesaSeleccionada, setMesaSeleccionada] = useState(null);
   const [platosSeleccionados, setPlatosSeleccionados] = useState([]);
 
@@ -14,8 +16,8 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
     fecha: "",
     hora: "",
     descripcion: "",
-    nombreCliente: "",
-    telefono: "",
+    nombreCliente: user?.nombre || "",
+    telefono: user?.telefono || "",
   });
 
   //Reiniciar campos al cerrar el modal
@@ -28,10 +30,12 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
         nombreCliente: "",
         telefono: "",
       });
+      
+    }else{
       setMesaSeleccionada(null);
       setPlatosSeleccionados([]);
     }
-  }, [mostrar]);
+  }, [mostrar, user]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -76,12 +80,12 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
     };
 
     try {
-      const resultado = await crearReserva(reservaParaEnviar);
+      const resultado = await crearReserva(reservaParaEnviar, user?.token);
       console.log("Reserva exitosa:", resultado);
       alert("¡Reserva creada con éxito!");
       ocultar(); // Cerramos el modal
     } catch (error) {
-      alert("Hubo un error al crear la reserva. Revisa la consola.");
+      alert("Hubo un error al crear la reserva. Asegurate de estar logueado.");
     }
   };
 

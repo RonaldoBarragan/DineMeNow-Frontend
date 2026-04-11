@@ -21,26 +21,30 @@ const UserProfile = () => {
   const [perfilData, setPerfilData] = useState(null);  // ← hooks primero
 
   useEffect(() => {
-    if (!user?.id) return;
+    if (!user?.id || !user?.token){
+      console.log("Esperando credenciales..");
+     return;
+    }
     const cargarPerfil = async () => {
       try {
-        const data = await consultarPerfil(user.id);
+        const data = await consultarPerfil(user.id, user.token);
         setPerfilData(data);
       } catch (error) {
         console.error("Error al cargar perfil:", error);
       }
     };
     cargarPerfil();
-  }, [user?.id]);
+  }, [user?.id, user?.token]);
 
   // Lógica después de los hooks
-  const nombreCompleto = perfilData 
-    ? `${perfilData.nombreCliente} ${perfilData.apellido}` 
-    : user?.nombre ?? "";
+  const nombreCompleto = perfilData?.nombreCliente
+    ? `${perfilData.nombreCliente} ${perfilData.apellido}`
+    : user?.nombre || "cargando...";
 
-  const initials = perfilData
+    //usar encadenamiento opcional ?. antes del [0]
+  const initials = (perfilData?.nombreCliente?.[0] && perfilData?.apellido?.[0])//El primer signo ? verifica si perfilData existe. El segundo signo ? verifica si nombreCliente existe antes de intentar agarrar la letra [0]
   ? `${perfilData.nombreCliente[0]}${perfilData.apellido[0]}`.toUpperCase()
-  : user?.nombre?.[0]?.toUpperCase() ?? "?";
+  : user?.nombre?.[0]?.toUpperCase() || "?";
 
   return (
     <div className="header-profile">

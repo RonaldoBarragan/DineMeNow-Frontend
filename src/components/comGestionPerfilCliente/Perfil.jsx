@@ -10,11 +10,12 @@ export default function PerfilCliente() {
   const [perfilData, setPerfilData] = useState(null);
 
   useEffect(() => {
-    if (!user?.id) return;                            
+    if (!user?.id || !user?.token) return;                            
     
     const cargarPerfil = async () => {
       try {
-        const data = await consultarPerfil(user.id);  // ← usa el id del contexto
+        const data = await consultarPerfil(user.id, user.token);  // ← usa el id del contexto
+        
         setPerfilData(data);
   
       } catch (error) {
@@ -22,7 +23,12 @@ export default function PerfilCliente() {
       }
     };
     cargarPerfil();
-  }, [user?.id]);
+  }, [user?.id, user?.token]);
+
+  // Lógica para las iniciales del círculo (MG por defecto o las reales)
+  const initials = perfilData?.nombreCliente 
+    ? `${perfilData.nombreCliente[0]}${perfilData.apellido[0]}`.toUpperCase()
+    : user?.nombre?.[0]?.toUpperCase() || "JP";//plan b
 
   return (
     <Container className="py-3" >
@@ -42,7 +48,7 @@ export default function PerfilCliente() {
 
             <div className="mb-3">
               <div className="gestioncliente-label">Nombre Completo</div>
-              <div className="gestioncliente-dato">{perfilData ? `${perfilData.nombreCliente} ${perfilData.apellido}` : 'Cargando...'}</div>
+              <div className="gestioncliente-dato">{perfilData?.nombreCliente ? `${perfilData.nombreCliente} ${perfilData.apellido || ""}` : 'Cargando...'}</div>
             </div>
 
             <div className="mb-3">
@@ -58,7 +64,7 @@ export default function PerfilCliente() {
 
             <div className="mb-0">
               <div className="gestioncliente-label">Dirección</div>
-              <div className="gestioncliente-dato"><GeoAlt className="me-2"/> {perfilData?.direccion?.calle}, {perfilData?.direccion?.numero}, {perfilData?.direccion?.ciudad}</div>
+              <div className="gestioncliente-dato"><GeoAlt className="me-2"/> {perfilData?.direccion ? `${perfilData.direccion.calle}, ${perfilData.direccion.numero}, ${perfilData.direccion.ciudad}` : 'Cargando...'}</div>
             </div>
           </Card>
         </Col>
@@ -69,7 +75,7 @@ export default function PerfilCliente() {
           <Card className="cardGestionPerfilCliente p-4 mb-4 text-center">
             <h5 className="text-start mb-4 gestioncliente-Title">Foto de Perfil</h5>
             <div className="avatar-circle">
-              MG
+              {initials}
               <div className="camera-icon-badge">
                 <CameraFill size={16} />
               </div>
