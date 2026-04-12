@@ -6,7 +6,7 @@ import { getConteoPendientes } from "../../api/AdminPlatService";
 import { useEffect, useState } from "react";
 //Falta colores a los iconos
 
-export default function Card_stats({totalClientes, totalRestaurantes}) {
+export default function Card_stats({totalClientes, totalRestaurantes, refresh}) {
     const[solicitudesCount, setSolicitudesCount] = useState(0);
 
         //funcion para trae el numero rela del backend
@@ -23,7 +23,7 @@ export default function Card_stats({totalClientes, totalRestaurantes}) {
         //actualizar al cargar el omponente
         useEffect(()=>{
             cargarConteos();
-        }, []);
+        }, [refresh]);
 
 
     return (

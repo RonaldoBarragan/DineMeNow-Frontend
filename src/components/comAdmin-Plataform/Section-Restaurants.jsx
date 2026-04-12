@@ -34,8 +34,6 @@ export default function Section_Restaurants({restaurantes, setRestaurantes}) {
     setNitAEliminar(null);
     };
 
-    
-    
     return (
         <>
         {/*Contenido del modal*/}

@@ -10,6 +10,9 @@ import { obtenerAllActivesRestaurantes } from "../api/AdminPlatService";
 export default function AdminP_Panel() {
     const [clientes, setClientes] = useState([]);
     const [restaurantes, setRestaurantes] = useState([]);
+    const [refresh, setRefresh] = useState(0);
+
+    const triggerRefresh = () => setRefresh(prev => prev + 1);
     
         //Cargar todos los clientes
         useEffect(() => {
@@ -35,14 +38,14 @@ export default function AdminP_Panel() {
             }
         };
             cargar();
-        }, []);
+        }, [refresh]);
         
     return (
         <>
         <Container className='margen-provi container-cards'>
             <Card_Acc />
-            <Card_stats totalClientes={clientes.length} totalRestaurantes={restaurantes.length} />
-            <Nav_Section clientes={clientes} restaurantes={restaurantes} setRestaurantes={setRestaurantes} />
+            <Card_stats totalClientes={clientes.length} totalRestaurantes={restaurantes.length} refresh={refresh} />
+            <Nav_Section clientes={clientes} restaurantes={restaurantes} setRestaurantes={setRestaurantes} onRefresh={triggerRefresh} />
         </Container>
         </>
     )

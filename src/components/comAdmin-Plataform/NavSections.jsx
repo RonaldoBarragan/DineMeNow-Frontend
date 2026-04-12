@@ -5,7 +5,7 @@ import Section_Clients from "./Section-Clients";
 import { getConteoPendientes } from "../../api/AdminPlatService";
 import { useEffect, useState } from "react";
 
-export default function Nav_Section({clientes, restaurantes, setRestaurantes}) {
+export default function Nav_Section({clientes, restaurantes, setRestaurantes, onRefresh}) {
     const[numSolicitudes, setNumSolicitudes] = useState(0);
     //funcion para trae el numero rela del backend
     const actualizarConteo = async () =>{
@@ -29,7 +29,7 @@ export default function Nav_Section({clientes, restaurantes, setRestaurantes}) {
                 {/*el titulo usa la variable numSolicitudes*/}
                 <Tab eventKey="Solicitudes" title={`Solicitudes (${numSolicitudes})`}>
                     {/*pasar la funcin a actualizarConteo como una propiedad*/}
-                    <Section_Solicitud onAccionCompletada={actualizarConteo} />
+                    <Section_Solicitud onAccionCompletada={actualizarConteo} onRefresh={onRefresh} />
                 </Tab>
                 <Tab eventKey="Accs restaurant" title="Cuentas restaurantes">
                     <Section_Restaurants restaurantes={restaurantes} setRestaurantes={setRestaurantes} />

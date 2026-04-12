@@ -5,7 +5,7 @@ import { CgCloseO } from "react-icons/cg";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { getRestaurantesPendientes, aprobarRestaurante, rechazarRestaurante } from "../../api/AdminPlatService";
 
-export default function Section_Solicitud({onAccionCompletada}) {
+export default function Section_Solicitud({onAccionCompletada, onRefresh}) {
     const [solicitudes, setSolicitudes] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -31,6 +31,7 @@ export default function Section_Solicitud({onAccionCompletada}) {
             alert("¡Restaurante aprobado con éxito!");
 
             cargarDatos(); //limpia la lista de tarjetas
+            onRefresh();
 
             if(onAccionCompletada){
                 onAccionCompletada();//eso hara que se cambie el numerito de solicitudes
