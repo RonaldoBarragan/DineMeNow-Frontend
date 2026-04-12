@@ -2,12 +2,50 @@ import { Badge, Button, Col, Form, Modal, Row, Table } from "react-bootstrap";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { GoStarFill } from "react-icons/go";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { eliminarRestaurante, obtenerAllActivesRestaurantes } from "../../api/AdminPlatService";
+import Modal_Delete_Confirm from "./Modal-Confirm-Restaurant-Delete";
 
 export default function Section_Restaurants() {
 
     const [show, setShow] = useState(false);
+    const [restaurantes, setRestaurantes] = useState([]);
+    const [nitAEliminar, setNitAEliminar] = useState(null);
+
+    // Abre el modal guardando el nit del restaurante a eliminar
+    const eliminarRestauranteHandler = (nit) => {
+    setNitAEliminar(nit);
+    };
+
+    // Se ejecuta al presionar "Eliminar" en el modal
+    const confirmarEliminar = async () => {
+    try {
+        await eliminarRestaurante(nitAEliminar);
+        setRestaurantes((prev) => prev.filter((r) => r.nit !== nitAEliminar));
+        setNitAEliminar(null); // cierra el modal
+    } catch (error) {
+        alert("Error al eliminar el restaurante.");
+        setNitAEliminar(null);
+    }
+    };
+
+    // Se ejecuta al presionar "Cancelar" en el modal
+    const cancelarEliminar = () => {
+    setNitAEliminar(null);
+    };
+
+    //Cargar los restaurantes activos
+    useEffect(() => {
+    const cargar = async () => {
+        try {
+            const data = await obtenerAllActivesRestaurantes();
+            setRestaurantes(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+        cargar();
+    }, []);
     
     return (
         <>
@@ -115,96 +153,38 @@ export default function Section_Restaurants() {
             <h3 className="fw-bold mb-3">Cuentas de Restaurantes</h3>
             <Button size="sm" onClick={() => setShow(true)} className="buttonNaranjaDegrade style-button-propio"><span className="me-2">+</span> Registrar nuevo Restaurante</Button>
         </div>
+        {restaurantes.length === 0
+        ? <p className="text-muted text-center mt-3">No hay restaurantes registrados.</p>
+        :
         <Table className="size-letra-propio align-middle">
             <thead>
                 <tr>
                     <th>Restaurante</th>
                     <th>Gestor</th>
                     <th>Contacto</th>
-                    <th>Rating</th>
                     <th>Estado Cuenta</th>
-                    <th>Fecha Registro</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {/* FIla 1 */}
-                <tr>
-                    <td>La Mesa Criolla<br /><small className="text-muted">Zona Rosa • Colombiana</small></td>
-                    <td>Carlos Rodríguez<br /><small className="text-muted">Administrador</small></td>
-                    <td>carlos@lamesacriolla.com<br /><small className="text-muted">+57 301 234 5678</small></td>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                            <GoStarFill size={15} className="icon-color-rating" /><span>4.5</span>
-                        </div>
-                    </td>
+                {restaurantes.map((r) => (
+                <tr key={r.id}>
+                    <td>{r.nombre}<br /><small className="text-muted">{r.direccion.calle} {r.direccion.numero} • {r.categoria}</small></td>
+                    <td>{r.propietario}<br /><small className="text-muted">{r.razonSocial}</small></td>
+                    <td>{r.correo}<br /><small className="text-muted">+57 {r.telefono}</small></td>
                     <td><Badge className="badge-state-acc">Activa</Badge></td>
-                    <td>15/08/2025</td>
                     <td>
                         <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
                         <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} /></Button>
+                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} onClick={() => eliminarRestauranteHandler(r.nit)} /></Button>
                     </td>
                 </tr>
-
-                {/* FIla 2 */}
-                <tr>
-                    <td>Bella Napoli<br /><small className="text-muted">Chapinero • Italiana</small></td>
-                    <td>Carlos Rodríguez<br /><small className="text-muted">Administrador</small></td>
-                    <td>carlos@bellanapoli.com<br /><small className="text-muted">+57 301 234 5678</small></td>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                            <GoStarFill size={15} className="icon-color-rating" /><span>4.8</span>
-                        </div>
-                    </td>
-                    <td><Badge className="badge-state-acc">Activa</Badge></td>
-                    <td>15/08/2025</td>
-                    <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} /></Button>
-                    </td>
-                </tr>
-
-                {/* FIla 3 */}
-                <tr>
-                    <td>Sakura Sushi<br /><small className="text-muted">Zona T • Japonesa</small></td>
-                    <td>Carlos Rodríguez<br /><small className="text-muted">Administrador</small></td>
-                    <td>carlos@sakurasushi.com<br /><small className="text-muted">+57 301 234 5678</small></td>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                            <GoStarFill size={15} className="icon-color-rating" /><span>4.6</span>
-                        </div>
-                    </td>
-                    <td><Badge className="badge-state-acc">Activa</Badge></td>
-                    <td>15/08/2025</td>
-                    <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} /></Button>
-                    </td>
-                </tr>
-
-                {/* FIla 4 */}
-                <tr>
-                    <td>El Rincón Gourmet<br /><small className="text-muted">Usaquén • Francesa</small></td>
-                    <td>Carlos Rodríguez<br /><small className="text-muted">Administrador</small></td>
-                    <td>carlos@elrincóngourmet.com<br /><small className="text-muted">+57 301 234 5678</small></td>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                            <GoStarFill size={15} className="icon-color-rating" /><span>4.9</span>
-                        </div>
-                    </td>
-                    <td><Badge className="badge-state-acc">Activa</Badge></td>
-                    <td>15/08/2025</td>
-                    <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} /></Button>
-                    </td>
-                </tr>
+                ))}
             </tbody>
         </Table>
+        }
+        <Modal_Delete_Confirm mostrar={nitAEliminar !== null} onConfirmar={confirmarEliminar} onCancelar={cancelarEliminar} mensaje="¿Estás seguro de que deseas eliminar este restaurante?"/>
         </>
     )
 }

@@ -28,3 +28,25 @@ export const getConteoPendientes = async () => {
         return 0;
     }
 };
+
+//Obtener todos los restaurantes activos
+export const obtenerAllActivesRestaurantes = async () => {
+    try {
+        const response = await axios.get(`${API_URL}/estado/ACTIVO`);
+        return response.data;
+    } catch (error) {
+        console.error("Error al obtener restaurantes:", error);
+        throw error;
+    }
+};
+
+//Eliminar un restaurant por su nit
+export const eliminarRestaurante = async (nit) => {
+    try {
+        const response = await axios.delete(`${API_URL}/nit/${nit}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error al eliminar restaurante:", error);
+        throw error;
+    }
+};

@@ -7,10 +7,11 @@ import './formInicioSesion.css';
 import { AiOutlineLock } from "react-icons/ai";
 import { BsEnvelope } from "react-icons/bs";
 import { loginUsuario } from '../../services/authService';
-
+import { useAuth, normalizeRole } from '../../context/AuthContext';
 
 function FormularioInicioSesion() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [correo, setCorreo] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,35 +29,35 @@ function FormularioInicioSesion() {
     setLoading(true);
     try {
       const response = await loginUsuario({ correo, password });
-      const token = response.token || response.accessToken || response.jwt || null;
 
-      if (token) {
-        localStorage.setItem('authToken', token);
-      }
-      // Guardamos el usuario completo
-      localStorage.setItem('user', JSON.stringify(response));
-      //  VALIDACIÓN DE ROLES
       if (!response.roles || response.roles.length === 0) {
-        setError("El usuario no tiene roles asignados");
+        setError('El usuario no tiene roles asignados');
         return;
       }
-      //  SACAR EL ROL
-      const rol = typeof response.roles[0] === "string"
-      ? response.roles[0]
-      : response.roles[0]?.nombre;
 
-      console.log("ROL DETECTADO:", rol);
+      const rawRole = typeof response.roles[0] === 'string'
+        ? response.roles[0]
+        : response.roles[0]?.nombre || response.roles[0]?.name;
 
-        //  GUARDAR ROL (opcional pero recomendado)
-      localStorage.setItem('rol', rol);
-      //  REDIRECCIÓN SEGÚN ROL
-      if (rol === "ROL_CLIENTE") {
-        navigate("/cliente/inicio");
-      } else if (rol === "ROL_ADMIN") {
-        navigate("/adminp/panel");
-      } else if(rol === "ROL_RESTAURANTE"){
-        navigate("/restaurante/vista");
-        navigate("/");
+      const role = normalizeRole(rawRole);
+
+      if (!role) {
+        setError('No se pudo determinar el rol del usuario.');
+        return;
+      }
+      console.log("response del backend:", response);  // ← agrega est
+      login(response);
+
+      if (role === 'cliente') {
+        navigate('/cliente/inicio');
+      } else if (role === 'admin') {
+        navigate('/adminp/panel');
+      } else if (role === 'restaurante') {
+        navigate('/restaurante/vista');
+      } else if (role === 'empleado' || role === 'mesero') {
+        navigate('/mesero/panel');
+      } else {
+        navigate('/');
       }
     } catch (err) {
       setError(err.message || 'No se pudo iniciar sesión. Revisa tus datos.');

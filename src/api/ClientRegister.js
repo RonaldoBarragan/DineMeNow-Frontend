@@ -1,3 +1,5 @@
+import axios from 'axios'; //es una librería de JavaScript utilizada para realizar solicitudes HTTP (como GET, POST, PUT, DELETE) desde el navegador o Node.js hacia servidores o APIs
+
 const API_URL = "http://localhost:8080/api/clientes";
 
 // 🔧 Normaliza errores (ej: "documento.numero" → "numero")
@@ -92,4 +94,20 @@ export const registroUsuario = async (data) => {
       errors: null,
     };
   }
+};
+
+export const consultarPerfil = async (userId, token) => {
+    const res = await fetch(`${API_URL}/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        //aqui usamos el token que recibimos
+        "Authorization": `Bearer ${token}` 
+      }
+    });
+    //verficar si la respuesta es correcta antes de convertir a json
+    if(!res.ok){
+      throw new Error(`Error ${res.status}: No autorizado`);
+    }
+    return res.json();
 };
