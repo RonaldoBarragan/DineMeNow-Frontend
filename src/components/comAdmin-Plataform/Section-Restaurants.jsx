@@ -2,14 +2,14 @@ import { Badge, Button, Col, Form, Modal, Row, Table } from "react-bootstrap";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import { eliminarRestaurante, obtenerAllActivesRestaurantes } from "../../api/AdminPlatService";
+import { useState } from "react";
 import Modal_Delete_Confirm from "./Modal-Confirm-Restaurant-Delete";
+import { eliminarRestaurante } from "../../api/AdminPlatService";
 
-export default function Section_Restaurants() {
+export default function Section_Restaurants({restaurantes, setRestaurantes}) {
 
     const [show, setShow] = useState(false);
-    const [restaurantes, setRestaurantes] = useState([]);
+    
     const [nitAEliminar, setNitAEliminar] = useState(null);
 
     // Abre el modal guardando el nit del restaurante a eliminar
@@ -34,18 +34,7 @@ export default function Section_Restaurants() {
     setNitAEliminar(null);
     };
 
-    //Cargar los restaurantes activos
-    useEffect(() => {
-    const cargar = async () => {
-        try {
-            const data = await obtenerAllActivesRestaurantes();
-            setRestaurantes(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-        cargar();
-    }, []);
+    
     
     return (
         <>
@@ -177,7 +166,7 @@ export default function Section_Restaurants() {
                     <td>
                         <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
                         <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="icon-color-hover"><FaRegTrashAlt className="text-danger" size={15} onClick={() => eliminarRestauranteHandler(r.nit)} /></Button>
+                        <Button variant="outline-secondary" size="sm" className="icon-color-hover" onClick={() => eliminarRestauranteHandler(r.nit)}><FaRegTrashAlt className="text-danger" size={15} /></Button>
                     </td>
                 </tr>
                 ))}
