@@ -1,0 +1,35 @@
+.Card-Reservas {
+  max-width: 900px;
+  margin: 0 auto;
+  
+}
+/* CONTENEDOR DE TABS*/
+.Card-Reservas .nav-pills {
+  background-color: #ebecf3;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  
+}
+.Card-Reservas .nav-pills .nav-link {
+  color: #000; /* Color de texto negro */
+  border-radius: 50px !important;
+  padding: 4px 12px; 
+  font-size: 15px;   /*tamaño letra*/
+}
+
+.Card-Reservas .nav-pills .nav-link.active {
+  border-radius: 50px !important; /*borde button*/ 
+  color: #000;
+  background-color: #ffffff;
+}
+
+.Card-Reservas .nav-item {
+  background-color: transparent !important;
+  padding: 4px;
+}
+
+.fondo-tab {
+  background-color: #ebecf3;
+  height: 100%
+}
