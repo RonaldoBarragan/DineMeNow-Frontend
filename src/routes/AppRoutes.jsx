@@ -12,6 +12,7 @@ import Vista_Restaurante from "../pages/Vista-Restaurante";
 import PerfilRestaurante from "../pages/Perfil-Restaurante";
 import Panel_Mesero from "../pages/GestionPanelMesero";
 import AdminP_Panel from "../pages/AdminP-Panel";
+import ReservasCliente from "../pages/Reservas-Cliente";
 import ProtectedRoute from "./ProtectedRoute";
 
 
@@ -28,6 +29,7 @@ export const AppRoutes = () => {
       <Route path="/crearcuenta" element={<CrearCuentaCliente />} />
       <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
+      <Route path="/cliente/reservas" element={<ReservasCliente />} />
       <Route
         path="/cliente/perfil"
         element={
