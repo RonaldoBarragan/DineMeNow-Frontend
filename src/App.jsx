@@ -25,6 +25,7 @@ function App() {
     "/cambiarcontrasena",
     "/recuperarcontrasena",
     "/cliente/inicio",
+    "/ActualizarContraRestau"
     
     // Agrega otras rutas donde el header no deba aparecer
   ];
@@ -42,7 +43,8 @@ function App() {
     "/restaurante/perfil",
     "/mesero/panel",
     "/adminp/panel",
-    "/cliente/reservas"
+    "/cliente/reservas",
+    "/ActualizarContraRestau"
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 
