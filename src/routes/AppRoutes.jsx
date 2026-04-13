@@ -14,6 +14,7 @@ import Panel_Mesero from "../pages/GestionPanelMesero";
 import AdminP_Panel from "../pages/AdminP-Panel";
 import ReservasCliente from "../pages/Reservas-Cliente";
 import ProtectedRoute from "./ProtectedRoute";
+import ActualizarContraRestau from "../pages/ActualizarContraRestau";
 
 
 
@@ -29,6 +30,7 @@ export const AppRoutes = () => {
       <Route path="/crearcuenta" element={<CrearCuentaCliente />} />
       <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
+      <Route path="/actualizar-contraresta" element={<ActualizarContraRestau />} />
       <Route path="/cliente/reservas" element={<ReservasCliente />} />
       <Route
         path="/cliente/perfil"

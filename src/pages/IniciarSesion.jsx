@@ -17,7 +17,8 @@ const IniciarSesion = () => {
     if (user) {
       //cambio de contraseña obligatorio-restaurante
     if (user.mustChangePassword){
-      navigate('/cambiar/password');
+      console.log("Desviando a cambio de clave...");
+      navigate('/actualizar-contraresta');
       return;
 
     }

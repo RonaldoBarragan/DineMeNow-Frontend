@@ -48,6 +48,11 @@ function FormularioInicioSesion() {
       console.log("response del backend:", response);  // ← agrega est
       login(response);
 
+      if(response.mustChangePassword){
+        navigate('/actualizar-contraresta');
+        return;
+      }
+
       if (role === 'cliente') {
         navigate('/cliente/inicio');
       } else if (role === 'admin') {
