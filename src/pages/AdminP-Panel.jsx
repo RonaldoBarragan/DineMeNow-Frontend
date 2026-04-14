@@ -6,6 +6,7 @@ import Nav_Section from "../components/comAdmin-Plataform/NavSections";
 import { useEffect, useState } from "react";
 import { obtenerAllClientes } from "../api/Client";
 import { obtenerAllActivesRestaurantes } from "../api/AdminPlatService";
+import Header from "../components/comHomePage/Header";
 
 export default function AdminP_Panel() {
     const [clientes, setClientes] = useState([]);
@@ -42,6 +43,7 @@ export default function AdminP_Panel() {
         
     return (
         <>
+        <Header viewMode="results" />
         <Container className='margen-provi container-cards'>
             <Card_Acc />
             <Card_stats totalClientes={clientes.length} totalRestaurantes={restaurantes.length} refresh={refresh} />

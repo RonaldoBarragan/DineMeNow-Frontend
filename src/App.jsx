@@ -26,7 +26,8 @@ function App() {
     "/recuperarcontrasena",
     "/cliente/inicio",
     "/ActualizarContraRestau",
-    "cliente/reservas"
+    "cliente/reservas",
+    "/adminp/panel"
     
     
     // Agrega otras rutas donde el header no deba aparecer
