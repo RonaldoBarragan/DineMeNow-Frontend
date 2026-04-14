@@ -31,12 +31,19 @@ export const AppRoutes = () => {
       <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       <Route path="/actualizar-contraresta" element={<ActualizarContraRestau />} />
-      <Route path="/cliente/reservas" element={<ReservasCliente />} />
       <Route
         path="/cliente/perfil"
         element={
           <ProtectedRoute role="cliente">
             <GestionPerfilCliente />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/cliente/reservas"
+        element={
+          <ProtectedRoute role="cliente">
+            <ReservasCliente />
           </ProtectedRoute>
         }
       />

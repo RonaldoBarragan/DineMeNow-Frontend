@@ -22,3 +22,20 @@ export const crearReserva = async (reservaData, token) => {
     throw error;
   }
 };
+
+// Opción B (solo frontend) — filtra en cliente si no puedes tocar el backend
+export const ObtenerReservasCliente = async (nombreCliente, token) => {
+  const res = await fetch(
+        `${API_URL}/cliente/${nombreCliente}`,
+        {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        }
+    );
+    if (!res.ok) throw new Error("Error al obtener reservas");
+    const todas = await res.json();
+    return todas.filter(r => r.nombreCliente === nombreCliente);
+};

@@ -44,7 +44,7 @@ function NavigationSection() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/cliente/inicio" className="nav-item">
+            <NavLink to="/cliente/reservas" className="nav-item">
               <BiCalendar size={20} className="nav-icon" />
               <span>Mis reservas</span>
             </NavLink>

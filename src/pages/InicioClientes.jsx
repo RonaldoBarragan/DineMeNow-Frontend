@@ -13,7 +13,7 @@ export default function InicioClientes() {
     return ( 
         <div className="vista-cliente-page-wrapper">
             {/* 1. HEADER */}
-            <Header viewMode="results" userName="Maria González" />
+            <Header viewMode="results" />
 
             {/* 2. BARRA DE FILTROS */}
             <FilterBar />
