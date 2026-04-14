@@ -25,7 +25,9 @@ function App() {
     "/cambiarcontrasena",
     "/recuperarcontrasena",
     "/cliente/inicio",
-    "/ActualizarContraRestau"
+    "/ActualizarContraRestau",
+    "cliente/reservas"
+    
     
     // Agrega otras rutas donde el header no deba aparecer
   ];
