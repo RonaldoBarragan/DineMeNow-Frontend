@@ -15,6 +15,7 @@ import AdminP_Panel from "../pages/AdminP-Panel";
 import ReservasCliente from "../pages/Reservas-Cliente";
 import ProtectedRoute from "./ProtectedRoute";
 import ActualizarContraRestau from "../pages/ActualizarContraRestau";
+import GestionEmpleadosRestaurante from "../components/comGestionEmpleadosRestaurante/title-GestionEmple";
 
 
 
@@ -31,6 +32,7 @@ export const AppRoutes = () => {
       <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       <Route path="/actualizar-contraresta" element={<ActualizarContraRestau />} />
+      <Route path="/gestionEmpleadosRestaurante" element={<GestionEmpleadosRestaurante/>}/>
       <Route
         path="/cliente/perfil"
         element={
@@ -87,6 +89,7 @@ export const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+    
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
