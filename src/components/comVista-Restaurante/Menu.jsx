@@ -3,8 +3,24 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { IoCameraOutline } from "react-icons/io5";
 import { HiOutlineCamera } from "react-icons/hi";
+import { useEffect, useState } from "react";
+import { getListPlatosRestaurant } from "../../api/Menu-Restaurant";
 
 export default function Menu() {
+    const [platos, setPlatos] = useState([]);
+
+    useEffect(() => {
+        const fetchPlatos = async () => {
+            try {
+                const data = await getListPlatosRestaurant("123456789"); // Reemplaza con el NIT real del restaurante, arreglar eta vaina
+                setPlatos(data);
+            } catch (error) {
+                console.error("Error fetching platos:", error);
+            }
+        };
+        fetchPlatos();
+    }, []);
+
     return (
         <>
         <div className="d-flex justify-content-between align-items-center">
