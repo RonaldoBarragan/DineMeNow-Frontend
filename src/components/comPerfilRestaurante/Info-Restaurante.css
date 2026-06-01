@@ -1,15 +1,26 @@
-.Card {
+/*estilo card de la info-restaurante */
+.Card-inforestau {
   max-width: 900px;
   margin: 0 auto;
+  padding: 0;
 }
-.info-card{
+
+/*estilo modal*/
+.modal-letra{
+  font-size: 15px;
+}
+/*modal div*/
+.modal-letra .form-group {
+  margin-bottom: 0.5rem; 
+}
+.info-card-restau{
   border-radius: 20px;
 }
 .row {
   padding: 0 16px 16px;
 }
 /* Encabezado: icono + título */
-.encabezado {
+.encabezado-inforestau {
   padding: 0 16px 16px;
   display: flex;
   justify-content: space-between;
@@ -17,21 +28,21 @@
   margin-bottom: 10px;
 }
 /* Título */
-.encabezado-title {
-   display: flex;
-   align-items: center;
+.encabezado-title-inforestau {
+  display: flex;
+  align-items: center;
    gap: 8px; /* espaciado entre icono y texto */
 }
 /*Titulo*/
-.encb-title{
+.encb-title-inforestau{
     margin: 0;
   font-size: 15px;
   font-weight: 400;
   color:rgba(10, 10, 10, 1);
 }
 /* Botón Editar Información */
-.btn-edit{
-   background-color: #ffffff;
+.btn-edit-inforestau{
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   gap: 8px; /* espaciado entre icono y texto */
@@ -42,24 +53,24 @@
   
 }
 /* Botón Editar Información */
-.Editar{
-   margin: 0;
+.Editar-inforestau{
+  margin: 0;
   font-size: 14px;
   font-weight: 600;
   color:rgba(10, 10, 10, 1);
 }
-.btn-edit:hover {
+.btn-edit-inforestau:hover {
   background: #ebecf3;
 }
 /* Imagen del restaurante */
-.info-image {
-   width: 100%;
+.inforestau-image {
+  width: 100%;
   height: 186px;
   object-fit: cover;
 }
 
 /* Subtítulos (Nombre del restaurante, Zona, etc.) */
-.info-subtitle {
+.inforestau-subtitle {
   display: flex;
   align-items: center;
   font-weight: 600;
@@ -68,7 +79,7 @@
   color: rgba(10, 10, 10, 1);
 }
 /* Párrafos */
-.info-text {
+.inforestau-text {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -81,10 +92,10 @@
   margin-right: 6px;
 }
 /* Separación en columnas */
-.info-right {
-   margin-bottom: 18px;
+.inforestau-right {
+  margin-bottom: 18px;
 }
-.Descripcion {
+.Descripcion-inforestau {
   color: rgba(54, 65, 83, 1);
   line-height: 1.5;
   font-size: 14px;

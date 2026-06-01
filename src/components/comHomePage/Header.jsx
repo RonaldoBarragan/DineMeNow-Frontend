@@ -7,29 +7,64 @@ import { Search } from "react-bootstrap-icons";
 import { BiLogIn } from "react-icons/bi";
 import MenuHamburguesa from "../comMenuHamburguesa/menuHamburguesa";
 import { Button } from "react-bootstrap";
+import { consultarPerfil } from '../../api/ClientRegister'; // Asegúrate de tener esta función en tu servicio
+import { useEffect, useState } from 'react';
+import { useAuth } from "../../context/AuthContext"; // ajusta la ruta
 
 // ========================================
 // SUB-COMPONENTES PARA EL MODO CLIENTE
 // ========================================
 
-// Componente del perfil de usuario
-const UserProfile = ({ userName = "Cliente" }) => (
-  <div className="header-profile">
-    <div className="user-avatar">MG</div>
 
-    <div className="profile-info">
-      <span className="user-name">{userName}</span>
-      <small className="text-muted">Cliente</small> 
+const UserProfile = () => {
+  const { user } = useAuth();
+  const [perfilData, setPerfilData] = useState(null);  // ← hooks primero
+
+  useEffect(() => {
+    if (!user?.id || !user?.token) {
+      console.log("Esperando credenciales..");
+      return;
+    }
+    const cargarPerfil = async () => {
+      try {
+        const data = await consultarPerfil(user.id, user.token);
+        setPerfilData(data);
+      } catch (error) {
+        console.error("Error al cargar perfil:", error);
+      }
+    };
+    cargarPerfil();
+  }, [user?.id, user?.token]);
+
+  // Lógica después de los hooks
+  const nombreCompleto = perfilData?.nombreCliente
+    ? `${perfilData.nombreCliente} ${perfilData.apellido}`
+    : user?.nombre || "cargando...";
+
+  //usar encadenamiento opcional ?. antes del [0]
+  const initials = (perfilData?.nombreCliente?.[0] && perfilData?.apellido?.[0])//El primer signo ? verifica si perfilData existe. El segundo signo ? verifica si nombreCliente existe antes de intentar agarrar la letra [0]
+    ? `${perfilData.nombreCliente[0]}${perfilData.apellido[0]}`.toUpperCase()
+    : user?.nombre?.[0]?.toUpperCase() || "?";
+
+  return (
+    <div className="header-profile">
+      <div className="user-avatar">{initials}</div>
+      <div className="profile-info">
+        <span className="user-name">{nombreCompleto}</span>
+        <small className="text-muted" style={{ textTransform: "capitalize" }}>
+          {user?.role || ""}
+        </small>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // Componente del input de búsqueda
 const SearchInput = () => (
   <div className="header-search flex-grow-1 mx-4">
     <div className="input-group">
       <span className="input-group-text">
-        <Search size={14} color="#99a1af"/>
+        <Search size={14} color="#99a1af" />
       </span>
       <input
         className="form-control"
@@ -44,24 +79,26 @@ const SearchInput = () => (
 // COMPONENTE PRINCIPAL HEADER
 // ========================================
 
-export default function Header({ viewMode, userName }) {
+export default function Header({ viewMode }) {
+  const { user } = useAuth();
+  const isCliente = user?.role === "cliente";
   const navigate = useNavigate();
 
   // Botones de autenticación
   const AuthButtons = () => (
     <div className="header-buttons">
       <Button
-        className="buttonRegistrarUS" 
+        className="buttonRegistrarUS"
         size="sm"
         onClick={() => navigate("/crearcuenta")}
       >
         Registrarse
       </Button>
       <Button
-        className="buttonNaranjaDegrade" 
+        className="buttonNaranjaDegrade"
         size="sm"
         onClick={() => navigate("/iniciarsesion")}
-      > 
+      >
         <BiLogIn size={18} className="login-icon" />
         Iniciar sesión
       </Button>
@@ -74,7 +111,7 @@ export default function Header({ viewMode, userName }) {
   return (
     <nav className="header-nav">
       <div className="header-container">
-        
+
         {/* menu+logo */}
         <div className="header-brand-group">
           {/* Menú Hamburguesa - SIN wrapper extra */}
@@ -90,15 +127,16 @@ export default function Header({ viewMode, userName }) {
             <strong className="header-title">DineMeNow</strong>
           </Link>
         </div>
-        
+
         {/* Input de búsqueda (solo en modo cliente) */}
-        {showSearchHeader ? (
+        {isCliente ? (
           <>
             <SearchInput />
-            <UserProfile userName={userName} />
+            <UserProfile user={user} />
           </>
+        ) : user ? (
+          <UserProfile user={user} />
         ) : (
-          // Botones de autenticación (solo en otros modos)
           <AuthButtons />
         )}
       </div>

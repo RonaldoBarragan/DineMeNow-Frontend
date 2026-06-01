@@ -1,0 +1,293 @@
+/*SCROLL*/
+.modal-content {
+  max-height: 90vh;   /* altura total del modal */
+  overflow-y: auto;   /* scroll en TODO */
+}
+.Card-Proximadas {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+}
+/*estilo modal*/
+.tituloo{
+  margin: 10px 5px 5px 5px;
+  color: #000 !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+/* TARJETA GENERAL */
+.info {
+  background: #fff;
+  border: 1px solid #ebecf3;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 0px 5px 20px 5px;
+}
+
+/*titulo nombre del restaurante*/
+.title-modal-nombre{
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 10px 0;
+  width: 100%;        
+  text-align: left;   /*izquierda */
+  display: block;
+}
+/*info principal*/
+/*izquierda y derecha*/
+.modal-cuadro {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+}
+.columna-pricipal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.info-desc-modal{
+  display: flex;
+  align-items: center;   
+  gap: 6px;              /* espacio entre icono y texto */
+  font-size: 14px;
+}
+.estado{
+  display: flex;
+  justify-content: flex-start; /* izquierda */
+  margin-top: 8px;
+}
+/*subtitulos*/
+.title-modal{
+  font-weight: 200;
+  gap: 6px;/* espacio entre icono y texto */
+  color: #000;
+  font-size: 14px;
+  margin: 10px 5px 5px 5px;
+  text-align: left;   /*izquierda */
+  display: flex;
+}
+/* izquierda - derecha de contacto*/
+.fila-contacto {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+}
+.columna-contac{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.campo{
+  display: flex;
+  flex-direction: column;
+}
+/*label*/
+.label{
+  color:#6b7280;
+  font-size: 13px;
+}
+/*valor*/
+.valor{
+  color: #000;
+  font-size: 15px;
+}
+/* izquierda - derecha platillos*/
+/* cada fila tipo factura */
+.platillo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+/* lado izquierdo */
+.platillo-row .nombre {
+  display: block;
+  font-size: 15px;
+  color: #000;
+}
+
+.platillo-row .cantidad {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* lado derecho */
+.precio {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.valor-total {
+  font-size: 15px;
+  color: #000;
+}
+
+.valor-unitario {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* total final */
+.platillo-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.valor-total-platos {
+  color: #f54a00;
+  font-size: 18px;
+}
+/* izquierda - derecha factura*/
+.fila-reserva{
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+}
+.columna-reserva{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.campo-reserva{
+  display: flex;
+  flex-direction: column;
+}
+/*botton*/
+.btn-cerrar {
+  background-color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espaciado entre icono y texto */
+  border: 1px solid #dcdcdc !important;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.cerrar{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color:rgba(10, 10, 10, 1) ;
+}
+
+.btn-cerrar:hover {
+  background: #ebecf3 !important;
+} 
+
+.Card-Reservas-Proximas {
+  border-radius: 20px;
+  margin-bottom: 16px; /*espacio entre cards */
+}
+
+/* ─── div principal con todo adentro ─── */
+.div-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center; /*alinear vertical */
+  
+}
+/*FILA 1 titulo*/
+.card-titulo {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  flex: 1;
+  margin: 0;
+  align-items: center;
+}
+
+
+
+/* ─── badges ─── */
+.badge-confirmada {
+  font-size: 13px !important;
+  background-color: #dcfce7 !important;
+  color: #016630 !important;
+}
+
+.badge-Pendiente {
+  font-size: 13px !important;
+  background-color: #fef9c2 !important;
+  color: #894b00 !important;
+}
+
+/* ─── botón ─── */
+.btn-detalles {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espaciado entre icono y texto */
+  border: 1px solid #dcdcdc;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.Ver-detalles{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color:rgba(10, 10, 10, 1);
+}
+
+.btn-detalles:hover {
+  background: #ebecf3;
+}
+
+/* ─── info fila 2 fecha- hora- personas─── */
+.fila-dos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+.info-text-prox {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-desc {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ─── fila 3 mesa ─── */
+.full-width {
+  flex-basis: 100%;
+  margin-bottom: 4px;
+}
+
+/* ─── divider ─── */
+.divider {
+  border: none;
+  border-top: 1px solid #050505;
+  margin: 12px 0;
+}
+
+.precio {
+  color: #f54a00;
+  font-weight: 600;
+}
+.info-desc strong {
+  color: #4a5565;
+}

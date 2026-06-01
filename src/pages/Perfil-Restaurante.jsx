@@ -1,8 +1,7 @@
 import { Card, Container } from "react-bootstrap";
 import Title from "../components/comPerfilRestaurante/title";
-import TabsRestaurante from "../components/comPerfilRestaurante/button-Tabs";
-import InfoRestaurante from "../components/comPerfilRestaurante/info-Restaurante";
-import Horario from "../components/comPerfilRestaurante/horario-Restaurante";
+import TabsSecciones from "../components/comPerfilRestaurante/tabs-button";
+
 
 
 const PerfilRestaurante = () => {
@@ -13,16 +12,10 @@ const PerfilRestaurante = () => {
       <div className="mb-4">
         <Title />
       </div>
-
-      <div className="mb-2">
-        <TabsRestaurante />
+      <div className="my-4">
+        <TabsSecciones />
       </div>
-
-      <div className="mb-4">
-        <InfoRestaurante />
-      </div>
-
-      <Horario />
+      
     </Container>
     </>
       
