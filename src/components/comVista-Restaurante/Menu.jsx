@@ -4,18 +4,22 @@ import { FiEdit } from "react-icons/fi";
 import { IoCameraOutline } from "react-icons/io5";
 import { HiOutlineCamera } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import { getListPlatosRestaurant } from "../../api/Menu-Restaurant";
+import { getListPlatosRestaurant } from "../../api/Gestion-Restaurant";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Menu() {
     const [platos, setPlatos] = useState([]);
 
+    const disponible = Math.random() > 0.5; // Simulación de disponibilidad para el plato, reemplazar con dato real en implementación final
+    const { user } = useAuth();
+
     useEffect(() => {
         const fetchPlatos = async () => {
             try {
-                const data = await getListPlatosRestaurant("123456789"); // Reemplaza con el NIT real del restaurante, arreglar eta vaina
+                const data = await getListPlatosRestaurant(user.id); // Usa el id de la acc del restaurante para obtener su NIT y luego los platos
                 setPlatos(data);
             } catch (error) {
-                console.error("Error fetching platos:", error);
+                console.error("Error al obtener los platos:", error);
             }
         };
         fetchPlatos();
@@ -41,47 +45,25 @@ export default function Menu() {
                 </tr>
             </thead>
             <tbody>
-                {/* FILA 1 */}
-                <tr>
+                {/*Si no hay platos, mostrar mensaje*/}
+                {platos.length === 0 ? (
+                    <tr>
+                        <td colSpan="7" className="text-center py-4 text-muted">No hay platos registrados.</td>
+                    </tr>
+                ) : (platos.map((plato) => (
+                    <tr key={plato.id}>
                     <td><span className="p-2 rounded icon-bg-camera-color"><HiOutlineCamera size={20} /></span></td>
-                    <td><Badge className="badge-table-category" pill>Entradas</Badge></td>
-                    <td>Arepa de Choclo</td>
-                    <td>Arepa tradicional con queso costeño</td>
-                    <td>$18.000</td>
-                    <td><Badge className="badge-table-positivo-state" pill>Disponible</Badge></td>
+                    <td><Badge className="badge-table-category" pill>{plato.categoria}</Badge></td>
+                    <td>{plato.nomPlato}</td>
+                    <td>{plato.descripcion}</td>
+                    <td>${plato.precio.toLocaleString()}</td>
+                    <td><Badge className={disponible ? "badge-table-positivo-state" : "badge-table-negativo-state"} pill>{disponible ? "Disponible" : "No disponible"}</Badge></td>
                     <td>
                         <Button variant="outline-secondary" size="sm" className="me-2"><FiEdit size={15} /></Button>
                         <Button variant="outline-secondary" size="sm" className="me-2"><FaRegTrashAlt size={15} /></Button>
                     </td>
                 </tr>
-
-                {/* FILA 2 */}
-                <tr>
-                    <td><span className="p-2 rounded icon-bg-camera-color"><HiOutlineCamera size={20} /></span></td>
-                    <td><Badge className="badge-table-category" pill>Entradas</Badge></td>
-                    <td>Empanadas Vallenas</td>
-                    <td>Empanadas criollas rellenas de carne y papa</td>
-                    <td>$15.000</td>
-                    <td><Badge className="badge-table-positivo-state" pill>Disponible</Badge></td>
-                    <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2"><FiEdit size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2"><FaRegTrashAlt size={15} /></Button>
-                    </td>
-                </tr>
-
-                {/* FILA 3 */}
-                <tr>
-                    <td><span className="p-2 rounded icon-bg-camera-color"><HiOutlineCamera size={20} /></span></td>
-                    <td><Badge className="badge-table-category" pill>Principales</Badge></td>
-                    <td>Bandeja Paisa</td>
-                    <td>Plato típico completo</td>
-                    <td>$45.000</td>
-                    <td><Badge className="badge-table-negativo-state" pill>No disponible</Badge></td>
-                    <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2"><FiEdit size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2"><FaRegTrashAlt size={15} /></Button>
-                    </td>
-                </tr>
+                )))}
             </tbody>
         </Table>
         </>

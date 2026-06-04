@@ -33,7 +33,9 @@ const UserProfile = () => {
         console.error("Error al cargar perfil:", error);
       }
     };
-    cargarPerfil();
+    if (user?.role === "cliente") { //El ? verifica que user exista antes de intentar acceder a role
+      cargarPerfil();
+    }
   }, [user?.id, user?.token]);
 
   // Lógica después de los hooks

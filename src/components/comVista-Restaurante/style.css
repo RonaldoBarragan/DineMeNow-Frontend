@@ -40,6 +40,18 @@
     color: #f0b100;
 }
 
+.icon-color-mesas-total {
+    color: #2b7fff;
+}
+
+.icon-color-mesas-available {
+    color: #00c950;
+}
+
+.icon-color-mesas-capacity {
+    color: #ff6900;
+}
+
 .icon-bg-camera-color {
     color: #99a1af;
     background-color: #f3f4f6;
