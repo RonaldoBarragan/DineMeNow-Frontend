@@ -16,7 +16,7 @@ export default function Menu() {
     useEffect(() => {
         const fetchPlatos = async () => {
             try {
-                const data = await getListPlatosRestaurant(user.id); // Usa el id de la acc del restaurante para obtener su NIT y luego los platos
+                const data = await getListPlatosRestaurant(user.id, user.token); // Usa el id de la acc del restaurante para obtener su NIT y luego los platos
                 setPlatos(data);
             } catch (error) {
                 console.error("Error al obtener los platos:", error);
