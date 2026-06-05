@@ -1,35 +1,58 @@
 import { Card, Col, Row } from "react-bootstrap";
-import { FcPlanner } from "react-icons/fc";
-import { FcOk } from "react-icons/fc";
-import { FcOvertime } from "react-icons/fc";
-import { FcBusinesswoman } from "react-icons/fc";
+import { FiCalendar } from "react-icons/fi";
+import { LuUsers } from "react-icons/lu";
+import { LuCircleCheckBig } from "react-icons/lu";
+import { FaRegClock } from "react-icons/fa6";
 
 export default function Stat() {
     return (     
         <>
-        <Row className="mb-4">
-            <Col className="mb-3">
-            <Card className="p-2 align-items-center">
-                <Card.Title className="mb-0"><FcPlanner size={30} />12</Card.Title>              
-                <p className="text-muted letra-size">Reservas hoy</p>
+        <Row className="mb-4 p-0">
+            <Col>
+            <Card>
+                <Card.Body className="d-flex align-items-center gap-2">
+                    <FiCalendar className="icon-color-reservas" size={28} />
+                    <div className="flex-column">
+                        <Card.Title className="fw-bold mb-0">12</Card.Title>
+                        <Card.Text className="text-left mt-0 fs-propio">Reservas hoy</Card.Text>
+                    </div>
+                </Card.Body>
             </Card>
             </Col>
-            <Col className="mb-3">
-            <Card className="p-2 align-items-center">
-                <Card.Title className="mb-0"><FcBusinesswoman size={30} />8</Card.Title>               
-                <p className="text-muted letra-size">Mesas disponibles</p>
+
+            <Col>
+            <Card>
+                <Card.Body className="d-flex align-items-center gap-2">
+                    <LuUsers className="icon-color-mesas" size={28} />
+                    <div className="flex-column">
+                        <Card.Title className="fw-bold mb-0">8</Card.Title>
+                        <Card.Text className="text-left mt-0 fs-propio">Mesas disponibles</Card.Text>
+                    </div>
+                </Card.Body>
             </Card>
             </Col>
-            <Col className="mb-3">
-            <Card className="p-2 align-items-center">
-                <Card.Title className="mb-0"><FcOk size={30} />9</Card.Title>           
-                <p className="text-muted letra-size">Confirmadas</p>
+
+            <Col>
+            <Card>
+                <Card.Body className="d-flex align-items-center gap-2">
+                    <LuCircleCheckBig className="icon-color-confirms" size={28} />
+                    <div className="flex-column">
+                        <Card.Title className="fw-bold mb-0">9</Card.Title>
+                        <Card.Text className="text-left mt-0 fs-propio">Confirmadas</Card.Text>
+                    </div>
+                </Card.Body>
             </Card>
             </Col>
-            <Col className="mb-3">
-            <Card className="p-2 align-items-center">
-                <Card.Title className="mb-0"><FcOvertime size={30} />3</Card.Title>         
-                <p className="text-muted letra-size">Pendientes</p>
+
+            <Col>
+            <Card>
+                <Card.Body className="d-flex align-items-center gap-2">
+                    <FaRegClock className="icon-color-reserva-pending" size={28} />
+                    <div className="flex-column">
+                        <Card.Title className="fw-bold mb-0">3</Card.Title>
+                        <Card.Text className="text-left mt-0 fs-propio">Pendientes</Card.Text>
+                    </div>
+                </Card.Body>
             </Card>
             </Col>
             

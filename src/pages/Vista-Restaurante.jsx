@@ -7,7 +7,7 @@ import NavSecciones from "../components/comVista-Restaurante/Nav-Secciones";
 export default function Vista_Restaurante() {
     return (
         <>
-        <Container className='my-4 margen-provi'>
+        <Container className="margen-provi container-principal-propio">
             <Tittle />
             <Stat />
             <Card className="p-3">
