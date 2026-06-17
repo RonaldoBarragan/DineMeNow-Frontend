@@ -32,7 +32,7 @@ export const AppRoutes = () => {
       <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       <Route path="/actualizar-contraresta" element={<ActualizarContraRestau />} />
-      <Route path="/gestionEmpleadosRestaurante" element={<GestionEmpleadosRestaurante/>}/>
+      <Route path="/gestionempleadosrestaurante" element={<GestionEmpleadosRestaurante/>}/>
       <Route
         path="/cliente/perfil"
         element={

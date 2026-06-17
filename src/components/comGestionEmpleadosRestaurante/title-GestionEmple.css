@@ -9,7 +9,6 @@
 }
 
 .titulo{
-  
   color: #000000;       /* Color de la letra */
   font-size: 20px;       /* Tamaño */
   font-weight: bold;     /* Negrita */
@@ -17,7 +16,7 @@
   margin: 0 0 4px 0; /* pequeño espacio abajo */
 }
 .text {
-  color:4A5565 ;
+  color:#4A5565 ;
   font-family: sans-serif;
   text-align: left;
   font-size: 15px;

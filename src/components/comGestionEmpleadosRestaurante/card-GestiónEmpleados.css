@@ -3,3 +3,123 @@
     margin: 0 auto;
     padding: 0;
 }
+/*titu+descripcion*/
+.titulo-empleados{
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 10px;
+}
+.icono {
+  color: #da590f;
+  font-size: 30px;
+}
+.titulo {
+  color: #000000;       /* Color de la letra */
+  font-size: 20px;       /* Tamaño */
+  font-weight: bold;     /* Negrita */
+  font-family: sans-serif;
+  
+}
+.descripcion {
+  color:#4A5565 ;
+  font-family: sans-serif;
+  text-align: left;
+  font-size: 12px;
+  margin: 0;
+}
+/*tabs*/
+.tabs .nav-pills {
+  background-color: #ebecf3;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+}
+.tabs .nav-pills .nav-link {
+  color: #000; /* Color de texto negro */
+  border-radius: 50px !important;
+  padding: 4px 12px; 
+  font-size: 15px;   /*tamaño letra*/
+}
+.tabs .nav-pills .nav-link.active {
+  border-radius: 50px !important; /*borde button*/ 
+  color: #000;
+  background-color: #ffffff;
+}
+.tabs .nav-item {
+  background-color: transparent !important;
+  padding: 4px;
+}
+.fondo-tab {
+  background-color: #ebecf3;
+  height: 100%
+}
+/*cards*/
+.card-estadistica{
+    border-radius: 15px;
+    align-items: center;
+    padding: 10px 20px ;
+     margin-top: 10px;
+}
+.cantidad {
+    
+  font-size: 25px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+.cantidad.act {
+  color: #22c55e; /* verde activos */
+}
+.total-emple,
+.emple-activos,
+.emple-inactivos {
+  margin: 0;
+  font-size: 13px;
+  color:#4A5565 ;
+}
+/*titulo lista y input */
+.lista {
+  display: flex;
+  justify-content: space-between; /* título izquierda / buscador derecha */
+  align-items: center;
+  margin-bottom: 15px;
+}
+.titulo-lista {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+.search-box {
+  position: relative;
+  width: 300px;
+}
+/* INPUT */
+.search-box .form-control {
+  background-color: #ebecf3;   /*fondo*/
+  border: none;                /* sin borde*/
+  border-radius: 10px;
+  padding-left: 35px;
+}
+
+/* cuando haces click */
+.search-box .form-control:focus {
+  background-color: #ebecf3; /*fondo*/
+  border: 1px solid #8b8b8b;
+  box-shadow: 0 0 0 3px #c2c1c1;
+  outline: none;
+}
+
+/* ICONO */
+.icono-buscar {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b; 
+  font-size: 14px;
+}
+/*tabla*/
