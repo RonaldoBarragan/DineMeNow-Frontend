@@ -57,14 +57,15 @@
   height: 100%
 }
 /*cards*/
+.row{
+  padding: 0%;
+}
 .card-estadistica{
     border-radius: 15px;
     align-items: center;
     padding: 10px 20px ;
-     margin-top: 10px;
 }
 .cantidad {
-    
   font-size: 25px;
   font-weight: 600;
   color: #0f172a;
@@ -85,7 +86,6 @@
   display: flex;
   justify-content: space-between; /* título izquierda / buscador derecha */
   align-items: center;
-  margin-bottom: 15px;
 }
 .titulo-lista {
   font-size: 17px;
@@ -123,3 +123,73 @@
   font-size: 14px;
 }
 /*tabla*/
+/*Badge de cargos*/
+.cargo{
+  color: #000000!important; /*color letra*/
+  background-color: #ffffff !important; /*color de fondo */
+  border: 1px solid #d1d5db !important; 
+}
+.activo{
+  color: #016630!important; /*color letra*/
+  background-color: #dcfce7 !important; /*color de fondo */
+}
+.inactivo{
+  color: #1e2939!important; /*color letra*/
+  background-color: #f6f3f4 !important; /*color de fondo */
+}
+.vacaciones{
+  color: #193cb8!important; /*color letra*/
+  background-color: #dbeafe !important; /*color de fondo */
+}
+/*botones de acciones*/
+.btn-accion {
+  width: 35px;
+  height: 30px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #000000;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+.btn-accion:hover {
+  background: #f6f3f4;
+}
+/*nombre+correo*/
+.nombre {
+  font-weight: 500;
+  color: #000000;
+  font-size: 17px;
+}
+
+.correo {
+  font-size: 14px;
+  color: #6a7282;
+}
+/*organizacion*/
+.tabla {
+  width: 100%;
+}
+.tabla th {
+  padding: 9px 18px;
+  font-weight: 600;
+  color: #413f3f;
+  border-bottom: 1px solid #e5e7eb;
+}
+.tabla td {
+  padding: 9px 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.tabla tr:hover {
+  background-color: #f6f3f4;
+}
+/*listaEmpreados*/
+.card-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+}
