@@ -57,13 +57,14 @@
 
   /** Normaliza la respuesta del backend al modelo interno de usuario. */
   function mapLoginResponse(data) {
-    const rawRole = Array.isArray(data.roles) ? data.roles[0] : (data.roles ?? data.role);
+    const rawRole = Array.isArray(data.roles) ? data.roles[0] : (data.roles ?? "");
 
     return {
       id: data.id ?? "",
       username: data.correo ?? "",                          // ClienteDto.correo
-      nombre: data.nombre ?? "" ,
-      token: data.token ?? data.accessToken ?? null,
+      nombre: data.nombre ?? "Administrador" ,
+      token: data.token ?? null,
+      role: normalizeRole(rawRole),
       role: normalizeRole(rawRole),
       mustChangePassword: data.mustChangePassword ?? false
     };
