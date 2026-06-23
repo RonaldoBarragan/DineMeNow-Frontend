@@ -1,4 +1,4 @@
-import axios from 'axios'; //es una librería de JavaScript utilizada para realizar solicitudes HTTP (como GET, POST, PUT, DELETE) desde el navegador o Node.js hacia servidores o APIs
+/*import axios from 'axios'; //es una librería de JavaScript utilizada para realizar solicitudes HTTP (como GET, POST, PUT, DELETE) desde el navegador o Node.js hacia servidores o APIs
 
 const API_URL = "http://localhost:8080/api/restaurantes";
 
@@ -13,10 +13,12 @@ const getAuthHeaders = () =>{
         }
     };
 };
+*/
+import api from './axiosConfig';
 
 export const getRestaurantesPendientes = async () => {
     // Pasamos getAuthHeaders() como segundo o tercer argumento según el método
-    const res = await axios.get(`${API_URL}/estado/PENDIENTE`, getAuthHeaders());
+    const res = await api.get(`/restaurantes/estado/PENDIENTE`);
     return res.data;
 };
 
