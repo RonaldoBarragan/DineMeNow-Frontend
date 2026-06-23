@@ -5,6 +5,7 @@ import { FiEdit } from "react-icons/fi";
 import { FiTrash2 } from "react-icons/fi";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import ListaEmpreados from "./listaEmpreados";
+import Añadirempreado from './añadir-empreado';
 function CardGestionEmpleados(){
     return (
         <>
@@ -28,7 +29,7 @@ function CardGestionEmpleados(){
                      <ListaEmpreados/>
                 </Tab>
                 <Tab eventKey="Añadir" title="Añadir Empleado" >
-                    
+                    <Añadirempreado/>
                 </Tab>
             </Tabs>
             </div>
