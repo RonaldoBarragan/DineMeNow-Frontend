@@ -4,7 +4,7 @@ import { FiEdit } from "react-icons/fi";
 import { IoCameraOutline } from "react-icons/io5";
 import { HiOutlineCamera } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import { getListPlatosRestaurant } from "../../api/Gestion-Restaurant";
+import { getListPlatosRestaurant } from "../../api/Restaurant-Service";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Menu() {
@@ -16,7 +16,7 @@ export default function Menu() {
     useEffect(() => {
         const fetchPlatos = async () => {
             try {
-                const data = await getListPlatosRestaurant(user.id, user.token); // Usa el id de la acc del restaurante para obtener su NIT y luego los platos
+                const data = await getListPlatosRestaurant(user.id); // Usa el id de la acc del restaurante para obtener su NIT y luego los platos
                 setPlatos(data);
             } catch (error) {
                 console.error("Error al obtener los platos:", error);

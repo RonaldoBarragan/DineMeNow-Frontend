@@ -5,7 +5,7 @@ import { LuUsers } from "react-icons/lu";
 import { LuCircleCheckBig } from "react-icons/lu";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
-import { getListMesasRestaurant } from "../../api/Gestion-Restaurant";
+import { getListMesasRestaurant } from "../../api/Restaurant-Service";
 
 export default function Mesas() {
     const { user } = useAuth();
@@ -14,7 +14,7 @@ export default function Mesas() {
     useEffect(() => {
         const fetchMesas = async () => {
             try {
-                const data = await getListMesasRestaurant(user.id, user.token); // Usa el id de la acc del restaurante para obtener su NIT y luego las mesas
+                const data = await getListMesasRestaurant(user.id); // Usa el id de la acc del restaurante para obtener su NIT y luego las mesas
                 setMesas(data);
             } catch (error) {
                 console.error("Error al obtener las mesas:", error);
