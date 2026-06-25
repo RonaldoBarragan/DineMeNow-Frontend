@@ -1,0 +1,29 @@
+/* Contenedor principal */
+.card-Añadir {
+  max-width: 900px;
+  margin: 0px;
+  padding: 0px 25px 25px 25px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px;
+  border-color: #777777;
+}
+/* Título principal */
+.registro-empleado {
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  color: #1f2937;
+}
+/* Subtítulos */
+.datos-empre {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #000000;
+}
