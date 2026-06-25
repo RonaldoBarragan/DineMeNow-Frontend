@@ -37,7 +37,7 @@ export const ActualizarContraTempResta = async (id, passwordActual, passwordNuev
 //Registrar un restaurante nuevo (terminarlo)
 export const RegistrarRestaurante = async (datos) => {
     try {
-        const { data } = await api.post("/restaurantes/registro", datos);
+        const { data } = await api.post(`${RESTAURANT_URL}/registro`, datos);
         return data;
     } catch (error) {
         const mensaje = error.response?.data?.mensaje || "Error al registrar el restaurante";
