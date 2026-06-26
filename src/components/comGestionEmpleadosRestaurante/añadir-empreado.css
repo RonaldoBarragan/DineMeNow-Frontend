@@ -2,28 +2,95 @@
 .card-Añadir {
   max-width: 900px;
   margin: 0px;
-  padding: 0px 25px 25px 25px;
+  padding: 25px 25px 25px 25px;
   border-radius: 12px;
-  background: #ffffff;
-  border: 1px;
-  border-color: #777777;
 }
 /* Título principal */
 .registro-empleado {
   font-size: 16px;
-  font-weight: 500;
+  gap: 6px;
+  color: #000000;
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
-  color: #1f2937;
+  margin: 0px;
 }
 /* Subtítulos */
 .datos-empre {
   font-size: 14px;
-  font-weight: 600;
   display: flex;
-  align-items: center;
-  gap: 6px;
   color: #000000;
+  gap: 6px;
+  align-items: center;
+  font-weight: 600;
+  padding: 15px 0px;
+  margin: 0px;
+}
+/*labels*/
+.campo{
+    font-size:12px;
+    font-weight:600;
+    color:#212529;
+    margin: 0px;
+}
+/*control*/
+.input{
+  margin: 0px 0px 12px 0px;
+}
+.input:focus {
+    outline: none; 
+    border: 1px solid #a1a1a1;
+    background-color: #f3f3f5;
+    box-shadow: 0 0 0 2px #a1a1a1ab;
+}
+/*icono + control*/
+.icono-input{
+    display: flex;
+    align-items: center; /* Centra*/
+    gap: 8px;            /*Espacio entre el icono y el input */
+}
+.icono-control{
+  color: #a1a1a1;
+  transform: translateY(-6px); /* Súbelo 3px */
+}
+/* card de verificacion*/
+.verificacion{
+  background-color: #eff6ff;
+  border-color: #bedbff;
+  padding: 14px;
+  align-items: flex-start; /* Todo alineado a la izquierda */
+}
+.desc{
+  color: #1c398e;
+  font-size: 14px;
+}
+/*botones*/
+.btn-codigo{
+  gap: 6px;
+  
+}
+.botones{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:28px;
+}
+.btn-cancelar{
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #dee2e6;
+}
+.btn-cancelar:hover{
+    border-color: #dee2e6;
+    background-color: #e3e3e4;
+    color: #000000;
+}
+.btn-confirmar{
+  background-color: #FF5C20;
+  color: #ffffff !important;
+  border-color: #FF5C20;
+}
+.btn-confirmar:hover{
+  background-color: #FF5C20 !important;
+  color: #ffffff !important;
+  border-color: #FF5C20;
 }

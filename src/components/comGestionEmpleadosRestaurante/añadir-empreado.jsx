@@ -6,7 +6,9 @@ import { LuUser } from "react-icons/lu";
 import { CiMail } from "react-icons/ci";
 import { FiPhone } from "react-icons/fi";
 import { FiBriefcase } from "react-icons/fi";
+import { useState } from 'react';
 function Añadirempreado (){
+    const [mostrarCodigo, setMostrarCodigo] = useState(false);
 return (
         <>
         <Card className="card-Añadir">
@@ -22,42 +24,42 @@ return (
                 <Row>
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Label>Primer Nombre *</Form.Label>
-                            <Form.Control type='text' placeholder='Ej:Carlos'/>
+                            <Form.Label className='campo'>Primer Nombre *</Form.Label>
+                            <Form.Control  className='input'type='text' placeholder='Ej:Carlos'/>
                         </Form.Group>
                     </Col>
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Label>Segundo Nombre</Form.Label>
-                            <Form.Control type='text' placeholder='Ej:Alberto'/>                        
+                            <Form.Label className='campo'>Segundo Nombre</Form.Label>
+                            <Form.Control className='input' type='text' placeholder='Ej:Alberto'/>                        
                         </Form.Group>
                     </Col>
                 </Row>
                 <Row>
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Label>Primer Apellido *</Form.Label>
-                            <Form.Control type='text' placeholder='Ej: Rodriguez'/>
+                            <Form.Label className='campo'>Primer Apellido *</Form.Label>
+                            <Form.Control className='input' type='text' placeholder='Ej: Rodriguez'/>
                         </Form.Group>
                     </Col>
                     <Col md={6}>
                         <Form.Group>
-                            <Form.Label>Segundo Apellido</Form.Label>
-                            <Form.Control type='text' placeholder='Ej:Perez'/>
+                            <Form.Label className='campo'>Segundo Apellido</Form.Label>
+                            <Form.Control className='input' type='text' placeholder='Ej:Perez'/>
                         </Form.Group>
                     </Col>
                 </Row>
                 <Row>
                     <Col md={6}>
                     <Form.Group>
-                        <Form.Label> <CiMail /> Correo Electronico *</Form.Label>
-                        <Form.Control type='email' placeholder='ejemplo@correo.com'/>
+                        <Form.Label className='campo'>Correo Electronico *</Form.Label>
+                        <div className='icono-input'><CiMail className='icono-control'/> <Form.Control className='input' type='email' placeholder='ejemplo@correo.com'/></div>
                     </Form.Group>
                     </Col>
                     <Col md={6}>
                     <Form.Group>
-                        <Form.Label> <FiPhone /> Telefono *</Form.Label>
-                        <Form.Control  />
+                        <Form.Label className='campo'>  Telefono *</Form.Label>
+                        <div className='icono-input'><FiPhone className='icono-control'/><Form.Control className='input' type='tel' placeholder='3201234567'  /></div>
                     </Form.Group>
                     </Col>
                 </Row>
@@ -65,8 +67,8 @@ return (
                 <Row>
                     <Col>
                         <Form.Group>
-                            <Form.Label>Cargo/Puesto *</Form.Label>
-                            <Form.Select>
+                            <Form.Label className='campo'>Cargo/Puesto *</Form.Label>
+                            <Form.Select className='input'>
                                 <option disabled>Seleccione un cargo</option>
                                 <option>Mesero</option>
                                 <option>Cocina</option>
@@ -77,13 +79,31 @@ return (
                     </Col>
                 </Row>
             </Form>
+            <p className='datos-empre'>Verificación por Correo</p>
            <Card className='verificacion'>
             <p className='desc'>Para completar el registro, se enviará un código de verificación al correo del empleado.</p>
-            <Button><CiMail /> Enviar Codigo de Verificacion</Button>
+            <Button className='btn-codigo' onClick={()=> setMostrarCodigo(true)}><CiMail /> Enviar Codigo de Verificacion</Button>
            </Card>
-            <div className="d-flex gap-2 mt-3">
-                <Button variant="secondary">Cancelar</Button>
-                <Button variant="primary">Confirmar Registro</Button>
+           {mostrarCodigo && (
+    <Form.Group className="mt-3">
+        <Form.Label className="campo">
+            Código de Verificación
+        </Form.Label>
+
+        <Form.Control
+            className="input"
+            type="text"
+            placeholder="555555"
+        />
+
+        <small className="text-muted">
+            El código fue enviado al correo del empleado.
+        </small>
+    </Form.Group>
+)}
+            <div className="botones">
+                <Button className='btn-cancelar' >Cancelar</Button>
+                <Button className='btn-confirmar' >Confirmar Registro</Button>
             </div>
         </Card>
         
