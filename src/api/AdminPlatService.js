@@ -41,7 +41,7 @@ export const obtenerAllActivesRestaurantes = async () => {
 //Eliminar un restaurant por su nit
 export const eliminarRestaurante = async (nit) => {
     try {
-        const response = await api.delete(`/restaurante/nit/${nit}`);
+        const response = await api.delete(`/restaurantes/nit/${nit}`);
         return response.data;
     } catch (error) {
         console.error("Error al eliminar restaurante:", error);

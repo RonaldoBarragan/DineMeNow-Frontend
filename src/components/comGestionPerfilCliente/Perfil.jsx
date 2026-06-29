@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Person, Pencil, Envelope, Telephone, GeoAlt, CameraFill } from 'react-bootstrap-icons';
 import './style.css';
-import { consultarPerfil } from '../../api/ClientRegister'; // Asegúrate de tener esta función en tu servicio
+import { consultarPerfil } from '../../api/Client-Service'; // Asegúrate de tener esta función en tu servicio
 import { useEffect, useState} from 'react';
 import { useAuth } from '../../context/AuthContext';  // ← esto falta
 

@@ -7,7 +7,7 @@ import { Search } from "react-bootstrap-icons";
 import { BiLogIn } from "react-icons/bi";
 import MenuHamburguesa from "../comMenuHamburguesa/menuHamburguesa";
 import { Button } from "react-bootstrap";
-import { consultarPerfil } from '../../api/ClientRegister'; // Asegúrate de tener esta función en tu servicio
+import { consultarPerfil } from '../../api/Client-Service'; // Asegúrate de tener esta función en tu servicio
 import { useEffect, useState } from 'react';
 import { useAuth } from "../../context/AuthContext"; // ajusta la ruta
 
