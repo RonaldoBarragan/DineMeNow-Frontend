@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import { useAuth } from "../../context/AuthContext";
-import { getListMesasRestaurant } from "../../api/Gestion-Restaurant";
+
+import { getListMesasRestaurant } from "../../api/Restaurant-Service";
 import { obtenerReservasPorNit } from "../../api/reservaRestauService";
 import Stat from "./Estadisticas";
 
@@ -43,10 +44,7 @@ export default function PanelEstadisticas() {
                 console.log("NIT:", restaurante.nit);
 
                 // Obtener mesas
-                const mesasData = await getListMesasRestaurant(
-                    user.id,
-                    user.token
-                );
+                const mesasData = await getListMesasRestaurant(user.id);
 
                 console.log("MESAS API:", mesasData);
 

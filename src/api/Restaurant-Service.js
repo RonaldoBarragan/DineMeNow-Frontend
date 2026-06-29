@@ -11,7 +11,7 @@ export const getListPlatosRestaurant = async (idAcc) => {
   return platos;
 };
 
-// 2. Guardar un nuevo plato en MongoDB
+// 2. Guardar un nuevo plato
 export const crearPlato = async (platoData) => {
     const { data } = await api.post(`/platos/crearPlato`, platoData);
     return data;
@@ -30,6 +30,7 @@ export const actualizarPlato = async (platoId, platoData) => {
     return data;
 };
 
+//Obtener la lista de mesas de un restaurante por su NIT, endpoint anidado
 export const getListMesasRestaurant = async (idAcc) => {
 
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
@@ -38,7 +39,7 @@ export const getListMesasRestaurant = async (idAcc) => {
   return mesas;
 };
 
-// 2. Guardar una nueva mesa en MongoDB
+// 2. Guardar una nueva mesa
 export const crearMesaRestaurant = async (mesaData) => {
     const { data } = await api.post(`/mesas/crearMesa`, mesaData);
     return data;
@@ -52,7 +53,6 @@ export const eliminarMesa = async (mesaId) => {
 
 // 4. actualizar una mesa
 export const actualizarMesa = async (mesaId, mesaData) => {
-    // Hace la petición PUT al backend enviando el ID en la URL y el DTO modificado en el cuerpo
     const { data } = await api.put(`/mesas/actualizarMesa/${mesaId}`, mesaData);
     return data;
 };
@@ -72,7 +72,7 @@ export const ActualizarContraTempResta = async (id, passwordActual, passwordNuev
     }
 };
 
-//Registrar un restaurante nuevo (terminarlo)
+//Registrar un restaurante nuevo
 export const RegistrarRestaurante = async (datos) => {
     try {
         const { data } = await api.post(`${RESTAURANT_URL}/registro`, datos);
