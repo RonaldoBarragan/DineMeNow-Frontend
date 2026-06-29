@@ -2,7 +2,7 @@ import React, {use, useState} from "react";
 import { Container, Card, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'
 import "../../design/global.css";
-import { ActualizarContraTempResta } from "../../api/ActualizarContraTempResta";
+import { ActualizarContraTempResta } from "../../api/Restaurant-Service";
 import { useAuth } from "../../context/AuthContext";
 
 export default function CambioContraObligatoria(){
@@ -33,7 +33,6 @@ export default function CambioContraObligatoria(){
       //llamar a la api con los datos correctos
       await ActualizarContraTempResta(
         user.id,
-        user.token,
         passwords.actual,
         passwords.nueva
       );

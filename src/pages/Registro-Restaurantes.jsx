@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Form_Restaurante from "../components/comRegistro-Restaurantes/form-info-restaurante";
 import Form_Info_Operativa from "../components/comRegistro-Restaurantes/form-info-operativa";
 import Form_Info_Documentos from "../components/comRegistro-Restaurantes/form-info-documentacion";
-import {RegistrarRestaurante} from "../api/RestaurantRegister";// Importa la función para registrar el restaurante
+import {RegistrarRestaurante} from "../api/Restaurant-Service";// Importa la función para registrar el restaurante
 import { Form } from "react-bootstrap";
 import '../components/comRegistro-Restaurantes/page-style.css';
 

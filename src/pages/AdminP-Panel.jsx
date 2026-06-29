@@ -4,7 +4,7 @@ import '../components/comAdmin-Plataform/style-page.css';
 import Card_stats from "../components/comAdmin-Plataform/Card-stats";
 import Nav_Section from "../components/comAdmin-Plataform/NavSections";
 import { useEffect, useState } from "react";
-import { obtenerAllClientes } from "../api/Client";
+import { obtenerAllClientes } from "../api/AdminPlatService";
 import { obtenerAllActivesRestaurantes } from "../api/AdminPlatService";
 import Header from "../components/comHomePage/Header";
 

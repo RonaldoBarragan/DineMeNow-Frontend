@@ -3,7 +3,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { HiOutlineCamera } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import { getListPlatosRestaurant, crearPlato, eliminarPlato, actualizarPlato } from "../../api/Gestion-Restaurant";
+import { actualizarPlato, crearPlato, eliminarPlato, getListPlatosRestaurant } from "../../api/Restaurant-Service";
 import { useAuth } from "../../context/AuthContext";
 import AgregarPlato from "./AgregarPLatos"; 
 import axios from "axios";
@@ -18,10 +18,8 @@ export default function Menu() {
     useEffect(() => {
         const fetchPlatos = async () => {
             try {
-                if (user?.id) {
-                    const data = await getListPlatosRestaurant(user.id, user.token);
-                    setPlatos(data);
-                }
+                const data = await getListPlatosRestaurant(user.id); // Usa el id de la acc del restaurante para obtener su NIT y luego los platos
+                setPlatos(data);
             } catch (error) {
                 console.error("Error al obtener los platos:", error);
             }
@@ -33,7 +31,7 @@ export default function Menu() {
     const handleEliminarPlato = async (platoId) => {
         if (window.confirm("¿Estás seguro de que deseas eliminar este plato?")) {
             try {
-                await eliminarPlato(platoId, user.token);
+                await eliminarPlato(platoId);
                 setPlatos(platos.filter(plato => plato.id !== platoId));
             } catch (error) {
                 console.error("Error al eliminar el plato:", error);
@@ -67,16 +65,13 @@ export default function Menu() {
         };
 
         if(platoAEditar){
-            const platoModificado = await actualizarPlato(platoAEditar.id, platoDto, user.token);
+            const platoModificado = await actualizarPlato(platoAEditar.id, platoDto);
             setPlatos(prev => prev.map(p => p.id === platoAEditar.id ? platoModificado : p));
         }else{
 
         console.log("USER:", user);
         console.log("TOKEN:", user?.token);
-        const platoCreado = await crearPlato(
-            platoDto,
-            user.token
-        );
+        const platoCreado = await crearPlato(platoDto);
 
         setPlatos(prev => [...prev, platoCreado]);
     }

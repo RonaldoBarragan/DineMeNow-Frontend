@@ -5,8 +5,7 @@ import { LuUsers } from "react-icons/lu";
 import { LuCircleCheckBig } from "react-icons/lu";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
-import { getListMesasRestaurant, crearMesaRestaurant, eliminarMesa, actualizarMesa } from "../../api/Gestion-Restaurant";
-import axios from "axios";
+import { actualizarMesa, crearMesaRestaurant, eliminarMesa, getListMesasRestaurant } from "../../api/Restaurant-Service";
 
 export default function Mesas() {
     const { user } = useAuth();
@@ -28,7 +27,7 @@ export default function Mesas() {
     
         const fetchMesas = async () => {
             try {
-                const data = await getListMesasRestaurant(user.id, user.token); // Usa el id de la acc del restaurante para obtener su NIT y luego las mesas
+                const data = await getListMesasRestaurant(user.id); // Usa el id de la acc del restaurante para obtener su NIT y luego las mesas
                 setMesas(data);
                 if(data.length > 0 && data[0].nitRestaurante) {
                     setRestauranteNit(data[0].nitRestaurante);// Asigna el NIT del restaurante a la variable de estado
@@ -70,7 +69,7 @@ export default function Mesas() {
                     nitRestaurante: nitActual
                 };
 
-                await crearMesaRestaurant(nuevaMesa, user.token);
+                await crearMesaRestaurant(nuevaMesa);
 
                 // Limpiar campos, cerrar modal y refrescar la tabla de inmediato
                 setNumMesa("");
@@ -104,7 +103,7 @@ export default function Mesas() {
                 nitRestaurante: mesaSeleccionada.nitRestaurante
             };
 
-            await actualizarMesa(mesaSeleccionada.id, mesaModificada, user.token);
+            await actualizarMesa(mesaSeleccionada.id, mesaModificada);
             setShowEditModal(false);
             fetchMesas();
         } catch (error) {
@@ -117,7 +116,7 @@ export default function Mesas() {
     const handleEliminarMesa = async (id, numMesa) => {
         if (window.confirm(`¿Estás seguro de que deseas eliminar la Mesa #${numMesa}?`)) {
             try {
-                await eliminarMesa(id, user.token);
+                await eliminarMesa(id);
                 fetchMesas(); // Refrescar la lista automáticamente
             } catch (error) {
                 console.error("Error al eliminar la mesa:", error);

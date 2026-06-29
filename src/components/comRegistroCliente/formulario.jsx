@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import { Card } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Card, Form, Button, Row, Col } from 'react-bootstrap';
 import './Formregistrocliente.css';
 import { AiOutlineUser } from "react-icons/ai";
 import { BsEnvelope } from "react-icons/bs";
 import { FiPhone } from "react-icons/fi";
 import { AiOutlineLock } from "react-icons/ai";
-import { registroUsuario } from '../../api/ClientRegister';
+import { registroUsuario } from '../../api/Client-Service';
 import { useNavigate } from 'react-router-dom';
 
 function Formregristrousu() {
@@ -37,7 +33,6 @@ function Formregristrousu() {
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
 
   // 🔄 Validación básica
   const validateForm = () => {
@@ -107,7 +102,6 @@ function Formregristrousu() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
-    setSuccessMessage('');
 
     // Valida el formulario
     const newErrors = validateForm();
@@ -124,26 +118,8 @@ function Formregristrousu() {
 
       // Llamar al servicio
       const response = await registroUsuario(formData);
-      // Redirigimos a la ruta de verificación pasando el correo "escondido" en el state
-      //navigate('/verificar-token', { state: { email: formData.correo } });
       console.log('✅ Registro exitoso:', response);
       navigate('/verificartoken', { state: { email: formData.correo } });
-      setSuccessMessage('¡Registro exitoso! Tu cuenta ha sido creada.');
-      
-
-      // Limpiar formulario
-      //setFormData({
-        //nombre: '',
-        //apellido: '',
-        //documento: { tipo: 'CC', numero: '' },
-        //direccion: { calle: '', numero: '', ciudad: '', codigoPostal: '', pais: '' },
-        //correo: '',
-        //telefono: '',
-        //user: '',
-        //password: '',
-        //passwordConfirm: '',
-        //foto: '',
-      //});
 
       // Redirigir o mostrar mensaje de éxito
       setTimeout(() => {
@@ -165,13 +141,6 @@ function Formregristrousu() {
     <Card className="cardForm">
       <Card.Body>
         <p className='pForm'>Crear Cuenta</p>
-
-        {/* Mensaje de éxito */}
-        {successMessage && (
-          <div className="alert alert-success" role="alert">
-            {successMessage}
-          </div>
-        )}
 
         {/* Error general */}
         {errors.submit && (

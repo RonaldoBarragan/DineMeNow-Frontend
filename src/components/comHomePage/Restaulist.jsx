@@ -4,8 +4,7 @@ import './estilos/Restaulist.css';
 import SessionRequiredModal from './SessionRequiredModal';
 import { Badge, Button, Card, Col, Container, Row } from 'react-bootstrap';
 import ReservaModal from '../comVistacliente/ReservaModal';
-import { obtenerMesas } from "../../api/MesasService";
-import { obtenerPlatos } from "../../api/PlatosService";
+import { obtenerMesas, obtenerPlatos } from '../../api/Client-Service';
 import { useAuth } from "../../context/AuthContext";
 
 // Componente de tarjeta individual
@@ -129,8 +128,8 @@ export default function Restaulist({
 
     try{
       const[mesas, menu] = await Promise.all([
-        obtenerMesas(restaurant.nit, user?.token),
-        obtenerPlatos(restaurant.nit, user?.token)
+        obtenerMesas(restaurant.nit),
+        obtenerPlatos(restaurant.nit)
       ]);
 
 

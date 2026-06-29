@@ -1,9 +1,8 @@
 import { Card, Table, Button, Badge, Spinner } from "react-bootstrap";
 import { Eye } from "react-bootstrap-icons";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { obtenerReservasPorNit } from "../../api/reservaRestauService";
 import { useAuth } from "../../context/AuthContext"; 
+import { getReservasRestaurant } from "../../api/Restaurant-Service";
 
 
 export default function Reservas() {
@@ -17,26 +16,8 @@ export default function Reservas() {
     useEffect(() => {
         const cargarDatos = async () => {
             try {
-                // 2. Validamos si el contexto ya tiene un usuario cargado con su token
-                if (!user || !user.token) {
-                    throw new Error("Usuario no autenticado");
-                }
-                
-                const config = {
-                    headers: { Authorization: `Bearer ${user.token}` }
-                };
-
-                // Primero obtenemos el NIT del restaurante usando el ID del usuario del Contexto
-                const { data: restaurante } = await axios.get(
-                    `http://localhost:8080/api/restaurantes/${user.id}`,
-                    config
-                );
-
-                // Solicitamos las reservas asociadas a dicho NIT
-                const datosReservas = await obtenerReservasPorNit(restaurante.nit, user.token);
+                const datosReservas = await getReservasRestaurant(user.id);
                 setReservas(datosReservas);
-                console.log("Restaurante:", restaurante);
-                console.log("NIT:", restaurante.nit);
                 setLoading(false);
             } catch (error) {
                 console.error("Error al cargar reservas:", error);
