@@ -2,8 +2,8 @@ import { Button, Card, Col, Form, Modal, Row } from "react-bootstrap";
 import "./estilos2/Style-Modal-Reserva.css";
 import { useEffect, useState } from "react";
 import { FiCalendar } from "react-icons/fi";
-// Importa tu servicio aquí (ajusta la ruta según tu proyecto)
-import { crearReserva } from "../../api/ReservaCrear";
+
+import { crearReserva } from "../../api/Client-Service";
 import { useAuth } from "../../context/AuthContext";
 
 export default function ReservaModal({ restaurant, mostrar, ocultar }) {
@@ -89,7 +89,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
 };
 
     try {
-      const resultado = await crearReserva(reservaParaEnviar, user?.token);
+      const resultado = await crearReserva(reservaParaEnviar);
       console.log("Reserva exitosa:", resultado);
       alert("¡Reserva creada con éxito!");
       ocultar(); // Cerramos el modal

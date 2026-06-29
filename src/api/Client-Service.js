@@ -1,7 +1,5 @@
 import api from "./axiosConfig"
 
-const API_URL = "http://localhost:8080/api/clientes";
-
 export const registroUsuario = async (data) => {
     const requestBody = {
         nombre: data.nombre,
@@ -32,20 +30,13 @@ export const registroUsuario = async (data) => {
     }
 };
 
-export const consultarPerfil = async (userId, token) => {
-    const res = await fetch(`${API_URL}/${userId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        //aqui usamos el token que recibimos
-        "Authorization": `Bearer ${token}` 
-      }
-    });
-    //verficar si la respuesta es correcta antes de convertir a json
-    if(!res.ok){
-      throw new Error(`Error ${res.status}: No autorizado`);
+export const consultarPerfil = async (userId) => {
+    try {
+        const { data } = await api.get(`/clientes/${userId}`);
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.mensaje || `Error: No autorizado`);
     }
-    return res.json();
 };
 
 //Consultar las mesas de un restaurant cuando se esta con perfil de cliente
@@ -65,5 +56,15 @@ export const obtenerPlatos = async (nit) => {
         return data;
     } catch (error) {
         throw new Error(error.response?.data?.mensaje || "Error obteniendo platos");
+    }
+};
+
+//Crear una reserva desde el perfil de cliente
+export const crearReserva = async (reservaData) => {
+    try {
+        const { data } = await api.post(`/reservas/CrearReservas`, reservaData);
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.mensaje || "Error al crear la reserva");
     }
 };

@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 import { useAuth } from "../../context/AuthContext";
 
-import { getListMesasRestaurant } from "../../api/Restaurant-Service";
-import { obtenerReservasPorNit } from "../../api/reservaRestauService";
+import { getListMesasRestaurant, getReservasRestaurant } from "../../api/Restaurant-Service";
+
 import Stat from "./Estadisticas";
 
 export default function PanelEstadisticas() {
@@ -20,54 +19,16 @@ export default function PanelEstadisticas() {
         const cargarDatos = async () => {
 
             try {
-
-                if (!user || !user.token) {
-                    return;
-                }
-
-                console.log("========== PANEL ==========");
-                console.log("USER:", user);
-
-                const config = {
-                    headers: {
-                        Authorization: `Bearer ${user.token}`
-                    }
-                };
-
-                // Obtener restaurante
-                const { data: restaurante } = await axios.get(
-                    `http://localhost:8080/api/restaurantes/${user.id}`,
-                    config
-                );
-
-                console.log("RESTAURANTE:", restaurante);
-                console.log("NIT:", restaurante.nit);
-
                 // Obtener mesas
                 const mesasData = await getListMesasRestaurant(user.id);
-
-                console.log("MESAS API:", mesasData);
-
                 setMesas(mesasData);
 
                 // Obtener reservas
-                const reservasData = await obtenerReservasPorNit(
-                    restaurante.nit,
-                    user.token
-                );
-
-                console.log("RESERVAS API:", reservasData);
-
+                const reservasData = await getReservasRestaurant(user.id);
                 setReservas(reservasData);
 
             } catch (error) {
-
                 console.error("ERROR PANEL:", error);
-
-                if (error.response) {
-                    console.log("STATUS:", error.response.status);
-                    console.log("DATA:", error.response.data);
-                }
 
             } finally {
                 setLoading(false);
@@ -80,14 +41,6 @@ export default function PanelEstadisticas() {
         }
 
     }, [user]);
-
-    useEffect(() => {
-        console.log("ESTADO MESAS:", mesas);
-    }, [mesas]);
-
-    useEffect(() => {
-        console.log("ESTADO RESERVAS:", reservas);
-    }, [reservas]);
 
     if (loading) {
         return (

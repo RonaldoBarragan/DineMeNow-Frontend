@@ -83,3 +83,10 @@ export const RegistrarRestaurante = async (datos) => {
         throw new Error(mensaje);
     }
 };
+
+//Obtener reservas de un restaurante por su NIT, endpoint anidado
+export const getReservasRestaurant = async (idAcc) => {
+    const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
+    const { data: reservas } = await api.get(`/reservas/restaurante/${encodeURIComponent(restaurante.nit)}`);
+    return reservas;
+}

@@ -27,7 +27,7 @@ const UserProfile = () => {
     }
     const cargarPerfil = async () => {
       try {
-        const data = await consultarPerfil(user.id, user.token);
+        const data = await consultarPerfil(user.id);
         setPerfilData(data);
       } catch (error) {
         console.error("Error al cargar perfil:", error);

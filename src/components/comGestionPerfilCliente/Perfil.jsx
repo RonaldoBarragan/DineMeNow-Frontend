@@ -14,7 +14,7 @@ export default function PerfilCliente() {
     
     const cargarPerfil = async () => {
       try {
-        const data = await consultarPerfil(user.id, user.token);  // ← usa el id del contexto
+        const data = await consultarPerfil(user.id);  // ← usa el id del contexto
         
         setPerfilData(data);
   
