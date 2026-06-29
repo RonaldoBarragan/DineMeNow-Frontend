@@ -5,18 +5,56 @@ const RESTAURANT_URL = "/restaurantes"; //URL para restaurantes
 // Obtener la lista de platos de un restaurante por su NIT, endpoint anidado
 export const getListPlatosRestaurant = async (idAcc) => {
 
-  const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
-  const { data: platos } = await api.get(`/platos/listarPlatos/${encodeURIComponent(restaurante.nit)}`);
+    const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
+    const { data: platos } = await api.get(`/platos/listarPlatos/${encodeURIComponent(restaurante.nit)}`);
   
   return platos;
 };
 
+// 2. Guardar un nuevo plato en MongoDB
+export const crearPlato = async (platoData) => {
+    const { data } = await api.post(`/platos/crearPlato`, platoData);
+    return data;
+};
+
+// 3. Eliminar un plato por su ID 
+export const eliminarPlato = async (platoId) => {
+    await api.delete(`/platos/borrarPlato/${platoId}`);
+    return true;
+};
+
+// 4. actualizar un plato
+export const actualizarPlato = async (platoId, platoData) => {
+    // Hace la petición PUT al backend enviando el ID en la URL y el DTO modificado en el cuerpo
+    const { data } = await api.put(`/platos/actualizarPlato/${platoId}`, platoData);
+    return data;
+};
+
 export const getListMesasRestaurant = async (idAcc) => {
 
-  const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
-  const { data: mesas } = await api.get(`/mesas/restaurante/${encodeURIComponent(restaurante.nit)}`);
+    const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
+    const { data: mesas } = await api.get(`/mesas/restaurante/${encodeURIComponent(restaurante.nit)}`);
   
   return mesas;
+};
+
+// 2. Guardar una nueva mesa en MongoDB
+export const crearMesaRestaurant = async (mesaData) => {
+    const { data } = await api.post(`/mesas/crearMesa`, mesaData);
+    return data;
+};
+
+// 3. Eliminar una mesa por su ID 
+export const eliminarMesa = async (mesaId) => {
+    await api.delete(`/mesas/borrarMesa/${mesaId}`);
+    return true;
+};
+
+// 4. actualizar una mesa
+export const actualizarMesa = async (mesaId, mesaData) => {
+    // Hace la petición PUT al backend enviando el ID en la URL y el DTO modificado en el cuerpo
+    const { data } = await api.put(`/mesas/actualizarMesa/${mesaId}`, mesaData);
+    return data;
 };
 
 //Actualizar la contraseña temporal de un restaurante
