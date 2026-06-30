@@ -5,7 +5,7 @@ import { LuUsers } from "react-icons/lu";
 import { LuCircleCheckBig } from "react-icons/lu";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
-import { actualizarMesa, crearMesaRestaurant, eliminarMesa, getListMesasRestaurant } from "../../api/Restaurant-Service";
+import { actualizarMesa, crearMesaRestaurant, eliminarMesa, getListMesasRestaurant, getRestaurantByIdAcc } from "../../api/Restaurant-Service";
 
 export default function Mesas() {
     const { user } = useAuth();
@@ -50,16 +50,10 @@ export default function Mesas() {
                 let nitActual = restauranteNit;
 
                 if (!nitActual){
-
-                    const config={
-                        headers:{
-                            Authorization: `Bearer ${user.token}`,
-                        }
-                    };
                     // Hace un llamado al endpoint de restaurante para traer el NIT de forma segura
-                    const {data: restaurante} = await axios.get(`http://localhost:8080/api/restaurantes/${user.id}`, config);
-                    nitActual = restaurante.nit;
-                    setRestauranteNit(restaurante.nit);
+                    const data = await getRestaurantByIdAcc(user.id);
+                    nitActual = data.nit;
+                    setRestauranteNit(data.nit);
                 }
 
                 const nuevaMesa = {
