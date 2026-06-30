@@ -3,10 +3,9 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { HiOutlineCamera } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import { actualizarPlato, crearPlato, eliminarPlato, getListPlatosRestaurant } from "../../api/Restaurant-Service";
+import { actualizarPlato, crearPlato, eliminarPlato, getListPlatosRestaurant, getRestaurantByIdAcc } from "../../api/Restaurant-Service";
 import { useAuth } from "../../context/AuthContext";
 import AgregarPlato from "./AgregarPLatos"; 
-import axios from "axios";
 
 export default function Menu() {
     const [platos, setPlatos] = useState([]);
@@ -44,19 +43,10 @@ export default function Menu() {
    const handlePlatoAgregado = async (nuevoPlato) => {
     try {
 
-        const config = {
-            headers: {
-                Authorization: `Bearer ${user.token}`
-            }
-        };
-
-        const { data: restaurante } = await axios.get(
-            `http://localhost:8080/api/restaurantes/${user.id}`,
-            config
-        );
+        const data = await getRestaurantByIdAcc(user.id);
 
         const platoDto = {
-            nitRestaurante: restaurante.nit,
+            nitRestaurante: data.nit,
             nomPlato: nuevoPlato.nomPlato,
             descripcion: nuevoPlato.descripcion,
             precio: nuevoPlato.precio,
@@ -69,8 +59,6 @@ export default function Menu() {
             setPlatos(prev => prev.map(p => p.id === platoAEditar.id ? platoModificado : p));
         }else{
 
-        console.log("USER:", user);
-        console.log("TOKEN:", user?.token);
         const platoCreado = await crearPlato(platoDto);
 
         setPlatos(prev => [...prev, platoCreado]);

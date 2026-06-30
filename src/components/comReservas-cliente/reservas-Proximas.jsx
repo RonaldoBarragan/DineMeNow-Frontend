@@ -8,7 +8,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { LuChefHat } from "react-icons/lu";
 import { use, useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { ObtenerReservasCliente } from "../../api/ReservaCrear";
+import { getMyReservas } from '../../api/Client-Service';
 
 function ReservasProximas() {
 
@@ -21,10 +21,7 @@ function ReservasProximas() {
   useEffect(() => {
   const cargarReservas = async () => {
     try{
-      const data = await ObtenerReservasCliente(
-        user.nombre,
-        user.token
-      );
+      const data = await getMyReservas();
 
       console.log("Reservas cliente", data);
       setReservas(data);
@@ -307,7 +304,7 @@ function ReservasProximas() {
 <Card.Body>
 
 <Card.Title className="card-titulo">
-  {reserva.nombreRestaurante}
+  {reserva.nitRestaurante}
 </Card.Title>
 
 <div className="info-desc">

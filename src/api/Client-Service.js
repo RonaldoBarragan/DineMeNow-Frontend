@@ -68,3 +68,9 @@ export const crearReserva = async (reservaData) => {
         throw new Error(error.response?.data?.mensaje || "Error al crear la reserva");
     }
 };
+
+//Consultar las reservas de un cliente
+export const getMyReservas = async () => {
+    const { data } = await api.get("/reservas/mis-reservas");
+    return data;
+}

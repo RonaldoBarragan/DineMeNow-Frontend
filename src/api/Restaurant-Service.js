@@ -90,3 +90,9 @@ export const getReservasRestaurant = async (idAcc) => {
     const { data: reservas } = await api.get(`/reservas/restaurante/${encodeURIComponent(restaurante.nit)}`);
     return reservas;
 }
+
+//Consultar informacion del restaurante con su id de cuenta
+export const getRestaurantByIdAcc = async (idAcc) => {
+    const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
+    return restaurante;
+}
