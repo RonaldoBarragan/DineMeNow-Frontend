@@ -2,11 +2,11 @@ import React, {use, useState} from "react";
 import { Container, Card, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'
 import "../../design/global.css";
-import { ActualizarContraTempResta } from "../../api/ActualizarContraTempResta";
+import { ActualizarContraTempResta } from "../../api/Restaurant-Service";
 import { useAuth } from "../../context/AuthContext";
 
 export default function CambioContraObligatoria(){
-  const {user, updateUser} = useAuth();
+  const {user, updateUser, isLoading} = useAuth();
   const [passwords, setPasswords] = useState({ actual:'', nueva: '', confirmar: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -14,6 +14,13 @@ export default function CambioContraObligatoria(){
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Si no hay usuario, no intentes leer .id
+    if (!user) {
+        setError("No se encontró una sesión activa. Intenta iniciar sesión de nuevo.");
+        return;
+    }
+
     if(passwords.nueva !== passwords.confirmar){
       return setError("Las contraseñas no coinciden");
     }
@@ -26,7 +33,6 @@ export default function CambioContraObligatoria(){
       //llamar a la api con los datos correctos
       await ActualizarContraTempResta(
         user.id,
-        user.token,
         passwords.actual,
         passwords.nueva
       );
@@ -41,6 +47,15 @@ export default function CambioContraObligatoria(){
       setLoading(false);
     }
   };
+
+  // Si el contexto aún está cargando el usuario del localStorage, mostramos un spinner o texto
+  if (isLoading || !user) {
+      return (
+        <Container>
+      <p>Cargando datos del usuario</p>
+      </Container>
+      );
+  }
 
   return(
     <Container className="d-flex align-items-center justify-content-center" style={{minHeight: '100vh'}}>

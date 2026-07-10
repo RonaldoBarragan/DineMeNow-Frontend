@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Person, Pencil, Envelope, Telephone, GeoAlt, CameraFill } from 'react-bootstrap-icons';
 import './style.css';
-import { consultarPerfil } from '../../api/ClientRegister'; // Asegúrate de tener esta función en tu servicio
+import { consultarPerfil } from '../../api/Client-Service'; // Asegúrate de tener esta función en tu servicio
 import { useEffect, useState} from 'react';
 import { useAuth } from '../../context/AuthContext';  // ← esto falta
 
@@ -14,7 +14,7 @@ export default function PerfilCliente() {
     
     const cargarPerfil = async () => {
       try {
-        const data = await consultarPerfil(user.id, user.token);  // ← usa el id del contexto
+        const data = await consultarPerfil(user.id);  // ← usa el id del contexto
         
         setPerfilData(data);
   
@@ -31,8 +31,8 @@ export default function PerfilCliente() {
     : user?.nombre?.[0]?.toUpperCase() || "JP";//plan b
 
   return (
-    <Container className="py-3" >
-      <Row>
+    <Container className="p-0" >
+      <Row className="p-0">
         {/* COLUMNA IZQUIERDA: INFORMACIÓN PERSONAL */}
         <Col md={7}>
           <Card className="cardGestionPerfilCliente p-4 mb-4">

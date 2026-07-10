@@ -1,27 +1,103 @@
+/*No tocar*/
 .margen-provi {
-  margin-top: 5rem !important;
+    margin-top: 5rem !important;
+}
+/**/
+
+.container-principal-propio {
+    max-width: 85%;
+    min-height: 100vh;
 }
 
-.letra-size-tabla {
-  font-size: 0.9rem;
+.fs-propio {
+    font-size: 15px;
 }
 
-.per .nav-pills .nav-link {
-  color: #000; /* Color de texto negro */
+.style-button-AddElement {
+    font-size: 15px !important;
+    height: max-content;
+    padding: 5px;
 }
 
-.per .nav-pills .nav-link.active {
-  background-color: #ffffff; /* Fondo gris para el tab activo */
-  color: #000;
-  border-radius: var(--bs-border-radius-pill) !important;
+/*Color icons*/
+.icon-color-panel {
+    color: #ff6900;
 }
 
-.per .nav-item {
-  background-color: transparent !important;
-  padding: 4px;
+.icon-color-reservas {
+    color: #2b7fff;
 }
 
-.fondo-tab {
-  background-color: rgb(216, 215, 215);
-  height: 100%
+.icon-color-mesas {
+    color: #00c950;
+}
+
+.icon-color-confirms {
+    color: #ff6900;
+}
+
+.icon-color-reserva-pending {
+    color: #f0b100;
+}
+
+.icon-color-mesas-total {
+    color: #2b7fff;
+}
+
+.icon-color-mesas-available {
+    color: #00c950;
+}
+
+.icon-color-mesas-capacity {
+    color: #ff6900;
+}
+
+.icon-bg-camera-color {
+    color: #99a1af;
+    background-color: #f3f4f6;
+}
+
+/*Badges*/
+.badge-table-category {
+    background-color: transparent !important;
+    color: #0a0a0a;
+    border: 1px solid #c9cacc;
+}
+
+.badge-table-positivo-state {
+    background-color: #d1ffe1 !important;
+    color: #026630;
+}
+
+.badge-table-negativo-state {
+    background-color: #ffdbdb !important;
+    color: #991b1b;
+}
+/*Estilo tabs*/
+.tab-restaurant {
+    background-color: #ececf0;
+}
+
+.tab-restaurant li {
+    background-color: transparent;
+    padding: 3px;
+}
+
+.tab-restaurant .nav-link {
+    color: #000;
+    border-radius: var(--bs-border-radius-pill) !important;
+    padding-block: calc(var(--spacing)*1);
+    font-size: 15px;
+    padding: 3px;
+}
+
+.tab-restaurant .nav-link.active {
+    background-color: #ffffff;
+    color: #000;
+    border-radius: var(--bs-border-radius-pill) !important;
+}
+
+.tab-restaurant .nav-item:hover { /*Quitar hover*/
+    background-color: #ececf0;
+    border-radius: var(--bs-border-radius-pill);
 }

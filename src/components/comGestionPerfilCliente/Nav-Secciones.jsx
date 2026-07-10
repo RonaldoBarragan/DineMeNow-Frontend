@@ -6,22 +6,22 @@ import CuentaPerfilCliente from "./Cuenta";
 
 function NavSeccionesGestionPerfil() {
   return (
-    <><Container className="per">
-                <Tabs defaultActiveKey="Perfil" className="mb-3 fondo-tab rounded-pill" variant="pills" fill>
-                    <Tab eventKey="Perfil" title="Perfil">
-                       <PerfilCliente />
-                    </Tab>
-                    <Tab eventKey="Seguridad" title="Seguridad">
-                       <SeguridadPerfilCliente/>
-                    </Tab>
-                    <Tab eventKey="Notificaciones" title="Notificaciones">
-                        <NotificacionesPerfilCliente/>
-                    </Tab>
-                    <Tab eventKey="Cuenta" title="Cuenta">
-                        <CuentaPerfilCliente/>
-                    </Tab>
-                </Tabs>
-            </Container></>
+    <>
+    <Tabs defaultActiveKey="Perfil" className="mb-3 tab-restaurant rounded-pill" variant="pills" fill>
+        <Tab eventKey="Perfil" title="Perfil">
+            <PerfilCliente />
+        </Tab>
+        <Tab eventKey="Seguridad" title="Seguridad">
+            <SeguridadPerfilCliente/>
+        </Tab>
+        <Tab eventKey="Notificaciones" title="Notificaciones">
+            <NotificacionesPerfilCliente/>
+        </Tab>
+        <Tab eventKey="Cuenta" title="Cuenta">
+            <CuentaPerfilCliente/>
+        </Tab>
+    </Tabs>
+    </>
   );
 }
 

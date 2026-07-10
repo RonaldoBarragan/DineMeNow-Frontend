@@ -2,8 +2,8 @@ import { Button, Card, Col, Form, Modal, Row } from "react-bootstrap";
 import "./estilos2/Style-Modal-Reserva.css";
 import { useEffect, useState } from "react";
 import { FiCalendar } from "react-icons/fi";
-// Importa tu servicio aquí (ajusta la ruta según tu proyecto)
-import { crearReserva } from "../../api/ReservaCrear";
+
+import { crearReserva } from "../../api/Client-Service";
 import { useAuth } from "../../context/AuthContext";
 
 export default function ReservaModal({ restaurant, mostrar, ocultar }) {
@@ -67,20 +67,29 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
 
     // Construimos el objeto EXACTO que espera tu ReservaDto en Spring Boot
     const reservaParaEnviar = {
-      //agregacion del nit y otros
-      nitRestaurante: restaurant?.nit || "",
-      nombreCliente: formData.nombreCliente,
-      nombrePlatos: platosSeleccionados
-        .map((p) => `${p.cantidad}x ${p.nombre}`),
-      numeroMesa: mesaSeleccionada.id.toString(),
-      fecha: formData.fecha, // Formato YYYY-MM-DD del input date
-      hora: formData.hora ? `${formData.hora}:00` : "", // Agregamos :00 para cumplir con LocalTime (HH:mm:ss) 
-      descripcion: formData.descripcion,
-      estado: "PENDIENTE",
-    };
+  nitRestaurante: restaurant?.nit,
+  nombreCliente: formData.nombreCliente,
+  telefonoCliente: formData.telefono,
+
+  nombrePlatos: platosSeleccionados.map(
+    (p) => `${p.cantidad}x ${p.nomPlato}`
+  ),
+
+  numeroMesa: mesaSeleccionada.numMesa,
+
+  fecha: formData.fecha,
+
+  hora: formData.hora
+    ? `${formData.hora}:00`
+    : "",
+
+  descripcion: formData.descripcion,
+
+  estado: "PENDIENTE",
+};
 
     try {
-      const resultado = await crearReserva(reservaParaEnviar, user?.token);
+      const resultado = await crearReserva(reservaParaEnviar);
       console.log("Reserva exitosa:", resultado);
       alert("¡Reserva creada con éxito!");
       ocultar(); // Cerramos el modal
@@ -92,10 +101,10 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
   // Funciones de platos (mantengo las tuyas)
   const agregarPlato = (plato) => {
     setPlatosSeleccionados((prev) => {
-      const existe = prev.find((p) => p.nombre === plato.nombre);
+      const existe = prev.find((p) => p.nomPlato === plato.nomPlato);
       if (existe) {
         return prev.map((p) =>
-          p.nombre === plato.nombre ? { ...p, cantidad: p.cantidad + 1 } : p,
+          p.nomPlato === plato.nomPlato ? { ...p, cantidad: p.cantidad + 1 } : p,
         );
       }
       return [...prev, { ...plato, cantidad: 1 }];
@@ -105,7 +114,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
   const cambiarCantidad = (nombre, valor) => {
     setPlatosSeleccionados((prev) =>
       prev.map((p) =>
-        p.nombre === nombre
+        p.nomPlato === nombre
           ? { ...p, cantidad: Math.max(1, p.cantidad + valor) }
           : p,
       ),
@@ -113,13 +122,18 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
   };
 
   const eliminarPlato = (nombre) => {
-    setPlatosSeleccionados((prev) => prev.filter((p) => p.nombre !== nombre));
+    setPlatosSeleccionados((prev) => prev.filter((p) => p.nomPlato !== nombre));
   };
+
+  useEffect(() => {
+    console.log("Restaurant recibido");
+    console.log(restaurant);
+}, [restaurant]);
 
   return (
     <Modal size="lg" centered show={mostrar} onHide={ocultar}>
       <Modal.Header closeButton  >
-        <Modal.Title>Reservar en {restaurant?.name}</Modal.Title>
+        <Modal.Title>Reservar en {restaurant?.nombre}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Row className="g-5">
@@ -153,12 +167,12 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
                   </Card.Title>
                   {platosSeleccionados.map((plato, idx) => (
                     <div key={idx} className="d-flex justify-content-between align-items-center mb-3">
-                      <span>{plato.nombre} <small className="text-success">${plato.precio.toLocaleString()}</small></span>
+                      <span>{plato.nomPlato} <small className="text-success">${plato.precio.toLocaleString()}</small></span>
                       <div className="d-flex align-items-center gap-2">                
-                        <Button variant="outline-secondary" size="sm" onClick={() => cambiarCantidad(plato.nombre, -1)}>-</Button>
+                        <Button variant="outline-secondary" size="sm" onClick={() => cambiarCantidad(plato.nomPlato, -1)}>-</Button>
                         <span>{plato.cantidad}</span>
-                        <Button variant="outline-secondary" size="sm" onClick={() => cambiarCantidad(plato.nombre, 1)}>+</Button>
-                        <Button variant="outline-danger" size="sm" onClick={() => eliminarPlato(plato.nombre)}>x</Button>
+                        <Button variant="outline-secondary" size="sm" onClick={() => cambiarCantidad(plato.nomPlato, 1)}>+</Button>
+                        <Button variant="outline-danger" size="sm" onClick={() => eliminarPlato(plato.nomPlato)}>x</Button>
                       </div>
                     </div>
                     
@@ -181,10 +195,10 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
                         onClick={() => setMesaSeleccionada(mesa)}
                       >
                         <div className="mesa-nombre fw-semibold">
-                          Mesa {mesa.id}
+                          Mesa {mesa.numMesa}
                         </div>
                         <small className="text-muted">
-                          {mesa.personas} personas • {mesa.tipo}
+                          Capacidad:{mesa.capacidad} personas
                         </small>
                       </Card>
                     </Col>
@@ -237,7 +251,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
               {restaurant?.menu?.map((plato, idx) => (
                 <Card key={idx} className="mb-3">
                   <Card.Body>
-                    <Card.Title className="fw-bold fs-6">{plato.nombre}</Card.Title>
+                    <Card.Title className="fw-bold fs-6">{plato.nomPlato}</Card.Title>
                     <Card.Text className="text-left small mb-1">{plato.descripcion}</Card.Text>
                     <div className="d-flex justify-content-between align-items-center">
                       <span className="color-letra-precio">${plato.precio.toLocaleString()}</span>
@@ -246,8 +260,8 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
                         className="buttonNaranjaDegrade size-letra-propio"
                         onClick={() => agregarPlato(plato)}
                       >
-                        {platosSeleccionados.find(p => p.nombre === plato.nombre) 
-                        ? <><span>{platosSeleccionados.find(p => p.nombre === plato.nombre).cantidad}</span> <span>+</span></> 
+                        {platosSeleccionados.find(p => p.nomPlato === plato.nomPlato) 
+                        ? <><span>{platosSeleccionados.find(p => p.nomPlato === plato.nomPlato).cantidad}</span> <span>+</span></> 
                         : "Agregar"}
                       </Button>
                     </div>

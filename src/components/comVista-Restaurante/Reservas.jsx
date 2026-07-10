@@ -1,86 +1,92 @@
-import { Card, Table, Button, Badge } from "react-bootstrap";
+import { Card, Table, Button, Badge, Spinner } from "react-bootstrap";
 import { Eye } from "react-bootstrap-icons";
-import { LuCircleCheckBig } from "react-icons/lu";
-import { IoIosCloseCircleOutline } from "react-icons/io";
-import './style.css';
+import { useState, useEffect } from "react";
+import { useAuth } from "../../context/AuthContext"; 
+import { getReservasRestaurant } from "../../api/Restaurant-Service";
+
 
 export default function Reservas() {
+    // 1. Extraemos directamente el objeto user global del Contexto
+    const { user } = useAuth(); 
+    
+    const [reservas, setReservas] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const cargarDatos = async () => {
+            try {
+                const datosReservas = await getReservasRestaurant(user.id);
+                setReservas(datosReservas);
+                setLoading(false);
+            } catch (error) {
+                console.error("Error al cargar reservas:", error);
+                setError(error.message || "Error desconocido");
+                setLoading(false);
+            }
+        };
+
+        // Solo intentamos cargar datos si el contexto terminó de inicializarse
+        if (user) {
+            cargarDatos();
+        }
+    }, [user]); 
+
+    const renderEstadoBadge = (estado) => {
+        switch (estado?.toUpperCase()) {
+            case "CONFIRMADA": return <Badge bg="success" pill>Confirmada</Badge>;
+            case "PENDIENTE": return <Badge bg="warning" text="dark" pill>Pendiente</Badge>;
+            case "CANCELADA": return <Badge bg="danger" pill>Cancelada</Badge>;
+            default: return <Badge bg="secondary" pill>{estado || "Desconocido"}</Badge>;
+        }
+    };
+
+    if (loading) return <div className="text-center my-4"><Spinner animation="border" variant="warning" /></div>;
+    if (error) return <div className="alert alert-danger text-center my-3">{error}</div>;
+
     return (
         <>
-        <Card.Title className="fw-bold d-flex justify-content-between">Reservas Recientes <Button size="sm" className="buttonNaranjaDegrade"><span className="me-2">+</span> Nueva reserva</Button></Card.Title>
-        {/* Tabla */}
-        <Card.Body>
-            <Table hover>
-                <thead>
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Personas</th>
-                        <th>Estado</th>
-                        <th>Solicitudes Especiales</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody className="align-middle letra-size-tabla">
-                    {/* FILA 1 */}
-                    <tr>
-                        <td>Ana Rodríguez<br /><small className="text-muted">+57 300 123 4567</small></td>
-                        <td>2025-08-27</td>
-                        <td>19:30</td>
-                        <td>4</td>
-                        <td><Badge bg="success" pill>Confirmada</Badge></td>
-                        <td>Mesa cerca de la ventana</td>
-                        <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2"><Eye size={15} /></Button>
-                        </td>
-                    </tr>
-
-                    {/* FILA 2 */}
-                    <tr>
-                        <td>Carlos Mendoza<br /><small className="text-muted">+57 301 987 6543</small></td>
-                        <td>2025-08-27</td>
-                        <td>20:00</td>
-                        <td>2</td>
-                        <td><Badge bg="warning" text="dark" pill>Pendiente</Badge></td>
-                        <td>Celebración de aniversario</td>
-                        <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2"><Eye size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2"><LuCircleCheckBig size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm"><IoIosCloseCircleOutline size={17} /></Button>
-                        </td>
-                    </tr>
-
-                    {/* FILA 3 */}
-                    <tr>
-                        <td>Sofía García<br /><small className="text-muted">+57 302 456 7890</small></td>
-                        <td>2025-08-27</td>
-                        <td>18:00</td>
-                        <td>6</td>
-                        <td><Badge bg="success" pill>Confirmada</Badge></td>
-                        <td>Ninguna</td>
-                        <td>
-                        <Button variant="outline-secondary" size="sm"><Eye size={15} /></Button>
-                        </td>
-                    </tr>
-
-                    {/* FILA 4 */}
-                    <tr>
-                        <td>Miguel Torres<br /><small className="text-muted">+57 305 234 5678</small></td>
-                        <td>2025-08-28</td>
-                        <td>19:00</td>
-                        <td>3</td>
-                        <td><Badge bg="warning" text="dark" pill>Pendiente</Badge></td>
-                        <td>Sin gluten</td>
-                        <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2"><Eye size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2"><LuCircleCheckBig size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm"><IoIosCloseCircleOutline size={17} /></Button>
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
+        <Card.Title className="fw-bold m-0 mb-3">Reservas Recientes</Card.Title>
+        <Card.Body className="px-0">
+            {reservas.length === 0 ? (
+                <div className="text-center py-4 text-muted">No hay reservas registradas.</div>
+            ) : (
+                <Table hover responsive>
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Personas</th>
+                            <th>Estado</th>
+                            <th>Solicitudes Especiales</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody className="align-middle letra-size-tabla">
+                        {reservas.map((reserva) => (
+                            <tr key={reserva.id || reserva.idReserva}>
+                                <td>
+                                    {reserva.nombreCliente || "Cliente Anónimo"}
+                                    <br />
+                                    
+                                </td>
+                                <td>{reserva.fecha}</td>
+                                <td>{reserva.hora}</td>
+                                <td>{reserva.personas || reserva.numPersonas || 4}</td>
+                                <td>{renderEstadoBadge(reserva.estado)}</td>
+                                <td>{reserva.descripcion || "Ninguna"}</td>
+                                <td>
+                                    <Button variant="outline-secondary" size="sm" className="me-2">
+                                        <Eye size={15} />
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            )}
         </Card.Body>
         </>
-    )
+    );
 }
