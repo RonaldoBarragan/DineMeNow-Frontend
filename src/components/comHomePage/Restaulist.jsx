@@ -4,10 +4,13 @@ import './estilos/Restaulist.css';
 import SessionRequiredModal from './SessionRequiredModal';
 import { Badge, Button, Card, Col, Container, Row } from 'react-bootstrap';
 import ReservaModal from '../comVistacliente/ReservaModal';
+import { obtenerMesas, obtenerPlatos } from '../../api/Client-Service';
+import { useAuth } from "../../context/AuthContext";
 
 // Componente de tarjeta individual
 function RestaurantCard({ name, image, rating, zone, distance, cuisines, onClick }) {
   const [isFavorite, setIsFavorite] = useState(false);
+ 
 
   return (
     <Card className="restaurant-card h-100"
@@ -76,12 +79,11 @@ function RestaurantCard({ name, image, rating, zone, distance, cuisines, onClick
 // Componente principal de lista
 export default function Restaulist({
   showDefaultTitle = true,
-  isAuthenticated = false,
-  onLoadData // 1. AGREGADO: Para que no de error de referencia
-}) {
+  onLoadData
+  }) {
+    const { user } = useAuth();
+    const isAuthenticated = !!user;
 
-  // 2. Mantenemos tus estáticos aquí
-  
   // Estados
   const [listaRestaurantes, setListaRestaurantes] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -100,10 +102,7 @@ export default function Restaulist({
           image: r.foto || "https://acortar.link/PnN8Ef",
           rating: "4.9",
           zone: "Bogotá",
-          distance: "Cerca de ti",
-          mesas: r.mesas || [{id: 1, personas:4, tipo:"General"}],
-          menu: r.menu || [{ nombre: "Combo Especial", precio: 25000, descripcion: "(descripcion general del plato)" },
-                          { nombre: "Bebida Grande", precio: 5000, descripcion: "(descripcion general del plato)" }], //Desc provisional estatica
+          distance: "Cerca de ti" 
         }));
 
         // 3. MEZCLAMOS: Estáticos + Datos del Backend
@@ -121,14 +120,38 @@ export default function Restaulist({
       });
   }, []);
 
-  const handleRestaurantClick = (restaurant) => {
-    setSelectedRestaurant(restaurant);
+  const handleRestaurantClick = async (restaurant) => {
     if (!isAuthenticated) {
       setShowModal(true);
-    } else {
-      setMostrarModal(true);
+      return;
     }
-  };
+
+    try{
+      const[mesas, menu] = await Promise.all([
+        obtenerMesas(restaurant.nit),
+        obtenerPlatos(restaurant.nit)
+      ]);
+
+
+      const restauranteCompleto = {
+        ...restaurant,
+        mesas,
+        menu
+      };
+
+      setSelectedRestaurant(restauranteCompleto);
+
+      setMostrarModal(true);
+    
+  }catch(error){
+    console.error(error);
+
+        alert("No fue posible cargar la información del restaurante.");
+
+  }
+};
+
+
 
   //if (cargando) return <Container className="text-center my-5"><h3>Cargando sabores...</h3></Container>;
 
