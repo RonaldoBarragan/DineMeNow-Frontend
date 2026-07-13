@@ -15,6 +15,7 @@ import AdminP_Panel from "../pages/AdminP-Panel";
 import ReservasCliente from "../pages/Reservas-Cliente";
 import ProtectedRoute from "./ProtectedRoute";
 import ActualizarContraRestau from "../pages/ActualizarContraRestau";
+import Perfil_Mesero from "../pages/Gestion-Perfil-Mesero";
 
 
 
@@ -85,6 +86,14 @@ export const AppRoutes = () => {
           <ProtectedRoute role="admin">
             <AdminP_Panel />
           </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/mesero/perfil"
+        element={
+          
+            <Perfil_Mesero />
+          
         }
       />
       <Route path="/*" element={<Navigate to="/" />} />
