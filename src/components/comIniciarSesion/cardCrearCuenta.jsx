@@ -11,7 +11,7 @@ function CardCrearCuenta() {
                 </p>
                 <div className="d-flex justify-content-center mb-1">
                 <Button className="buttonBlancoFGris w-100"  
-                as={Link} to="/crear-cuenta" size="sm" >
+                as={Link} to="/crearcuenta" size="sm" >
                 Crear Cuenta
                 </Button>
                 </div>

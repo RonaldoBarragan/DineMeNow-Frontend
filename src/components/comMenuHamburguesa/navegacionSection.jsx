@@ -76,12 +76,20 @@ function NavigationSection() {
       )}
 
       {isEmpleadoView && (
+        <>
         <li>
           <NavLink to="/mesero/panel" className="nav-item">
             <BsGear size={20} className="nav-icon" />
             <span>Panel de mesero</span>
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/mesero/perfil" className="nav-item">
+            <BiUser size={20} className="nav-icon" />
+            <span>Mi perfil</span>
+          </NavLink>
+        </li>
+        </>
       )}
 
       {isAdminView && (
