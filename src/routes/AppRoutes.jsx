@@ -91,9 +91,9 @@ export const AppRoutes = () => {
       <Route
         path="/mesero/perfil"
         element={
-          
+          <ProtectedRoute role="mesero">
             <Perfil_Mesero />
-          
+          </ProtectedRoute>
         }
       />
       <Route path="/*" element={<Navigate to="/" />} />

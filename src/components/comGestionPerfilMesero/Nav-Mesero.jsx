@@ -1,6 +1,7 @@
 import { Tab, Tabs } from "react-bootstrap";
 import Profile_Form from "./Section-Profile-Form";
 import Profile_Foto from "./Section-Profile-Foto";
+import Security_Pass from "./Section-Security-Pass";
 
 export default function Nav_Mesero() {
     return (
@@ -11,7 +12,7 @@ export default function Nav_Mesero() {
                 <Profile_Form />
             </Tab>
             <Tab eventKey="Segurity" title="Seguridad">
-                v
+                <Security_Pass />
             </Tab>
         </Tabs>        
         </>
