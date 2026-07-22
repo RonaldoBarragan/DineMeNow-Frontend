@@ -51,6 +51,7 @@ function App() {
     "/cliente/reservas",
     "/actualizar-contraresta",
     "/gestionempleadosrestaurante"
+    "/mesero/perfil"
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 

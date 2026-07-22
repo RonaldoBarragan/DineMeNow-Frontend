@@ -3,8 +3,9 @@ import Form_Restaurante from "../components/comRegistro-Restaurantes/form-info-r
 import Form_Info_Operativa from "../components/comRegistro-Restaurantes/form-info-operativa";
 import Form_Info_Documentos from "../components/comRegistro-Restaurantes/form-info-documentacion";
 import {RegistrarRestaurante} from "../api/Restaurant-Service";// Importa la función para registrar el restaurante
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import '../components/comRegistro-Restaurantes/page-style.css';
+import { Link } from "react-router-dom";
 
 export default function RegistroCompleto() {
     //datos igual al dto
@@ -131,9 +132,9 @@ export default function RegistroCompleto() {
         />
 
         <div className="d-flex justify-content-center gap-3 mt-5 mb-5">
-             <button type="button" className="btn btn-secondary px-4" href="/">
+             <Button as={Link} to="/" className="btn btn-secondary px-4">
              Cancelar
-             </button>
+             </Button>
 
             <button type="submit" className="px-4 buttonNaranjaDegrade">
                 Enviar Solicitud
