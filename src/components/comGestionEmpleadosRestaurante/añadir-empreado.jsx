@@ -8,7 +8,12 @@ import { FiPhone } from "react-icons/fi";
 import { FiBriefcase } from "react-icons/fi";
 import { useState } from 'react';
 function Añadirempreado (){
+    const [correo, setCorreo] = useState ("")
     const [mostrarCodigo, setMostrarCodigo] = useState(false);
+    const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+
+    const [codigo, setCodigo] = useState ("");
+    const codigoValido = /^\d{6}$/.test(codigo);
 return (
         <>
         <Card className="card-Añadir">
@@ -53,7 +58,14 @@ return (
                     <Col md={6}>
                     <Form.Group>
                         <Form.Label className='campo'>Correo Electronico *</Form.Label>
-                        <div className='icono-input'><CiMail className='icono-control'/> <Form.Control className='input' type='email' placeholder='ejemplo@correo.com'/></div>
+                        <div className='icono-input'><CiMail className='icono-control'/> 
+                        <Form.Control 
+                        className='input' 
+                        type='email' 
+                        placeholder='ejemplo@correo.com'
+                        value={correo}
+                        onChange={(e) =>setCorreo(e.target.value)}
+                        /></div>
                     </Form.Group>
                     </Col>
                     <Col md={6}>
@@ -82,7 +94,9 @@ return (
             <p className='datos-empre'>Verificación por Correo</p>
            <Card className='verificacion'>
             <p className='desc'>Para completar el registro, se enviará un código de verificación al correo del empleado.</p>
-            <Button className='btn-codigo' onClick={()=> setMostrarCodigo(true)}><CiMail /> Enviar Codigo de Verificacion</Button>
+            <Button className='btn-codigo' 
+            disabled={!correoValido}
+            onClick={()=> setMostrarCodigo(true)}><CiMail /> Enviar Codigo de Verificacion</Button>
            </Card>
            {mostrarCodigo && (
     <Form.Group className="mt-3">
@@ -93,17 +107,22 @@ return (
         <Form.Control
             className="input"
             type="text"
-            placeholder="555555"
+            placeholder="Ingrese el codigo de 6 digitos"
+            value={codigo}
+            onChange={(e) => setCodigo (e.target.value)}
         />
 
         <small className="text-muted">
-            El código fue enviado al correo del empleado.
+            El código fue enviado al correo <strong>{correo}</strong>
         </small>
     </Form.Group>
 )}
             <div className="botones">
                 <Button className='btn-cancelar' >Cancelar</Button>
-                <Button className='btn-confirmar' >Confirmar Registro</Button>
+                <Button 
+                className='btn-confirmar' 
+                disabled={!codigoValido}
+                >Confirmar Registro</Button>
             </div>
         </Card>
         

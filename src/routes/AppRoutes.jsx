@@ -90,9 +90,7 @@ export const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-<<<<<<< HEAD
     
-=======
       <Route
         path="/mesero/perfil"
         element={
@@ -101,7 +99,6 @@ export const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
->>>>>>> main
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );

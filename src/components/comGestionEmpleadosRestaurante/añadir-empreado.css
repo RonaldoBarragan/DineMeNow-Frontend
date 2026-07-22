@@ -94,3 +94,8 @@
   color: #ffffff !important;
   border-color: #FF5C20;
 }
+.btn-confirmar:disabled{
+  background-color: #FF5C20 !important;
+  color: #ffffff !important;
+  border-color: #FF5C20;
+}
