@@ -200,6 +200,64 @@
   gap: 20px;
 }
 /*estilo modals*/
+.modal-empleados .modal-content{
+  padding: 10px;
+}
 .title-modal{
- font-size: 15px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.form-modal{
+  padding: 0px 17px 0px 17px !important;
+}
+.label-model{
+    font-size:12px;
+    font-weight:600;
+    color:#212529;
+    margin: 0px;
+}
+.control-model{
+  margin: 0px 0px 0px 0px;
+}
+.control-model:focus{
+    outline: none; 
+    border: 1px solid #a1a1a1;
+    background-color: #f3f3f5;
+    box-shadow: 0 0 0 2px #a1a1a1ab;
+}
+.select{
+  margin: 0px 0px 0px 0px;
+}
+.select:focus{
+    outline: none; 
+    border: 1px solid #a1a1a1;
+    background-color: #f3f3f5;
+    box-shadow: 0 0 0 2px #a1a1a1ab;
+}
+.botones{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 0px !important;
+    border-top: none !important;
+}
+.btn-cancelar{
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #dee2e6;
+}
+.btn-cancelar:hover{
+  border-color: #dee2e6;
+  background-color: #e3e3e4;
+  color: #000000;
+}
+.btn-confirmar{
+  background-color: #FF5C20;
+  color: #ffffff !important;
+  border-color: #FF5C20;
+}
+.btn-confirmar:hover{
+  background-color: #FF5C20 !important;
+  color: #ffffff !important;
+  border-color: #FF5C20;
 }

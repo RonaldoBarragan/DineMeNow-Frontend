@@ -72,7 +72,7 @@
     display:flex;
     justify-content:flex-end;
     gap:10px;
-    margin-top:28px;
+    margin-top:28px !important;
 }
 .btn-cancelar{
   background-color: #ffffff;

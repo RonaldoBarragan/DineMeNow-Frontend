@@ -1,5 +1,5 @@
 import './card-GestiónEmpleados.css'
-import { Badge, Card, Container, Row, Col, Tabs, Tab, Form, Modal } from "react-bootstrap";
+import { Badge, Card, Container, Row, Col, Tabs, Tab, Form, Modal, Button } from "react-bootstrap";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useState } from 'react';
@@ -7,15 +7,27 @@ function ListaEmpleados (){
     const[mostrarModal, setMostrarModal] = useState(false);
     const[empleadoSeleccionado, setEmpleadoSelecionado] = useState(false);
     const abrirEditar = (empleado) => {
-        setEmpleadoSelecionado(empleado);
+        const partes = empleado.nombre.trim().split(/\s+/); // Separa el texto cada vez que encuentra un espacio
+        // /\s+/
+        // \s  = cualquier espacio
+        // +   = uno o más espacios seguidos
+        setEmpleadoSelecionado({
+            ...empleado,
+            primerNombre: partes[0] || "",
+            segundoNombre: partes[1] || "",
+            primerApellido: partes[2] || "",
+            segundoApellido: partes[3] || ""
+        });
         setMostrarModal(true);
     }
 return (
         <>
+        
         <Modal
         show={mostrarModal}
         onHide={() => setMostrarModal(false)}
         centered
+        className="modal-empleados"
         >
         <Modal.Header closeButton>
             <Modal.Title className='title-modal'>
@@ -23,68 +35,68 @@ return (
             </Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body className='form-modal'>
             {empleadoSeleccionado && (
-                <Form>
+                <Form >
                     <Row className="fila-formulario">
-                        <Col md={6}>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Primer Nombre</Form.Label>
-                            <Form.Control
-                            defaultValue={empleadoSeleccionado.nombre}
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>Primer Nombre</Form.Label>
+                            <Form.Control className='control-model'
+                            defaultValue={empleadoSeleccionado.primerNombre}
                             />
                             </Form.Group>
                         </Col>
-                        <Col md={6}>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Segundo Nombre</Form.Label>
-                            <Form.Control
-                            defaultValue={empleadoSeleccionado.nombre}
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>Segundo Nombre</Form.Label>
+                            <Form.Control className='control-model'
+                            defaultValue={empleadoSeleccionado.segundoNombre}
                             />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row className="fila-formulario">
-                        <Col md={6}>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Primer Apellido</Form.Label>
-                            <Form.Control
-                            defaultValue={empleadoSeleccionado.nombre}
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>Primer Apellido</Form.Label>
+                            <Form.Control className='control-model'
+                            defaultValue={empleadoSeleccionado.primerApellido}
                             />
                             </Form.Group>
                         </Col>
-                        <Col md={6}>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Segundo Apellido</Form.Label>
-                            <Form.Control
-                            defaultValue={empleadoSeleccionado.nombre}
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>Segundo Apellido</Form.Label>
+                            <Form.Control className='control-model'
+                            defaultValue={empleadoSeleccionado.segundoApellido}
                             />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={6}>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Correo</Form.Label>
-                            <Form.Control
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>Correo</Form.Label>
+                            <Form.Control className='control-model'
                             defaultValue={empleadoSeleccionado.correo}
                             />
                             </Form.Group>
                         </Col>
-                        <Col md={6}>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Teléfono</Form.Label>
-                            <Form.Control
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>Teléfono</Form.Label>
+                            <Form.Control className='control-model'
                             defaultValue={empleadoSeleccionado.telefono}
                             />
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={6}>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Cargo</Form.Label>
-                            <Form.Select defaultValue={empleadoSeleccionado.cargo}>
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>Cargo</Form.Label>
+                            <Form.Select  className='select' defaultValue={empleadoSeleccionado.cargo}>
                                 <option value="Mesero">Mesero</option>
                                 <option value="Cocina">Cocina</option>
                                 <option value="Cajero">Cajero</option>
@@ -92,10 +104,10 @@ return (
     </                      Form.Select>
                             </Form.Group>
                         </Col>
-                        <Col md={6}>
-                            <Form.Group className="mb-3">
-                            <Form.Label>Estado</Form.Label>
-                            <Form.Select defaultValue={empleadoSeleccionado.estado}>
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>Estado</Form.Label>
+                            <Form.Select className='select' defaultValue={empleadoSeleccionado.estado}>
                                 <option value="Activo">Activo</option>
                                 <option value="Inactivo">Inactivo</option>
                                 <option value="Vacaciones">Vacaciones</option>
@@ -103,28 +115,24 @@ return (
                              </Form.Group>
                         </Col>
                     </Row>
-                    <Form.Group className="mb-3">
-                        <Form.Label>ID</Form.Label>
-                        <Form.Control
-                        value={empleadoSeleccionado.id}
-                        readOnly
-                        />
-                    </Form.Group>
+                    
                 </Form>
         )}
         </Modal.Body>
 
-        <Modal.Footer>
-            <button 
+        <Modal.Footer className="botones" >
+            
+            <Button 
                 className="btn-cancelar"
                 onClick={() => setMostrarModal(false)}
                 >
                 Cancelar
-            </button>
+            </Button>
 
-            <button className="btn-confirmar">
+            <Button className="btn-confirmar">
                 Guardar Cambios
-            </button>
+            </Button>
+            
         </Modal.Footer>
         </Modal>
             <div className="card-lista">
@@ -193,7 +201,7 @@ return (
                         <td>
                             <button className='btn-accion'
                             onClick={() => abrirEditar({
-                            id: "#001",
+                            
                             nombre: "Carlos Alberto Rodríguez Pérez",
                             correo: "carlos.rodriguez@gmail.com",
                             cargo: "Mesero",
@@ -222,7 +230,7 @@ return (
                         <td>
                             <button className='btn-accion'
                             onClick={() => abrirEditar({
-                            id: "#002",
+                           
                             nombre: "Ana María González López",
                             correo: "ana.gonzalez@gmail.com",
                             cargo: "Cocina",
@@ -251,7 +259,6 @@ return (
                         <td>
                             <button className='btn-accion'
                             onClick={() => abrirEditar({
-                            id: "#003",
                             nombre: "Luis Fernando Martínez Silva",
                             correo: "luis.martinez@gmail.com",
                             cargo: "Mesero",
@@ -281,7 +288,6 @@ return (
                         <td>
                             <button className='btn-accion'
                             onClick={() => abrirEditar({
-                            id: "#004",
                             nombre: "Patricia Ramírez Castro",
                             correo: "patricia.ramirez@gmail.com",
                             cargo: "Cocina",
@@ -310,7 +316,6 @@ return (
                         <td>
                             <button className='btn-accion'
                             onClick={() => abrirEditar({
-                            id: "#005",
                             nombre: "Jorge Andrés Sánchez Mora",
                             correo: "jorge.sanchez@gmail.com",
                             cargo: "Mesero",
