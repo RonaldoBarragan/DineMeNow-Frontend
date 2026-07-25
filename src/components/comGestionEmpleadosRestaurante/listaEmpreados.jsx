@@ -120,7 +120,7 @@ return (
         )}
         </Modal.Body>
 
-        <Modal.Footer className="botones" >
+        <Modal.Footer className="botones-modal" >
             
             <Button 
                 className="btn-cancelar"
@@ -164,7 +164,6 @@ return (
             {/* BUSCADOR */}
              <div className="search-box">
                 <FaMagnifyingGlass className="icono-buscar" />
-              
                 <Form.Control
                     type="text"
                     placeholder="Buscar por nombre o cargo..."

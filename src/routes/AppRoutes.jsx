@@ -15,7 +15,7 @@ import AdminP_Panel from "../pages/AdminP-Panel";
 import ReservasCliente from "../pages/Reservas-Cliente";
 import ProtectedRoute from "./ProtectedRoute";
 import ActualizarContraRestau from "../pages/ActualizarContraRestau";
-import GestionEmpleadosRestaurante from "../components/comGestionEmpleadosRestaurante/card-GestiónEmpleados";
+import GestionEmpleadosRestaurante from "../pages/Gestion-EmpleadosRestau";
 import Perfil_Mesero from "../pages/Gestion-Perfil-Mesero";
 
 

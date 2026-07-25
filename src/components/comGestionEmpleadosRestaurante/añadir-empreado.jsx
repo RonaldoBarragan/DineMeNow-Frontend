@@ -14,6 +14,8 @@ function Añadirempreado (){
 
     const [codigo, setCodigo] = useState ("");
     const codigoValido = /^\d{6}$/.test(codigo);
+
+    const[cargo,setcargo] = useState("");
 return (
         <>
         <Card className="card-Añadir">
@@ -80,8 +82,10 @@ return (
                     <Col>
                         <Form.Group>
                             <Form.Label className='campo'>Cargo/Puesto *</Form.Label>
-                            <Form.Select className='input'>
-                                <option disabled>Seleccione un cargo</option>
+
+                            <Form.Select value={cargo} 
+                            onChange={(e) => setcargo (e.target.value)} className='input'>
+                                <option value={""} disabled>Seleccione un cargo</option>
                                 <option>Mesero</option>
                                 <option>Cocina</option>
                                 <option>Cajero</option>

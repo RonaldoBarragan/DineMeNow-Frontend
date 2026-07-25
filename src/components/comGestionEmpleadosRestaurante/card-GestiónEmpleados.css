@@ -1,7 +1,12 @@
+.gestionempleados{
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 20; /* espacio superior */
+}
 .card-gestionempleados{
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0;
+    border-radius: 15px;
+    padding: 10px; 
+    
 }
 /*titu+descripcion*/
 .titulo-empleados{
@@ -234,7 +239,7 @@
     background-color: #f3f3f5;
     box-shadow: 0 0 0 2px #a1a1a1ab;
 }
-.botones{
+.botones-modal{
     display: flex;
     justify-content: flex-end;
     gap: 10px;
