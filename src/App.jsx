@@ -28,7 +28,9 @@ function App() {
     "/ActualizarContraRestau",
     "cliente/reservas",
     "/adminp/panel",
-    "/actualizar-contraresta"
+    "/actualizar-contraresta",
+    
+    
     
     
     // Agrega otras rutas donde el header no deba aparecer
@@ -49,7 +51,9 @@ function App() {
     "/adminp/panel",
     "/cliente/reservas",
     "/actualizar-contraresta",
-    "/mesero/perfil"
+    "/gestionempleadosrestaurante",
+    "/mesero/perfil",
+    
     // Agrega otras rutas donde el footer no deba aparecer
   ];
 
