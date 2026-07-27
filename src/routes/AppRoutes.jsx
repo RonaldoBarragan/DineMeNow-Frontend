@@ -22,6 +22,7 @@ import Perfil_Mesero from "../pages/Gestion-Perfil-Mesero";
 
 
 
+
 export const AppRoutes = () => {
   return (
     <Routes>
@@ -34,6 +35,7 @@ export const AppRoutes = () => {
       <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       <Route path="/actualizar-contraresta" element={<ActualizarContraRestau />} />
       <Route path="/gestionempleadosrestaurante" element={<GestionEmpleadosRestaurante/>}/>
+      
       <Route
         path="/cliente/perfil"
         element={
