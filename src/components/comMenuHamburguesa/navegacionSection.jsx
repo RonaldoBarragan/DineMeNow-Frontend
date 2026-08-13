@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { BiHomeAlt,BiUser, BiCalendar, BiBell, BiShield } from "react-icons/bi";
 import { BsGear } from "react-icons/bs";
 import "./navegacionSection.css";
+import { BsPersonGear } from "react-icons/bs";
 import { useAuth } from "../../context/AuthContext";
 
 function NavigationSection() {
@@ -70,6 +71,12 @@ function NavigationSection() {
             <NavLink to="/restaurante/perfil" className="nav-item">
               <BiUser size={20} className="nav-icon" />
               <span>Perfil de restaurante</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/restaurante/gestion-empleados" className="nav-item">
+              <BsPersonGear size={20} className="nav-icon" />
+              <span>Empleados</span>
             </NavLink>
           </li>
         </>

@@ -29,7 +29,7 @@ function App() {
     "cliente/reservas",
     "/adminp/panel",
     "/actualizar-contraresta",
-    
+    "/gestionempleadosrestaurante",
     
     
     

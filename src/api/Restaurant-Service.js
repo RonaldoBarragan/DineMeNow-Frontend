@@ -96,3 +96,9 @@ export const getRestaurantByIdAcc = async (idAcc) => {
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     return restaurante;
 }
+//Gestion Empleados 
+//Registro Empleado 
+export const registrarEmpleado = async (empleado ) => {
+    const {data} = await api.post("/empleados/registro", empleado);
+    return data;
+}
