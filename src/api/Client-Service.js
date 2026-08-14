@@ -30,6 +30,16 @@ export const registroUsuario = async (data) => {
     }
 };
 
+//Confirmacion de codigo para activar la acc de cliente
+export const confirmarCodigo = async (correo, codigo) => {
+    try {
+        const { data } = await api.post("/verificacion/confirmar", { correo, codigo });
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.error || "Error al verificar");
+    }
+};
+
 export const consultarPerfil = async (userId) => {
     try {
         const { data } = await api.get(`/clientes/${userId}`);
