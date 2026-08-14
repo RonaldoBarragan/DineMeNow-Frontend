@@ -102,3 +102,9 @@ export const registrarEmpleado = async (empleado ) => {
     const {data} = await api.post("/empleados/registro", empleado);
     return data;
 }
+//obterner lista de empleados de un restaurante por su NIT
+export const getListEmpleadosRestaurant = async (idAcc) => {
+    const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
+    const { data: empleados } = await api.get(`/empleados/restaurante/${encodeURIComponent(restaurante.nit)}`);
+    return empleados;
+}
