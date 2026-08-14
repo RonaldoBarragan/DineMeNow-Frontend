@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8080/api/auth/login";
+import api from "../api/axiosConfig";
 
 export async function loginUsuario(data) {
   const requestBody = {
@@ -18,20 +18,15 @@ export async function loginUsuario(data) {
     throw new Error("Debe ingresar la contraseña.");
   }
 
-  const res = await fetch(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(requestBody),
-  });
-
-  const json = await res.json().catch(() => null);
-
-  if (!res.ok) {
-    const message = json?.mensaje || json?.error || json?.message || "Error en login";
+  try {
+    const { data: responseData } = await api.post("/auth/login", requestBody);
+    return responseData;
+  } catch (error) {
+    const message =
+      error.response?.data?.mensaje ||
+      error.response?.data?.error ||
+      error.response?.data?.message ||
+      "Error en login";
     throw new Error(message);
   }
-
-  return json;
 }

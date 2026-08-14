@@ -40,6 +40,16 @@ export const confirmarCodigo = async (correo, codigo) => {
     }
 };
 
+//Reenviar el codigo para activar la acc
+export const reenviarCodigo = async (correo) => {
+    try {
+        const { data } = await api.post("/verificacion/enviar", { correo });
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.error || "Error al reenviar el código");
+    }
+};
+
 export const consultarPerfil = async (userId) => {
     try {
         const { data } = await api.get(`/clientes/${userId}`);
