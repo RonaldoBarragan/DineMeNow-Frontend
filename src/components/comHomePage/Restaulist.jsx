@@ -92,7 +92,7 @@ export default function Restaulist({
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/restaurantes/estado/ACTIVO")
+    fetch("http://18.233.40.168:8080/api/restaurantes/estado/ACTIVO")
       .then((res) => res.json())
       .then((data) => {
         const localesFormateados = data.map(r => ({
