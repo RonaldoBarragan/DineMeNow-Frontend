@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api/verificacion";
+const API_URL = "http://18.233.40.168:8080/api/verificacion";
 
 export const confirmarCodigo = async (correo, codigo) => {
   try {

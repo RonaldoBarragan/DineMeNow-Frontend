@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8080/api/auth/login";
+const API_URL = "http://18.233.40.168:8080/api/auth/login";
 
 export async function loginUsuario(data) {
   const requestBody = {
