@@ -1,4 +1,4 @@
-import api from './axiosConfig';
+import api from "./axiosConfig";
 
 export const getRestaurantesPendientes = async () => {
     const res = await api.get(`/restaurantes/estado/PENDIENTE`);
@@ -7,13 +7,17 @@ export const getRestaurantesPendientes = async () => {
 
 // /nit/{nit}/aprobar
 export const aprobarRestaurante = async (nit) => {
-    const res = await api.put(`/restaurantes/nit/${encodeURIComponent(nit)}/aprobar`);
+    const res = await api.put(
+        `/restaurantes/nit/${encodeURIComponent(nit)}/aprobar`,
+    );
     return res.data;
 };
 
 // /nit/{nit}/rechazar
 export const rechazarRestaurante = async (nit) => {
-    const res = await api.put(`/restaurantes/nit/${encodeURIComponent(nit)}/rechazar`);
+    const res = await api.put(
+        `/restaurantes/nit/${encodeURIComponent(nit)}/rechazar`,
+    );
     return res.data;
 };
 
@@ -55,7 +59,10 @@ export const obtenerAllClientes = async () => {
         const response = await api.get("/clientes");
         return response.data;
     } catch (error) {
-        console.error("Error al obtener clientes:", error.response?.data || error.message);
+        console.error(
+            "Error al obtener clientes:",
+            error.response?.data || error.message,
+        );
         throw error;
     }
 };
