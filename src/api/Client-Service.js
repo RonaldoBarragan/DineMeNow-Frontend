@@ -30,6 +30,26 @@ export const registroUsuario = async (data) => {
     }
 };
 
+//Confirmacion de codigo para activar la acc de cliente
+export const confirmarCodigo = async (correo, codigo) => {
+    try {
+        const { data } = await api.post("/verificacion/confirmar", { correo, codigo });
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.error || "Error al verificar");
+    }
+};
+
+//Reenviar el codigo para activar la acc
+export const reenviarCodigo = async (correo) => {
+    try {
+        const { data } = await api.post("/verificacion/enviar", { correo });
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.error || "Error al reenviar el código");
+    }
+};
+
 export const consultarPerfil = async (userId) => {
     try {
         const { data } = await api.get(`/clientes/${userId}`);

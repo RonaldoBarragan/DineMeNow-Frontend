@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Card, Button, Form, Spinner, Alert } from 'react-bootstrap';
 import TokenTimer from './tokenTimer';
-import { confirmarCodigo, reenviarCodigo } from '../../api/VerificarRegistro'; // Ajusta la ruta según tu carpeta api
 import { useNavigate } from 'react-router-dom';
+import { confirmarCodigo, reenviarCodigo } from '../../api/Client-Service';
 
 function CardVerificarToken({ email }) {
   const [codigo, setCodigo] = useState('');

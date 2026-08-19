@@ -51,8 +51,7 @@ function App() {
     "/adminp/panel",
     "/cliente/reservas",
     "/actualizar-contraresta",
-    "/gestionempleadosrestaurante",
-    "/mesero/perfil",
+    "/gestionempleadosrestaurante"
     
     // Agrega otras rutas donde el footer no deba aparecer
   ];

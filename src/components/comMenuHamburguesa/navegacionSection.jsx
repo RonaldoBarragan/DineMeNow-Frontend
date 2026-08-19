@@ -83,12 +83,6 @@ function NavigationSection() {
             <span>Panel de mesero</span>
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/mesero/perfil" className="nav-item">
-            <BiUser size={20} className="nav-icon" />
-            <span>Mi perfil</span>
-          </NavLink>
-        </li>
         </>
       )}
 
