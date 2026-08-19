@@ -1,41 +1,20 @@
 import './card-GestiónEmpleados.css';
-
-import {
-    Badge,
-    Card,
-    Row,
-    Col,
-    Form,
-    Modal,
-    Button
-} from "react-bootstrap";
-
+import {Badge,Card,Row,Col,Form,Modal,Button} from "react-bootstrap";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-
 import { useState, useEffect } from 'react';
-
-import {
-    getListEmpleadosRestaurant
-} from "../../api/Restaurant-Service";
-
+import {getListEmpleadosRestaurant, eliminarEmpleado, actualizarEmpleado} from "../../api/Restaurant-Service";
 import { useAuth } from '../../context/AuthContext';
 
 function ListaEmpleados() {
-
     const { user } = useAuth();
-
     const [mostrarModal, setMostrarModal] = useState(false);
-
     const [empleadoSeleccionado, setEmpleadoSelecionado] = useState(null);
-
     const [empleados, setEmpleados] = useState([]);
-
     const [cargando, setCargando] = useState(true);
 
-
     useEffect(() => {
-
+        //cargar la lista de empleados
         const cargarEmpleados = async () => {
 
             try {
@@ -66,7 +45,6 @@ function ListaEmpleados() {
                 setCargando(false);
 
             }
-
         };
 
         cargarEmpleados();
@@ -86,9 +64,44 @@ function ListaEmpleados() {
         });
         setMostrarModal(true);
     }
+    //actualizar empleado
+    const handleActualizarEmpleado = async () => {
+        try {
+            const empleadoActualizado = {...empleadoSeleccionado,
+            nombre: `${empleadoSeleccionado.primerNombre} ${empleadoSeleccionado.segundoNombre}`,
+            apellido: `${empleadoSeleccionado.primerApellido} ${empleadoSeleccionado.segundoApellido}`};
+            const empleado = await actualizarEmpleado(empleadoSeleccionado.id, empleadoActualizado);
+            setEmpleado((empleadosActuales) =>
+                empleadosActuales.map((empleadoActual) => (empleadoActual.id === empleado.id 
+                    ? empleado 
+                    : empleadoActual))
+            );
+            setMostrarModal(false);
+            alert("Empleado actualizado correctamente.");
+        } catch (error) {
+            console.error("Error al actualizar el empleado:", error);
+            alert("Ocurrió un error al actualizar el empleado. Por favor, inténtelo de nuevo.");
+        }
+    };
+
+    //Eliminar empleado
+    const handleEliminarEmpleado = async (empleadoId) => {
+        if (window.confirm("¿Está seguro de que desea eliminar este empleado?")) {
+            try {
+                await eliminarEmpleado(empleadoId);
+                //Eliminar directamente de la lista 
+                setEmpleados((empleadosActuales) =>
+                    empleadosActuales.filter((empleado) => empleado.id !== empleadoId)
+                );
+                alert("Empleado eliminado correctamente.");
+            } catch (error) {
+                console.error("Error al eliminar el empleado:", error);
+                alert("Ocurrió un error al eliminar el empleado. Por favor, inténtelo de nuevo.");
+            }
+        }
+    };
 return (
         <>
-        
         <Modal
         show={mostrarModal}
         onHide={() => setMostrarModal(false)}
@@ -110,6 +123,7 @@ return (
                             <Form.Label className='label-model'>Primer Nombre</Form.Label>
                             <Form.Control className='control-model'
                             defaultValue={empleadoSeleccionado.primerNombre}
+                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, primerNombre: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -118,6 +132,7 @@ return (
                             <Form.Label className='label-model'>Segundo Nombre</Form.Label>
                             <Form.Control className='control-model'
                             defaultValue={empleadoSeleccionado.segundoNombre}
+                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, segundoNombre: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -128,6 +143,7 @@ return (
                             <Form.Label className='label-model'>Primer Apellido</Form.Label>
                             <Form.Control className='control-model'
                             defaultValue={empleadoSeleccionado.primerApellido}
+                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, primerApellido: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -136,6 +152,7 @@ return (
                             <Form.Label className='label-model'>Segundo Apellido</Form.Label>
                             <Form.Control className='control-model'
                             defaultValue={empleadoSeleccionado.segundoApellido}
+                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, segundoApellido: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -146,6 +163,7 @@ return (
                             <Form.Label className='label-model'>Correo</Form.Label>
                             <Form.Control className='control-model'
                             defaultValue={empleadoSeleccionado.correo}
+                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, correo: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -154,6 +172,7 @@ return (
                             <Form.Label className='label-model'>Teléfono</Form.Label>
                             <Form.Control className='control-model'
                             defaultValue={empleadoSeleccionado.telefono}
+                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, telefono: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -172,9 +191,8 @@ return (
                             <Form.Group >
                             <Form.Label className='label-model'>Estado</Form.Label>
                             <Form.Select className='select' defaultValue={empleadoSeleccionado.estado}>
-                                <option value="ACTIVO">Activo</option>
-                                <option value="INACTIVO">Inactivo</option>
-                                <option value="VACACIONES">Vacaciones</option>
+                                <option value="DISPONIBLE">Disponible</option>
+                                <option value="NO DISPONIBLE">No Disponible</option>
                             </Form.Select>
                              </Form.Group>
                         </Col>
@@ -193,7 +211,8 @@ return (
                 Cancelar
             </Button>
 
-            <Button className="btn-confirmar">
+            <Button className="btn-confirmar" 
+            onClick={handleActualizarEmpleado}>
                 Guardar Cambios
             </Button>
             
@@ -210,14 +229,14 @@ return (
                 </Col>
                 <Col md= {4}>
                     <Card className="card-estadistica">
-                        <h2 className='cantidad act'>{empleados.filter(empleado => empleado.estado === "ACTIVO").length}</h2>
-                        <p className='emple-activos'>Empleados Activos</p>
+                        <h2 className='cantidad act'>{empleados.filter(empleado => empleado.estado === "DISPONIBLE").length}</h2>
+                        <p className='emple-activos'>Empleados Disponibles</p>
                     </Card>
                 </Col>
                 <Col md={4}>
                     <Card className="card-estadistica">
-                        <h2 className='cantidad'>{empleados.filter(empleado => empleado.estado === "INACTIVO").length}</h2>
-                        <p className='emple-inactivos'>Empleados Inactivos</p>
+                        <h2 className='cantidad'>{empleados.filter(empleado => empleado.estado === "NO DISPONIBLE").length}</h2>
+                        <p className='emple-inactivos'>Empleados No Disponibles</p>
                     </Card>
                 </Col>
             </Row>
@@ -265,119 +284,83 @@ return (
                         <tr key={empleado.id || index}>
                            {/* ID */}
                         <td>
+                            #
+                            {String(index + 1).padStart(
+                            3,
+                            "0"
+                            )}
 
-                                            #
-                                            {String(index + 1).padStart(
-                                                3,
-                                                "0"
-                                            )}
-
-                                        </td>
-
-
-                                        {/* NOMBRE */}
-
-                                        <td>
-
-                                            <div className='info-empleado'>
-
-                                                <div className='nombre'>
-
-                                                    {empleado.nombre}
-
-                                                    {" "}
-
-                                                    {empleado.apellido}
-
-                                                </div>
-
-
-                                                <div className='correo'>
-
-                                                    {empleado.correo}
-
-                                                </div>
-
+                                </td>
+                                {/* NOMBRE */}
+                                    <td>
+                                        <div className='info-empleado'>
+                                            <div className='nombre'>
+                                                {empleado.nombre}
+                                                {" "}
+                                                {empleado.apellido}
                                             </div>
 
-                                        </td>
+                                            <div className='correo'>
+                                                {empleado.correo}
+                                            </div>
+                                        </div>
+                                    </td>
 
+                                {/* CARGO */}
 
-                                        {/* CARGO */}
+                                    <td>
+                                        <Badge className='cargo'>
+                                            {
+                                                empleado.rol === "ROL_MESERO"
+                                                    ? "Mesero"
+                                                    : empleado.rol === "ROL_CHEF"
+                                                    ? "Chef"
+                                                    : empleado.rol
+                                            }
+                                        </Badge>
+                                    </td>
 
-                                        <td>
+                                {/* TELEFONO */}
+                                    <td>
+                                        {empleado.telefono}
+                                    </td>
 
-                                            <Badge className='cargo'>
+                                {/* ESTADO */}
+                                    <td>
+                                        <Badge
+                                            className={
+                                                empleado.estado === "DISPONIBLE"
+                                                    ? "disponible"
+                                                    : "no disponible"
+                                            }
+                                        >
+                                            {empleado.estado}
+                                        </Badge>
+                                    </td>
 
-                                                {
-                                                    empleado.rol === "ROL_MESERO"
-                                                        ? "Mesero"
-                                                        : empleado.rol === "ROL_CHEF"
-                                                            ? "Chef"
-                                                            : empleado.rol
-                                                }
-
-                                            </Badge>
-
-                                        </td>
-
-
-                                        {/* TELEFONO */}
-
-                                        <td>
-
-                                            {empleado.telefono}
-
-                                        </td>
-
-
-                                        {/* ESTADO */}
-
-                                        <td>
-
-                                            <Badge
-                                                className={
-                                                    empleado.estado === "ACTIVO"
-                                                        ? "activo"
-                                                        : empleado.estado === "VACACIONES"
-                                                            ? "vacaciones"
-                                                            : "inactivo"
-                                                }
+                                {/* ACCIONES */}
+                                    <td>
+                                        <button
+                                            className='btn-accion'
+                                            onClick={() =>
+                                                abrirEditar(empleado)
+                                            }
                                             >
+                                            <FiEdit />
+                                        </button>
 
-                                                {empleado.estado}
-
-                                            </Badge>
-
-                                        </td>
-
-
-                                        {/* ACCIONES */}
-
-                                        <td>
-
-                                            <button
-                                                className='btn-accion'
-                                                onClick={() =>
-                                                    abrirEditar(empleado)
-                                                }
-                                            >
-
-                                                <FiEdit />
-
-                                            </button>
-
-
-                                            <button
-                                                className='btn-accion'
-                                            >
-
-                                                <FiTrash2 />
-
-                                            </button>
-
-                                        </td>
-                    </tr>
+                                        <button
+                                            className='btn-accion'
+                                            onClick={() =>
+                                                handleEliminarEmpleado(
+                                                    empleado.id
+                                                )
+                                            }
+                                        >
+                                            <FiTrash2 />
+                                        </button>
+                                    </td>
+                    |   </tr>
                     ))}
                 </tbody>
             </table>
