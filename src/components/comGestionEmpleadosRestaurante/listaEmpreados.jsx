@@ -9,9 +9,11 @@ import { useAuth } from '../../context/AuthContext';
 function ListaEmpleados() {
     const { user } = useAuth();
     const [mostrarModal, setMostrarModal] = useState(false);
-    const [empleadoSeleccionado, setEmpleadoSelecionado] = useState(null);
+    const [empleadoSeleccionado, setEmpleadoSeleccionado] = useState(null);
     const [empleados, setEmpleados] = useState([]);
     const [cargando, setCargando] = useState(true);
+    const [busqueda, setBusqueda] = useState("");
+    
 
     useEffect(() => {
         //cargar la lista de empleados
@@ -51,39 +53,69 @@ function ListaEmpleados() {
 
     }, [user?.id]);
     const abrirEditar = (empleado) => {
-        const partes = empleado.nombre.trim().split(/\s+/); // Separa el texto cada vez que encuentra un espacio
-        // /\s+/
-        // \s  = cualquier espacio
-        // +   = uno o más espacios seguidos
-        setEmpleadoSelecionado({
-            ...empleado,
-            primerNombre: partes[0] || "",
-            segundoNombre: partes[1] || "",
-            primerApellido: partes[2] || "",
-            segundoApellido: partes[3] || ""
-        });
-        setMostrarModal(true);
-    }
+    const nombres = (empleado.nombre || "").trim().split(/\s+/);
+    const apellidos = (empleado.apellido || "").trim().split(/\s+/);
+
+    setEmpleadoSeleccionado({
+        ...empleado,
+
+        primerNombre: nombres[0] || "",
+        segundoNombre: nombres[1] || "",
+
+        primerApellido: apellidos[0] || "",
+        segundoApellido: apellidos[1] || ""
+    });
+
+    setMostrarModal(true);
+};
     //actualizar empleado
     const handleActualizarEmpleado = async () => {
-        try {
-            const empleadoActualizado = {...empleadoSeleccionado,
-            nombre: `${empleadoSeleccionado.primerNombre} ${empleadoSeleccionado.segundoNombre}`,
-            apellido: `${empleadoSeleccionado.primerApellido} ${empleadoSeleccionado.segundoApellido}`};
-            const empleado = await actualizarEmpleado(empleadoSeleccionado.id, empleadoActualizado);
-            setEmpleado((empleadosActuales) =>
-                empleadosActuales.map((empleadoActual) => (empleadoActual.id === empleado.id 
-                    ? empleado 
-                    : empleadoActual))
-            );
-            setMostrarModal(false);
-            alert("Empleado actualizado correctamente.");
-        } catch (error) {
-            console.error("Error al actualizar el empleado:", error);
-            alert("Ocurrió un error al actualizar el empleado. Por favor, inténtelo de nuevo.");
-        }
-    };
+    try {
+        if (!empleadoSeleccionado) return;
 
+        const empleadoActualizado = {
+            nombre: `${empleadoSeleccionado.primerNombre} ${empleadoSeleccionado.segundoNombre}`.trim(),
+            apellido: `${empleadoSeleccionado.primerApellido} ${empleadoSeleccionado.segundoApellido}`.trim(),
+            correo: empleadoSeleccionado.correo,
+            telefono: empleadoSeleccionado.telefono,
+            eps: empleadoSeleccionado.eps,
+            arl: empleadoSeleccionado.arl,
+            rol: empleadoSeleccionado.rol,
+            estado: empleadoSeleccionado.estado
+        };
+
+        console.log("Datos enviados:", empleadoActualizado);
+
+        const respuesta = await actualizarEmpleado(
+            empleadoSeleccionado.id,
+            empleadoActualizado
+        );
+
+        console.log("Respuesta del backend:", respuesta);
+
+        setEmpleados((empleadosActuales) =>
+            empleadosActuales.map((empleado) =>
+                empleado.id === empleadoSeleccionado.id
+                    ? respuesta
+                    : empleado
+            )
+        );
+
+        setMostrarModal(false);
+        setEmpleadoSeleccionado(null);
+
+        alert("Empleado actualizado correctamente.");
+
+    } catch (error) {
+        console.error("Error al actualizar:", error);
+        console.error("Respuesta del servidor:", error.response?.data);
+
+        alert(
+            error.response?.data?.message ||
+            "Ocurrió un error al actualizar el empleado."
+        );
+    }
+};
     //Eliminar empleado
     const handleEliminarEmpleado = async (empleadoId) => {
         if (window.confirm("¿Está seguro de que desea eliminar este empleado?")) {
@@ -100,6 +132,29 @@ function ListaEmpleados() {
             }
         }
     };
+    //busqueda por nombre, cargo, documento 
+   const empleadosFiltrados = empleados.filter((empleado) => {
+    const texto = busqueda.toLowerCase().trim();
+
+    const nombreCompleto =
+        `${empleado.nombre || ""} ${empleado.apellido || ""}`.toLowerCase();
+
+    const cargo =
+        empleado.rol === "ROL_MESERO"
+            ? "mesero"
+            : empleado.rol === "ROL_CHEF"
+            ? "chef"
+            : (empleado.rol || "").toLowerCase();
+
+    const numeroDocumento =
+        String(empleado.documento?.numeroDocumento || "").toLowerCase();
+
+    return (
+        nombreCompleto.includes(texto) ||
+        cargo.includes(texto) ||
+        numeroDocumento.includes(texto)
+    );
+});
 return (
         <>
         <Modal
@@ -122,8 +177,9 @@ return (
                             <Form.Group >
                             <Form.Label className='label-model'>Primer Nombre</Form.Label>
                             <Form.Control className='control-model'
-                            defaultValue={empleadoSeleccionado.primerNombre}
-                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, primerNombre: e.target.value})}
+                            value={empleadoSeleccionado.primerNombre}
+                            onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, primerNombre: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -131,8 +187,9 @@ return (
                             <Form.Group >
                             <Form.Label className='label-model'>Segundo Nombre</Form.Label>
                             <Form.Control className='control-model'
-                            defaultValue={empleadoSeleccionado.segundoNombre}
-                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, segundoNombre: e.target.value})}
+                            value={empleadoSeleccionado.segundoNombre}
+                            onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, segundoNombre: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -142,8 +199,9 @@ return (
                             <Form.Group >
                             <Form.Label className='label-model'>Primer Apellido</Form.Label>
                             <Form.Control className='control-model'
-                            defaultValue={empleadoSeleccionado.primerApellido}
-                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, primerApellido: e.target.value})}
+                            value={empleadoSeleccionado.primerApellido}
+                            onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, primerApellido: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -151,8 +209,9 @@ return (
                             <Form.Group >
                             <Form.Label className='label-model'>Segundo Apellido</Form.Label>
                             <Form.Control className='control-model'
-                            defaultValue={empleadoSeleccionado.segundoApellido}
-                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, segundoApellido: e.target.value})}
+                            value={empleadoSeleccionado.segundoApellido}
+                            onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, segundoApellido: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -162,8 +221,9 @@ return (
                             <Form.Group >
                             <Form.Label className='label-model'>Correo</Form.Label>
                             <Form.Control className='control-model'
-                            defaultValue={empleadoSeleccionado.correo}
-                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, correo: e.target.value})}
+                            value={empleadoSeleccionado.correo}
+                            onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, correo: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -171,8 +231,31 @@ return (
                             <Form.Group >
                             <Form.Label className='label-model'>Teléfono</Form.Label>
                             <Form.Control className='control-model'
-                            defaultValue={empleadoSeleccionado.telefono}
-                            onChange={(e) => setEmpleadoSeleccionado({...empleadoSeleccionado, telefono: e.target.value})}
+                            value={empleadoSeleccionado.telefono}
+                            onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, telefono: e.target.value})}
+                            />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>EPS</Form.Label>
+                            <Form.Control className='control-model'
+                            value={empleadoSeleccionado.eps}
+                            onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, eps: e.target.value})}
+                            />
+                            </Form.Group>
+                        </Col>
+                        <Col xs={6}>
+                            <Form.Group >
+                            <Form.Label className='label-model'>ARL</Form.Label>
+                            <Form.Control className='control-model'
+                            value={empleadoSeleccionado?.arl || ""}
+                            onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, arl: e.target.value})}
                             />
                             </Form.Group>
                         </Col>
@@ -181,7 +264,8 @@ return (
                         <Col xs={6}>
                             <Form.Group >
                             <Form.Label className='label-model'>Cargo</Form.Label>
-                            <Form.Select  className='select' defaultValue={empleadoSeleccionado.rol}>
+                            <Form.Select  className='select' value={empleadoSeleccionado.rol} onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, rol: e.target.value})}>    
                                 <option value="ROL_MESERO">Mesero</option>
                                 <option value="ROL_CHEF">Chef</option>
                             </Form.Select>
@@ -190,7 +274,8 @@ return (
                         <Col xs={6}>
                             <Form.Group >
                             <Form.Label className='label-model'>Estado</Form.Label>
-                            <Form.Select className='select' defaultValue={empleadoSeleccionado.estado}>
+                            <Form.Select className='select' value={empleadoSeleccionado.estado} onChange={(e) => setEmpleadoSeleccionado({
+                                ...empleadoSeleccionado, estado: e.target.value})}>
                                 <option value="DISPONIBLE">Disponible</option>
                                 <option value="NO DISPONIBLE">No Disponible</option>
                             </Form.Select>
@@ -249,7 +334,9 @@ return (
                 <FaMagnifyingGlass className="icono-buscar" />
                 <Form.Control
                     type="text"
-                    placeholder="Buscar por nombre o cargo..."
+                    placeholder="Buscar por nombre o cargo "
+                    value={busqueda}
+                    onChange={(e) => setBusqueda(e.target.value)}
                     />
             </div>
             </div>
@@ -276,11 +363,15 @@ return (
                     )}
                     {!cargando && empleados.length === 0 && (
                         <tr>
-                            <td colSpan="6">No se encontraron empleados.</td>
+                            <td colSpan="6">
+                                {busqueda
+                                    ? "No se encontraron empleados con esa búsqueda."
+                                    : "No se encontraron empleados."
+                                }</td>
                         </tr>
                     )}
                     {/* EMPLEADOS */} 
-                    {!cargando && empleados.map((empleado, index) => (
+                    {!cargando && empleadosFiltrados.map((empleado, index) => (
                         <tr key={empleado.id || index}>
                            {/* ID */}
                         <td>

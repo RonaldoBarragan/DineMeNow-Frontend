@@ -108,12 +108,12 @@ export const getListEmpleadosRestaurant = async (idAcc) => {
     const { data: empleados } = await api.get(`/empleados/restaurante/${encodeURIComponent(restaurante.nit)}`);
     return empleados;
 }
-//GUARDAR CAMBIOS DE UN EMPLEADO
-export const actualizarEmpleado = async (empleadoId, empleadoData) => {
-    const { data } = await api.put(`/empleados/${empleadoId}`, empleadoData);
+//guardar cambios de un empleado
+export const actualizarEmpleado = async (empleadoId, empleado) => {
+    const { data } = await api.put(`/empleados/${empleadoId}`, empleado);
     return data;
 };
-//ELIMINAR UN EMPLEADO
+//eliminar un empleado
 export const eliminarEmpleado = async (empleadoId) => {
     await api.delete(`/empleados/${empleadoId}`);
     return true;
