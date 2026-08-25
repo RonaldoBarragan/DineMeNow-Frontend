@@ -16,7 +16,6 @@ import ReservasCliente from "../pages/Reservas-Cliente";
 import ProtectedRoute from "./ProtectedRoute";
 import ActualizarContraRestau from "../pages/ActualizarContraRestau";
 import GestionEmpleadosRestaurante from "../pages/Gestion-EmpleadosRestau";
-import Perfil_Mesero from "../pages/Gestion-Perfil-Mesero";
 
 
 
@@ -92,16 +91,7 @@ export const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-    
-      <Route
-        path="/mesero/perfil"
-        element={
-          <ProtectedRoute role="mesero">
-            <Perfil_Mesero />
-          </ProtectedRoute>
-        }
-      />
-      <Route
+       <Route
         path="/restaurante/gestion-empleados"
         element={
           <ProtectedRoute role="restaurante">

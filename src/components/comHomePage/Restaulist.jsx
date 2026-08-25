@@ -6,6 +6,7 @@ import { Badge, Button, Card, Col, Container, Row } from 'react-bootstrap';
 import ReservaModal from '../comVistacliente/ReservaModal';
 import { obtenerMesas, obtenerPlatos } from '../../api/Client-Service';
 import { useAuth } from "../../context/AuthContext";
+import api from '../../api/axiosConfig';
 
 // Componente de tarjeta individual
 function RestaurantCard({ name, image, rating, zone, distance, cuisines, onClick }) {
@@ -92,9 +93,8 @@ export default function Restaulist({
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/restaurantes/estado/ACTIVO")
-      .then((res) => res.json())
-      .then((data) => {
+    api.get("/restaurantes/estado/ACTIVO")
+      .then(({ data }) => {
         const localesFormateados = data.map(r => ({
           ...r,
           name: r.nombre,
