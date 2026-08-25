@@ -146,13 +146,9 @@ function ListaEmpleados() {
             ? "chef"
             : (empleado.rol || "").toLowerCase();
 
-    const numeroDocumento =
-        String(empleado.documento?.numeroDocumento || "").toLowerCase();
-
     return (
         nombreCompleto.includes(texto) ||
-        cargo.includes(texto) ||
-        numeroDocumento.includes(texto)
+        cargo.includes(texto)
     );
 });
 return (
@@ -253,7 +249,7 @@ return (
                             <Form.Group >
                             <Form.Label className='label-model'>ARL</Form.Label>
                             <Form.Control className='control-model'
-                            value={empleadoSeleccionado?.arl || ""}
+                            value={empleadoSeleccionado.arl }
                             onChange={(e) => setEmpleadoSeleccionado({
                                 ...empleadoSeleccionado, arl: e.target.value})}
                             />
