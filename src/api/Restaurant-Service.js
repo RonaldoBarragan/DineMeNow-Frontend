@@ -96,3 +96,25 @@ export const getRestaurantByIdAcc = async (idAcc) => {
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     return restaurante;
 }
+//Gestion Empleados 
+//Registro Empleado 
+export const registrarEmpleado = async (empleado ) => {
+    const {data} = await api.post("/empleados/registro", empleado);
+    return data;
+}
+//obterner lista de empleados de un restaurante por su NIT
+export const getListEmpleadosRestaurant = async (idAcc) => {
+    const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
+    const { data: empleados } = await api.get(`/empleados/restaurante/${encodeURIComponent(restaurante.nit)}`);
+    return empleados;
+}
+//guardar cambios de un empleado
+export const actualizarEmpleado = async (empleadoId, empleado) => {
+    const { data } = await api.put(`/empleados/${empleadoId}`, empleado);
+    return data;
+};
+//eliminar un empleado
+export const eliminarEmpleado = async (empleadoId) => {
+    await api.delete(`/empleados/${empleadoId}`);
+    return true;
+};
