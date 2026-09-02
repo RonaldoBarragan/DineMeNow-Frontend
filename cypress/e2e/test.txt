@@ -1,0 +1,31 @@
+describe('Pruebas E2E - Autenticación de Usuarios', () => {
+
+  // Opcional: Ejecutar algo antes de cada prueba
+  beforeEach(() => {
+    // Visita la página inicial o de login antes de cada 'it'
+    cy.visit('http://localhost:5173/iniciarsesion'); 
+  });
+
+  it('Debe mostrar un error con credenciales incorrectas', () => {
+    // 1. Seleccionar elementos e interactuar
+    cy.get('#formBasicEmail').type('usuario_invalido@test.com');
+    cy.get('#formBasicPassword').type('claveErronea123');
+    cy.get('button[type="submit"]').click();
+
+    // 2. Aserción / Verificación
+    cy.contains('p', 'Error en login').should('be.visible');
+
+    cy.screenshot('evidencia-login-incorrecto');
+  });
+
+  it('Debe permitir iniciar sesión correctamente', () => {
+    cy.get('#formBasicEmail').type('test@gmail.com');
+    cy.get('#formBasicPassword').type('123');
+    cy.get('button[type="submit"]').click();
+
+    // Validar redirección a la vista principal
+    cy.url().should('include', '/cliente/inicio');
+    cy.screenshot('evidencia-login-correcto');
+  });
+
+});
