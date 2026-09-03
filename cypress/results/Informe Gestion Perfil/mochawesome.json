@@ -1,0 +1,233 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 2,
+    "pending": 2,
+    "failures": 1,
+    "start": "2026-09-03T20:41:12.200Z",
+    "end": "2026-09-03T20:41:33.972Z",
+    "duration": 21772,
+    "testsRegistered": 7,
+    "passPercent": 40,
+    "pendingPercent": 28.57142857142857,
+    "other": 2,
+    "hasOther": true,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "55e65943-800d-4a88-b113-c93b46ed98a7",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Gestion Perfil.cy.js",
+      "file": "cypress\\e2e\\Gestion Perfil.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "75d9ba5a-0d60-4b1c-b0f8-283649be4415",
+          "title": "Gestion de Perfil",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Visualizar informacion del perfil",
+              "fullTitle": "Gestion de Perfil Visualizar informacion del perfil",
+              "timedOut": null,
+              "duration": 2345,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.header-buttons > .buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('123456');\ncy.get('.buttonNaranjaDegrade').click();\ncy.url().should('include', '/cliente/inicio');\ncy.get('.buttonBlancoFGrisNBorder').click();\ncy.get(':nth-child(2) > .nav-item').click();\ncy.url().should('include', '/cliente/perfil');\ncy.get(':nth-child(2) > .gestioncliente-dato').should('exist').and('contain', 'Test Cliente');\ncy.screenshot('Evidencia Visualizar informacion del perfil');",
+              "err": {},
+              "uuid": "a3d789e1-9329-4afa-86c9-dd3c89805d4b",
+              "parentUUID": "75d9ba5a-0d60-4b1c-b0f8-283649be4415",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Editar informacion personal correctamente",
+              "fullTitle": "Gestion de Perfil Editar informacion personal correctamente",
+              "timedOut": null,
+              "duration": 5464,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.header-buttons > .buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('123456');\ncy.get('.buttonNaranjaDegrade').click();\ncy.url().should('include', '/cliente/inicio');\ncy.get('.buttonBlancoFGrisNBorder').click();\ncy.get(':nth-child(2) > .nav-item').click();\ncy.get('.btn-editar-perfil').click();\ncy.get('#modal-perfil').should('exist').and('be.visible').and('contain', 'Edita tu perfil');\ncy.screenshot('Evidencia Editar informacion personal correctamente');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#modal-perfil`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#modal-perfil`, but never found it.\n    at Context.eval (webpack://estructura-project/./cypress/e2e/Gestion Perfil.cy.js:37:32)",
+                "diff": null
+              },
+              "uuid": "f1f420eb-acc0-49c6-aeb3-11a3236338a3",
+              "parentUUID": "75d9ba5a-0d60-4b1c-b0f8-283649be4415",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Actualizar perfil con campos obligatorios vacios",
+              "fullTitle": "Gestion de Perfil Actualizar perfil con campos obligatorios vacios",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "//cy.screenshot('Evidencia Actualizar perfil con campos obligatorios vacios');",
+              "err": {},
+              "uuid": "9b12b1ae-e2bf-44e8-9243-a6c3bb1ca4b6",
+              "parentUUID": "75d9ba5a-0d60-4b1c-b0f8-283649be4415",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cambiar Contraseña correctamente",
+              "fullTitle": "Gestion de Perfil Cambiar Contraseña correctamente",
+              "timedOut": null,
+              "duration": 5936,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.header-buttons > .buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('123456');\ncy.get('.buttonNaranjaDegrade').click();\ncy.url().should('include', '/cliente/inicio');\ncy.get('.buttonBlancoFGrisNBorder').click();\ncy.get(':nth-child(2) > .nav-item').click();\ncy.url().should('include', '/cliente/perfil');\ncy.get('.tab-restaurant > :nth-child(2)').should('exist').and('contain', 'Seguridad').click();\ncy.get('#currentPassword').type('123456');\ncy.get('#newPassword').type('1234567');\ncy.get('#confirmPassword').type('1234567');\ncy.get('.buttonNaranjaDegrade').should('exist').and('contain', 'Actualizar Contraseña').click();\ncy.get('#modal-contraseña').should('exist').and('be.visible').and('contain', 'Contraseña cambiada exitosamente');\ncy.screenshot('Evidencia Cambiar Contraseña correctamente');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#modal-contraseña`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#modal-contraseña`, but never found it.\n    at Context.eval (webpack://estructura-project/./cypress/e2e/Gestion Perfil.cy.js:65:36)",
+                "diff": null
+              },
+              "uuid": "23e9be1f-8994-4f51-9efa-ac4e71bde5c9",
+              "parentUUID": "75d9ba5a-0d60-4b1c-b0f8-283649be4415",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cambiar contraseña con contraseña actual incorrecta",
+              "fullTitle": "Gestion de Perfil Cambiar contraseña con contraseña actual incorrecta",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "//cy.screenshot('Evidencia Cambiar contraseña con contraseña actual incorrecta');",
+              "err": {},
+              "uuid": "936a2c99-9d92-452d-bb37-cbc109e808bd",
+              "parentUUID": "75d9ba5a-0d60-4b1c-b0f8-283649be4415",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Actualizar Foto de Perfil",
+              "fullTitle": "Gestion de Perfil Actualizar Foto de Perfil",
+              "timedOut": null,
+              "duration": 5461,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.header-buttons > .buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('123456');\ncy.get('.buttonNaranjaDegrade').click();\ncy.url().should('include', '/cliente/inicio');\ncy.get('.buttonBlancoFGrisNBorder').click();\ncy.get(':nth-child(2) > .nav-item').click();\ncy.url().should('include', '/cliente/perfil');\ncy.get('.camera-icon-badge').should('exist').click();\ncy.get('#modal-foto').should('exist').and('be.visible').and('contain', 'Actualizar Foto de Perfil');\ncy.screenshot('Evidencia Actualizar Foto de Perfil');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#modal-foto`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#modal-foto`, but never found it.\n    at Context.eval (webpack://estructura-project/./cypress/e2e/Gestion Perfil.cy.js:88:30)",
+                "diff": null
+              },
+              "uuid": "d446225f-b1d8-47a5-90ea-5926b9e79903",
+              "parentUUID": "75d9ba5a-0d60-4b1c-b0f8-283649be4415",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cerrar sesion desde el perfil",
+              "fullTitle": "Gestion de Perfil Cerrar sesion desde el perfil",
+              "timedOut": null,
+              "duration": 1584,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('.header-buttons > .buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('123456');\ncy.get('.buttonNaranjaDegrade').click();\ncy.url().should('include', '/cliente/inicio');\ncy.get('.buttonBlancoFGrisNBorder').click();\ncy.get(':nth-child(2) > .nav-item').click();\ncy.url().should('include', '/cliente/perfil');\ncy.get('.flex-grow-1.container > .header-nav > .header-container > .header-brand-group > .menu-hamburguesa > .buttonBlancoFGrisNBorder').should('exist').click();\ncy.get('.flex-grow-1.container > .header-nav > .header-container > .header-brand-group > .menu-hamburguesa > .menu > .menu-session-cta > .buttonCerrarSesion').focus();\ncy.screenshot('Evidencia Cerrar sesion desde el perfil');",
+              "err": {},
+              "uuid": "12b2d49e-cea4-4f67-b877-ae9238bdaf23",
+              "parentUUID": "75d9ba5a-0d60-4b1c-b0f8-283649be4415",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a3d789e1-9329-4afa-86c9-dd3c89805d4b",
+            "12b2d49e-cea4-4f67-b877-ae9238bdaf23"
+          ],
+          "failures": [
+            "f1f420eb-acc0-49c6-aeb3-11a3236338a3",
+            "23e9be1f-8994-4f51-9efa-ac4e71bde5c9",
+            "d446225f-b1d8-47a5-90ea-5926b9e79903"
+          ],
+          "pending": [
+            "9b12b1ae-e2bf-44e8-9243-a6c3bb1ca4b6",
+            "936a2c99-9d92-452d-bb37-cbc109e808bd"
+          ],
+          "skipped": [],
+          "duration": 20790,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -6,29 +6,7 @@ describe('Gestion de Perfil', () => {
         cy.visit('http://localhost:5173');
     });
 
-    it('Editar perfil (cliente)', () => {
-        cy.get('.header-buttons > .buttonNaranjaDegrade').click();
-
-        cy.get('#formBasicEmail').type('juancardenas083@gmail.com');
-        cy.get('#formBasicPassword').type('123456');
-        cy.get('.buttonNaranjaDegrade').click();
-
-        cy.url().should('include', '/cliente/inicio');
-        cy.get('.buttonBlancoFGrisNBorder').click();
-        cy.get(':nth-child(2) > .nav-item').click();
-        cy.get('.btn-editar-perfil').click();
-        cy.get('#modal-perfil').should('exist').and('be.visible').and('contain', 'Edita tu perfil');
-
-        //cy.screenshot('Evidencia Editar perfil (cliente)');
-    });
-
-    it.skip('Editar Perfil (Personal Administrativo)', () => {
-
-
-        //cy.screenshot('Evidencia Editar Perfil (Personal Administrativo)');
-    });
-
-    it('Consultar Perfil (Cliente)', () => {
+    it('Visualizar informacion del perfil', () => {
         cy.get('.header-buttons > .buttonNaranjaDegrade').click();
 
         cy.get('#formBasicEmail').type('juancardenas083@gmail.com');
@@ -42,16 +20,30 @@ describe('Gestion de Perfil', () => {
         cy.url().should('include', '/cliente/perfil');
         cy.get(':nth-child(2) > .gestioncliente-dato').should('exist').and('contain', 'Test Cliente');
 
-        //cy.screenshot('Evidencia Consultar Perfil (Cliente)');
+        cy.screenshot('Evidencia Visualizar informacion del perfil');
     });
 
-    it.skip('Consultar Perfil (Personal Administrativo)', () => {
+    it('Editar informacion personal correctamente', () => {
+        cy.get('.header-buttons > .buttonNaranjaDegrade').click();
 
+        cy.get('#formBasicEmail').type('juancardenas083@gmail.com');
+        cy.get('#formBasicPassword').type('123456');
+        cy.get('.buttonNaranjaDegrade').click();
 
-        //cy.screenshot('Evidencia Consultar Perfil (Personal Administrativo)');
+        cy.url().should('include', '/cliente/inicio');
+        cy.get('.buttonBlancoFGrisNBorder').click();
+        cy.get(':nth-child(2) > .nav-item').click();
+        cy.get('.btn-editar-perfil').click();
+        cy.get('#modal-perfil').should('exist').and('be.visible').and('contain', 'Edita tu perfil');
+
+        cy.screenshot('Evidencia Editar informacion personal correctamente');
     });
 
-    it('Cambiar Contraseña', () => {
+    it.skip('Actualizar perfil con campos obligatorios vacios', () => {
+        //cy.screenshot('Evidencia Actualizar perfil con campos obligatorios vacios');
+    });
+
+    it('Cambiar Contraseña correctamente', () => {
         cy.get('.header-buttons > .buttonNaranjaDegrade').click();
 
         cy.get('#formBasicEmail').type('juancardenas083@gmail.com');
@@ -72,7 +64,11 @@ describe('Gestion de Perfil', () => {
 
         cy.get('#modal-contraseña').should('exist').and('be.visible').and('contain', 'Contraseña cambiada exitosamente');
 
-        //cy.screenshot('Evidencia Cambiar Contraseña');
+        cy.screenshot('Evidencia Cambiar Contraseña correctamente');
+    });
+
+    it.skip('Cambiar contraseña con contraseña actual incorrecta', () => {
+        //cy.screenshot('Evidencia Cambiar contraseña con contraseña actual incorrecta');
     });
 
     it('Actualizar Foto de Perfil', () => {
@@ -90,18 +86,24 @@ describe('Gestion de Perfil', () => {
         cy.get('.camera-icon-badge').should('exist').click();
 
         cy.get('#modal-foto').should('exist').and('be.visible').and('contain', 'Actualizar Foto de Perfil');
-        //cy.screenshot('Evidencia Actualizar Foto de Perfil');
+        cy.screenshot('Evidencia Actualizar Foto de Perfil');
     });
 
-    it.skip('Validacion de Campos Obligatorios', () => {
+    it('Cerrar sesion desde el perfil', () => {
+        cy.get('.header-buttons > .buttonNaranjaDegrade').click();
 
+        cy.get('#formBasicEmail').type('juancardenas083@gmail.com');
+        cy.get('#formBasicPassword').type('123456');
+        cy.get('.buttonNaranjaDegrade').click();
 
-        //cy.screenshot('Evidencia Validacion de Campos Obligatorios');
-    });
+        cy.url().should('include', '/cliente/inicio');
+        cy.get('.buttonBlancoFGrisNBorder').click();
+        cy.get(':nth-child(2) > .nav-item').click();
 
-    it.skip('Visualizar Historial de Actividad', () => {
+        cy.url().should('include', '/cliente/perfil');
+        cy.get('.flex-grow-1.container > .header-nav > .header-container > .header-brand-group > .menu-hamburguesa > .buttonBlancoFGrisNBorder').should('exist').click();
+        cy.get('.flex-grow-1.container > .header-nav > .header-container > .header-brand-group > .menu-hamburguesa > .menu > .menu-session-cta > .buttonCerrarSesion').focus();
 
-
-        //cy.screenshot('Evidencia Visualizar Historial de Actividad');
+        cy.screenshot('Evidencia Cerrar sesion desde el perfil');
     });
 });

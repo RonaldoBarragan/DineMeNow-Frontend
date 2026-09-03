@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-09-03T21:06:14.297Z",
+    "end": "2026-09-03T21:06:23.939Z",
+    "duration": 9642,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2de891f8-3f5b-4072-ab33-8a35202cd232",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Gestion de Restaurantes.cy.js",
+      "file": "cypress\\e2e\\Gestion de Restaurantes.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "72c99f98-1ddb-45eb-9264-727e7ea8a137",
+          "title": "Gestión de Restaurantes",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Registrar un nuevo Restaurante",
+              "fullTitle": "Gestión de Restaurantes Registrar un nuevo Restaurante",
+              "timedOut": null,
+              "duration": 4909,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.buttonRegistrarRE').click();\ncy.get('#root [name=\"nombre\"]').type('Test Restaurante');\ncy.get('#root [name=\"razonSocial\"]').type('Empresa');\ncy.get('#root [name=\"nit\"]').type('12345678');\ncy.get('#root [name=\"propietario\"]').type('Carlos');\ncy.get('#root [name=\"correo\"]').type('juancardenas083@gmail.com');\ncy.get('#root [name=\"telefono\"]').type('2323124332');\ncy.get('#root [name=\"categoria\"]').select('Comida Típica');\ncy.get('#root [name=\"descripcion\"]').type('Restaurante de comida');\ncy.get('#root [name=\"calle\"]').type('Carrera 7');\ncy.get('#root [name=\"numero\"]').type('30 40');\ncy.get('#root [name=\"ciudad\"]').type('Bogota');\ncy.get('#root [name=\"codigoPostal\"]').type('11011');\ncy.get('#root [name=\"pais\"]').type('Colombia');\ncy.get('#root [name=\"capacidad\"]').type('5');\ncy.get('#root [name=\"horarioApertura\"]').type('03:00');\ncy.get('#root [name=\"horarioCierre\"]').type('08:00');\ncy.get('#root input[value=\"Martes\"]').check();\ncy.get('#root input[value=\"Jueves\"]').check();\ncy.get('#root input[value=\"Sábado\"]').check();\ncy.get('#root input[value=\"Parqueadero\"]').check();\ncy.get('#root input[value=\"Acepta tarjetas\"]').check();\ncy.on('window:alert', textoDeLaAlerta => {\n  // Validar el texto exacto\n  expect(textoDeLaAlerta).to.equal('¡Registro exitoso! Revisa tu correo.');\n});\ncy.get('#root button.px-4').click();\ncy.screenshot('Evidencia Registrar un nuevo Restaurante');",
+              "err": {},
+              "uuid": "b87406c0-f62b-4bbc-b32e-445fb2689863",
+              "parentUUID": "72c99f98-1ddb-45eb-9264-727e7ea8a137",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cambiar el estado del Restaurante (Activo/Inactivo)",
+              "fullTitle": "Gestión de Restaurantes Cambiar el estado del Restaurante (Activo/Inactivo)",
+              "timedOut": null,
+              "duration": 1267,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//cy.pause();\ncy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('admin@dinemenow.com');\ncy.get('#formBasicPassword').type('admin123');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/adminp/panel');\ncy.get('#root button.btn-success').eq(0).click();\ncy.screenshot('Evidencia Cambiar el estado del Restaurante (Activo/Inactivo)');",
+              "err": {},
+              "uuid": "b209dacc-8608-47f8-9e3a-736210f801db",
+              "parentUUID": "72c99f98-1ddb-45eb-9264-727e7ea8a137",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Visualizar listado de restaurantes",
+              "fullTitle": "Gestión de Restaurantes Visualizar listado de restaurantes",
+              "timedOut": null,
+              "duration": 1171,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('admin@dinemenow.com');\ncy.get('#formBasicPassword').type('admin123');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/adminp/panel');\ncy.get('.tab-principal > :nth-child(2)').should('exist').and('contain', 'Cuentas restaurantes').click();\ncy.get(':nth-child(5) > :nth-child(3)').should('exist');\ncy.screenshot('Evidencia Visualizar listado de restaurantes');",
+              "err": {},
+              "uuid": "e1fa49fd-a378-419c-b0ef-11ccb8762148",
+              "parentUUID": "72c99f98-1ddb-45eb-9264-727e7ea8a137",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Eliminar un Restaurante",
+              "fullTitle": "Gestión de Restaurantes Eliminar un Restaurante",
+              "timedOut": null,
+              "duration": 1393,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('admin@dinemenow.com');\ncy.get('#formBasicPassword').type('admin123');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/adminp/panel');\ncy.get('#root button[data-rr-ui-event-key=\"Accs restaurant\"]').click();\ncy.get(':nth-child(5) > :nth-child(3)').eq(0).click();\ncy.get('.modal-body').should('exist').and('contain', '¿Estás seguro de que deseas eliminar este restaurante?');\ncy.screenshot('Evidencia Eliminar un Restaurante');\ncy.get('.btn-danger').click();",
+              "err": {},
+              "uuid": "88a03286-75f5-4621-af3d-a764d8de6f28",
+              "parentUUID": "72c99f98-1ddb-45eb-9264-727e7ea8a137",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b87406c0-f62b-4bbc-b32e-445fb2689863",
+            "b209dacc-8608-47f8-9e3a-736210f801db",
+            "e1fa49fd-a378-419c-b0ef-11ccb8762148",
+            "88a03286-75f5-4621-af3d-a764d8de6f28"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8740,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
