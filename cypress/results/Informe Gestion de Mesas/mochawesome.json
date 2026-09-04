@@ -1,0 +1,243 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 8,
+    "passes": 7,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-09-04T16:06:37.053Z",
+    "end": "2026-09-04T16:06:57.037Z",
+    "duration": 19984,
+    "testsRegistered": 8,
+    "passPercent": 87.5,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "32d4100b-b4f2-4558-8512-c9bc860e382a",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Gestion de Mesas.cy.js",
+      "file": "cypress\\e2e\\Gestion de Mesas.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "cceeb011-1bd0-43be-8d6a-6d8bd2b483b6",
+          "title": "Gestión de Mesas",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Visualizar mesas disponibles",
+              "fullTitle": "Gestión de Mesas Visualizar mesas disponibles",
+              "timedOut": null,
+              "duration": 1970,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('.per > .mb-4 > :nth-child(3)').click();\ncy.screenshot('Evidencia Visualizar mesas disponibles');",
+              "err": {},
+              "uuid": "3af54d2a-d78e-4296-93b7-5c39f64a2435",
+              "parentUUID": "cceeb011-1bd0-43be-8d6a-6d8bd2b483b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Registrar una nueva mesa",
+              "fullTitle": "Gestión de Mesas Registrar una nueva mesa",
+              "timedOut": null,
+              "duration": 2190,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('.per > .mb-4 > :nth-child(3)').click();\ncy.get('#root div.show button.buttonNaranjaDegrade').click();\ncy.get('input[placeholder=\"Ej: 1\"]').type('2');\ncy.get('input[placeholder=\"Ej: 4\"]').type('6');\ncy.screenshot('Evidencia Registrar una nueva mesa');\ncy.get('button.border-0').click();\ncy.wait(500);\ncy.get('.modal').should('not.exist');",
+              "err": {},
+              "uuid": "7c8a8f53-4802-4022-99b4-78a381453044",
+              "parentUUID": "cceeb011-1bd0-43be-8d6a-6d8bd2b483b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Editar informacion de una mesa",
+              "fullTitle": "Gestión de Mesas Editar informacion de una mesa",
+              "timedOut": null,
+              "duration": 1678,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('.per > .mb-4 > :nth-child(3)').click();\ncy.get('.align-middle > :nth-child(2) > .d-flex > :nth-child(1)').click();\ncy.wait(500);\ncy.get('.modal').should('be.visible');\ncy.screenshot('Evidencia Editar informacion de una mesa');",
+              "err": {},
+              "uuid": "86c448f2-b051-4dbe-a455-49f22a15473c",
+              "parentUUID": "cceeb011-1bd0-43be-8d6a-6d8bd2b483b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Eliminar una mesa",
+              "fullTitle": "Gestión de Mesas Eliminar una mesa",
+              "timedOut": null,
+              "duration": 1694,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('.per > .mb-4 > :nth-child(3)').click();\ncy.get('.align-middle > :nth-child(2) > .d-flex > :nth-child(2)').click();\ncy.screenshot('Evidencia Eliminar una mesa');\ncy.wait(500);\ncy.get('.align-middle > :nth-child(2) > .d-flex > :nth-child(2)').should('not.exist');",
+              "err": {},
+              "uuid": "40165bd9-4515-4da9-a0b6-5a206dd43021",
+              "parentUUID": "cceeb011-1bd0-43be-8d6a-6d8bd2b483b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Registrar una mesa con campos obligatorios vacios",
+              "fullTitle": "Gestión de Mesas Registrar una mesa con campos obligatorios vacios",
+              "timedOut": null,
+              "duration": 1927,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('.per > .mb-4 > :nth-child(3)').click();\ncy.get('#root div.show button.buttonNaranjaDegrade').click();\ncy.get('button.border-0').click();\ncy.screenshot('Evidencia Registrar una mesa con campos obligatorios vacios');\ncy.wait(500);",
+              "err": {},
+              "uuid": "3a12e892-ca38-415a-8e08-127db06eb898",
+              "parentUUID": "cceeb011-1bd0-43be-8d6a-6d8bd2b483b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Registrar una mesa con capacidad invalida",
+              "fullTitle": "Gestión de Mesas Registrar una mesa con capacidad invalida",
+              "timedOut": null,
+              "duration": 5940,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('.per > .mb-4 > :nth-child(3)').click();\ncy.get('#root div.show button.buttonNaranjaDegrade').click();\ncy.get('input[placeholder=\"Ej: 1\"]').type('2');\ncy.get('input[placeholder=\"Ej: 4\"]').type('-6');\ncy.get('button.border-0').click();\ncy.wait(500);\ncy.get('.modal').should('exist');\ncy.screenshot('Evidencia Registrar una mesa con capacidad invalida');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.modal`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.modal`, but never found it.\n    at Context.eval (webpack://estructura-project/./cypress/e2e/Gestion de Mesas.cy.js:91:25)",
+                "diff": null
+              },
+              "uuid": "96210f0e-f32c-4130-ad33-76e6a94a4d52",
+              "parentUUID": "cceeb011-1bd0-43be-8d6a-6d8bd2b483b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cambiar el estado de disponibilidad de una mesa",
+              "fullTitle": "Gestión de Mesas Cambiar el estado de disponibilidad de una mesa",
+              "timedOut": null,
+              "duration": 2513,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('.per > .mb-4 > :nth-child(3)').click();\ncy.get('#root td.d-flex button:nth-child(1) svg').eq(0).click();\ncy.get('select.form-select').select('false');\ncy.wait(500);\ncy.get('.modal').should('exist');\ncy.screenshot('Evidencia Cambiar el estado de disponibilidad de una mesa');\ncy.get('.modal-footer > .buttonNaranjaDegrade').click();\ncy.wait(500);\ncy.get('.modal').should('not.exist');",
+              "err": {},
+              "uuid": "a632c138-40d2-4b95-90c2-374d51470bd1",
+              "parentUUID": "cceeb011-1bd0-43be-8d6a-6d8bd2b483b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Consultar la capacidad de una mesa",
+              "fullTitle": "Gestión de Mesas Consultar la capacidad de una mesa",
+              "timedOut": null,
+              "duration": 1083,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('.per > .mb-4 > :nth-child(3)').click();\ncy.screenshot('Evidencia Consultar la capacidad de una mesa');",
+              "err": {},
+              "uuid": "74062766-cde9-4039-bc8e-0c5cccfc86e4",
+              "parentUUID": "cceeb011-1bd0-43be-8d6a-6d8bd2b483b6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3af54d2a-d78e-4296-93b7-5c39f64a2435",
+            "7c8a8f53-4802-4022-99b4-78a381453044",
+            "86c448f2-b051-4dbe-a455-49f22a15473c",
+            "40165bd9-4515-4da9-a0b6-5a206dd43021",
+            "3a12e892-ca38-415a-8e08-127db06eb898",
+            "a632c138-40d2-4b95-90c2-374d51470bd1",
+            "74062766-cde9-4039-bc8e-0c5cccfc86e4"
+          ],
+          "failures": [
+            "96210f0e-f32c-4130-ad33-76e6a94a4d52"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 18995,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

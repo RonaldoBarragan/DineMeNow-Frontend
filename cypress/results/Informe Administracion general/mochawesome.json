@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-09-04T17:16:43.480Z",
+    "end": "2026-09-04T17:16:49.654Z",
+    "duration": 6174,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e8bcc80e-57c2-4e3e-b9f5-b3b5ffb43a68",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Administracion general.cy.js",
+      "file": "cypress\\e2e\\Administracion general.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "03adcc1e-c0ae-4c8d-b7d5-1895f933441a",
+          "title": "Administración General",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Acceder al panel de administracion",
+              "fullTitle": "Administración General Acceder al panel de administracion",
+              "timedOut": null,
+              "duration": 1874,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('admin@dinemenow.com');\ncy.get('#formBasicPassword').type('admin123');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/adminp/panel');\ncy.screenshot('Evidencia Acceder al panel de administracion');",
+              "err": {},
+              "uuid": "6a43cb98-1a0a-4312-9a26-c1eefdc79f94",
+              "parentUUID": "03adcc1e-c0ae-4c8d-b7d5-1895f933441a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Visualizar el dashboard administrativo",
+              "fullTitle": "Administración General Visualizar el dashboard administrativo",
+              "timedOut": null,
+              "duration": 1121,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('admin@dinemenow.com');\ncy.get('#formBasicPassword').type('admin123');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/adminp/panel');\ncy.screenshot('Evidencia Visualizar el dashboard administrativo');",
+              "err": {},
+              "uuid": "ef5df175-3beb-49b0-aadb-1912c39331fe",
+              "parentUUID": "03adcc1e-c0ae-4c8d-b7d5-1895f933441a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Visualizar el listado de usuarios",
+              "fullTitle": "Administración General Visualizar el listado de usuarios",
+              "timedOut": null,
+              "duration": 1142,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('admin@dinemenow.com');\ncy.get('#formBasicPassword').type('admin123');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/adminp/panel');\ncy.get('#root button[data-rr-ui-event-key=\"Accs cliente\"]').click();\ncy.screenshot('Evidencia Visualizar el listado de usuarios');",
+              "err": {},
+              "uuid": "f368016e-abd0-4431-9a01-72e1341e137a",
+              "parentUUID": "03adcc1e-c0ae-4c8d-b7d5-1895f933441a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cerrar sesion del administrador",
+              "fullTitle": "Administración General Cerrar sesion del administrador",
+              "timedOut": null,
+              "duration": 1159,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('admin@dinemenow.com');\ncy.get('#formBasicPassword').type('admin123');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/adminp/panel');\ncy.get('.buttonBlancoFGrisNBorder').click();\ncy.get('#root button.buttonCerrarSesion').focus();\ncy.screenshot('Evidencia Cerrar sesion del administrador');\ncy.get('#root button.buttonCerrarSesion').click();",
+              "err": {},
+              "uuid": "6983ea06-ef6b-48cc-ab98-e3449659d4c5",
+              "parentUUID": "03adcc1e-c0ae-4c8d-b7d5-1895f933441a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6a43cb98-1a0a-4312-9a26-c1eefdc79f94",
+            "ef5df175-3beb-49b0-aadb-1912c39331fe",
+            "f368016e-abd0-4431-9a01-72e1341e137a",
+            "6983ea06-ef6b-48cc-ab98-e3449659d4c5"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5296,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
