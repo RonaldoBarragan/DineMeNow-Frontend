@@ -1,0 +1,263 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 5,
+    "pending": 3,
+    "failures": -1,
+    "start": "2026-09-04T01:45:55.398Z",
+    "end": "2026-09-04T01:46:24.948Z",
+    "duration": 29550,
+    "testsRegistered": 9,
+    "passPercent": 83.33333333333334,
+    "pendingPercent": 33.33333333333333,
+    "other": 2,
+    "hasOther": true,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "99b93468-8907-4d6c-b067-e6a59386ccd9",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Gestion de Platillos.cy.js",
+      "file": "cypress\\e2e\\Gestion de Platillos.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "73671afe-894d-4c81-a7e4-162fc51ed472",
+          "title": "Gestion de Menu y Platillos",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Visualizar el menu del restaurante",
+              "fullTitle": "Gestion de Menu y Platillos Visualizar el menu del restaurante",
+              "timedOut": null,
+              "duration": 5311,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('cliente@gmail.com');\ncy.get('#formBasicPassword').type('123456');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/cliente/inicio');\ncy.get('#root img.card-img-top').click();\ncy.screenshot('Evidencia Visualizar el menu del restaurante');",
+              "err": {},
+              "uuid": "a895984b-b3a9-4a9c-821b-db9696878faa",
+              "parentUUID": "73671afe-894d-4c81-a7e4-162fc51ed472",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Visualizar la informacion detallada de un platillo",
+              "fullTitle": "Gestion de Menu y Platillos Visualizar la informacion detallada de un platillo",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "//cy.screenshot('Evidencia Visualizar la informacion detallada de un platillo');",
+              "err": {},
+              "uuid": "b48af21b-62ff-45a8-88bf-ca599427b649",
+              "parentUUID": "73671afe-894d-4c81-a7e4-162fc51ed472",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Filtrar platillos por categoria",
+              "fullTitle": "Gestion de Menu y Platillos Filtrar platillos por categoria",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "//cy.screenshot('Evidencia Flitar platillos por categoria');",
+              "err": {},
+              "uuid": "9a723165-dd5c-4b39-a223-7697e9c7fc3f",
+              "parentUUID": "73671afe-894d-4c81-a7e4-162fc51ed472",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Registrar un nuevo platillo",
+              "fullTitle": "Gestion de Menu y Platillos Registrar un nuevo platillo",
+              "timedOut": null,
+              "duration": 4051,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('#root button[data-rr-ui-event-key=\"Menu\"]').click();\ncy.get('#root div.show button.buttonNaranjaDegrade').click();\ncy.get('[name=\"nomPlato\"]').type('Test Plato 2');\ncy.get('[name=\"categoria\"]').select('Bebidas');\ncy.get('[name=\"descripcion\"]').type('Testeo de plato');\ncy.get('[name=\"precio\"]').type('1000');\ncy.get('button[type=\"submit\"]').click();\ncy.screenshot('Evidencia Registrar un nuevo platillo');",
+              "err": {},
+              "uuid": "36e4b7f9-49bb-43f8-92ef-5c9fccd5be03",
+              "parentUUID": "73671afe-894d-4c81-a7e4-162fc51ed472",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Editar un platillo existente",
+              "fullTitle": "Gestion de Menu y Platillos Editar un platillo existente",
+              "timedOut": null,
+              "duration": 2971,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('#root button[data-rr-ui-event-key=\"Menu\"]').click();\ncy.get('#root tr:nth-child(2) path[d=\"M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z\"]').click();\ncy.get('[name=\"categoria\"]').select('Postres');\ncy.get('[name=\"descripcion\"]').type(' editado');\ncy.get('button[type=\"submit\"]').click();\ncy.screenshot('Evidencia Editar un platillo existente');",
+              "err": {},
+              "uuid": "d04019ac-8603-4675-bf0c-a8541e2aeb7d",
+              "parentUUID": "73671afe-894d-4c81-a7e4-162fc51ed472",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Eliminar un platillo",
+              "fullTitle": "Gestion de Menu y Platillos Eliminar un platillo",
+              "timedOut": null,
+              "duration": 2767,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('#root button[data-rr-ui-event-key=\"Menu\"]').click();\ncy.get(':nth-child(2) > :nth-child(7) > .btn-outline-danger-custom').click();\ncy.screenshot('Evidencia Eliminar un platillo');",
+              "err": {},
+              "uuid": "8249ad18-df09-407c-b7ce-e9fc55f49281",
+              "parentUUID": "73671afe-894d-4c81-a7e4-162fc51ed472",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Registrar un platillo con campos obligatorios vacios",
+              "fullTitle": "Gestion de Menu y Platillos Registrar un platillo con campos obligatorios vacios",
+              "timedOut": null,
+              "duration": 3408,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('#root button[data-rr-ui-event-key=\"Menu\"]').click();\ncy.get('#root div.show button.buttonNaranjaDegrade').click();\ncy.get('[name=\"categoria\"]').select('Bebidas');\ncy.get('[name=\"precio\"]').type('1000');\ncy.get('button[type=\"submit\"]').click();\ncy.wait(500);\ncy.get('.modal').should('be.visible');\ncy.screenshot('Evidencia Registrar un platillo con campos obligatorios vacios');",
+              "err": {},
+              "uuid": "337687c6-11e1-444b-944f-9946ea592058",
+              "parentUUID": "73671afe-894d-4c81-a7e4-162fc51ed472",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Registrar un platillo con precio invalido",
+              "fullTitle": "Gestion de Menu y Platillos Registrar un platillo con precio invalido",
+              "timedOut": null,
+              "duration": 7622,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('#root button.btn-sm.buttonNaranjaDegrade').click();\ncy.get('#formBasicEmail').click();\ncy.get('#formBasicEmail').type('juancardenas083@gmail.com');\ncy.get('#formBasicPassword').type('12345678');\ncy.get('#root button.buttonNaranjaDegrade').click();\ncy.url().should('include', '/restaurante/vista');\ncy.get('#root button[data-rr-ui-event-key=\"Menu\"]').click();\ncy.get('#root div.show button.buttonNaranjaDegrade').click();\ncy.get('[name=\"nomPlato\"]').type('Test Plato 2');\ncy.get('[name=\"categoria\"]').select('Bebidas');\ncy.get('[name=\"descripcion\"]').type('Testeo de plato');\ncy.get('[name=\"precio\"]').type('-1000');\ncy.get('button[type=\"submit\"]').click();\ncy.wait(500);\ncy.get('.modal').should('be.visible');\ncy.screenshot('Evidencia Registrar un platillo con precio invalido');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.modal`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.modal`, but never found it.\n    at Context.eval (webpack://estructura-project/./cypress/e2e/Gestion de Platillos.cy.js:112:25)",
+                "diff": null
+              },
+              "uuid": "d60d71b5-4e7e-4c00-9d3a-f5854f1206e3",
+              "parentUUID": "73671afe-894d-4c81-a7e4-162fc51ed472",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Visualizar disponibilidad de un platillo",
+              "fullTitle": "Gestion de Menu y Platillos Visualizar disponibilidad de un platillo",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "//cy.screenshot('Evidencia Visualizar disponibilidad de un platillo');",
+              "err": {},
+              "uuid": "92a9e9dc-73cd-4e9b-8fa7-ca9df9bb476d",
+              "parentUUID": "73671afe-894d-4c81-a7e4-162fc51ed472",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a895984b-b3a9-4a9c-821b-db9696878faa",
+            "36e4b7f9-49bb-43f8-92ef-5c9fccd5be03",
+            "d04019ac-8603-4675-bf0c-a8541e2aeb7d",
+            "8249ad18-df09-407c-b7ce-e9fc55f49281",
+            "337687c6-11e1-444b-944f-9946ea592058"
+          ],
+          "failures": [
+            "d60d71b5-4e7e-4c00-9d3a-f5854f1206e3"
+          ],
+          "pending": [
+            "b48af21b-62ff-45a8-88bf-ca599427b649",
+            "9a723165-dd5c-4b39-a223-7697e9c7fc3f",
+            "92a9e9dc-73cd-4e9b-8fa7-ca9df9bb476d"
+          ],
+          "skipped": [],
+          "duration": 26130,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
