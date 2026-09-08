@@ -1,7 +1,6 @@
-import { Container, Tab, Tabs } from "react-bootstrap";
+import { Tab, Tabs } from "react-bootstrap";
 import PerfilCliente from "./Perfil";
 import SeguridadPerfilCliente from "./Seguridad";
-import NotificacionesPerfilCliente from "./Notificaciones";
 import CuentaPerfilCliente from "./Cuenta";
 
 function NavSeccionesGestionPerfil() {
@@ -13,9 +12,6 @@ function NavSeccionesGestionPerfil() {
         </Tab>
         <Tab eventKey="Seguridad" title="Seguridad">
             <SeguridadPerfilCliente/>
-        </Tab>
-        <Tab eventKey="Notificaciones" title="Notificaciones">
-            <NotificacionesPerfilCliente/>
         </Tab>
         <Tab eventKey="Cuenta" title="Cuenta">
             <CuentaPerfilCliente/>
