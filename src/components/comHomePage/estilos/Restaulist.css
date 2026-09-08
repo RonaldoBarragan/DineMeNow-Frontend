@@ -91,20 +91,6 @@
   margin: 0;
 }
 
-/* Rating Badge */
-.rating-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.35rem 0.6rem !important;
-  white-space: nowrap;
-  font-size: 0.9rem;
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border-radius: 4px;
-  border: 1px solid #c3e6cb !important;
-}
-
 /* Cuisines Container */
 .restaurant-cuisines {
   display: flex;

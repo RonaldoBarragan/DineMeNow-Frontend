@@ -9,7 +9,7 @@ import { useAuth } from "../../context/AuthContext";
 import api from '../../api/axiosConfig';
 
 // Componente de tarjeta individual
-function RestaurantCard({ name, image, rating, zone, distance, cuisines, onClick }) {
+function RestaurantCard({ name, image, zone, distance, cuisines, onClick }) {
   const [isFavorite, setIsFavorite] = useState(false);
  
 
@@ -43,10 +43,6 @@ function RestaurantCard({ name, image, rating, zone, distance, cuisines, onClick
       <Card.Body className="restaurant-body d-flex flex-column">
         <div className="restaurant-header mb-2">
           <Card.Title className="restaurant-name mb-0">{name}</Card.Title>
-          <Badge bg="" className="rating-badge flex-shrink-0">
-            <StarFill size={12} color="#ffc107" />
-            <span className="ms-1 fw-bold">{rating}</span>
-          </Badge>
         </div>
 
         <div className="restaurant-cuisines mb-2">
@@ -100,9 +96,8 @@ export default function Restaulist({
           name: r.nombre,
           cuisines: [r.categoria],
           image: r.foto || "https://acortar.link/PnN8Ef",
-          rating: "4.9",
           zone: "Bogotá",
-          distance: "Cerca de ti" 
+          distance: "Cerca de ti"
         }));
 
         // 3. MEZCLAMOS: Estáticos + Datos del Backend
