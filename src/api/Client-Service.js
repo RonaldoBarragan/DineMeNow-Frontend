@@ -59,6 +59,15 @@ export const consultarPerfil = async (userId) => {
     }
 };
 
+export const eliminarCliente = async (IdAcc) => {
+    try {
+        const { data } = await api.delete(`/clientes/${IdAcc}`);
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.mensaje || "Error al eliminar la cuenta");
+    }
+}
+
 //Consultar las mesas de un restaurant cuando se esta con perfil de cliente
 export const obtenerMesas = async (nit) => {
     try {
@@ -93,4 +102,4 @@ export const crearReserva = async (reservaData) => {
 export const getMyReservas = async () => {
     const { data } = await api.get("/reservas/mis-reservas");
     return data;
-}
+};
