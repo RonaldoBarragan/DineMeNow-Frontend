@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Modal, Form } from 'react-bootstrap';
 import { Person, Pencil, Envelope, Telephone, GeoAlt, CameraFill } from 'react-bootstrap-icons';
 import './style.css';
 import { consultarPerfil } from '../../api/Client-Service'; // Asegúrate de tener esta función en tu servicio
@@ -8,6 +8,16 @@ import { useAuth } from '../../context/AuthContext';  // ← esto falta
 export default function PerfilCliente() {
   const { user } = useAuth();     
   const [perfilData, setPerfilData] = useState(null);
+  const [mostrar, setMostrar] = useState(false);
+
+  const [formData, setFormData] = useState(null);
+  const [originalData, setOriginalData] = useState(null);
+
+  const abrirModalEdicion = () => {
+    setOriginalData(perfilData);          // snapshot inmutable
+    setFormData({ ...perfilData });       // copia editable
+    setMostrar(true);
+  };
 
   useEffect(() => {
     if (!user?.id || !user?.token) return;                            
@@ -31,6 +41,7 @@ export default function PerfilCliente() {
     : user?.nombre?.[0]?.toUpperCase() || "JP";//plan b
 
   return (
+    <>
     <Container className="p-0" >
       <Row className="p-0">
         {/* COLUMNA IZQUIERDA: INFORMACIÓN PERSONAL */}
@@ -41,9 +52,7 @@ export default function PerfilCliente() {
                 <Person size={20} className="me-2" />
                 <h5 className="mb-0 gestioncliente-Title">Información Personal</h5>
               </div>
-              <button className="btn-editar-perfil d-flex align-items-center">
-                <Pencil size={14} className="me-2" /> Editar
-              </button>
+              <Button className="btn-editar-perfil d-flex align-items-center" onClick={abrirModalEdicion}><Pencil size={14} className="me-2" /> Editar</Button>
             </div>
 
             <div className="mb-3">
@@ -106,11 +115,103 @@ export default function PerfilCliente() {
             
             <div className="stat-row">
               <span className="stat-label">Miembro desde:</span>
-              <span className="stat-value">14/1/2024</span>
+              <span className="stat-value">1/09/2026</span>
             </div>
           </Card>
         </Col>
       </Row>
     </Container>
+
+    <Modal show={mostrar} onHide={() => setMostrar(false)} centered>
+      <Modal.Header closeButton>
+          <Modal.Title>Edita tu perfil </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Row>
+            {/* Nombres */}
+            <Col>
+            <Form.Group className="mb-4" controlId="firstName">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control type="text" placeholder="Ingresa tu nombre"/>
+            </Form.Group>
+            </Col>
+            <Col>
+            <Form.Group className="mb-4" controlId="lastName">
+              <Form.Label>Apellido</Form.Label>
+              <Form.Control type="text" placeholder="Ingresa tu apellido"/>
+            </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            {/* Documento */}
+            <Form.Group className="mb-4" controlId="typeDocument">
+              <Form.Label>Tipo de Documento</Form.Label>
+              <Form.Select name="tipo">
+                <option value="CC">CC</option>
+                <option value="CE">CE</option>
+                <option value="PA">PA</option>
+              </Form.Select>
+            </Form.Group>
+            </Col>
+            <Col>
+            <Form.Group className="mb-4" controlId="documentNumber">
+              <Form.Label>Número de Documento</Form.Label>
+              <Form.Control type="text" placeholder="Ingresa tu número de documento"/>
+            </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            {/* Direccion */}
+            <Form.Group className="mb-4" controlId="calle">
+              <Form.Label>Calle</Form.Label>
+              <Form.Control type="text" placeholder="Ingresa tu calle"/>
+            </Form.Group>
+            </Col>
+            <Col>
+            <Form.Group className="mb-4" controlId="numero">
+              <Form.Label>Numero</Form.Label>
+              <Form.Control type="text" placeholder="Ingresa tu número de direccion"/>
+            </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            <Form.Group className="mb-4" controlId="ciudad">
+              <Form.Label>Ciudad</Form.Label>
+              <Form.Control type="text" placeholder="Ingresa tu ciudad"/>
+            </Form.Group>
+            </Col>
+            <Col>
+            <Form.Group className="mb-4" controlId="pais">
+              <Form.Label>Pais</Form.Label>
+              <Form.Control type="text" placeholder="Ingresa tu país"/>
+            </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            {/* Contacto */}
+            <Form.Group className="mb-4" controlId="email">
+              <Form.Label>Correo</Form.Label>
+              <Form.Control type="email" placeholder="example@mail.com"/>
+            </Form.Group>
+            </Col>
+            <Col>
+            <Form.Group className="mb-4" controlId="telefono">
+              <Form.Label>Telefono</Form.Label>
+              <Form.Control type="text" placeholder="Ingresa tu número de teléfono"/>
+            </Form.Group>
+            </Col>
+          </Row>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+          <Button className="buttonNaranjaDegrade">Guardar cambios</Button>
+      </Modal.Footer>
+    </Modal>
+    </>
   );
 }

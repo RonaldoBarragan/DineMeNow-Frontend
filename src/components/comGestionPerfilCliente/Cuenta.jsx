@@ -32,12 +32,12 @@ export default function CuentaPerfilCliente() {
           
           <div className="info-cuenta-item">
             <span className="info-cuenta-label">ID de Usuario:</span>
-            <span className="text-muted">user-001</span>
+            <span className="text-muted">{user.id}</span>
           </div>
           
           <div className="info-cuenta-item">
             <span className="info-cuenta-label">Fecha de Registro:</span>
-            <span className="text-muted">14/1/2024</span>
+            <span className="text-muted">1/09/2026</span>
           </div>
           
           <div className="info-cuenta-item">

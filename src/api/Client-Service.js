@@ -68,6 +68,15 @@ export const eliminarCliente = async (IdAcc) => {
     }
 }
 
+export const actualizarPerfil = async (userId, updatedData) => {
+    try {
+        const { data } = await api.put(`/clientes/${userId}`, updatedData);
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.mensaje || "Error al actualizar el perfil");
+    }
+};
+
 //Consultar las mesas de un restaurant cuando se esta con perfil de cliente
 export const obtenerMesas = async (nit) => {
     try {

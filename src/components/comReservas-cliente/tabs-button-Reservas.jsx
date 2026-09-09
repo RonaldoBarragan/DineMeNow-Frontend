@@ -10,7 +10,7 @@ function TabsButtonReservas() {
     <>
     <Container className='Card-Reservas'>
       <Tabs defaultActiveKey="Reservas"  className="mb-3 fondo-tab rounded-pill" variant="pills" fill>
-        <Tabs eventKey="Reservas" title={<span><CiCalendar className="icono"/> Proximadas</span>} >
+        <Tabs eventKey="Reservas" title={<span><CiCalendar className="icono"/> Proximas</span>} >
         <ReservasProximas />
         </Tabs>
         <Tabs eventKey="Pasadas" title={<span><IoMdTime className="icono"/> Pasadas</span>} >

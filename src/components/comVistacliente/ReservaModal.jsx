@@ -70,6 +70,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
   nitRestaurante: restaurant?.nit,
   nombreCliente: formData.nombreCliente,
   telefonoCliente: formData.telefono,
+  nombreRestaurante: restaurant?.nombre,
 
   nombrePlatos: platosSeleccionados.map(
     (p) => `${p.cantidad}x ${p.nomPlato}`
