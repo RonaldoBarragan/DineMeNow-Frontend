@@ -55,7 +55,7 @@ function ReservasPasadas() {
         </div>
         <div className="campo">
           <span className="label">Email</span>
-          <span className="valor">cliente@gmail.com</span>
+          <span className="valor">client@gmail.com</span>
         </div>
         </div>
         {/* LADO DERECHO */}

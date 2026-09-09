@@ -9,6 +9,8 @@ import { LuChefHat } from "react-icons/lu";
 import { use, useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { getMyReservas } from '../../api/Client-Service';
+import { FiEdit } from "react-icons/fi";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 function ReservasProximas() {
 
@@ -50,6 +52,9 @@ function ReservasProximas() {
     <Modal.Body>
     {/* Info principal */}
     <div className='info'>
+       
+
+
       <p className='title-modal-nombre'>La Mesa Criolla</p>
       {/* LADO IZQUIERDO */}
       <div className='modal-cuadro'>
@@ -304,7 +309,7 @@ function ReservasProximas() {
 <Card.Body>
 
 <Card.Title className="card-titulo">
-  {reserva.nitRestaurante}
+  {reserva.nombreRestaurante}
 </Card.Title>
 
 <div className="info-desc">
@@ -318,6 +323,24 @@ function ReservasProximas() {
 <div className="info-desc">
    <IoLocationOutline />
    Mesa {reserva.numeroMesa}
+</div>
+<div className="Botones-Acciones">
+   <Button 
+    variant="outline-secondary" 
+    size="sm" 
+    className="me-2 editar-reserva"
+    onClick={() => {}}
+    >
+    <FiEdit size={15} />
+    </Button>
+    <Button 
+    variant="outline-secondary" 
+    size="sm" 
+    className="me-2 btn-outline-danger-custom eliminar-reserva" 
+    onClick={() => {}}
+    >
+    <FaRegTrashAlt size={15} />
+    </Button>
 </div>
 
 </Card.Body>

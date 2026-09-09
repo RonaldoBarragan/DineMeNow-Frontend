@@ -291,3 +291,13 @@
 .info-desc strong {
   color: #4a5565;
 }
+/* ─── botones editar y eliminar ─── */
+.botones_acciones {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
