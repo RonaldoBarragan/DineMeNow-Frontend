@@ -1,4 +1,4 @@
-import { Card, Table, Button, Badge, Spinner } from "react-bootstrap";
+import { Card, Table, Button, Badge, Spinner, Modal } from "react-bootstrap";
 import { Eye } from "react-bootstrap-icons";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext"; 
@@ -12,6 +12,21 @@ export default function Reservas() {
     const [reservas, setReservas] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    // 1. Estado para controlar el modal y la reserva seleccionada
+    const [showModal, setShowModal] = useState(false);
+    const [reservaSeleccionada, setReservaSeleccionada] = useState(null);
+
+    // 2. Funciones para abrir y cerrar el modal
+    const handleVerDetalle = (reserva) => {
+        setReservaSeleccionada(reserva);
+        setShowModal(true);
+    };
+
+    const handleCerrarModal = () => {
+        setShowModal(false);
+        setReservaSeleccionada(null);
+    };
 
     useEffect(() => {
         const cargarDatos = async () => {
@@ -77,7 +92,7 @@ export default function Reservas() {
                                 <td>{renderEstadoBadge(reserva.estado)}</td>
                                 <td>{reserva.descripcion || "Ninguna"}</td>
                                 <td>
-                                    <Button variant="outline-secondary" size="sm" className="me-2">
+                                    <Button variant="outline-secondary" size="sm" className="me-2" onClick={() => handleVerDetalle(reserva)}>
                                         <Eye size={15} />
                                     </Button>
                                 </td>
@@ -87,6 +102,63 @@ export default function Reservas() {
                 </Table>
             )}
         </Card.Body>
+
+        {/* 3. Modal de solo lectura con todos los campos */}
+        <Modal show={showModal} onHide={handleCerrarModal} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>Detalle de la Reserva</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {reservaSeleccionada && (
+                    <Table size="sm" className="mb-0">
+                        <tbody>
+                            <tr>
+                                <td className="fw-bold">Cliente</td>
+                                <td>{reservaSeleccionada.nombreCliente || "Cliente Anónimo"}</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Fecha</td>
+                                <td>{reservaSeleccionada.fecha}</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Hora</td>
+                                <td>{reservaSeleccionada.hora}</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Mesa</td>
+                                <td>#{reservaSeleccionada.numeroMesa || "Mesa no asignada"}</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Personas</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Estado</td>
+                                <td>{renderEstadoBadge(reservaSeleccionada.estado)}</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Solicitudes Especiales</td>
+                                <td>{reservaSeleccionada.descripcion || "Ninguna"}</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Platos</td>
+                                <td>
+                                    {reservaSeleccionada.nombrePlatos?.length > 0 ? (
+                                        <ul className="mb-0 ps-3">
+                                            {reservaSeleccionada.nombrePlatos.map((plato, index) => (
+                                                <li key={index}>{plato}</li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        "Sin platos"
+                                    )}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                )}
+            </Modal.Body>
+        </Modal>
         </>
     );
 }

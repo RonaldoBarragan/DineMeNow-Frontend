@@ -97,6 +97,12 @@ export const getRestaurantByIdAcc = async (idAcc) => {
     return restaurante;
 };
 
+//Actualizar informacion del restaurante con su id de cuenta
+export const actualizarRestaurant = async (idAcc, datos) => {
+    const { data } = await api.put(`${RESTAURANT_URL}/${idAcc}`, datos);
+    return data;
+};
+
 //Gestion Empleados 
 //Registro Empleado 
 export const registrarEmpleado = async (empleado ) => {
