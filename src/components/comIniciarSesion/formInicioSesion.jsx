@@ -112,7 +112,7 @@ function FormularioInicioSesion() {
                 {loading ? 'Ingresando...' : 'Iniciar Sesión'}
                 </Button>
 								<p className="text-center mt-3">
-								<Link className='linkFormRecuperar' to="/recuperar-contraseña">¿Olvidaste tu contraseña?</Link>
+								<Link className='linkFormRecuperar' to="/recuperarcontrasena">¿Olvidaste tu contraseña?</Link>
                 </p>
                 
 
