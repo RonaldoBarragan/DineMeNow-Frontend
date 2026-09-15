@@ -30,3 +30,49 @@ export async function loginUsuario(data) {
     throw new Error(message);
   }
 }
+
+export async function solicitarCodigoRecuperacion(correo) {
+  try {
+    const { data } = await api.post("/auth/recuperar-password/solicitar", { correo });
+    return data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.mensaje ||
+      error.response?.data?.error ||
+      "No fue posible solicitar la recuperación de contraseña."
+    );
+  }
+}
+
+export async function verificarCodigoRecuperacion(correo, codigo) {
+  try {
+    const { data } = await api.post("/auth/recuperar-password/verificar-codigo", {
+      correo,
+      codigo,
+    });
+    return data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.mensaje ||
+      error.response?.data?.error ||
+      "Código incorrecto o ha expirado."
+    );
+  }
+}
+
+export async function cambiarPasswordConToken(resetToken, password) {
+  try {
+    const { data } = await api.post(
+      "/auth/recuperar-password/cambiar",
+      { password },
+      { headers: { Authorization: `Bearer ${resetToken}` } }
+    );
+    return data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.mensaje ||
+      error.response?.data?.error ||
+      "No fue posible actualizar la contraseña."
+    );
+  }
+}

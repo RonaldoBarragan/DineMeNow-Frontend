@@ -21,20 +21,31 @@ import GestionEmpleadosRestaurante from "../pages/Gestion-EmpleadosRestau";
 
 
 
-
 export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/iniciarsesion" element={<IniciarSesion />} />
-      <Route path="/verificartoken" element={<VerificarToken />} />
       <Route path="/restaurante/registro" element={<Registro_Restaurante />} />
       <Route path="/crearcuenta" element={<CrearCuentaCliente />} />
-      <Route path="/recuperarcontrasena" element={<RecuperarContrasena />} />
-      <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       <Route path="/actualizar-contraresta" element={<ActualizarContraRestau />} />
-    
-      
+      <Route
+        path="/recuperarcontrasena"
+        element={<RecuperarContrasena />}
+      />
+
+      <Route
+        path="/verificartoken"
+        element={<VerificarToken />}
+      />
+
+      <Route
+        path="/cambiarcontrasena"
+        element={<CambiarContrasena />}
+      />
+
+
+
       <Route
         path="/cliente/perfil"
         element={
@@ -91,7 +102,7 @@ export const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-       <Route
+      <Route
         path="/restaurante/gestion-empleados"
         element={
           <ProtectedRoute role="restaurante">

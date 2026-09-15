@@ -4,13 +4,20 @@ import ImgLogoGlobal from "../components/common/imgLogo";
 import CardCambiar from "../components/comRecuperarContrasena/CardCambioContrasena";
 
 const CambiarContrasena = () => {
+  const location = useLocation();
+const navigate = useNavigate();
+
+const resetToken = location.state?.resetToken;
+if (!resetToken) {
+  return <Navigate to="/recuperarcontrasena" replace />;
+}
   return (
     <>
       <BotonCancelar />
       <div style={{ paddingTop: "120px", textAlign: "center" }}>
         <ImgLogoGlobal />
       </div>
-      <CardCambiar />
+      <CardCambiar resetToken={resetToken} />
     </>
   );
 };
