@@ -1,3 +1,4 @@
+import { data } from "react-router-dom";
 import api from "./axiosConfig";
 
 const RESTAURANT_URL = "/restaurantes"; //URL para restaurantes
@@ -7,8 +8,8 @@ export const getListPlatosRestaurant = async (idAcc) => {
 
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     const { data: platos } = await api.get(`/platos/listarPlatos/${encodeURIComponent(restaurante.nit)}`);
-  
-  return platos;
+
+    return platos;
 };
 
 // 2. Guardar un nuevo plato
@@ -35,8 +36,8 @@ export const getListMesasRestaurant = async (idAcc) => {
 
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     const { data: mesas } = await api.get(`/mesas/restaurante/${encodeURIComponent(restaurante.nit)}`);
-  
-  return mesas;
+
+    return mesas;
 };
 
 // 2. Guardar una nueva mesa
@@ -103,8 +104,13 @@ export const actualizarRestaurant = async (idAcc, datos) => {
     return data;
 };
 
-//Gestion Empleados 
-//Registro Empleado 
+export const eliminarRestaurant = async (idAcc) => {
+    const { data } = await api.delete(`${RESTAURANT_URL}/${idAcc}`);
+    return data;
+}
+
+//Gestion Empleados
+//Registro Empleado
 export const registrarEmpleado = async (empleado ) => {
     const {data} = await api.post("/empleados/registro", empleado);
     return data;
