@@ -29,7 +29,7 @@ export default function Panel_Mesero() {
         <Container className='my-4  margen-provi'>
             <Card_info_mesero nameRestaurant={restaurantData?.nombre} />
             <div className="mt-3">
-            <Card_stats_mesero nit={restaurantData?.nit} />
+            <Card_stats_mesero idRestaurant={restaurantData?.id} />
             </div>
             <Card className="p-3">
                 <CardSections nit={restaurantData?.nit} />

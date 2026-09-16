@@ -5,7 +5,7 @@ import Section_VistaMesas_Mesero from "./Section-VistaMesas-Mesero";
 import './style-Mesero.css';
 
 export default function CardSections() {
-  return (    
+    return (
     <>
     <Card className="p-2 mb-3 sin-borde">
         <Tabs defaultActiveKey="Gestion reservas" className="rounded-pill tab-mesero mb-4" variant="pills" justify >
@@ -20,6 +20,6 @@ export default function CardSections() {
             </Tab>
         </Tabs>
     </Card>
-    </>  
+    </>
     )
 }
