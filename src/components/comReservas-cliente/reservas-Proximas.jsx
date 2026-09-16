@@ -1,355 +1,179 @@
-import { Badge, Card, Container, Modal, Button } from 'react-bootstrap';
+import { Card, Container, Button, Modal, Form} from 'react-bootstrap';
 import './reservas-Proximas.css';
 import { CiCalendar } from "react-icons/ci";
 import { IoMdTime } from "react-icons/io";
-import { RxPeople } from "react-icons/rx";
 import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { LuChefHat } from "react-icons/lu";
-import { use, useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import { getMyReservas } from '../../api/Client-Service';
+import { useAuth } from '../../context/AuthContext';
 import { FiEdit } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useEffect, useState } from 'react';
 
 function ReservasProximas() {
+  const { user } = useAuth();
+  const [mostrarModalEditar, setShowModalEditar] = useState(false);
+  const [reserva, setReservas] = useState([]);
 
-  const {user} = useAuth();
-  const [reservas, setReservas] = useState([]);
-  const [reservaSeleccionada, setReservaSeleccionada] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [tipoModal, setTipoModal] = useState(null);
-
-  useEffect(() => {
-  const cargarReservas = async () => {
-    try{
-      const data = await getMyReservas();
-
-      console.log("Reservas cliente", data);
-      setReservas(data);
-    }catch(error){
-      console.error(error);
-    }
+  //estado de model de editar reserva
+  const [reservaseleccionada, setReservaSeleccionada] = useState(null);
+  //ABRIR MODAL DE EDITAR RESERVA
+  const abrirEditarReserva = (reserva) => {
+    setReservaSeleccionada({
+      ...reserva
+    });
+    setShowModalEditar(true);
+  };
+  //CERRAR MODAL DE EDITAR RESERVA
+  const cerrarEditarReserva = () => {
+    setShowModalEditar(false);
+    setReservaSeleccionada(null);
   };
 
-  if(user){
-    cargarReservas();
-  }
-},[user]);
+  //actualizar reserva
+  const handleActualizarReserva = async () => {
+    try {
+      if (!reservaseleccionada) return;
 
+      const reservaId = reservaseleccionada.id; // Asegúrate de que el ID de la reserva esté disponible
+      const reservaActualizada = {
+        fecha: reservaseleccionada.fecha,
+        hora: reservaseleccionada.hora,
+        personas: reservaseleccionada.personas
+      };
+      console.log("reservaActualizada", reservaActualizada);
+
+      const respuesta = await actualizarReserva(
+        reservaId, 
+        reservaActualizada
+      );
+
+      console.log("Reserva del backend:", respuesta);
+      setShowModalEditar(false);
+      setReservaSeleccionada(null);
+      alert("Reserva actualizada correctamente");
+      } catch (error) {
+        console.error("Error al actualizar la reserva:", error);
+        console.error("respuesta del servidor:", error.response?.data);
+        alert(
+          error.response?.data?.mensaje || "Error al actualizar la reserva"
+        );}
 
   return (
     <>
-    <Modal centered show={showModal} onHide={() => setShowModal(false)}>
-      {/* 1 */}
-    {tipoModal === 1 && (
-      <>
-    <Modal.Header closeButton>
-      <Modal.Title className='tituloo'>
-          Detalles de la Reserva
-      </Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-    {/* Info principal */}
-    <div className='info'>
-       
+    {/* Modal para editar reserva */}
+    <Modal 
+    show={mostrarModalEditar}
+    onHide={cerrarEditarReserva}
+    centered
+    className="modal-editar-reserva"
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>Editar Reserva</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {reservaseleccionada && (
+          <Form>
+            {/* FECHA */}
+            <Form.Group controlId="formFecha">
+              <Form.Label>Fecha</Form.Label>
+              <Form.Control
+                type="date"
+                value={reservaseleccionada.fecha}
+                onChange={(e) =>
+                  setReservaSeleccionada({
+                    ...reservaseleccionada,
+                    fecha: e.target.value
+                  })
+                }
+              />
+            </Form.Group>
+            {/* HORA */}
+            <Form.Group controlId="formHora">
+              <Form.Label>Hora</Form.Label>
+              <Form.Control
+                type="time"
+                value={reservaseleccionada.hora}
+                onChange={(e) =>
+                  setReservaSeleccionada({
+                    ...reservaseleccionada,
+                    hora: e.target.value
+                  })
+                }
+              />
+            </Form.Group>
+              {/* PERSONAS */}
+            <Form.Group controlId="formPersonas">
+              <Form.Label>Personas</Form.Label>
+              <Form.Control
+                type="number"
+                value={reservaseleccionada.personas}
+                onChange={(e) =>
+                  setReservaSeleccionada({
+                    ...reservaseleccionada,
+                    personas: parseInt(e.target.value)
+                  })
+                }
+              />
+            </Form.Group>
+          </Form>
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={cerrarEditarReserva}>
+          Cancelar
+        </Button>
+        <Button variant="primary" onClick={handleActualizarReserva}>
+          Guardar Cambios
+        </Button>
+      </Modal.Footer>
+      </Modal>
 
-
-      <p className='title-modal-nombre'>La Mesa Criolla</p>
-      {/* LADO IZQUIERDO */}
-      <div className='modal-cuadro'>
-      
-      <div className="columna-pricipal">
-      <div className='info-desc-modal'><CiCalendar size={15} /> 14 de octubre de 2025</div>
-      <div className='info-desc-modal'><RxPeople size={15} /> 4 personas</div>
-      </div>
-      {/* LADO DERECHO */}
-      <div className="columna-pricipal">
-      <div className='info-desc-modal'><IoMdTime size={15} /> 19:00</div>
-      <div className='info-desc-modal'><IoLocationOutline size={15} /> Mesa 5</div>
-      </div>
-      
-    </div >
-    <div className='estado'><Badge className="badge-confirmada">Confirmada</Badge></div>
-    </div>
-
-    {/* Información de contacto */}
-    <div className='info-contacto'>
-      <p className='title-modal'>Información de contacto</p>
-      <div className='info'>
-        {/* LADO IZQUIERDO */}
-        <div className='fila-contacto'>
-        <div className="columna-contac">
-        <div className="campo">
-          <span className="label">Nombre</span>
-          <span className="valor">Juan Pérez</span>
-        </div>
-        <div className="campo">
-          <span className="label">Email</span>
-          <span className="valor">cliente@gmail.com</span>
-        </div>
-        </div>
-        {/* LADO DERECHO */}
-        <div className="columna-contac">
-        <div className="campo">
-          <span className="label">Teléfono</span>
-          <span className="valor">3001234567</span>
-        </div>
-        </div>
-    </div>
-    </div>
-    </div>
-
-    {/* Info Platillos pre-ordenados */}
-     <div className='info-platillos'>
-      <p className='title-modal'><LuChefHat size={15} />Platillos pre-ordenados</p>
-        <div className='info'>
-          <div className='platillo-row'>
-      <div>
-        <span className="nombre">Ajiaco Santafereño</span>
-        <span className="cantidad">Cantidad: 2</span>
-      </div>
-
-      <div className="precio">
-        <span className="valor-total">$36.000</span>
-        <span className="valor-unitario">$18.000 c/u</span>
-      </div>
-    </div>
-
-    {/* ITEM 2 */}
-    <div className='platillo-row'>
-      <div>
-        <span className="nombre">Bandeja Paisa</span>
-        <span className="cantidad">Cantidad: 1</span>
-      </div>
-
-      <div className="precio">
-        <span className="valor-total">$25.000</span>
-        <span className="valor-unitario">$25.000 c/u</span>
-      </div>
-    </div>
-
-    {/* TOTAL */}
-    <div className='platillo-total'>
-      <span className="total">Total estimado:</span>
-      <span className="valor-total-platos">$61.000</span>
-    
-        </div>
-    </div>
-    </div>
-    {/* Solicitudes especiales */}
-     <div className='info-solicitudes'>
-      <p className='title-modal'>Solicitudes especiales</p>
-      <div className='info'>
-        <div className="campo">
-          <span className="soli">Mesa cerca de la ventana</span>
-        </div> 
-    </div>
-    </div>
-    {/* Información adicional */}
-     <div className='info-reserva'>
-      <p className='title-modal'>Información adicional</p>
-      <div className='info'>
-        {/* LADO IZQUIERDO */}
-        <div className='fila-reserva'>
-        <div className="columna-reserva">
-        <div className="campo-reserva">
-          <span className="label">ID de reserva</span>
-          <span className="valor">res-001</span>
-        </div>
-        </div>
-        {/* LADO DERECHO */}
-        <div className="columna-reserva">
-        <div className="campo-reserva">
-          <span className="label">Fecha de creación</span>
-          <span className="valor">3 oct 2025, 05:00</span>
-        </div>
-        </div>
-        </div>
-      </div>
-    </div>
-
-    </Modal.Body>
-    <Modal.Footer>
-      <Button className="btn-cerrar" onClick={() => setShowModal(false)}><span className="cerrar">Cerrar</span></Button>
-    </Modal.Footer>
-    </>
+{/* Card de reservas proximas */}
+{reserva && (
+  <Container className="Card-Proximas">
+    <Card className="Card-Reservas-Proximas">
+      <Card.Body>
+        <div className="div-card-Proximas">
+          {/*título*/}
+        <Card.Title className="card-titulo-proximas">{reserva.nombre}</Card.Title>
+        {/* fila 2: fecha hora personas — baja por flex-basis: 100% */}
+        {/* INFORMACIÓN */}
+        <div className="fila-2-proximas">
+          <div className='info-text-proximas'>
+            {/* FECHA */}
+            <div className="info-desc-proximas">
+            <CiCalendar /> {reserva.fecha}
+            </div>
+            {/* HORA */}
+            <div className="info-desc-proximas">
+            <IoMdTime /> {reserva.hora}
+            </div>
+             {/* MESA */}
+            <div className="info-desc-proximas">
+            <IoLocationOutline /> Mesa {reserva.mesa}
+            </div>
+          </div>
+            </div>
+            {/* BOTONES */}
+            <div className="Botones-Acciones">
+              <Button
+              variant="outline-secondary" 
+              size="sm"
+              onClick={() => abrirEditarReserva(reserva)}>
+                <FiEdit size={15} />
+              </Button>
+              <Button
+              variant="outline-secondary" 
+              size="sm"
+              onClick={() => abrirEliminarReserva(reserva)}>
+                <FaRegTrashAlt size={15} />
+              </Button>
+            </div>
+          </div>
+      </Card.Body>
+    </Card>
+  </Container>
 )}
-    {/* 2 */}
-    {tipoModal === 2 && (
-      <>
-    <Modal.Header closeButton>
-      <Modal.Title className='tituloo'>
-          Detalles de la Reserva
-      </Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-    {/* Info principal */}
-    <div className='info'>
-      <p className='title-modal-nombre'>Bella Napoli</p>
-      {/* LADO IZQUIERDO */}
-      <div className='modal-cuadro'>
-      
-      <div className="columna-pricipal">
-      <div className='info-desc-modal'><CiCalendar size={15} /> 19 de octubre de 2025</div>
-      <div className='info-desc-modal'><RxPeople size={15} /> 2 personas</div>
-      </div>
-      {/* LADO DERECHO */}
-      <div className="columna-pricipal">
-      <div className='info-desc-modal'><IoMdTime size={15} /> 20:30</div>
-      <div className='info-desc-modal'><IoLocationOutline size={15} /> Mesa 8</div>
-      </div>
-      
-    </div >
-    <div className='estado'><Badge className="badge-Pendiente">Pendiente</Badge></div>
-    </div>
-
-    {/* Información de contacto */}
-    <div className='info-contacto'>
-      <p className='title-modal'>Información de contacto</p>
-      <div className='info'>
-        {/* LADO IZQUIERDO */}
-        <div className='fila-contacto'>
-        <div className="columna-contac">
-        <div className="campo">
-          <span className="label">Nombre</span>
-          <span className="valor">Juan Pérez</span>
-        </div>
-        <div className="campo">
-          <span className="label">Email</span>
-          <span className="valor">cliente@gmail.com</span>
-        </div>
-        </div>
-        {/* LADO DERECHO */}
-        <div className="columna-contac">
-        <div className="campo">
-          <span className="label">Teléfono</span>
-          <span className="valor">3001234567</span>
-        </div>
-        </div>
-    </div>
-    </div>
-    </div>
-
-    {/* Info Platillos pre-ordenados */}
-     <div className='info-platillos'>
-      <p className='title-modal'><LuChefHat size={15} />Platillos pre-ordenados</p>
-        <div className='info'>
-          <div className='platillo-row'>
-      <div>
-        <span className="nombre">Pizza Margherita</span>
-        <span className="cantidad">Cantidad: 1</span>
-      </div>
-
-      <div className="precio">
-        <span className="valor-total">$32.000</span>
-        <span className="valor-unitario">$32.000 c/u</span>
-      </div>
-    </div>
-
-    {/* ITEM 2 */}
-    <div className='platillo-row'>
-      <div>
-        <span className="nombre">Pasta Carbonara</span>
-        <span className="cantidad">Cantidad: 1</span>
-      </div>
-
-      <div className="precio">
-        <span className="valor-total">$28.000</span>
-        <span className="valor-unitario">$28.000 c/u</span>
-      </div>
-    </div>
-
-    {/* TOTAL */}
-    <div className='platillo-total'>
-      <span className="total">Total estimado:</span>
-      <span className="valor-total-platos">$60.000</span>
-        </div>
-    </div>
-    </div>
-    {/* Información adicional */}
-     <div className='info-reserva'>
-      <p className='title-modal'>Información adicional</p>
-      <div className='info'>
-        {/* LADO IZQUIERDO */}
-        <div className='fila-reserva'>
-        <div className="columna-reserva">
-        <div className="campo-reserva">
-          <span className="label">ID de reserva</span>
-          <span className="valor">res-002</span>
-        </div>
-        </div>
-        {/* LADO DERECHO */}
-        <div className="columna-reserva">
-        <div className="campo-reserva">
-          <span className="label">Fecha de creación</span>
-          <span className="valor">5 oct 2025, 09:30</span>
-        </div>
-        </div>
-        </div>
-      </div>
-    </div>
-
-    </Modal.Body>
-    <Modal.Footer>
-      <Button className="btn-cerrar" onClick={() => setShowModal(false)}><span className="cerrar">Cerrar</span></Button>
-    </Modal.Footer>
-    </>
-     )}
-  </Modal>
-
-
-  {/* CARDS */}
-    <Container className="Card-Proximadas">
-
-{reservas.map((reserva) => (
-
-<Card key={reserva.id} className="Card-Reservas-Proximas">
-
-<Card.Body>
-
-<Card.Title className="card-titulo">
-  {reserva.nombreRestaurante}
-</Card.Title>
-
-<div className="info-desc">
-   <CiCalendar /> {reserva.fecha}
-</div>
-
-<div className="info-desc">
-   <IoMdTime /> {reserva.hora}
-</div>
-
-<div className="info-desc">
-   <IoLocationOutline />
-   Mesa {reserva.numeroMesa}
-</div>
-<div className="Botones-Acciones">
-   <Button 
-    variant="outline-secondary" 
-    size="sm" 
-    className="me-2 editar-reserva"
-    onClick={() => {}}
-    >
-    <FiEdit size={15} />
-    </Button>
-    <Button 
-    variant="outline-secondary" 
-    size="sm" 
-    className="me-2 btn-outline-danger-custom eliminar-reserva" 
-    onClick={() => {}}
-    >
-    <FaRegTrashAlt size={15} />
-    </Button>
-</div>
-
-</Card.Body>
-
-</Card>
-
-))}
-
-</Container>
+  
     </>
   );
 }
