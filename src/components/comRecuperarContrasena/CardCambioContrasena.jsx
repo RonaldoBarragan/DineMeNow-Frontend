@@ -4,16 +4,14 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AiOutlineLock } from "react-icons/ai";
 import { cambiarPasswordConToken } from "../../services/authService";
 import "./CambioContrasena.css";
 import "../comIniciarSesion/formInicioSesion.css";
 
-function CardCambiar() {
-  const location = useLocation();
+function CardCambiar({ resetToken }) {
   const navigate = useNavigate();
-  const resetToken = location.state?.resetToken;
   const [password, setPassword] = useState("");
   const [confirmacion, setConfirmacion] = useState("");
   const [loading, setLoading] = useState(false);
@@ -61,7 +59,15 @@ function CardCambiar() {
           <Form.Group className="mb-3">
             <Form.Label className="text-start w-100 fw-bold">Nueva contraseña</Form.Label>
             <div className="input-container-relative">
-              <Form.Control type="password" placeholder="••••••••" className="inputForm icon-form-padding-left" value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} required />
+              <Form.Control
+                type="password"
+                placeholder="••••••••"
+                className="inputForm icon-form-padding-left"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
+                required
+              />
               <div className="icon-form-overlay"><AiOutlineLock size={20} /></div>
             </div>
           </Form.Group>
@@ -69,14 +75,26 @@ function CardCambiar() {
           <Form.Group className="mb-3">
             <Form.Label className="text-start w-100 fw-bold">Confirmar contraseña</Form.Label>
             <div className="input-container-relative">
-              <Form.Control type="password" placeholder="••••••••" className="inputForm icon-form-padding-left" value={confirmacion} onChange={(e) => setConfirmacion(e.target.value)} disabled={loading} required />
+              <Form.Control
+                type="password"
+                placeholder="••••••••"
+                className="inputForm icon-form-padding-left"
+                value={confirmacion}
+                onChange={(e) => setConfirmacion(e.target.value)}
+                disabled={loading}
+                required
+              />
               <div className="icon-form-overlay"><AiOutlineLock size={20} /></div>
             </div>
           </Form.Group>
 
           <br />
           <Button type="submit" className="buttonNaranjaDegrade w-100" disabled={loading}>
-            {loading ? <><Spinner animation="border" size="sm" className="me-2" />Actualizando...</> : "Confirmar"}
+            {loading ? (
+              <><Spinner animation="border" size="sm" className="me-2" />Actualizando...</>
+            ) : (
+              "Confirmar"
+            )}
           </Button>
         </Form>
       </Card.Body>

@@ -30,7 +30,7 @@ function CardRecuperar() {
     setLoading(true);
     try {
       await solicitarCodigoRecuperacion(correoLimpio);
-      navigate("/verificar-token", { state: { correo: correoLimpio, tipo: "recuperacion" } });
+      navigate("/verificartoken", { state: { correo: correoLimpio, tipo: "recuperacion" } });
     } catch (err) {
       setError(err.message);
     } finally {
