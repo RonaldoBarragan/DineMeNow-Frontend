@@ -78,6 +78,21 @@ export const obtenerPlatos = async (nit) => {
         throw new Error(error.response?.data?.mensaje || "Error obteniendo platos");
     }
 };
+//Crear una reserva desde el perfil de cliente
+export const crearReserva = async (reservaData) => {
+    try {
+        const { data } = await api.post(`/reservas/CrearReservas`, reservaData);
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.mensaje || "Error al crear la reserva");
+    }
+};
+
+//Consultar las reservas de un cliente
+export const getMyReservas = async () => {
+    const { data } = await api.get("/reservas/mis-reservas");
+    return data;
+}
 //editar reserva
 export const actualizarReserva = async (reservaId, reserva) => {
     const { data } = await api.put(`/reservas/${reservaId}`, reserva);
