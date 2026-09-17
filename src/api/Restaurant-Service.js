@@ -1,4 +1,3 @@
-import { data } from "react-router-dom";
 import api from "./axiosConfig";
 
 const RESTAURANT_URL = "/restaurantes"; //URL para restaurantes
@@ -90,6 +89,17 @@ export const getReservasRestaurant = async (idAcc) => {
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     const { data: reservas } = await api.get(`/reservas/restaurante/${encodeURIComponent(restaurante.nit)}`);
     return reservas;
+};
+
+// Actualiza la reserva enviando el objeto completo con el nuevo estado
+export const updateReservaEstado = async (reserva, nuevoEstado) => {
+    const reservaActualizada = {
+        ...reserva,
+        estado: nuevoEstado
+    };
+
+    const { data } = await api.put(`/reservas/actuReserva/${reserva.id}`, reservaActualizada);
+    return data;
 };
 
 //Consultar informacion del restaurante con su id de cuenta

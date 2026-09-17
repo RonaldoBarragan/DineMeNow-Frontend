@@ -16,7 +16,6 @@ export default function Panel_Mesero() {
             try {
                 const restaurant = await getRestaurantByEmpleadoIdAcc(user.id);
                 setRestaurantData(restaurant);
-                console.log("Datos del restaurante obtenidos:", restaurant);
             } catch (error) {
                 console.error("Error al obtener los datos del restaurante:", error);
             }
@@ -32,7 +31,7 @@ export default function Panel_Mesero() {
             <Card_stats_mesero idRestaurant={restaurantData?.id} />
             </div>
             <Card className="p-3">
-                <CardSections nit={restaurantData?.nit} />
+                <CardSections idRestaurant={restaurantData?.id} />
             </Card>
         </Container>
         </>
