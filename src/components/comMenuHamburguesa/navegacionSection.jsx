@@ -15,6 +15,7 @@ function NavigationSection() {
   const isRestaurantView = role === "restaurante";
   const isAdminView = role === "admin";
   const isEmpleadoView = role === "empleado" || role === "mesero";
+  const isChefView = role === 'chef';
 
   return (
     <nav className="menu-navigation">
@@ -82,6 +83,17 @@ function NavigationSection() {
           <NavLink to="/mesero/panel" className="nav-item">
             <BsGear size={20} className="nav-icon" />
             <span>Panel de mesero</span>
+          </NavLink>
+        </li>
+        </>
+      )}
+
+      {isChefView && (
+        <>
+        <li>
+          <NavLink to="/chef/panel" className="nav-item">
+            <BsGear size={20} className="nav-icon" />
+            <span>Panel de chef</span>
           </NavLink>
         </li>
         </>

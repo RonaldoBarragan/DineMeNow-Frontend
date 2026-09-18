@@ -31,6 +31,8 @@ const IniciarSesion = () => {
         navigate('/restaurante/vista');
       } else if (user.role === 'empleado' || user.role === 'mesero') {
         navigate('/mesero/panel');
+      } else if (user.role === 'chef') {
+        navigate('/chef/panel');
       } else {
         navigate('/');
       }

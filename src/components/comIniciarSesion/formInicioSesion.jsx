@@ -61,6 +61,8 @@ function FormularioInicioSesion() {
         navigate('/restaurante/vista');
       } else if (role === 'empleado' || role === 'mesero') {
         navigate('/mesero/panel');
+      } else if (role === 'chef') {
+        navigate('/chef/panel');
       } else {
         navigate('/');
       }
