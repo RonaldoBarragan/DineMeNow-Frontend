@@ -1,8 +1,8 @@
 import { Container, Tab, Tabs } from "react-bootstrap";
 import './Tabs-button.css';
-import Perfil from "./info-horario";
 import SeguridadRestaurante from "./Seguridad";
 import ConfiguracionCuenta from "./Configuracion-Cuenta";
+import InfoRestaurante from "./info-Restaurante";
 
 function TabsSecciones() {
     return (
@@ -11,7 +11,7 @@ function TabsSecciones() {
         
             <Tabs defaultActiveKey="Perfil"  className="mb-3 fondo-tab rounded-pill" variant="pills" fill>
                 <Tab eventKey="Perfil" title="Perfil del Restaurante" >
-                    <Perfil/> 
+                    <InfoRestaurante /> 
                 </Tab>
                 <Tab eventKey="Seguridad" title="Seguridad" >
                     <SeguridadRestaurante/>

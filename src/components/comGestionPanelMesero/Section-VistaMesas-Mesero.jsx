@@ -1,8 +1,25 @@
-import { Badge, Button, Table } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Badge, Table } from "react-bootstrap";
 import { PiGridFourLight } from "react-icons/pi";
+import { getListMesasRestaurant } from "../../api/Restaurant-Service";
 
-export default function Section_VistaMesas_Mesero() {
-
+export default function Section_VistaMesas_Mesero({idRestaurant}) {
+    const [mesas, setMesas] = useState([]);
+    
+        useEffect(() => {
+            if (!idRestaurant) return;
+    
+            const fetchMesas = async () => {
+                try {
+                    const data = await getListMesasRestaurant(idRestaurant);
+                    setMesas(data);
+                } catch (error) {
+                    console.error("Error al obtener reservas:", error);
+                }
+            };
+    
+            fetchMesas();
+        }, [idRestaurant]);
 
     return (
         <>
@@ -16,47 +33,30 @@ export default function Section_VistaMesas_Mesero() {
                 <tr>
                     <th>N# Mesa</th>
                     <th>Capacidad</th>
-                    <th>Ubicación</th>
                     <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
-                {/* FIla 1 */}
-                <tr>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                        <PiGridFourLight size={22} />
-                        <small className="mb-0">Mesa 1</small>
-                        </div>
-                    </td>
-                    <td>2 personas<br /></td>
-                    <td>Principal<br /></td>
-                    <td><Badge className="badge-state-mesaDisponibleMesero">Disponible</Badge></td>
-                </tr>
-                {/* Fila 2 */}
-                <tr>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                        <PiGridFourLight size={22} />
-                        <small className="mb-0">Mesa 2</small>
-                        </div>
-                    </td>
-                    <td>4 personas<br /></td>
-                    <td>Terraza<br /></td>
-                    <td><Badge className="badge-state-mesaOcupadaMesero">Ocupada</Badge></td>
-                </tr>
-                {/* Fila 3 */}
-                <tr>
-                    <td>
-                        <div className="d-flex align-items-center gap-1">
-                        <PiGridFourLight size={22} />
-                        <small className="mb-0">Mesa 3</small>
-                        </div>
-                    </td>
-                    <td>4 personas<br /></td>
-                    <td>Principal<br /></td>
-                    <td><Badge className="badge-state-mesaReservadaMesero">Reservada</Badge></td>
-                </tr>
+                {mesas.length === 0 ? (
+                    <tr>
+                        <td colSpan="7" className="text-center py-4 text-muted">
+                            No se encontraron reservas registradas.
+                        </td>
+                    </tr>
+                ) : (
+                    mesas.map((mesa) => (
+                        <tr key={mesa.id}>
+                            <td>
+                                <div className="d-flex align-items-center gap-1">
+                                    <PiGridFourLight size={22} />
+                                    <small className="mb-0">Mesa {mesa.numMesa}</small>
+                                </div>
+                            </td>
+                            <td>{mesa.capacidad} personas<br /></td>
+                            <td><Badge className={mesa.estado === "true" ? 'badge-state-mesaDisponibleMesero' : 'badge-state-mesaOcupadaMesero'}>{mesa.estado === "true" ? 'Disponible' : 'Ocupada'}</Badge></td>
+                        </tr>
+                    ))
+                )}
             </tbody>
         </Table>
         </>

@@ -133,53 +133,6 @@ input.inputFormSeguridad:focus {
     box-shadow: 0 0 0 2px #a1a1a1ab;
 }
 
-
-/* Notificaciones */
-
-/* Contenedor para que las opciones no ocupen todo el ancho en pantallas grandes */
-.notificaciones-container {
-    max-width: 100%;
-}
-
-/* 1. Elimina el borde azul y la sombra al hacer clic (el focus) */
-.form-check-input:focus {
-    box-shadow: none !important;
-    border-color: rgba(0, 0, 0, 0.25) !important; /* Un gris suave */
-}
-
-/* 2. Color cuando está activo (Checked) */
-.form-check-input:checked {
-    background-color: #000000 !important; /* Negro como tu referencia */
-    border-color: #000000 !important;
-}
-
-/* 3. Color cuando está activo pero tiene el foco (clic sostenido) */
-.form-check-input:checked:focus {
-    box-shadow: none !important;
-    border-color: #000000 !important;
-}
-
-/* 4. Estilo de la "bolita" blanca (opcional, por si quieres ajustarla) */
-.form-check-input {
-    cursor: pointer;
-}
-
-/* Estilo para la descripción debajo de cada título */
-.notificacion-descripcion {
-    font-size: 0.85rem;
-    color: #6c757d;
-    margin-bottom: 0;
-}
-
-/* Ajuste de alineación para que el switch quede a la derecha */
-.notificacion-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-}
-
-
 /* cuenta */
 
 /* Tarjeta de Zona Peligrosa */

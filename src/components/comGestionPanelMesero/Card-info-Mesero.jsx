@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card';
 import { LuUtensilsCrossed } from "react-icons/lu";
 import './style-Mesero.css';
 
-function Card_info_mesero () {
+function Card_info_mesero ({nameRestaurant}) {
   return (
         <>
         <Card>
@@ -10,7 +10,7 @@ function Card_info_mesero () {
                 <LuUtensilsCrossed className="icon-color-AccMesero" size={35} />
                 <div className="flex-column">
                     <Card.Title className="fw-bold mb-0">Panel de Mesero</Card.Title>
-                    <Card.Text className="text-left mt-0 size-letra-propio">Carlos Mendez - La Mesa Criolla</Card.Text>
+                    <Card.Text className="text-left mt-0 size-letra-propio">De: {nameRestaurant}</Card.Text>
                 </div>
             </Card.Body>
         </Card>

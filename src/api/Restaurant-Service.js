@@ -7,8 +7,8 @@ export const getListPlatosRestaurant = async (idAcc) => {
 
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     const { data: platos } = await api.get(`/platos/listarPlatos/${encodeURIComponent(restaurante.nit)}`);
-  
-  return platos;
+
+    return platos;
 };
 
 // 2. Guardar un nuevo plato
@@ -35,8 +35,8 @@ export const getListMesasRestaurant = async (idAcc) => {
 
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     const { data: mesas } = await api.get(`/mesas/restaurante/${encodeURIComponent(restaurante.nit)}`);
-  
-  return mesas;
+
+    return mesas;
 };
 
 // 2. Guardar una nueva mesa
@@ -89,32 +89,65 @@ export const getReservasRestaurant = async (idAcc) => {
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     const { data: reservas } = await api.get(`/reservas/restaurante/${encodeURIComponent(restaurante.nit)}`);
     return reservas;
-}
+};
+
+// Actualiza la reserva enviando el objeto completo con el nuevo estado
+export const updateReservaEstado = async (reserva, nuevoEstado) => {
+    const reservaActualizada = {
+        ...reserva,
+        estado: nuevoEstado
+    };
+
+    const { data } = await api.put(`/reservas/actuReserva/${reserva.id}`, reservaActualizada);
+    return data;
+};
 
 //Consultar informacion del restaurante con su id de cuenta
 export const getRestaurantByIdAcc = async (idAcc) => {
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     return restaurante;
+};
+
+//Actualizar informacion del restaurante con su id de cuenta
+export const actualizarRestaurant = async (idAcc, datos) => {
+    const { data } = await api.put(`${RESTAURANT_URL}/${idAcc}`, datos);
+    return data;
+};
+
+export const eliminarRestaurant = async (idAcc) => {
+    const { data } = await api.delete(`${RESTAURANT_URL}/${idAcc}`);
+    return data;
 }
-//Gestion Empleados 
-//Registro Empleado 
+
+//Gestion Empleados
+//Registro Empleado
 export const registrarEmpleado = async (empleado ) => {
     const {data} = await api.post("/empleados/registro", empleado);
     return data;
-}
+};
+
 //obterner lista de empleados de un restaurante por su NIT
 export const getListEmpleadosRestaurant = async (idAcc) => {
     const { data: restaurante } = await api.get(`${RESTAURANT_URL}/${idAcc}`);
     const { data: empleados } = await api.get(`/empleados/restaurante/${encodeURIComponent(restaurante.nit)}`);
     return empleados;
-}
+};
+
 //guardar cambios de un empleado
 export const actualizarEmpleado = async (empleadoId, empleado) => {
     const { data } = await api.put(`/empleados/${empleadoId}`, empleado);
     return data;
 };
+
 //eliminar un empleado
 export const eliminarEmpleado = async (empleadoId) => {
     await api.delete(`/empleados/${empleadoId}`);
     return true;
 };
+
+//Obtener info del restaurante apartir de la acc de un empleado
+export const getRestaurantByEmpleadoIdAcc = async (idAcc) => {
+    const { data: empleado } = await api.get(`/empleados/${idAcc}`);
+    const { data: restaurante } = await api.get(`${RESTAURANT_URL}/nit/${empleado.idRestaurante}`);
+    return restaurante;
+}

@@ -75,8 +75,6 @@ function Añadirempreado (){
 
         const respuesta = await registrarEmpleado(empleado);
 
-        console.log("Empleado creado:", respuesta);
-
         alert("Empleado registrado correctamente");
 
     } catch (error) {

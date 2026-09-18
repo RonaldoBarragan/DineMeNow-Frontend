@@ -1,9 +1,6 @@
 import './card-GestiónEmpleados.css'
-import { Badge, Card, Container, Row, Col, Tabs, Tab, Form } from "react-bootstrap";
+import { Card, Container, Tabs, Tab } from "react-bootstrap";
 import { LuUsers } from "react-icons/lu";
-import { FiEdit } from "react-icons/fi";
-import { FiTrash2 } from "react-icons/fi";
-import { FaMagnifyingGlass } from "react-icons/fa6";
 import ListaEmpreados from "./listaEmpreados";
 import Añadirempreado from './añadir-empreado';
 function CardGestionEmpleados(){

@@ -447,7 +447,7 @@ return (
                                             <FiTrash2 />
                                         </button>
                                     </td>
-                    |   </tr>
+                       </tr>
                     ))}
                 </tbody>
             </table>

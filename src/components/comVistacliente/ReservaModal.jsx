@@ -17,7 +17,6 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
     hora: "",
     descripcion: "",
     nombreCliente: user?.nombre || "",
-    telefono: user?.telefono || "",
   });
 
   //Reiniciar campos al cerrar el modal
@@ -28,7 +27,6 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
         hora: "",
         descripcion: "",
         nombreCliente: "",
-        telefono: "",
       });
       
     }else{
@@ -45,7 +43,6 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
       Hora_Reserva: "hora",
       Solicitudes_Especiales: "descripcion",
       Nombre_Cliente: "nombreCliente",
-      Telefono_Cliente: "telefono",
     };
     setFormData((prev) => ({ ...prev, [fieldMap[id]]: value }));
   };
@@ -69,7 +66,7 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
     const reservaParaEnviar = {
   nitRestaurante: restaurant?.nit,
   nombreCliente: formData.nombreCliente,
-  telefonoCliente: formData.telefono,
+  nombreRestaurante: restaurant?.nombre,
 
   nombrePlatos: platosSeleccionados.map(
     (p) => `${p.cantidad}x ${p.nomPlato}`
@@ -225,17 +222,6 @@ export default function ReservaModal({ restaurant, mostrar, ocultar }) {
                       type="text"
                       placeholder="Nombre"
                       value={formData.nombreCliente}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group controlId="Telefono_Cliente">
-                    <Form.Label>Teléfono</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Telefono"
-                      value={formData.telefono}
                       onChange={handleChange}
                     />
                   </Form.Group>

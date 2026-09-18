@@ -1,41 +1,37 @@
-import { Badge, Card, Container, Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import { Card, Container, Modal, Button, Form } from 'react-bootstrap';
 import './reservas-Proximas.css';
 import { CiCalendar } from "react-icons/ci";
 import { IoMdTime } from "react-icons/io";
-import { RxPeople } from "react-icons/rx";
 import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { LuChefHat } from "react-icons/lu";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { getMyReservas, deleteReserva, updateReserva } from '../../api/Client-Service';
 import { FiEdit } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 function ReservasProximas() {
+    const { user } = useAuth();
+    const [reservas, setReservas] = useState([]);
+    const [reservaSeleccionada, setReservaSeleccionada] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [tipoModal, setTipoModal] = useState(null);
 
-  const {user} = useAuth();
-  const [reservas, setReservas] = useState([]);
-  const [reservaSeleccionada, setReservaSeleccionada] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [tipoModal, setTipoModal] = useState(null);
+    useEffect(() => {
+        const cargarReservas = async () => {
+            try {
+                const data = await getMyReservas();
 
-  useEffect(() => {
-  const cargarReservas = async () => {
-    try{
-      const data = await getMyReservas();
+                console.log("Reservas cliente", data);
+                setReservas(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
-      console.log("Reservas cliente", data);
-      setReservas(data);
-    }catch(error){
-      console.error(error);
-    }
-  };
-
-  if(user){
-    cargarReservas();
-  }
-},[user]);
+        if (user) {
+            cargarReservas();
+        }
+    }, [user]);
 //eliminar reserva//
 const eliminarReserva = async (reservaId) => {
   try {
