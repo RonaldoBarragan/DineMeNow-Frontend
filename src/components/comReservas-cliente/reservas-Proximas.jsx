@@ -303,9 +303,7 @@ function ReservasProximas() {
 
 <Card.Body>
 
-<Card.Title className="card-titulo">
-  {reserva.nitRestaurante}
-</Card.Title>
+<Card.Title className="card-titulo">{reserva.nombreRestaurante} - {reserva.nitRestaurante}</Card.Title>
 
 <div className="info-desc">
    <CiCalendar /> {reserva.fecha}

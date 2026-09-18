@@ -1,14 +1,10 @@
-import { Card, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Gestion from "../components/comGestionEmpleadosRestaurante/card-GestiónEmpleados";
-import Titlegestion from "../components/comGestionEmpleadosRestaurante/title-GestionEmple";
 
 const GestionEmpleados = () => {
     return(
         <>
-        <Container className="my-5 ">
-             <div className="mb-4">
-                <Titlegestion/>
-            </div>
+        <Container className="my-5 margen-provi">            
             <div className="mb-4">
                 <Gestion/>
             </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { BiHomeAlt,BiUser, BiCalendar, BiBell, BiShield } from "react-icons/bi";
+import { BiHomeAlt,BiUser, BiCalendar, BiShield } from "react-icons/bi";
 import { BsGear } from "react-icons/bs";
 import "./navegacionSection.css";
 import { BsPersonGear } from "react-icons/bs";
@@ -48,12 +48,6 @@ function NavigationSection() {
             <NavLink to="/cliente/reservas" className="nav-item">
               <BiCalendar size={20} className="nav-icon" />
               <span>Mis reservas</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/cliente/inicio" className="nav-item">
-              <BiBell size={20} className="nav-icon" />
-              <span>Notificaciones</span>
             </NavLink>
           </li>
         </>
