@@ -1,6 +1,6 @@
 import React from "react";
 import CardRecuperar from "../components/comRecuperarContrasena/CardRecuperarContrasena";
-import BotonCancelar from "../components/common/botonCancelar";
+import BotonCancelar from "../components/common/botoncancelar";
 import ImgLogoGlobal from "../components/common/imgLogo";
 
 const Recuperarcontrasena = () => {

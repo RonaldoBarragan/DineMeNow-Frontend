@@ -1,4 +1,4 @@
-import './reservas-Pasadas.css';
+import './Reservas-Pasadas.css';
 import { Badge, Card, Container, Modal, Button } from 'react-bootstrap';
 import { CiCalendar } from "react-icons/ci";
 import { IoMdTime } from "react-icons/io";
