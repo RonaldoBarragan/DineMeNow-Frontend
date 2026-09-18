@@ -94,7 +94,12 @@ export const getMyReservas = async () => {
     return data;
 }
 //editar reserva
-export const actualizarReserva = async (reservaId, reserva) => {
-    const { data } = await api.put(`/reservas/${reservaId}`, reserva);
+export const updateReserva = async (reservaId, reserva) => {
+    const { data } = await api.put(`/reservas/actuReserva/${reservaId}`, reserva);
+    return data;
+};
+//eliminar reserva
+export const deleteReserva = async (reservaId) => {
+    const { data } = await api.delete(`/reservas/DeleteReserva/${reservaId}`);
     return data;
 };
