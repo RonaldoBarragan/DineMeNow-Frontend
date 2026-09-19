@@ -68,6 +68,15 @@ export const eliminarCliente = async (IdAcc) => {
     }
 }
 
+export const actuContraClient = async (IdAcc, DataContra) => {
+    try {
+        const { data } = await api.put(`/clientes/${IdAcc}/cambiar-password`, DataContra);
+        return data;
+    } catch (error) {
+        throw new Error(error.response?.data?.mensaje || "Error al cambiar la contraseña");
+    }
+}
+
 export const actualizarPerfil = async (userId, updatedData) => {
     try {
         const { data } = await api.put(`/clientes/${userId}`, updatedData);
