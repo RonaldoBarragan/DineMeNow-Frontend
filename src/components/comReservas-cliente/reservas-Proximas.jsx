@@ -13,32 +13,20 @@ import { useAuth } from "../../context/AuthContext";
 import {
   getMyReservas,
   deleteReserva,
-  updateReserva
+  updateReserva,
+  obtenerMesas,
+  obtenerPlatos
 } from "../../api/Client-Service";
-
 
 function ReservasProximas() {
 
   const { user } = useAuth();
 
   const [reservas, setReservas] = useState([]);
-
-  const [reservaSeleccionada, setReservaSeleccionada] =
-    useState(null);
-
-  const [showModal, setShowModal] =
-    useState(false);
-
-  const [tipoModal, setTipoModal] =
-    useState(null);
-
-  const [platosSeleccionados, setPlatosSeleccionados] =
-    useState([]);
-
-
-  // ==========================================
-  // CARGAR RESERVAS
-  // ==========================================
+  const [reservaSeleccionada, setReservaSeleccionada] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [tipoModal, setTipoModal] = useState(null);
+  const [platosSeleccionados, setPlatosSeleccionados] = useState([]);
 
   useEffect(() => {
 
@@ -48,37 +36,27 @@ function ReservasProximas() {
 
         const data = await getMyReservas();
 
-        console.log(
-          "Reservas cliente:",
-          data
-        );
+        console.log("RESERVAS COMPLETAS:", data);
 
-        const reservasProximas = data.filter(
-          (reserva) => {
+        const reservasProximas = data.filter((reserva) => {
 
-            const fechaReserva = new Date(
-              `${reserva.fecha}T${reserva.hora}`
-            );
+          const fechaReserva = new Date(
+            `${reserva.fecha}T${reserva.hora}`
+          );
 
-            const fechaActual = new Date();
+          return fechaReserva >= new Date();
 
-            return fechaReserva >= fechaActual;
-          }
-        );
+        });
 
         setReservas(reservasProximas);
 
       } catch (error) {
 
-        console.error(
-          "Error cargando reservas:",
-          error
-        );
+        console.error("Error cargando reservas:", error);
 
       }
 
     };
-
 
     if (user) {
       cargarReservas();
@@ -86,447 +64,350 @@ function ReservasProximas() {
 
   }, [user]);
 
-
-  // ==========================================
-  // CERRAR MODAL
-  // ==========================================
-
   const cerrarModal = () => {
 
-    // Cerrar modal
     setShowModal(false);
-
-    // Quitar reserva seleccionada
     setReservaSeleccionada(null);
-
-    // IMPORTANTE:
-    // Limpiar los platos temporales
     setPlatosSeleccionados([]);
-
-    // Limpiar tipo de modal
     setTipoModal(null);
 
   };
 
+  const abrirModalEditar = async (reserva) => {
 
-  // ==========================================
-  // ABRIR MODAL EDITAR
-  // ==========================================
+    try {
 
-  const abrirModalEditar = (reserva) => {
+      console.log("RESERVA PARA EDITAR:", reserva);
 
-    console.log(
-      "Reserva seleccionada:",
-      reserva
-    );
+      const [menuRestaurante, mesasRestaurante] = await Promise.all([
+        obtenerPlatos(reserva.nitRestaurante),
+        obtenerMesas(reserva.nitRestaurante)
+      ]);
 
+      console.log("MENU DEL RESTAURANTE:", menuRestaurante);
+      console.log("MESAS DEL RESTAURANTE:", mesasRestaurante);
 
-    // Guardamos la reserva
-    setReservaSeleccionada({
-      ...reserva
-    });
+      setReservaSeleccionada({
+        ...reserva,
+        menu: menuRestaurante,
+        mesas: mesasRestaurante
+      });
 
+      const platosReserva = Array.isArray(reserva.nombrePlatos)
+        ? reserva.nombrePlatos
+        : [];
 
-    // ======================================
-    // CARGAR PLATOS DE LA RESERVA
-    // ======================================
+      const platos = platosReserva.map((nombre) => {
 
-    if (
-      reserva.nombrePlatos &&
-      reserva.nombrePlatos.length > 0
-    ) {
+        const match = nombre.match(/^(\d+)x\s(.+)$/);
 
-      const platos =
-        reserva.nombrePlatos.map(
-          (nombre) => {
+        const nombrePlato = match
+          ? match[2].trim()
+          : nombre.trim();
 
-            /*
-              Ejemplo:
+        const cantidad = match
+          ? Number(match[1])
+          : 1;
 
-              "2x Sushi"
-              
-              se convierte en:
-
-              {
-                nomPlato: "Sushi",
-                cantidad: 2
-              }
-            */
-
-            const match =
-              nombre.match(
-                /^(\d+)x\s(.+)$/
-              );
-
-
-            if (match) {
-
-              return {
-
-                nomPlato: match[2],
-
-                cantidad:
-                  Number(match[1])
-
-              };
-
-            }
-
-
-            return {
-
-              nomPlato: nombre,
-
-              cantidad: 1
-
-            };
-
-          }
+        const platoMenu = menuRestaurante.find(
+          (plato) =>
+            plato.nomPlato?.trim().toLowerCase() ===
+            nombrePlato.trim().toLowerCase()
         );
 
+        return {
+          ...(platoMenu || {}),
+          nomPlato: platoMenu?.nomPlato || nombrePlato,
+          cantidad,
+          precio: Number(
+            platoMenu?.precio ??
+            platoMenu?.valor ??
+            0
+          )
+        };
 
-      setPlatosSeleccionados(
-        platos
+      });
+
+      setPlatosSeleccionados(platos);
+
+      setTipoModal(1);
+      setShowModal(true);
+
+    } catch (error) {
+
+      console.error("Error obteniendo menú y mesas:", error);
+
+      alert(
+        error.message ||
+        "No se pudo cargar el menú y las mesas del restaurante."
       );
-
-    } else {
-
-      setPlatosSeleccionados([]);
 
     }
 
-
-    setTipoModal(1);
-
-    setShowModal(true);
-
   };
-
-
-  // ==========================================
-  // ABRIR MODAL ELIMINAR
-  // ==========================================
 
   const abrirModalEliminar = (reserva) => {
 
-    setReservaSeleccionada(
-      reserva
-    );
-
+    setReservaSeleccionada(reserva);
     setTipoModal(2);
-
     setShowModal(true);
 
   };
 
+  const agregarPlato = (plato) => {
 
-  // ==========================================
-  // CAMBIAR CANTIDAD
-  // ==========================================
+    setPlatosSeleccionados((prev) => {
 
-  const cambiarCantidad = (
-    nombre,
-    valor
-  ) => {
+      const existe = prev.find(
+        (p) =>
+          p.nomPlato?.trim().toLowerCase() ===
+          plato.nomPlato?.trim().toLowerCase()
+      );
 
-    setPlatosSeleccionados(
-      (prev) =>
+      if (existe) {
 
-        prev.map(
-          (plato) =>
+        return prev.map((p) =>
+          p.nomPlato?.trim().toLowerCase() ===
+          plato.nomPlato?.trim().toLowerCase()
+            ? {
+                ...p,
+                cantidad: p.cantidad + 1,
+                precio: Number(
+                  plato.precio ??
+                  plato.valor ??
+                  p.precio ??
+                  0
+                )
+              }
+            : p
+        );
 
-            plato.nomPlato === nombre
+      }
 
-              ? {
-
-                  ...plato,
-
-                  cantidad:
-                    Math.max(
-                      1,
-                      plato.cantidad +
-                      valor
-                    )
-
-                }
-
-              : plato
-        )
-
-    );
-
-  };
-
-
-  // ==========================================
-  // ELIMINAR PLATO
-  // ==========================================
-
-  const eliminarPlato = (
-    nombre
-  ) => {
-
-    setPlatosSeleccionados(
-      (prev) =>
-
-        prev.filter(
-          (plato) =>
-            plato.nomPlato !== nombre
-        )
-
-    );
-
-  };
-
-
-  // ==========================================
-  // ACTUALIZAR RESERVA
-  // ==========================================
-
-  const actualizarReserva =
-    async () => {
-
-      try {
-
-        if (!reservaSeleccionada) {
-          return;
+      return [
+        ...prev,
+        {
+          ...plato,
+          precio: Number(
+            plato.precio ??
+            plato.valor ??
+            0
+          ),
+          cantidad: 1
         }
+      ];
 
+    });
 
-        // Convertir platos nuevamente
-        // al formato del backend
+  };
 
-        const nombresPlatos =
-          platosSeleccionados.map(
-            (plato) =>
-              `${plato.cantidad}x ${plato.nomPlato}`
-          );
+  const cambiarCantidad = (nombre, valor) => {
 
+    setPlatosSeleccionados((prev) =>
+      prev.map((plato) =>
+        plato.nomPlato === nombre
+          ? {
+              ...plato,
+              cantidad: Math.max(
+                1,
+                plato.cantidad + valor
+              )
+            }
+          : plato
+      )
+    );
 
-        const reservaActualizada = {
+  };
 
-          ...reservaSeleccionada,
+  const eliminarPlato = (nombre) => {
 
-          fecha:
-            reservaSeleccionada.fecha,
+    setPlatosSeleccionados((prev) =>
+      prev.filter(
+        (plato) =>
+          plato.nomPlato !== nombre
+      )
+    );
 
-          hora:
-            reservaSeleccionada.hora,
+  };
 
-          numeroMesa:
-            Number(
-              reservaSeleccionada.numeroMesa
-            ),
+  const totalPagar = platosSeleccionados.reduce(
+    (total, plato) =>
+      total +
+      Number(plato.precio || 0) *
+      Number(plato.cantidad || 0),
+    0
+  );
 
-          descripcion:
-            reservaSeleccionada.descripcion,
+  const actualizarReserva = async () => {
 
-          nombreCliente:
-            reservaSeleccionada.nombreCliente,
+    try {
 
-          nombrePlatos:
-            nombresPlatos
-
-        };
-
-
-        console.log(
-          "Datos enviados:",
-          reservaActualizada
-        );
-
-
-        const respuesta =
-          await updateReserva(
-            reservaSeleccionada.id,
-            reservaActualizada
-          );
-
-
-        console.log(
-          "Respuesta backend:",
-          respuesta
-        );
-
-
-        setReservas(
-          (reservasActuales) =>
-
-            reservasActuales.map(
-              (reserva) =>
-
-                reserva.id ===
-                reservaSeleccionada.id
-
-                  ? respuesta
-
-                  : reserva
-
-            )
-        );
-
-
-        cerrarModal();
-
-
-        alert(
-          "Reserva actualizada correctamente."
-        );
-
-
-      } catch (error) {
-
-        console.error(
-          "Error al actualizar:",
-          error
-        );
-
-
-        console.error(
-          "Respuesta servidor:",
-          error.response?.data
-        );
-
-
-        alert(
-          error.response?.data?.mensaje ||
-          "Ocurrió un error al actualizar la reserva."
-        );
-
+      if (!reservaSeleccionada) {
+        return;
       }
 
-    };
+      const nombresPlatos = platosSeleccionados.map(
+        (plato) =>
+          `${plato.cantidad}x ${plato.nomPlato}`
+      );
 
+      const reservaActualizada = {
 
-  // ==========================================
-  // ELIMINAR RESERVA
-  // ==========================================
+        nitRestaurante:
+          reservaSeleccionada.nitRestaurante,
 
-  const eliminarReserva =
-    async (reservaId) => {
+        nombreCliente:
+          reservaSeleccionada.nombreCliente,
 
-      try {
+        nombreRestaurante:
+          reservaSeleccionada.nombreRestaurante,
 
-        await deleteReserva(
-          reservaId
-        );
+        nombrePlatos:
+          nombresPlatos,
 
+        numeroMesa:
+          Number(reservaSeleccionada.numeroMesa),
 
-        setReservas(
-          (reservasActuales) =>
+        fecha:
+          reservaSeleccionada.fecha,
 
-            reservasActuales.filter(
-              (reserva) =>
-                reserva.id !== reservaId
-            )
+        hora:
+          reservaSeleccionada.hora?.length === 5
+            ? `${reservaSeleccionada.hora}:00`
+            : reservaSeleccionada.hora,
 
-        );
+        descripcion:
+          reservaSeleccionada.descripcion || "",
 
+        estado:
+          reservaSeleccionada.estado
 
-        cerrarModal();
+      };
 
+      console.log(
+        "DATOS ACTUALIZADOS:",
+        reservaActualizada
+      );
 
-        alert(
-          "Reserva eliminada correctamente."
-        );
+      const respuesta = await updateReserva(
+        reservaSeleccionada.id,
+        reservaActualizada
+      );
 
+      console.log(
+        "RESPUESTA BACKEND:",
+        respuesta
+      );
 
-      } catch (error) {
+      setReservas((reservasActuales) =>
+        reservasActuales.map((reserva) =>
+          reserva.id === reservaSeleccionada.id
+            ? {
+                ...reserva,
+                ...respuesta,
+                nombrePlatos: nombresPlatos,
+                numeroMesa:
+                  reservaSeleccionada.numeroMesa,
+                fecha:
+                  reservaSeleccionada.fecha,
+                hora:
+                  reservaSeleccionada.hora
+              }
+            : reserva
+        )
+      );
 
-        console.error(
-          "Error al eliminar:",
-          error
-        );
+      cerrarModal();
 
+      alert(
+        "Reserva actualizada correctamente."
+      );
 
-        console.error(
-          error.response?.data
-        );
+    } catch (error) {
 
+      console.error(
+        "Error al actualizar:",
+        error
+      );
 
-        alert(
-          "No se pudo eliminar la reserva."
-        );
+      console.error(
+        "Respuesta servidor:",
+        error.response?.data
+      );
 
-      }
+      alert(
+        error.response?.data?.mensaje ||
+        error.message ||
+        "Ocurrió un error al actualizar la reserva."
+      );
 
-    };
+    }
 
+  };
 
-  // ==========================================
-  // RENDER
-  // ==========================================
+  const eliminarReserva = async (reservaId) => {
+
+    try {
+
+      await deleteReserva(reservaId);
+
+      setReservas((reservasActuales) =>
+        reservasActuales.filter(
+          (reserva) =>
+            reserva.id !== reservaId
+        )
+      );
+
+      cerrarModal();
+
+      alert(
+        "Reserva eliminada correctamente."
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Error al eliminar:",
+        error
+      );
+
+      alert(
+        "No se pudo eliminar la reserva."
+      );
+
+    }
+
+  };
 
   return (
 
     <>
 
-
-      {/* ====================================== */}
-      {/* MODAL */}
-      {/* ====================================== */}
-
       <Modal
-
         size="lg"
-
         centered
-
         show={showModal}
-
-        /*
-          IMPORTANTE:
-
-          La X del Modal.Header ejecutará
-          esta función.
-        */
-
         onHide={cerrarModal}
-
       >
-
-
-        {/* ====================================== */}
-        {/* EDITAR */}
-        {/* ====================================== */}
 
         {tipoModal === 1 && (
 
           <>
 
-
             <Modal.Header closeButton>
 
               <Modal.Title>
-
                 Editar Reserva
-
               </Modal.Title>
-
             </Modal.Header>
-
 
             <Modal.Body>
 
-              <Row className="g-5">
-
-
-                {/* ================================= */}
-                {/* COLUMNA IZQUIERDA */}
-                {/* ================================= */}
+              <Row className="g-3">
 
                 <Col>
 
                   <Form>
-
-
-          
-
-
-                    {/* ============================= */}
-                    {/* FECHA */}
-                    {/* ============================= */}
-
                     <Form.Group className="mb-3">
 
                       <Form.Label>
@@ -534,36 +415,20 @@ function ReservasProximas() {
                       </Form.Label>
 
                       <Form.Control
-
                         type="date"
-
                         value={
-                          reservaSeleccionada
-                            ?.fecha ||
+                          reservaSeleccionada?.fecha ||
                           ""
                         }
-
                         onChange={(e) =>
-
                           setReservaSeleccionada({
-
                             ...reservaSeleccionada,
-
-                            fecha:
-                              e.target.value
-
+                            fecha: e.target.value
                           })
-
                         }
-
                       />
 
                     </Form.Group>
-
-
-                    {/* ============================= */}
-                    {/* HORA */}
-                    {/* ============================= */}
 
                     <Form.Group className="mb-3">
 
@@ -572,37 +437,132 @@ function ReservasProximas() {
                       </Form.Label>
 
                       <Form.Control
-
                         type="time"
-
                         value={
-                          reservaSeleccionada
-                            ?.hora
+                          reservaSeleccionada?.hora
                             ?.substring(0, 5) ||
                           ""
                         }
-
                         onChange={(e) =>
-
                           setReservaSeleccionada({
-
                             ...reservaSeleccionada,
-
-                            hora:
-                              e.target.value
-
+                            hora: e.target.value
                           })
-
                         }
-
                       />
 
                     </Form.Group>
 
+                    <Card
+                      className={`p-3 mb-3 transition-card ${
+                        platosSeleccionados.length > 0
+                          ? "visible"
+                          : "hidden"
+                      }`}
+                    >
 
-                    {/* ============================= */}
-                    {/* MESA */}
-                    {/* ============================= */}
+                      <Card.Title className="fs-6 fw-bold">
+
+                        Platillos Seleccionados
+
+                      </Card.Title>
+
+                      {platosSeleccionados.map(
+                        (plato, index) => (
+
+                          <div
+                            key={index}
+                            className="d-flex justify-content-between align-items-center mb-3"
+                          >
+
+                            <div>
+
+                              <div className="fw-semibold">
+
+                                {plato.nomPlato}
+
+                              </div>
+
+                              <small className="text-success">
+
+                                $
+                                {Number(
+                                  plato.precio || 0
+                                ).toLocaleString()}
+
+                              </small>
+
+                            </div>
+
+                            <div className="d-flex align-items-center gap-2">
+
+                              <Button
+                                variant="outline-secondary"
+                                size="sm"
+                                onClick={() =>
+                                  cambiarCantidad(
+                                    plato.nomPlato,
+                                    -1
+                                  )
+                                }
+                              >
+                                -
+                              </Button>
+
+                              <span>
+                                {plato.cantidad}
+                              </span>
+
+                              <Button
+                                variant="outline-secondary"
+                                size="sm"
+                                onClick={() =>
+                                  cambiarCantidad(
+                                    plato.nomPlato,
+                                    1
+                                  )
+                                }
+                              >
+                                +
+                              </Button>
+
+                              <Button
+                                variant="outline-danger"
+                                size="sm"
+                                onClick={() =>
+                                  eliminarPlato(
+                                    plato.nomPlato
+                                  )
+                                }
+                              >
+                                x
+                              </Button>
+
+                            </div>
+
+                          </div>
+
+                        )
+                      )}
+
+                      <hr className="m-0 p-0" />
+
+                      <div className="d-flex justify-content-between fw-bold pt-2">
+
+                        <span>
+                          Total:
+                        </span>
+
+                        <span>
+
+                          $
+                          {totalPagar.toLocaleString()}
+
+                        </span>
+
+                      </div>
+
+                    </Card>
 
                     <Form.Group className="mb-3">
 
@@ -610,82 +570,90 @@ function ReservasProximas() {
                         Mesa
                       </Form.Label>
 
-                      <Form.Control
+                      <Row className="g-2">
 
-                        type="number"
+                        {reservaSeleccionada?.mesas?.map(
+                          (mesa) => (
 
-                        value={
-                          reservaSeleccionada
-                            ?.numeroMesa ||
-                          ""
-                        }
+                            <Col
+                              xs={6}
+                              key={
+                                mesa.id ||
+                                mesa.numMesa
+                              }
+                            >
 
-                        onChange={(e) =>
+                              <Card
+                                className={`mesa-card p-2 text-center rounded border ${
+                                  Number(
+                                    reservaSeleccionada?.numeroMesa
+                                  ) ===
+                                  Number(
+                                    mesa.numMesa
+                                  )
+                                    ? "mesa-selected"
+                                    : ""
+                                }`}
+                                onClick={() =>
+                                  setReservaSeleccionada({
+                                    ...reservaSeleccionada,
+                                    numeroMesa:
+                                      mesa.numMesa
+                                  })
+                                }
+                              >
 
-                          setReservaSeleccionada({
+                                <div className="mesa-nombre fw-semibold">
 
-                            ...reservaSeleccionada,
+                                  Mesa {mesa.numMesa}
 
-                            numeroMesa:
-                              e.target.value
+                                </div>
 
-                          })
+                                <small className="text-muted">
 
-                        }
+                                  Capacidad:
+                                  {" "}
+                                  {mesa.capacidad}
+                                  {" "}
+                                  personas
 
-                      />
+                                </small>
+
+                              </Card>
+
+                            </Col>
+
+                          )
+                        )}
+
+                      </Row>
 
                     </Form.Group>
-
-
-                    {/* ============================= */}
-                    {/* SOLICITUDES */}
-                    {/* ============================= */}
 
                     <Form.Group className="mb-3">
 
                       <Form.Label>
-
                         Solicitudes especiales
-
                       </Form.Label>
 
-
                       <Form.Control
-
                         as="textarea"
-
                         rows={2}
-
                         placeholder="Alergias, preferencias de mesa, etc."
-
                         value={
-                          reservaSeleccionada
-                            ?.descripcion ||
+                          reservaSeleccionada?.descripcion ||
                           ""
                         }
-
                         onChange={(e) =>
-
                           setReservaSeleccionada({
-
                             ...reservaSeleccionada,
-
                             descripcion:
                               e.target.value
-
                           })
-
                         }
-
                       />
 
                     </Form.Group>
-
-
-                    {/* ============================= */}
-                    {/* NOMBRE */}
-                    {/* ============================= */}
 
                     <Form.Group className="mb-3">
 
@@ -693,299 +661,149 @@ function ReservasProximas() {
                         Nombre
                       </Form.Label>
 
-
                       <Form.Control
-
                         type="text"
-
                         value={
-                          reservaSeleccionada
-                            ?.nombreCliente ||
+                          reservaSeleccionada?.nombreCliente ||
                           ""
                         }
-
                         onChange={(e) =>
-
                           setReservaSeleccionada({
-
                             ...reservaSeleccionada,
-
                             nombreCliente:
                               e.target.value
-
                           })
-
                         }
-
                       />
 
                     </Form.Group>
-
-
-                    {/* ============================= */}
-                    {/* PLATILLOS */}
-                    {/* ============================= */}
-
-                    <h5 className="mb-3">
-
-                      Platillos seleccionados
-
-                    </h5>
-
-
-                    {platosSeleccionados.length === 0 ? (
-
-                      <p className="text-muted">
-
-                        No hay platillos seleccionados.
-
-                      </p>
-
-                    ) : (
-
-                      platosSeleccionados.map(
-                        (plato, index) => (
-
-                          <Card
-                            key={index}
-                            className="p-3 mb-3"
-                          >
-
-                            <div className="d-flex justify-content-between align-items-center">
-
-
-                              {/* NOMBRE */}
-
-                              <span>
-
-                                {plato.nomPlato}
-
-                              </span>
-
-
-                              {/* CANTIDAD */}
-
-                              <div className="d-flex align-items-center gap-2">
-
-
-                                <Button
-
-                                  variant="outline-secondary"
-
-                                  size="sm"
-
-                                  onClick={() =>
-
-                                    cambiarCantidad(
-                                      plato.nomPlato,
-                                      -1
-                                    )
-
-                                  }
-
-                                >
-
-                                  -
-
-                                </Button>
-
-
-                                <span>
-
-                                  {plato.cantidad}
-
-                                </span>
-
-
-                                <Button
-
-                                  variant="outline-secondary"
-
-                                  size="sm"
-
-                                  onClick={() =>
-
-                                    cambiarCantidad(
-                                      plato.nomPlato,
-                                      1
-                                    )
-
-                                  }
-
-                                >
-
-                                  +
-
-                                </Button>
-
-
-                                <Button
-
-                                  variant="outline-danger"
-
-                                  size="sm"
-
-                                  onClick={() =>
-
-                                    eliminarPlato(
-                                      plato.nomPlato
-                                    )
-
-                                  }
-
-                                >
-
-                                  x
-
-                                </Button>
-
-
-                              </div>
-
-                            </div>
-
-                          </Card>
-
-                        )
-
-                      )
-
-                    )}
 
                   </Form>
 
                 </Col>
 
-
-                {/* ================================= */}
-                {/* COLUMNA DERECHA */}
-                {/* ================================= */}
-
                 <Col>
 
                   <h5 className="mb-3">
 
-                    Menú - Pre-Ordenar
+                    <CiCalendar />
+                    {" "}
+                    Menú
 
                   </h5>
 
+                  <div
+                    className="overflow-auto"
+                    style={{
+                      maxHeight: "430px"
+                    }}
+                  >
 
-                  {reservaSeleccionada?.menu?.length > 0 ? (
+                    {reservaSeleccionada?.menu?.length > 0 ? (
 
-                    <div
+                      reservaSeleccionada.menu.map(
+                        (plato, index) => {
 
-                      className="overflow-auto"
+                          const platoSeleccionado =
+                            platosSeleccionados.find(
+                              (p) =>
+                                p.nomPlato
+                                  ?.trim()
+                                  .toLowerCase() ===
+                                plato.nomPlato
+                                  ?.trim()
+                                  .toLowerCase()
+                            );
 
-                      style={{
-                        maxHeight: "300px"
-                      }}
+                          return (
 
-                    >
+                            <Card
+                              key={
+                                plato.id ||
+                                index
+                              }
+                              className="mb-3"
+                            >
 
-                      {reservaSeleccionada.menu.map(
-                        (plato, index) => (
+                              <Card.Body>
 
-                          <Card
-                            key={index}
-                            className="mb-3"
-                          >
+                                <Card.Title className="fw-bold fs-6">
 
-                            <Card.Body>
+                                  {plato.nomPlato}
 
-                              <Card.Title className="fw-bold fs-6">
+                                </Card.Title>
 
-                                {plato.nomPlato}
+                                <Card.Text className="text-left small mb-1">
 
-                              </Card.Title>
+                                  {plato.descripcion}
 
+                                </Card.Text>
 
-                              <Card.Text className="small mb-1">
+                                <div className="d-flex justify-content-between align-items-center">
 
-                                {plato.descripcion}
+                                  <span className="color-letra-precio">
 
-                              </Card.Text>
+                                    $
+                                    {Number(
+                                      plato.precio ??
+                                      plato.valor ??
+                                      0
+                                    ).toLocaleString()}
 
+                                  </span>
 
-                              <div className="d-flex justify-content-between align-items-center">
-
-                                <span>
-
-                                  $
-
-                                  {plato.precio?.toLocaleString()}
-
-                                </span>
-
-
-                                <Button
-
-                                  size="sm"
-
-                                  className="buttonNaranjaDegrade"
-
-                                  onClick={() => {
-
-                                    const existe =
-                                      platosSeleccionados.find(
-                                        (p) =>
-                                          p.nomPlato ===
-                                          plato.nomPlato
-                                      );
-
-
-                                    if (existe) {
-
-                                      cambiarCantidad(
-                                        plato.nomPlato,
-                                        1
-                                      );
-
-                                    } else {
-
-                                      setPlatosSeleccionados(
-                                        (prev) => [
-
-                                          ...prev,
-
-                                          {
-                                            ...plato,
-                                            cantidad: 1
-                                          }
-
-                                        ]
-                                      );
-
+                                  <Button
+                                    size="sm"
+                                    className="buttonNaranjaDegrade size-letra-propio"
+                                    onClick={() =>
+                                      agregarPlato(
+                                        plato
+                                      )
                                     }
+                                  >
 
-                                  }}
+                                    {platoSeleccionado ? (
 
-                                >
+                                      <>
+                                        <span>
+                                          {platoSeleccionado.cantidad}
+                                        </span>
 
-                                  Agregar
+                                        {" "}
 
-                                </Button>
+                                        <span>
+                                          +
+                                        </span>
+                                      </>
 
-                              </div>
+                                    ) : (
 
-                            </Card.Body>
+                                      "Agregar"
 
-                          </Card>
+                                    )}
 
-                        )
-                      )}
+                                  </Button>
 
-                    </div>
+                                </div>
 
-                  ) : (
+                              </Card.Body>
 
-                    <p className="text-muted">
+                            </Card>
 
-                      El menú del restaurante
-                      no está disponible aquí.
+                          );
 
-                    </p>
+                        }
+                      )
 
-                  )}
+                    ) : (
+
+                      <p className="text-muted">
+                        No se encontró el menú del restaurante.
+                      </p>
+
+                    )}
+
+                  </div>
 
                 </Col>
 
@@ -993,43 +811,22 @@ function ReservasProximas() {
 
             </Modal.Body>
 
-
-            {/* ====================================== */}
-            {/* FOOTER */}
-            {/* ====================================== */}
-
             <Modal.Footer>
 
-
-              {/* CANCELAR */}
-
               <Button
-
+                className="bg-white"
                 variant="light"
-
                 onClick={cerrarModal}
-
               >
-
                 Cancelar
-
               </Button>
-
-
-              {/* GUARDAR */}
 
               <Button
-
                 className="buttonNaranjaDegrade"
-
                 onClick={actualizarReserva}
-
               >
-
                 Guardar cambios
-
               </Button>
-
 
             </Modal.Footer>
 
@@ -1037,97 +834,44 @@ function ReservasProximas() {
 
         )}
 
-
-        {/* ====================================== */}
-        {/* MODAL ELIMINAR */}
-        {/* ====================================== */}
-
         {tipoModal === 2 && (
 
           <>
 
-
             <Modal.Header closeButton>
 
               <Modal.Title>
-
                 Eliminar Reserva
-
               </Modal.Title>
-
             </Modal.Header>
-
 
             <Modal.Body>
 
               <p>
-
                 ¿Estás seguro de que deseas
                 eliminar esta reserva?
-
               </p>
-
-
-              <strong>
-
-                {reservaSeleccionada
-                  ?.nombreRestaurante}
-
-              </strong>
-
-
-              <br />
-
-
-              <span>
-
-                {reservaSeleccionada
-                  ?.fecha}
-
-                {" - "}
-
-                {reservaSeleccionada
-                  ?.hora}
-
-              </span>
-
             </Modal.Body>
-
 
             <Modal.Footer>
 
-
               <Button
-
                 variant="secondary"
-
                 onClick={cerrarModal}
-
               >
-
                 Cancelar
-
               </Button>
 
-
               <Button
-
                 variant="danger"
-
                 onClick={() =>
-
                   eliminarReserva(
                     reservaSeleccionada.id
                   )
-
                 }
-
               >
-
                 Eliminar
-
               </Button>
-
 
             </Modal.Footer>
 
@@ -1137,20 +881,12 @@ function ReservasProximas() {
 
       </Modal>
 
-
-      {/* ====================================== */}
-      {/* CARDS */}
-      {/* ====================================== */}
-
       <Container className="Card-Proximadas">
-
 
         {reservas.length === 0 ? (
 
           <p className="text-muted text-center">
-
             No tienes reservas próximas.
-
           </p>
 
         ) : (
@@ -1167,23 +903,15 @@ function ReservasProximas() {
 
                   <div className="div-card">
 
-
-                    {/* RESTAURANTE */}
-
-                    <Card.Title className="tituloo">
+                    <Card.Title >
 
                       {reserva.nombreRestaurante}
 
                     </Card.Title>
 
-
                     <div className="fila-dos">
 
-
-                      {/* INFORMACIÓN */}
-
                       <div className="info-text-prox">
-
 
                         <div className="info-desc">
 
@@ -1193,7 +921,6 @@ function ReservasProximas() {
 
                         </div>
 
-
                         <div className="info-desc">
 
                           <IoMdTime />
@@ -1201,7 +928,6 @@ function ReservasProximas() {
                           {reserva.hora}
 
                         </div>
-
 
                         <div className="info-desc">
 
@@ -1211,58 +937,37 @@ function ReservasProximas() {
 
                         </div>
 
-
                       </div>
-
-
-                      {/* BOTONES */}
 
                       <div className="header-right">
 
-
-                        {/* EDITAR */}
-
                         <Button
-
                           variant="outline-secondary"
-
                           size="sm"
-
                           onClick={() =>
                             abrirModalEditar(
                               reserva
                             )
                           }
-
                         >
 
                           <FiEdit size={15} />
 
                         </Button>
 
-
-                        {/* ELIMINAR */}
-
                         <Button
-
                           variant="outline-secondary"
-
                           size="sm"
-
                           onClick={() =>
                             abrirModalEliminar(
                               reserva
                             )
                           }
-
                         >
 
-                          <FaRegTrashAlt
-                            size={15}
-                          />
+                          <FaRegTrashAlt size={15} />
 
                         </Button>
-
 
                       </div>
 
@@ -1286,6 +991,5 @@ function ReservasProximas() {
   );
 
 }
-
 
 export default ReservasProximas;
