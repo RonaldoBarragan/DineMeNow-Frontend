@@ -245,6 +245,9 @@ function ReservasProximas() {
 
       const reservaActualizada = {
 
+        idCliente:
+          reservaSeleccionada.idCliente,
+
         nitRestaurante:
           reservaSeleccionada.nitRestaurante,
 
