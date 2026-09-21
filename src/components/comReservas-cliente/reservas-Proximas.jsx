@@ -36,8 +36,6 @@ function ReservasProximas() {
 
         const data = await getMyReservas();
 
-        console.log("RESERVAS COMPLETAS:", data);
-
         const reservasProximas = data.filter((reserva) => {
 
           const fechaReserva = new Date(
@@ -76,16 +74,10 @@ function ReservasProximas() {
   const abrirModalEditar = async (reserva) => {
 
     try {
-
-      console.log("RESERVA PARA EDITAR:", reserva);
-
       const [menuRestaurante, mesasRestaurante] = await Promise.all([
         obtenerPlatos(reserva.nitRestaurante),
         obtenerMesas(reserva.nitRestaurante)
       ]);
-
-      console.log("MENU DEL RESTAURANTE:", menuRestaurante);
-      console.log("MESAS DEL RESTAURANTE:", mesasRestaurante);
 
       setReservaSeleccionada({
         ...reserva,
@@ -284,19 +276,9 @@ function ReservasProximas() {
 
       };
 
-      console.log(
-        "DATOS ACTUALIZADOS:",
-        reservaActualizada
-      );
-
       const respuesta = await updateReserva(
         reservaSeleccionada.id,
         reservaActualizada
-      );
-
-      console.log(
-        "RESPUESTA BACKEND:",
-        respuesta
       );
 
       setReservas((reservasActuales) =>

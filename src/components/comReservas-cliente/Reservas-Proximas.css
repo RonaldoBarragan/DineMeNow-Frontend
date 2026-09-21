@@ -1,29 +1,4 @@
 /* =========================
-   MODAL
-========================= */
-
-.modal {
-  overflow-x: hidden !important;
-}
-
-.modal-dialog {
-  overflow-x: hidden !important;
-  max-width: 100% !important;
-}
-
-.modal-content {
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-}
-
-.modal-body {
-  overflow-x: hidden !important;
-  overflow-y: hidden !important;
-  max-height: none !important;
-}
-
-
-/* =========================
    CONTENEDOR
 ========================= */
 
