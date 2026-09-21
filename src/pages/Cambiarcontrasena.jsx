@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, Navigate } from "react-router-dom";
-import BotonCancelar from "../components/common/botonCancelar";
+import BotonCancelar from "../components/common/botoncancelar";
 import ImgLogoGlobal from "../components/common/imgLogo";
 import CardCambiar from "../components/comRecuperarContrasena/CardCambioContrasena";
 

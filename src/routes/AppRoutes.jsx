@@ -16,6 +16,7 @@ import ReservasCliente from "../pages/Reservas-Cliente";
 import ProtectedRoute from "./ProtectedRoute";
 import ActualizarContraRestau from "../pages/ActualizarContraRestau";
 import GestionEmpleadosRestaurante from "../pages/Gestion-EmpleadosRestau";
+import Panel_Chef from "../pages/GestionPanelChef";
 
 
 
@@ -107,6 +108,14 @@ export const AppRoutes = () => {
         element={
           <ProtectedRoute role="restaurante">
             <GestionEmpleadosRestaurante />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/chef/panel"
+        element={
+          <ProtectedRoute role="chef">
+            <Panel_Chef />
           </ProtectedRoute>
         }
       />
