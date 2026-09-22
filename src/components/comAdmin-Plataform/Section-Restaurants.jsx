@@ -5,6 +5,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { useState } from "react";
 import Modal_Delete_Confirm from "./Modal-Confirm-Restaurant-Delete";
 import { eliminarRestaurante } from "../../api/AdminPlatService";
+import ModalInfoRestaurant from './Modal-Info-Restaurant';
 
 export default function Section_Restaurants({restaurantes, setRestaurantes}) {
 
@@ -33,6 +34,21 @@ export default function Section_Restaurants({restaurantes, setRestaurantes}) {
     const cancelarEliminar = () => {
     setNitAEliminar(null);
     };
+    
+    const [showModalInfo, setShowModalInfo] = useState(false);
+      const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+    
+      // Abrir modal con la información del restaurante correspondiente
+      const handleOpenInfoModal = (restaurant) => {
+        setSelectedRestaurant(restaurant);
+        setShowModalInfo(true);
+      };
+    
+      // Cerrar modal
+      const handleCloseInfoModal = () => {
+        setShowModalInfo(false);
+        setSelectedRestaurant(null);
+      };
 
     return (
         <>
@@ -162,8 +178,8 @@ export default function Section_Restaurants({restaurantes, setRestaurantes}) {
                     <td>{r.correo}<br /><small className="text-muted">+57 {r.telefono}</small></td>
                     <td><Badge className="badge-state-acc">Activa</Badge></td>
                     <td>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
-                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button>
+                        <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover" onClick={() => handleOpenInfoModal(r)}><MdOutlineRemoveRedEye className="text-dark" size={15} /></Button>
+                        {/* <Button variant="outline-secondary" size="sm" className="me-2 icon-color-hover"><FiEdit className="text-dark" size={15} /></Button> */}
                         <Button variant="outline-secondary" size="sm" className="icon-color-hover" onClick={() => eliminarRestauranteHandler(r.nit)}><FaRegTrashAlt className="text-danger" size={15} /></Button>
                     </td>
                 </tr>
@@ -171,7 +187,14 @@ export default function Section_Restaurants({restaurantes, setRestaurantes}) {
             </tbody>
         </Table>
         }
+        {/* Renderizado del Modal Componente Independiente */}
+      <ModalInfoRestaurant
+        show={showModalInfo}
+        onHide={handleCloseInfoModal}
+        restaurant={selectedRestaurant}
+      />
         <Modal_Delete_Confirm mostrar={nitAEliminar !== null} onConfirmar={confirmarEliminar} onCancelar={cancelarEliminar} mensaje="¿Estás seguro de que deseas eliminar este restaurante?"/>
+        
         </>
     )
 }
