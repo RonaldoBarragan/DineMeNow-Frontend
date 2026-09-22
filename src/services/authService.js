@@ -31,9 +31,13 @@ export async function loginUsuario(data) {
   }
 }
 
-export async function solicitarCodigoRecuperacion(correo) {
+// Se agrega el parámetro 'rol' con valor predeterminado "CLIENTE"
+export async function solicitarCodigoRecuperacion(correo, rol ) {
   try {
-    const { data } = await api.post("/auth/recuperar-password/solicitar", { correo });
+    const { data } = await api.post("/auth/recuperar-password/solicitar", { 
+      correo,
+      rol 
+    });
     return data;
   } catch (error) {
     throw new Error(
@@ -43,6 +47,7 @@ export async function solicitarCodigoRecuperacion(correo) {
     );
   }
 }
+
 
 export async function verificarCodigoRecuperacion(correo, codigo) {
   try {
