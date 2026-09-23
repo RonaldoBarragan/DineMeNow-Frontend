@@ -6,8 +6,10 @@ import {RegistrarRestaurante} from "../api/Restaurant-Service";// Importa la fun
 import { Button, Form } from "react-bootstrap";
 import '../components/comRegistro-Restaurantes/page-style.css';
 import { Link } from "react-router-dom";
+import { useNotification } from '../context/NotificationContext';
 
 export default function RegistroCompleto() {
+    const { showNotification } = useNotification();
     //datos igual al dto
     const [formData, setFormData] = useState({
         propietario: "",
@@ -98,14 +100,22 @@ export default function RegistroCompleto() {
 
         console.log("Datos limpios que viajan al Back: ", datosParaEnviar);
         const respuesta = await RegistrarRestaurante(datosParaEnviar);
-        alert("¡Registro exitoso! Revisa tu correo.");
+        showNotification(
+          "¡Registro exitoso! Revisa tu correo para verificar tu cuenta.",
+          "Registro Completado",
+          "success",
+          () => {
+            
+            navigate('/'); 
+          }
+        ); 
     } catch(error){
         console.error("Error al Registrar: ", error);
         
-        // Si el error trae el mensaje del back, se muestra
-        const mensajeError = error.response?.data || "No se pudo enviar el registro. Revisa los campos";
-        alert(mensajeError);
-        }  
+            // Si el error trae el mensaje del back, se muestra
+            const mensajeError = error.response?.data || "No se pudo enviar el registro. Revisa los campos";
+            showNotification(mensajeError, "Error al Registrar", "danger");
+            }  
     };
 
     return(

@@ -9,12 +9,13 @@ import { AiOutlineLock } from "react-icons/ai";
 import { cambiarPasswordConToken } from "../../services/authService";
 import "./CambioContrasena.css";
 import "../comIniciarSesion/formInicioSesion.css";
-
+import { useNotification } from '../../context/NotificationContext';
 function CardCambiar({ resetToken }) {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmacion, setConfirmacion] = useState("");
   const [loading, setLoading] = useState(false);
+  const { showNotification } = useNotification();
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -39,8 +40,11 @@ function CardCambiar({ resetToken }) {
     setLoading(true);
     try {
       await cambiarPasswordConToken(resetToken, password);
-      alert("Contraseña actualizada correctamente. Ya puedes iniciar sesión.");
-      navigate("/iniciarsesion", { replace: true });
+      showNotification(
+  "Tu contraseña ha sido restablecida con éxito.",
+  "Contraseña Actualizada",
+  "success",
+  () => navigate("/iniciarsesion"), { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {

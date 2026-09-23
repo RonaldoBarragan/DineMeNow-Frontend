@@ -26,7 +26,7 @@ export async function loginUsuario(data) {
       error.response?.data?.mensaje ||
       error.response?.data?.error ||
       error.response?.data?.message ||
-      "Error en login";
+      "Usuario o contraseña incorrectos.";
     throw new Error(message);
   }
 }
