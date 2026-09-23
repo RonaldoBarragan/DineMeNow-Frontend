@@ -4,6 +4,7 @@ import TokenTimer from "./tokenTimer";
 import { useNavigate } from "react-router-dom";
 import { confirmarCodigo, reenviarCodigo } from "../../api/Client-Service";
 import { verificarCodigoRecuperacion, solicitarCodigoRecuperacion } from "../../services/authService";
+import { useNotification } from '../../context/NotificationContext';
 
 function CardVerificarToken({ email, recovery = false }) {
   const [codigo, setCodigo] = useState("");
@@ -11,6 +12,7 @@ function CardVerificarToken({ email, recovery = false }) {
   const [error, setError] = useState(null);
   const [resent, setResent] = useState(false);
   const navigate = useNavigate();
+  const { showNotification } = useNotification();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,8 +34,14 @@ function CardVerificarToken({ email, recovery = false }) {
         navigate("/cambiarcontrasena", { state: { resetToken: response.resetToken } });
       } else {
         await confirmarCodigo(email, codigoLimpio);
-        alert("¡Cuenta activada con éxito!");
-        navigate("/iniciarsesion");
+        showNotification(
+          "¡Cuenta activada con éxito!",
+          "Éxito",
+          "success",
+          () => {
+            navigate("/iniciarsesion");
+          }
+        );
       }
     } catch (err) {
       setError(err.message || "Código incorrecto o ha expirado.");

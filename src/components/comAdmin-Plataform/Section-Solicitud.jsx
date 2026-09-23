@@ -4,10 +4,12 @@ import { LuCircleCheckBig } from "react-icons/lu";
 import { CgCloseO } from "react-icons/cg";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { getRestaurantesPendientes, aprobarRestaurante, rechazarRestaurante } from "../../api/AdminPlatService";
+import { useNotification } from '../../context/NotificationContext';
 
 export default function Section_Solicitud({onAccionCompletada, onRefresh}) {
     const [solicitudes, setSolicitudes] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { showNotification } = useNotification();
 
     const cargarDatos = async () => {
         try {
@@ -28,7 +30,6 @@ export default function Section_Solicitud({onAccionCompletada, onRefresh}) {
     const manejoAprobacion = async (nit) => {
         try {
             await aprobarRestaurante(nit);
-            alert("¡Restaurante aprobado con éxito!");
 
             cargarDatos(); //limpia la lista de tarjetas
             onRefresh();
@@ -36,24 +37,42 @@ export default function Section_Solicitud({onAccionCompletada, onRefresh}) {
             if(onAccionCompletada){
                 onAccionCompletada();//eso hara que se cambie el numerito de solicitudes
             }
+            // Modal de éxito
+            showNotification(
+                "¡Restaurante aprobado con éxito! Ya forma parte de la plataforma.",
+                "Aprobación Exitosa",
+                "success"
+            );
 
         } catch (error) {
-            alert("Error al aprobar el restaurante");
+            showNotification(
+                "Hubo un problema al intentar aprobar este restaurante.",
+                "Error en la Aprobación",
+                "danger"
+            );
         }
     };
 
     const manejoRechazo = async (nit) => {
     try {
         await rechazarRestaurante(nit);
-        alert("Restaurante rechazado");
-        
-        cargarDatos(); 
+        showNotification(
+            "¡Restaurante rechazado con éxito!",
+            "Rechazo Exitoso",
+            "danger"
+        );
+
+        cargarDatos();
 
         if(onAccionCompletada){
             onAccionCompletada();
         }
     } catch (error) {
-        alert("Error al rechazar el restaurante");
+        showNotification(
+            "Hubo un problema al intentar rechazar este restaurante.",
+            "Error en el Rechazo",
+            "danger"
+        );
     }
 };
 

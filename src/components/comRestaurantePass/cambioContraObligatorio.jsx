@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import "../../design/global.css";
 import { ActualizarContraTempResta } from "../../api/Restaurant-Service";
 import { useAuth } from "../../context/AuthContext";
-
+import { useNotification } from '../../context/NotificationContext';
 export default function CambioContraObligatoria(){
   const {user, updateUser, isLoading} = useAuth();
   const [passwords, setPasswords] = useState({ actual:'', nueva: '', confirmar: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { showNotification } = useNotification();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +40,11 @@ export default function CambioContraObligatoria(){
 
       updateUser({ mustChangePassword: false });
 
-      alert("Contraseña actualizada con éxito. Ya puedes gestionar tu restaurante.");
+      showNotification(
+        "Tu contraseña ha sido actualizada con éxito. Ya puedes gestionar tu restaurante.",
+        "Contraseña Actualizada",
+        "success"
+      );
       navigate('/restaurante/vista'); //enviar al panel real
     }catch(err){
       setError(err.message);
